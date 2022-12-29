@@ -3,6 +3,7 @@ site_name: Telink Web docs
 nav:
   - Boards: 
     - Mars_B91: boards/Mars_B91.md
+    - Mini_Buring_EVK: boards/Mini_Burning_EVK.md
   - Tools:
     - Web BDT: webtools/web_bdt.md
     - Web UART: webtools/web_uart.md
