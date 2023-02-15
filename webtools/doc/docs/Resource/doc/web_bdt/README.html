@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="web-bdt-v110">WEB BDT V1.1.0</h1>
+<style>
+ .image{
+    display: block;
+    margin: 0 auto;
+}
+table {
+margin: auto;
+border: 1px solid red
+}
+</style>
+<p><a href="./README_en.html">English</a>   
+<a href="./tools/off-line.zip">off-line for Windows</a>   
+<a href="http://wiki.telink-semi.cn/wiki/IDE-and-Tools/Burning-and-Debugging-Tools-for-all-Series/">BDT for Windows</a>   
+<a href="https://zadig.akeo.ie/">driver for WEB BDT</a>   
+<a href="./tools/8266_tlink_20211118.bin">firmware for Burning EVK</a>   
+<a href="./README.pdf">PDF版下载</a>   </p>
+<blockquote>
+<h1 id="%E7%9B%AE%E5%BD%95">目录</h1>
+<h3 id="1%E7%AE%80%E4%BB%8B"><a href="#1">1、简介</a></h3>
+<blockquote>
+<h4 id="11-%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0"><a href="#1.1">1.1 功能概述</a></h4>
+</blockquote>
+<h3 id="2%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97"><a href="#2">2、操作指南</a></h3>
+<blockquote>
+<h4 id="21-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><a href="#2.1">2.1 准备工作</a></h4>
+<blockquote>
+<h5 id="211-burning-evk-libusb%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85"><a href="#2.1.1">2.1.1 Burning EVK libusb驱动安装</a></h5>
+<h5 id="212-%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5"><a href="#2.1.2">2.1.2 设备连接</a></h5>
+</blockquote>
+<h4 id="22-%E5%9B%BA%E4%BB%B6%E4%B8%8B%E8%BD%BD"><a href="#2.2">2.2 固件下载</a></h4>
+<blockquote>
+<h5 id="221-%E4%B8%8B%E8%BD%BD%E5%9B%BA%E4%BB%B6%E5%88%B0flash%E4%B8%AD"><a href="#2.2.1">2.2.1 下载固件到FLASH中</a></h5>
+<h5 id="222-%E4%B8%8B%E8%BD%BD%E5%9B%BA%E4%BB%B6%E5%88%B0sram%E4%B8%AD"><a href="#2.2.2">2.2.2 下载固件到SRAM中</a></h5>
+</blockquote>
+<h4 id="23-flash%E6%93%A6%E9%99%A4"><a href="#2.3">2.3 FLASH擦除</a></h4>
+<h4 id="24-activate-mcu"><a href="#2.4">2.4 Activate MCU</a></h4>
+<h4 id="25-debug"><a href="#2.5">2.5 Debug</a></h4>
+<blockquote>
+<h4 id="251-%E6%95%B0%E6%8D%AE%E7%9A%84%E8%AF%BB%E5%86%99"><a href="#2.5.1">2.5.1 数据的读写</a></h4>
+<blockquote>
+<h5 id="2511-%E6%95%B0%E6%8D%AE%E7%9A%84%E8%AF%BB"><a href="#2.5.1.1">2.5.1.1 数据的读</a></h5>
+<h5 id="2512-%E6%95%B0%E6%8D%AE%E7%9A%84%E5%86%99"><a href="#2.5.1.2">2.5.1.2 数据的写</a></h5>
+</blockquote>
+<h4 id="252-%E5%8F%8D%E6%B1%87%E7%BC%96%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90"><a href="#2.5.2">2.5.2 反汇编文件的解析</a></h4>
+<h4 id="253-debug-mcu"><a href="#2.5.3">2.5.3 Debug MCU</a></h4>
+<blockquote>
+<h5 id="2531-run-mcu"><a href="#2.5.3.1">2.5.3.1 Run MCU</a></h5>
+<h5 id="2532-pause-mcu"><a href="#2.5.3.2">2.5.3.2 Pause MCU</a></h5>
+<h5 id="2533-trace-pc"><a href="#2.5.3.3">2.5.3.3 Trace PC</a></h5>
+<h5 id="2534-step-mcu"><a href="#2.5.3.4">2.5.3.4 Step MCU</a></h5>
+<h5 id="2535-stall-mcu"><a href="#2.5.3.5">2.5.3.5 Stall MCU</a></h5>
+<h5 id="2536-start-mcu"><a href="#2.5.3.6">2.5.3.6 Start MCU</a></h5>
+</blockquote>
+</blockquote>
+<h4 id="26-sws"><a href="#2.6">2.6 SWS</a></h4>
+<h4 id="27-%E5%A4%9A%E5%9C%B0%E5%9D%80%E4%B8%8B%E8%BD%BD"><a href="#2.7">2.7 多地址下载</a></h4>
+<h4 id="28-%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7"><a href="#2.8">2.8 固件升级</a></h4>
+<h4 id="29-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><a href="#2.9">2.9 文件上传</a></h4>
+</blockquote>
+<h3 id="3%E5%8D%95%E6%9C%BA%E7%89%88web-bdt"><a href="#3">3、单机版WEB BDT</a></h3>
+<h3 id="4windows-for-bdt"><a href="#4">4、Windows for BDT</a></h3>
+</blockquote>
+<hr>
+<blockquote>
+<h2 id="span-id%221%221%E7%AE%80%E4%BB%8Bspan"><span id="1">1、简介</span></h2>
+<p>    “WEB BDT(Telink Burning and Debugging Tool)”适用于泰凌芯片的下载和调试。本文档介绍了如何使用“WEB BDT”。
+</br>    Telink原来的调试下载工具为<a href="http://wiki.telink-semi.cn/wiki/IDE-and-Tools/Burning-and-Debugging-Tools-for-all-Series/"  target="_blank"> BDT </a>，可在Windows平台下使用。为了工具能跨平台使用，同时用户可即开即用，而不必去下载和安装工具，Telink新推出了基于Web的下载调试工具<a href="https://debug.telink-semi.cn/web_bdt/" target="_blank"> Web BDT </a>(开源，可二次开发)。用户可以通过网页来进行程序的下载和调试，网页支持Windows，Linux，macOS，Android等平台，只需要一个兼容的网页浏览器即可，推荐使用较新版本的Chrome或者Edge。</p>
+<blockquote>
+<h3 id="span-id%2211%2211-%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0span"><span id="1.1">1.1 功能概述</span></h3>
+<p>     在开发过程中，通过使用BDT可将固件下载到目标板中，其主要功能包括：FLASH的擦除、固件的下载、芯片的激活、读写全局变量、变量列表的展示、单步调试、读取PC值、暂停和启动芯片、在线或本地多固件多地址下载、在线或本地&quot;Burning EVK&quot;固件更新、上传文件到服务器等。
+<img src="./images/1.jpg" width="80%" class="image">
+     点击&quot;install&quot;可将网页以原生应用的方式安装在电脑/手机上，并自动添加桌面快捷方式，用户也可将应用固定任务栏处。同时采用离线存储和后台同步技术，网页可在没有网络的条件下使用(从服务器上下载程序功能除外)。
+<img src="./images/webbdt1.png" width="50%" class="image">
+    &quot;WEB BDT&quot;支持Windows系统、macOS系统、Android系统、Linux系统，推荐使用较新版本的Edge/Chrome浏览器。浏览器支持情况如下图:
+<img src="./images/0.png" width="50%" class="image"></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<h2 id="span-id%222%222%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97span"><span id="2">2、操作指南</span></h2>
+<blockquote>
+<h3 id="span-id%2221%2221-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9Cspan"><span id="2.1">2.1 准备工作</span></h3>
+<blockquote>
+<h4 id="span-id%22211%22211-burning-evk-libusb%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85span"><span id="2.1.1">2.1.1 Burning EVK libusb驱动安装</span></h4>
+<p>    Web BDT通过Web USB控制Telink burning evk(一款下载调试器)，为了能使用Web BDT，需要给电脑安装libusb驱动。而传统BDT工具通过Windows自带的usb printer驱动去操控Telink burning evk。
+</br>    为了避免Windows平台同时使用Web BDT和传统的BDT时需要频繁的切换驱动，需要更新Telink burning evk本身的固件程序。更新之后，通过Telink burning evk上的按键SW2来切换USB PID。</p>
+<ol>
+<li>如果上电后Telink Burning EVK单个LED常亮，则不需要更新固件，否则就需要下载对应的 <a href="./tools/8266_tlink_20211118.bin" target="_blank">固件</a>  到模块板中，通过旧的BDT工具更新固件后重新上电。
+<img src="./images/update.gif" width="70%" class="image"></li>
+<li>BDT和Web BDT对应的LED状态如下图，传统BDT用绿灯指示，Web BDT用蓝灯指示，通过按键SW2可以切换USB PID并改变LED状态(切换状态后，需要重新上电)。
+<img src="./images/state_change.png" width="70%" class="image"></li>
+<li>使用Web BDT前需要先安装一次libusb驱动，方法如下：下载<a href="https://zadig.akeo.ie/" target="_blank"> Zadig </a> Telink burning evk设置为蓝灯状态（若上电后改变了LED状态，需要重新上电后生效设置），通过USB连接PC，安装libusb驱动，过程见下图，驱动安装需要几十秒甚至更长时间，需要耐心等待。
+<img src="./images/zadig.gif" width="70%" class="image"></li>
+</ol>
+<h4 id="span-id%22212%22212-%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5span"><span id="2.1.2">2.1.2 设备连接</span></h4>
+<ol>
+<li>通过USB线缆连接Burning EVK和电脑，把Burning EVK的SWM，3V3，GND 分别开发板的 SWS，3V3，GND连接</li>
+<li>通过Burning EVK上的SW2切换为LED蓝灯状态并重新连接USB(如果上一次连接的时候已经切换为该状态则可跳过这一步)</li>
+<li>点击下拉菜单Device中的Connect，浏览器会跳出器件连接的选择，选择Telink Web Debugger设备并点击连接(若有多个&quot;Burning EVK&quot;连接，则弹出的列表中会有多个Telink Web Debugger设备，请选择自己想要连接的设备)。
+<img src="./images/webbdt3.jpg" class="image" style="width:40%"></li>
+</ol>
+</blockquote>
+<h3 id="span-id%2222%2222-%E5%9B%BA%E4%BB%B6%E4%B8%8B%E8%BD%BDspan"><span id="2.2">2.2 固件下载</span></h3>
+<blockquote>
+<h4 id="tabletrtd-bgcoloryellow%E5%9C%A8%E4%B8%8B%E8%BD%BD%E5%9B%BA%E4%BB%B6%E5%89%8D%E8%AF%B7%E5%85%88%E7%A1%AE%E4%BF%9D%E7%9B%AE%E6%A0%87%E6%9D%BF%E5%92%8C%E7%94%B5%E8%84%91%E5%B7%B2%E9%80%9A%E8%BF%87%22burning-evk%22%E6%AD%A3%E7%A1%AE%E8%BF%9E%E6%8E%A5%E5%B9%B6%E4%B8%94%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E9%80%9A%E4%BF%A1-tdtrtable"><table><tr><td bgcolor=yellow>在下载固件前，请先确保目标板和电脑已通过&quot;Burning EVK&quot;正确连接并且可以进行通信。 </td></tr></table></h4>
+<h4 id="span-id%22221%22221-%E4%B8%8B%E8%BD%BD%E5%9B%BA%E4%BB%B6%E5%88%B0flash%E4%B8%ADspan"><span id="2.2.1">2.2.1 下载固件到FLASH中</span></h4>
+<p>用户可以按照本节中的指南将固件下载到目标板中指定的FLASH地址空间中。</p>
+<ol>
+<li>点击芯片选择下拉菜单并选择目标板的芯片型号，默认是B91。</li>
+<li>在&quot;Setting&quot;选项卡中的Download Addr:0x输入框中输入FLASH下载的首地址（十六进制），例如0（默认首地址为0）或者20000（首地址为0x20000）。</li>
+<li>FLASH/SRAM选框中选择FLASH(默认)。
+<img src="./images/12.png" class="image" style="width:80%"></li>
+<li>点击&quot;File Import&quot;按钮选择要下载到目标板中的固件文件。文件的名称和生成的时间会打印到下方日志窗口中，文件名会显示在&quot;File Import&quot;按钮上。</li>
+<li>检查目标板与电脑的连接，如果还没连接或者连接断开，再次连接也是可行的。</li>
+<li>点击下载按钮，就可以将所选固件下载到所设置的FLASH地址中去，日志窗口会显示相应的日志信息。</li>
+<li>复位MCU，使新下载的程序运行而无需关闭MCU的电源。用户可以按照以下两种方法中的任意一种复位MCU。</li>
+</ol>
+<blockquote>
+<ul>
+<li>manual mode/auto mode选框中如果选择的是manual mode，下载后用户需要手动点击Reset按钮对芯片进行复位。</li>
+<li>manual mode/auto mode选框中如果选择的是auto mode，下载后设备会自动复位。
+<img src="./images/22.png" class="image" style="width:80%"></li>
+</ul>
+</blockquote>
+<h4 id="span-id%22222%22222-%E4%B8%8B%E8%BD%BD%E5%9B%BA%E4%BB%B6%E5%88%B0sram%E4%B8%ADspan"><span id="2.2.2">2.2.2 下载固件到SRAM中</span></h4>
+<p>固件下载到SRAM中的操作流程跟下载到FLASH中类似，与下载到FLASH中不同的是，需要在FLASH/SRAM选框中选择SRAM(默认是FLASH)。并且需要在Sram Start Addr:0x输入框中输入SRAM下载的首地址（十六进制），例如c0000000（0xc0000000，B91的默认首地址）或者c0002000（首地址为0xc0002000）。将程序下载到B91芯片SRAM中并自动复位的演示如下图。
+<img src="./images/23.png"  class="image" style="width:80%"></p>
+</blockquote>
+<h3 id="span-id%2223%2223-flash%E6%93%A6%E9%99%A4span"><span id="2.3">2.3 FLASH擦除</span></h3>
+<blockquote>
+<p>FLASH擦除功能用来擦除以4KB为单位的指定FLASH地址，用户可以按照以下步骤操作。</p>
+<ol>
+<li>在Erase Flash Addr:0x输入框中设置要擦除的闪存空间的起始地址（十六进制），例如0（默认首地址为0）或者2000（首地址为0x2000）。</li>
+<li>在Sector Erase Size(K)输入框中设置要擦除的闪存空间的大小（十进制），例如512（默认擦除大小为512KB）或者1024（擦除大小为1024KB）。</li>
+<li>单击&quot;Erase&quot;按钮开始擦除目标板的指定闪存空间。擦除B91芯片中从0地址开始的512KB大小的FLASH演示如下图。
+<img src="./images/24.png" class="image" style="width:80%"></li>
+</ol>
+</blockquote>
+<h3 id="span-id%2224%2224-activate-mcuspan"><span id="2.4">2.4 Activate MCU</span></h3>
+<blockquote>
+<p>当电脑与目标板通信失败时（例如芯片进入低功耗模式），可以通过按钮Activate去激活芯片。激活成功时，日志窗口会打印&quot;Activate OK!&quot;，失败会打印&quot;Activate failed!&quot;。
+<img src="./images/25.png"  class="image" style="width:80%"></p>
+</blockquote>
+<h3 id="span-id%2225%2225-debugspan"><span id="2.5">2.5 Debug</span></h3>
+<blockquote>
+<h4 id="span-id%22251%22251-%E6%95%B0%E6%8D%AE%E7%9A%84%E8%AF%BB%E5%86%99span"><span id="2.5.1">2.5.1 数据的读写</span></h4>
+<blockquote>
+<h4 id="span-id%222511%222511-%E6%95%B0%E6%8D%AE%E7%9A%84%E8%AF%BBspan"><span id="2.5.1.1">2.5.1.1 数据的读</span></h4>
+<ol>
+<li>选择对应的芯片型号。</li>
+<li>点击&quot;Access Memory&quot;选项卡。</li>
+<li>输入框&quot;Address:0x&quot;中输入地址（十六进制），例如80000（0x80000)。</li>
+<li>输入框&quot;“Length:0x&quot;中输入需要读取的字节数量（十六进制），例如10（0x10)。</li>
+<li>点击&quot;usb read&quot;按钮，可读取&quot;Burning EVK&quot;的数据（起始地址和大小由上面步骤设置）,点击&quot;evk read&quot;按钮，可读取目标板的数据（起始地址和大小由上面步骤设置）。</li>
+</ol>
+<h4 id="span-id%222512%222512-%E6%95%B0%E6%8D%AE%E7%9A%84%E5%86%99span"><span id="2.5.1.2">2.5.1.2 数据的写</span></h4>
+<ol>
+<li>选择对应的芯片型号。</li>
+<li>点击&quot;Access Memory&quot;选项卡。</li>
+<li>输入框&quot;Address:0x&quot;中输入地址（十六进制），例如80000（0x80000)。</li>
+<li>输入框&quot;Length:0x&quot;中输入需要写入的字节数量（十六进制），例如10（0x10)。</li>
+<li>输入框&quot;Data:0x&quot;中输入需要写入的数据。</li>
+<li>normal/repeat选框可以选择写入数据的模式，normal模式：将Data输入框中的数据写入起始地址处；repeat模式：将Data输入框中第一个数据写入起始地址处，写入个数为输入框Length中的输入数。</li>
+<li>点击&quot;usb write&quot;按钮，可往&quot;Burning EVK&quot;写入数据（数据、起始地址和大小由上面步骤设置）,点击&quot;evk write&quot;按钮，可往目标板写入数据（数据、起始地址和大小由上面步骤设置）。<br>
+数据的读写操作演示如下图
+<img src="./images/10.png" class="image"  style="width:80%">
+<img src="./images/11.png" class="image"  style="width:80%"></li>
+</ol>
+</blockquote>
+<h4 id="span-id%22252%22252-%E5%8F%8D%E6%B1%87%E7%BC%96%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90span"><span id="2.5.2">2.5.2 反汇编文件的解析</span></h4>
+<blockquote>
+<ol>
+<li>选择对应的芯片型号。</li>
+<li>打开&quot;Tdebug&quot;选项卡进入Tdebug页面，点击&quot;File Import&quot;按钮，选择反汇编文件（默认后缀为.lst或者.txt）。</li>
+<li>点击&quot;refresh&quot;按钮，网页会从反汇编文件中的符号表中找到全局变量端数据信息，并根据不同芯片解析出每条数据的变量名和地址以及长度。并且根据这些数据调用目标板数据读取功能，一一进行读取数据，并将数据显示在下方列表中（显示数据时，低字节在前，无论数据长度多长都打印在网页中显示）。点击&quot;refresh&quot;按钮，可以更新一次读取，数据更新完会在右侧的日志窗口中有提示。
+variable/function选框可以选择显示的是变量列表还是函数列表，addr/name选框可以选择是按地址排序还是按名称排序，两个选项可以组合使用。
+下图演示了对反汇编文件的读取：
+<img src="./images/7.png" class="image" style="width:80%">
+<img src="./images/8.png" class="image" style="width:80%"></li>
+</ol>
+</blockquote>
+<h4 id="span-id%22253%22253-debug-mcuspan"><span id="2.5.3">2.5.3 Debug MCU</span></h4>
+<blockquote>
+<p>在使用&quot;Stall&quot;、&quot;Start&quot;、&quot;Run&quot;、&quot;Pause&quot;、&quot;Step&quot;、&quot;PC&quot;这些功能前，请确保所选MCU支持此功能，有关详细信息，请参阅下方功能支持列表。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">8266</th>
+<th style="text-align:center">8368</th>
+<th style="text-align:center">8367_i</th>
+<th style="text-align:center">8367_e</th>
+<th style="text-align:center">8369_i</th>
+<th style="text-align:center">8369_e</th>
+<th style="text-align:center">8232</th>
+<th style="text-align:center">8233</th>
+<th style="text-align:center">8266</th>
+<th style="text-align:center">8267</th>
+<th style="text-align:center">8269</th>
+<th style="text-align:center">8255</th>
+<th style="text-align:center">8258</th>
+<th style="text-align:center">8278</th>
+<th style="text-align:right">B91</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stall</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:right">×</td>
+</tr>
+<tr>
+<td>Start</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:right">×</td>
+</tr>
+<tr>
+<td>Run</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:right">×</td>
+</tr>
+<tr>
+<td>Pause</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:right">×</td>
+</tr>
+<tr>
+<td>Step</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:right">×</td>
+</tr>
+<tr>
+<td>PC</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:right">×</td>
+</tr>
+</tbody>
+</table>
+<h4 id="span-id%222531%222531-run-mcuspan"><span id="2.5.3.1">2.5.3.1 Run MCU</span></h4>
+<p>点击&quot;Pause&quot;或&quot;Step&quot;按钮后，用户可以单击&quot;Run&quot;按钮使MCU继续从停下的位置开始运行，可以通过点击&quot;PC&quot;按钮读取PC以确保程序再次运行。</p>
+<h4 id="span-id%222532%222532-pause-mcuspan"><span id="2.5.3.2">2.5.3.2 Pause MCU</span></h4>
+<p>要查看MCU状态的详细信息，用户可以单击&quot;Pause&quot;按钮暂停微控制器。点击&quot;Run&quot;按钮，MCU将从当前位置继续运行。</p>
+<h4 id="span-id%222533%222533-trace-pcspan"><span id="2.5.3.3">2.5.3.3 Trace PC</span></h4>
+<p>如果与目标板的通信可用，用户可以单击&quot;PC&quot;按钮，查看指令的当前位置。通过选择Single step/continue选框来控制是单步模式还是追踪模式，如下所示。
+<img src="./images/26.png" class="image" style="width:80%"></p>
+<h4 id="span-id%222534%222534-step-mcuspan"><span id="2.5.3.4">2.5.3.4 Step MCU</span></h4>
+<p>如果与目标板的通信可用，用户可以单击&quot;Step&quot;按钮，逐步查看指令的当前位置。通过选择Single step/continue选框来控制是单步模式还是追踪模式，如下所示。
+<img src="./images/27.png" class="image" style="width:80%"></p>
+<h4 id="span-id%222535%222535-stall-mcuspan"><span id="2.5.3.5">2.5.3.5 Stall MCU</span></h4>
+<p>当没有足够的时间查看MCU的状态时，用户可以单击&quot;Stall&quot;按钮以暂停MCU并查看MCU的状态或更改MCU的配置。</p>
+<h4 id="span-id%222536%222536-start-mcuspan"><span id="2.5.3.6">2.5.3.6 Start MCU</span></h4>
+<p>暂停MCU后，点击&quot;Start&quot;按钮启动MCU，使MCU从SRAM起始处运行。
+<img src="./images/28.png" class="image" style="width:80%"></p>
+</blockquote>
+</blockquote>
+<h3 id="span-id%2226%2226-swsspan"><span id="2.6">2.6 SWS</span></h3>
+<blockquote>
+<blockquote>
+<p>在设置单线同步速度之前，请确保项目：</p>
+<blockquote>
+<ol>
+<li>电源正常；</li>
+<li>MCU未处于&quot;低功耗&quot;模式；</li>
+<li>具备单片机的单线功能；</li>
+<li>系统时钟正常。</li>
+</ol>
+</blockquote>
+<p>    当&quot;Burning EVK&quot;和目标板之间无法建立连接时，用户可以尝试设置Swire的同步速度来建立连接。注：Swire寄存器地址可能因芯片类型而异。&quot;SWS&quot;按钮前的四个可编辑框可以更改&quot;Burning EVK&quot;和目标板的速度，单击&quot;SWS&quot;按钮以执行Swire同步。
+    建议在将固件下载到目标板或调试MCU之前，执行一次Swire同步检查与目标板的通信是否正常。如果与目标板的通信状态错误，可以根据第2.6节开头提到的方法解决问题。下图为同步成功时的演示图。
+<img src="./images/29.png" class="image" style="width:80%"></p>
+</blockquote>
+</blockquote>
+<h3 id="span-id%2227%2227-%E5%A4%9A%E5%9C%B0%E5%9D%80%E4%B8%8B%E8%BD%BDspan"><span id="2.7">2.7 多地址下载</span></h3>
+<blockquote>
+<p>选择与目标板对应的芯片型号，打开&quot;Multi Addr Download&quot;选项卡，在输入框中输入下载的首地址，点击靠左边的一列的按钮可以选择本地文件，靠右侧的一列按钮上显示的文件名称根据所选芯片不同而不同，右侧文件存储在服务器端，本地文件和服务器端文件可混合多选，进而多地址下载。多地址下载功能的使用示意图如下：
+<img src="./images/30.png" class="image" style="width:80%"></p>
+</blockquote>
+<h3 id="span-id%2228%2228-%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7span"><span id="2.8">2.8 固件升级</span></h3>
+<blockquote>
+<p>固件升级分为两类，一类是选择本地固件进而对&quot;Burning EVK&quot;进行升级，另一类是从服务器端下载固件进行更新。点击&quot;Online&quot;选项卡下的Firmware下拉框选择本地或者服务器端对应的固件。固件更新功能演示示意图如下：
+<img src="./images/webbdt5.jpg" class="image" style="width:10%">
+<img src="./images/34.png" class="image" style="width:80%"></p>
+</blockquote>
+<h3 id="span-id%2229%2229-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0span"><span id="2.9">2.9 文件上传</span></h3>
+<blockquote>
+<p>打开&quot;Online&quot;选项卡，在LinkCode输入框中填入正确的一次性连接码，点击&quot;Upload File&quot;按钮，选择要上传的本地文件，Directory输入框中输入的是保存在服务器中的相对目录名。文件上传功能演示示意图如下：
+<img src="./images/16.png" class="image" style="width:80%">
+<img src="./images/17.png" class="image" style="width:80%"></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<h2 id="span-id%223%223%E5%8D%95%E6%9C%BA%E7%89%88web-bdtspan"><span id="3">3、单机版WEB BDT</span></h2>
+<blockquote>
+<p>    下载   <a href="./tools/off-line.zip">off-line for Windows</a>   
+    安装好USB驱动   <a href="https://zadig.akeo.ie/">driver for WEB BDT</a>   并且更新最新版的&quot;Burning EVK&quot;的固件   <a href="./tools/8266_tlink_20211118.bin">firmware for Burning EVK</a>   
+点击&quot;启动.vbs&quot;和&quot;关闭.vbs&quot;用来打开和关闭程序。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<h2 id="span-id%224%224windows-for-bdtspan"><span id="4">4、Windows for BDT</span></h2>
+<blockquote>
+<p>    下载：<a href="http://wiki.telink-semi.cn/wiki/IDE-and-Tools/Burning-and-Debugging-Tools-for-all-Series/">Windows for BDT</a>   使用说明在下载文件里有。</p>
+</blockquote>
+</blockquote>
+
+</body>
+</html>

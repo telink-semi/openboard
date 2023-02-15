@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+	<style>
+		input[type = text] {
+			color: rgb(179, 255, 179);
+			background-color: 	#104E8B;
+		}
+	</style>
+    <meta charset = "utf-8">
+    <title>Telink WEB UART v1.0.0</title>
+	<link rel="manifest" href="./mainfest.json" />
+<!--
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+ -->
+    <link rel = "shortcut icon" href = "./images/serial_port-32.png" />
+    <link rel = "stylesheet" href = "layui-v2.6.8/layui/myfont/iconfont.css">
+    <link rel = "stylesheet" type = "text/css" href = "layui-v2.6.8/layui/css/layui.css" />
+    <script src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src = "layui-v2.6.8/layui/layui.js" type = "text/javascript" charset = "UTF-8"></script>
+</head>
+
+<body bgcolor=#FFFFE0>
+<!-- 
+    cyan    blue
+-->
+<div style="background: linear-gradient(303deg, #6f86d6  0%, #0a2d72  71%);text-align:center;color:#fff;padding:10px 0;">
+	<div class="mobile only column sixteen wide">
+		<h1 style="font-size:32px;margin-top:5px;">Telink Web UART</h1>
+	</div>
+</div>
+<hr/>
+<div class="layui-fluid">
+<!-- 第一行  -->
+    <div class="layui-row layui-col-space10 ">  
+		<form class="layui-form  " action="">
+			<div class = "layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-lg2">
+				<label class="layui-form-label">波特率:</label>
+				<div class="layui-input-block">
+					<select id="baud" name="Tbus" title="baud" lay-filter="boud_filter">
+						<option value="9600">9600</option>
+						<option value="19200">19200</option>
+						<option value="115200" selected>115200</option>
+					</select>
+				</div>
+			</div>
+			<div class = "layui-col-md4 layui-col-sm4 layui-col-xs4 layui-col-lg4">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" class="layui-btn layui-btn-warm" onclick = "connectBtn_Onclick()">
+					<i class = "layui-icon layui-icon-link"></i> 连接
+				</button>
+				<button type="button" class="layui-btn layui-btn-danger" onclick = "closeBtn_Onclick()">
+					<i class = "layui-icon layui-icon-close"></i> 关闭
+				</button>
+				<button type="button" class="layui-btn layui-btn-normal" onclick = "clearBtn_Onclick()">
+					<i class="layui-icon layui-icon-fonts-clear"></i> 清空接收
+				</button>
+				<button type="button" class="layui-btn layui-btn-disabled" id = 'btnInstall'>
+					<i class="layui-icon layui-icon-star-fill"></i> 安装应用
+				</button>
+			</div>
+			<div class = "layui-col-md5 layui-col-sm5 layui-col-xs5 layui-col-lg5 layui-col-md-offset1">
+				<input type = "checkbox" id = "addLine" title = "发送新行">
+				<input type = "checkbox" id = "echoOn"  title = "回显" checked >
+				<input type = "checkbox" id = "HexOn"   title = "16进制发送" checked >
+				<input type = "checkbox" id = "HexOnRx"   title = "16进制接收" checked>
+			</div>
+		</form>	
+    </div></br>
+	<!-- 第二行-->
+	<div class="layui-row layui-col-space10 ">
+		<div class = "layui-col-md4 layui-col-sm4 layui-col-xs4 layui-col-lg4">
+			<label class="layui-form-label">Data:</label>
+			<div class="layui-input-block"> <!-- placeholdvr = " 20 "-->
+				<input id = "senddata"  type="text" name="title" required  lay-verify="required" placeholder = "20" autocomplete = "off" class="layui-input ">
+			</div>
+		</div>
+
+		<div class = "layui-col-md8 layui-col-sm8 layui-col-xs8 layui-col-lg8">
+			<button type="button" id="sendbutton" class="layui-btn" onclick = "send_input_data()">
+				<i class = "layui-icon layui-icon-left"></i> 发送数据
+			</button>
+
+			<button type="button" id="query_button" class="layui-btn layui-btn-enabled  layui-anim layui-anim-rotate" onclick = "query_state()">
+				<i class = "layui-icon layui-icon-search"></i> 查询设定
+			</button>	
+
+			<button type="button" id="defult_button" class="layui-btn " onclick = "reset_default()">
+				<i class = "layui-icon layui-icon-fonts-code"></i> 恢复默认
+			</button>
+
+			<button type="button" id="reset_chip_button" class="layui-btn " onclick = "reset_chip()">
+				<i class = "layui-icon layui-icon-chart"></i> 复位芯片
+			</button>
+
+			<button type="button" id="factory_button" class="layui-btn " onclick = "factory_settings()">
+				<i class = "layui-icon layui-icon-set-sm"></i> 出厂设置
+			</button>
+			
+			<button type="button" id="close_pwm_button" class="layui-btn " onclick = "close_pwm()">
+				<i class = "layui-icon layui-icon-close"></i> 关闭PWM
+			</button>
+
+			<button type="button" id="reset_pwm_button" class="layui-btn " onclick = "reset_pwm()">
+				<i class = "layui-icon layui-icon-refresh"></i> 复位PWM
+			</button>
+		</div>
+	</div>
+</div>
+
+<div style = "background:rgb(30, 159, 255); position: absolute;top: 25%;right: 0px;bottom: 3px;left: 0px;" class = "container">
+
+	<textarea id = "Console1" style = "font-size:16px;
+	color:#00ff00;
+	background-color:#000000;
+	margin: 3px 3px 3px 3px;
+	overflow-y: auto;
+	resize: none;
+	width: calc(45% - 8px);
+	height: calc(100% - 8px);
+	outline: none;"></textarea>
+
+	<div  style="background:rgb(255, 255, 224); width: calc(55% - 8px); height: calc(100% - 8px);margin: 3px 3px 3px 3px; float:right;">
+		<br/>
+	   <!-- 第一行 -->
+	    <div class="layui-row ">
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				<label class="layui-form-label">设备类型:</label>
+				<div class="layui-input-block">
+					<input type="text" id="device_type" value="未查询" class="layui-input">
+				</div>
+			</div>
+		    <div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3"> 
+				<label class="layui-form-label">PAN ID:</label>
+				<div class="layui-input-block">
+					<input type="text" id="panid" value="0x0000" class="layui-input">
+				</div>
+			</div>
+			<div class = "layui-col-md4 layui-col-sm4 layui-col-xs4 layui-col-lg4"> 
+			    <label class="layui-form-label">网关长地址:</label>
+				<div class="layui-input-block">
+					<input type="text" id="c_long_addr" value="0x0000000000000000" class="layui-input">
+				</div>
+			</div>
+	  	</div><br/>
+	  	<!-- 第二行 -->
+	    <div class="layui-row ">
+	        <div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3"> 
+				<form class="layui-form">
+						<label class="layui-form-label">波特率:</label>
+						<div class="layui-input-block">
+							<select id="boud_select" title = "boud_select" lay-filter="boud_select_filter">
+								<option value="9600">9600</option>
+								<option value="19200">19200</option>
+								<option value = "115200" selected>115200</option>
+							</select>
+						</div>
+				</form>
+			</div> 
+	        <div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				<label class="layui-form-label">设备短地址:</label>
+				<div class="layui-input-block">
+				<input type="text" id="short_addr" value="0x0000" class="layui-input">
+				</div>
+			</div>
+			<div class = "layui-col-md4 layui-col-sm4 layui-col-xs4 layui-col-lg4"> 
+				<label class="layui-form-label">设备长地址:</label>
+				<div class="layui-input-block">
+				<input type="text" id="long_addr" value="0x0000000000000000" class="layui-input">
+				</div>
+			</div>
+		</div><br/>
+		<!-- 第三行 -->
+	    <div class="layui-row ">
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				<label class="layui-form-label">入网时间(秒)</label>
+				<div class="layui-input-block">
+					<input type="text" id="permit_time"  value="180"  class="layui-input">
+				</div>
+			</div>
+			<div class = "layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-lg2">
+				&nbsp;
+			    <button type="button" id="permit_time_set_button" class="layui-btn " onclick = "set_permit_time()">设置</button>
+			</div>
+			<div class = "layui-col-md6 layui-col-sm6 layui-col-xs6 layui-col-lg6">
+				<form action = "" class = "layui-form layui-form-pane" style = "display:inline"  lay-filter = "set_echo">
+					<input type = "checkbox" lay-filter = "switch_echo" id="id_switch_echo" lay-skin = "switch" lay-text = "回显打开|回显关闭"/>
+				</form>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<form action = "" class = "layui-form layui-form-pane" style = "display:inline">
+					<input type = "checkbox" lay-filter = "switch_suffix" id="id_switch_suffix" lay-skin = "switch" lay-text = "设置应答打开|设置应答关闭"/>
+				</form>
+			</div>
+		</div><br/>
+		<!-- 第四行 -->
+		<div class="layui-row ">
+		    <div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				<label class="layui-form-label">设备ID(0x): </label>
+				<div class="layui-input-block">
+					<input type="text" id="device_id" value="00" class="layui-input">
+			    </div>
+			</div>
+			<div class = "layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-lg2">
+				&nbsp;
+			    <button type="button" id="boud_set_button" class="layui-btn " onclick = "set_id()">设置</button>
+			</div>
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				<label class="layui-form-label">广播周期(秒)</label>
+				<div class="layui-input-block">
+					<input type="text" id="device_id_period" value="0" class="layui-input">
+				</div>
+			</div>
+			<div class = "layui-col-md2">
+				&nbsp;
+			    <button type="button" id="device_id_period_set_button" class="layui-btn " onclick = "set_per_bro_time()">设置</button>	
+			</div>
+		</div><br/>
+		<!-- 第五行 -->
+		<div class="layui-row ">
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				<label class="layui-form-label">短检测(ms) </label>
+				<div class="layui-input-block">
+					<input type="text" id="short_time" value="000" class="layui-input">
+				</div>
+			</div>
+			<div class = "layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-lg2">
+				&nbsp;
+			    <button type="button" id="short_time_set_button" class="layui-btn " onclick = "set_short_time()">设置</button>
+			</div>
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				<label class="layui-form-label">长检测(ms) </label>
+				<div class="layui-input-block">
+					<input type="text" id="long_time" value="0000" class="layui-input">
+				</div>
+			</div>
+			<div class = "layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-lg2">
+				&nbsp;
+			    <button type="button" id="long_time_set_button" class="layui-btn " onclick = "set_long_time()">设置</button>
+			</div>
+		</div><br/>
+		<!-- 第六行 -->
+		<div class="layui-row ">
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3"> 
+				<form class="layui-form">
+						<label class="layui-form-label">入网触发IO:</label>
+						<div class="layui-input-block">
+							<select id="join_net_io_set" title = "join_net_io_set" lay-filter="join_net_io_set_filter">
+								<option value = "0">PD3</option>
+								<option value = "1">PE0</option>
+								<option value = "2" selected>PA5</option>
+								<option value = "3">PA6</option>
+								<option value = "4">PA7</option>
+								<option value = "5">PB2</option>
+								<option value = "6">PB3</option>
+								<option value = "7">PB4</option>
+								<option value = "8">PB5</option>
+							</select>
+						</div>
+				</form>
+			</div> 
+			<div class = "layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-lg2"> 
+				<form action = "" class = "layui-form layui-form-pane" style = "display:inline">
+					<input type = "checkbox" lay-filter = "switch_join_net_io_level_set" id="id_switch_join_net_io_level_set" lay-skin = "switch" lay-text = "触发电平:高|触发电平:低"/>
+				</form>
+			</div>
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3"> 
+				<form class="layui-form">
+						<label class="layui-form-label">死机触发IO:</label>
+						<div class="layui-input-block">
+							<select id="sys_exception_io_set" title = "sys_exception_io_set" lay-filter="sys_exception_io_set_filter">
+								<option value = "0">PD3</option>
+								<option value = "1">PE0</option>
+								<option value = "2">PA5</option>
+								<option value = "3" selected>PA6</option>
+								<option value = "4">PA7</option>
+								<option value = "5">PB2</option>
+								<option value = "6">PB3</option>
+								<option value = "7">PB4</option>
+								<option value = "8">PB5</option>
+							</select>
+						</div>
+				</form>
+			</div> 
+			<div class = "layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-lg2"> 
+				<form action = "" class = "layui-form layui-form-pane" style = "display:inline">
+					<input type = "checkbox" lay-filter = "switch_sys_exception_io_level_set" id="id_switch_sys_exception_io_level_set" lay-skin = "switch" lay-text = "触发电平:高|触发电平:低"/>
+				</form>
+			</div>
+		</div><br/>
+		<!-- 第七行 -->
+		<div class="layui-row ">
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3"> 
+				<form class="layui-form">
+						<label class="layui-form-label">PWM IO:</label>
+						<div class="layui-input-block">
+							<select id="pwm_io_set" title = "pwm_io_set" lay-filter="pwm_io_set_filter">
+								<option value = "0">PB4</option>
+								<option value = "1">PB5</option>
+								<option value = "2">PD3_N</option>
+								<option value = "3">PE0</option>
+								<option value = "4" selected>NULL</option>
+							</select>
+						</div>
+				</form>
+			</div> 
+
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+					<label class="layui-form-label">频率(HZ):</label>
+					<div class="layui-input-block">
+						<input type="text" id="pwm_frequency"  value="0"  class="layui-input">
+					</div>
+			</div>
+			
+			<div class = "layui-col-md4 layui-col-sm4 layui-col-xs4 layui-col-lg4">
+				<div class = "layui-col-md7 layui-col-sm7 layui-col-xs7 layui-col-lg7">
+					<label class="layui-form-label">占空比(%):</label>
+					<div class="layui-input-block">
+						<input type="text" id="pwm_dutycycle"  value="0"  class="layui-input">
+					</div>
+				</div>
+				<div class = "layui-col-md4 layui-col-sm4 layui-col-xs4 layui-col-lg4">
+					&nbsp;
+					<button type="button" id="pwm_set_button" class="layui-btn " onclick = "pwm_set()">设置</button>
+				</div>
+			</div>
+		</div><br/>
+		<!-- 第八行 -->
+		<div class="layui-row ">
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				<label class="layui-form-label">短地址(0x): </label>
+				<div class="layui-input-block">
+					<input type="text" id="unicast_short_addr" value="0000" class="layui-input">
+				</div>
+			</div>
+			<div class = "layui-col-md7 layui-col-sm7 layui-col-xs7 layui-col-lg7">
+				<label class="layui-form-label">数据:</label>
+				<div class="layui-input-block">
+					<input id = "unicast_data"  type="text" name="title" required  lay-verify="required" value = "12 34 56 78" autocomplete = "off" class="layui-input ">
+				</div>
+			</div>
+			<div class = "layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-lg2">
+				&nbsp;
+			    <button type="button" id="unicast_send_button" class="layui-btn " onclick = "unicast_send()">
+					<i class = "layui-icon layui-icon-left"></i> 发送
+				</button>
+			</div>
+		</div><br/>
+		<!-- 第九行 -->
+		<div class="layui-row ">
+			<div class = "layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-lg2">
+				&nbsp;
+			</div>
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				<button type="button" id="send_short_addr_button" class="layui-btn " onclick = "send_short_addr()">发送短地址</button>
+			</div>
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				&nbsp;	&nbsp;
+				<button type="button" id="send_long_addr_button" class="layui-btn " onclick = "send_long_addr()">发送长地址</button>
+			</div>
+			<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+				&nbsp;	&nbsp;	&nbsp;
+				<button type="button" id="send_device_id_button" class="layui-btn " onclick = "send_device_id()">发送设备ID</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src = "uart.js" type = "text/javascript" charset = "UTF-8"></script>
+
+<script>
+	var g_command;
+	var g_device_type;
+	var g_baud_rate;
+	var g_pan_id;
+	var g_coordinator_long_addr;
+	var g_long_addr;
+	var g_short_addr;
+	var g_permit_time;
+	var g_switch_echo;
+	var g_device_id;
+	var g_device_id_period;
+	var g_short_time;
+	var g_long_time;
+	var g_join_net_io;
+	var g_join_net_io_level;
+	var g_sys_exception_io;
+	var g_sys_exception_io_level;
+	var g_pwm_io;
+	var g_pwm_frequency;
+	var g_pwm_dutycycle;
+	var g_switch_suffix;
+	
+	var layer = layui.layer;
+	var form = layui.form;
+
+	layui.use(['layer', 'form'], function(){
+		//layer.msg('Hello World');
+		form.on("select(boud_select_filter)",function(){   
+			layer.msg("boud_select:" + document.getElementById("boud_select").value);
+			var boud_set =  dec2hex(document.getElementById("boud_select").value,6);
+			var s_data = "03" + " " + boud_set[0] + boud_set[1]+ " " + boud_set[2] + boud_set[3] + " " +  boud_set[4] + boud_set[5];
+			console.log("s_data: " + s_data);
+			if(g_switch_suffix == 0) send_data(s_data,"no reply");
+			else send_data(s_data);
+		});
+
+		form.on('switch(switch_echo)', function(data) {
+			if(true == this.checked) {
+				layer.tips('回显打开', data.othis);
+				if(g_switch_suffix == 0) send_data("01","no reply");
+				else send_data("01");
+				g_switch_echo = 1;
+			}
+			else {
+				layer.tips('回显关闭', data.othis);
+				if(g_switch_suffix == 0) send_data("02","no reply");
+				else send_data("02");
+				g_switch_echo = 0;
+			}
+		});				
+
+		form.on('switch(switch_suffix)', function(data) {
+			if(true == this.checked) {
+				layer.tips('设置应答打开', data.othis);
+				g_switch_suffix = 1;
+				if(g_switch_suffix == 0) send_data("21","no reply");
+				else send_data("21");
+			}
+			else {
+				layer.tips('设置应答关闭', data.othis);
+				g_switch_suffix = 0;
+				if(g_switch_suffix == 0) send_data("22","no reply");
+				else send_data("22");
+			}
+		});	
+
+		form.on("select(join_net_io_set_filter)",function(){   
+			layer.msg("入网触发IO:" + document.getElementById("join_net_io_set").value);
+			var switch_join_net_io = dec2hex(document.getElementById("join_net_io_set").value,2);
+			var switch_join_net_io_level = dec2hex(document.getElementById("id_switch_join_net_io_level_set").checked == true ? 1 : 0,2);
+			var s_data = "0E" + " " + switch_join_net_io + " " + switch_join_net_io_level;
+			//console.log("s_data: " + s_data);
+			if(g_switch_suffix == 0) send_data(s_data,"no reply");
+			else send_data(s_data);
+		}); 
+
+		form.on('switch(switch_join_net_io_level_set)', function(data) {
+			if(true == this.checked) {
+				layer.tips('入网触发电平高', data.othis);
+			}
+			else {
+				layer.tips('入网触发电平低', data.othis);
+			}
+			var switch_join_net_io = dec2hex(document.getElementById("join_net_io_set").value,2);
+			var switch_join_net_io_level = dec2hex(document.getElementById("id_switch_join_net_io_level_set").checked == true ? 1 : 0,2);
+			var s_data = "0E" + " " + switch_join_net_io + " " + switch_join_net_io_level;
+			//console.log("s_data: " + s_data);
+			if(g_switch_suffix == 0) send_data(s_data,"no reply");
+			else send_data(s_data);
+		});
+
+		form.on("select(sys_exception_io_set_filter)",function(){   
+			layer.msg("死机触发IO:" + document.getElementById("sys_exception_io_set").value);
+			
+			var switch_sys_exception_io = dec2hex(document.getElementById("sys_exception_io_set").value,2);
+			var switch_sys_exception_io_level = dec2hex(document.getElementById("id_switch_sys_exception_io_level_set").checked == true ? 1 : 0,2);
+			var s_data = "0F" + " " + switch_sys_exception_io + " " + switch_sys_exception_io_level;
+			//console.log("s_data: " + s_data);
+			if(g_switch_suffix == 0) send_data(s_data,"no reply");
+			else send_data(s_data);
+		});  
+		form.on('switch(switch_sys_exception_io_level_set)', function(data) {
+			if(true == this.checked) {
+				layer.tips('死机触发电平高', data.othis);
+			}
+			else {
+				layer.tips('死机触发电平低', data.othis);
+			}
+			var switch_sys_exception_io = dec2hex(document.getElementById("sys_exception_io_set").value,2);
+			var switch_sys_exception_io_level = dec2hex(document.getElementById("id_switch_sys_exception_io_level_set").checked == true ? 1 : 0,2);
+			var s_data = "0F" + " " + switch_sys_exception_io + " " + switch_sys_exception_io_level;
+			//console.log("s_data: " + s_data);
+			if(g_switch_suffix == 0) send_data(s_data,"no reply");
+			else send_data(s_data);
+		});
+		
+		form.on("select(pwm_io_set_filter)",function(){   
+			layer.msg("PWM IO:" + document.getElementById("pwm_io_set").value);
+		});
+
+	});
+	 
+	function myprint(str,mode){
+		//var serialResultsDiv = document.getElementById("Console1");
+		if(mode) serialResultsDiv.value +=  str;
+		else serialResultsDiv.value +=  str + "\r\n";
+		var mstr = serialResultsDiv.value; 
+		mstr = mstr.replace(/\r/gi,"");
+		mstr = mstr.split("\n");
+		var n = mstr.length;
+		if(n > 5000) {
+			serialResultsDiv.value = ""; 
+		}
+		serialResultsDiv.scrollTop = serialResultsDiv.scrollHeight;
+	}
+
+	async function connectBtn_Onclick(){
+	    myprint("uart try to connect...");
+		var ele = document.getElementById("baud");
+		var bdrate = ele.value; 
+		myprint("bandrate:"+bdrate);
+		var ret = await connectSerial(bdrate,rcv_callback);
+		if(ret == true){
+			setTimeout(function () {
+				query_state();
+			}, 100);
+		}
+	}
+
+	async function closeBtn_Onclick() {
+	    closePort();
+	}
+	
+	async function clearBtn_Onclick() {
+		var ele = document.getElementById("Console1");
+		ele.value = ""; 
+	}
+
+	//self.setInterval("recive_deal()",100);
+
+	document.getElementById("senddata").addEventListener("keyup", async function (event) {
+        if (event.keyCode === 13) {
+			send_input_data();
+        }
+    });
+
+	document.getElementById("unicast_data").addEventListener("keyup", async function (event) {
+        if (event.keyCode === 13) {
+			unicast_send();
+        }
+    });
+
+	function set_element_value(element,value){
+	    document.getElementById(element).value = value;
+	}
+
+	function  rcv_callback(len,buff) {
+	   var str = "";
+	   if(man_send_flag){
+            man_send_flag = 0;
+			//console.log(g_command);
+			switch(g_command){
+				case "04" : // 设置限定入网时间
+				break;
+
+				case "11" : // 关闭所有设定的PWM功能
+				break;
+
+				case "20" :
+					if(43 == len || 44 == len){
+						if(44 == len && 0x20 == buff[0]){
+							for(var i = 0; i < 43; i++)
+								buff[i] = buff[i+1];
+						}
+						baud_rate =  hex2int(dec2hex(buff[1],2)+ dec2hex(buff[2],2)+ dec2hex(buff[3],2));
+
+					    g_pan_id =  dec2hex(buff[4],2)+ dec2hex(buff[5],2);
+
+					    g_coordinator_long_addr = dec2hex(buff[6],2) + dec2hex(buff[7],2) + dec2hex(buff[8],2) + dec2hex(buff[9],2)
+												+ dec2hex(buff[10],2) + dec2hex(buff[11],2) + dec2hex(buff[12],2) + dec2hex(buff[13],2);
+
+						g_long_addr = dec2hex(buff[14],2) + dec2hex(buff[15],2) + dec2hex(buff[16],2) + dec2hex(buff[17],2)
+												+ dec2hex(buff[18],2) + dec2hex(buff[19],2) + dec2hex(buff[20],2) + dec2hex(buff[21],2);
+
+					    g_short_addr =  dec2hex(buff[22],2)+ dec2hex(buff[23],2);
+
+					    g_permit_time  =  buff[24];
+
+					    g_switch_echo  =  hex2int(dec2hex(buff[25],2));
+					    
+					    g_device_id  =  dec2hex(buff[26],2);
+
+					    g_device_id_period  =  hex2int(dec2hex(buff[27],2));
+
+					    g_short_time  =  hex2int(dec2hex(buff[28],2));
+
+					    g_long_time = hex2int(dec2hex(buff[29],2)+ dec2hex(buff[30],2));
+
+					    g_join_net_io = buff[31];
+
+					    g_join_net_io_level =  buff[32];
+
+					    g_sys_exception_io=  buff[33];
+
+					    g_sys_exception_io_level =  buff[34];
+
+					    g_pwm_io =  buff[35];
+
+					    g_pwm_frequency =  hex2int(dec2hex(buff[36],2) + dec2hex(buff[37],2)+ dec2hex(buff[38],2)+ dec2hex(buff[39],2));
+
+					    g_pwm_dutycycle =  buff[40];
+
+						g_switch_suffix =  buff[41];
+
+						g_device_type =  buff[42];
+
+						myprint("baud_rate	:  "+ baud_rate);
+						myprint("PAN ID	:  0x" + g_pan_id);
+						myprint("g_coordinator_long_addr : 0x" + g_coordinator_long_addr);
+						myprint("g_long_addr:  0x" + g_long_addr);
+						myprint("g_short_addr:  0x" + g_short_addr);
+						myprint("g_permit_time:  " + g_permit_time);
+						myprint("g_switch_echo:" + g_switch_echo);
+						myprint("g_device_id:  0x" + g_device_id);
+						myprint("g_device_id_period: " + g_device_id_period);
+						myprint("g_short_time:" + g_short_time);
+						myprint("g_long_time:" + g_long_time);
+						myprint("g_join_net_io: " + g_join_net_io);
+						myprint("g_join_net_io_level: " + g_join_net_io_level);
+						myprint("g_sys_exception_io: " + g_sys_exception_io);
+						myprint("g_sys_exception_io_level: " + g_sys_exception_io_level);
+						myprint("g_pwm_io:" + g_pwm_io);
+						myprint("g_pwm_frequency:" + g_pwm_frequency);
+						myprint("g_pwm_dutycycle:" + g_pwm_dutycycle);
+						myprint("g_switch_suffix:" + g_switch_suffix);
+						myprint("g_device_type:" + g_device_type);
+
+						if(0 == g_device_type){
+							set_element_value("device_type", "协调器");
+						}
+						else if(1 == g_device_type){
+							set_element_value("device_type", "路由器");
+						}
+						else if(2 == g_device_type){
+							set_element_value("device_type", "终端");
+						}
+						else{
+							set_element_value("device_type", "出错");
+						}
+
+						set_element_value("panid", "0x" + g_pan_id);
+						set_element_value("c_long_addr", "0x" + g_coordinator_long_addr);
+						set_element_value("long_addr", "0x" + g_long_addr);
+						set_element_value("short_addr", "0x" + g_short_addr);
+
+						if(9600 == baud_rate || 19200 == baud_rate || 115200 == baud_rate){
+							document.getElementById("boud_select").value = baud_rate;
+						}
+						else{
+							layer.msg("boud_select error!");
+						}
+						set_element_value("permit_time",g_permit_time);
+
+						if(0 == g_switch_echo){
+							document.getElementById("id_switch_echo").checked = false;
+						}
+						else{
+							document.getElementById("id_switch_echo").checked = true;
+						}
+						
+						set_element_value("device_id", g_device_id);
+						set_element_value("device_id_period",g_device_id_period);
+						set_element_value("short_time", g_short_time);
+						set_element_value("long_time",  g_long_time);
+
+						document.getElementById("join_net_io_set").value = g_join_net_io;
+						document.getElementById("sys_exception_io_set").value = g_sys_exception_io;
+						if(0 == g_join_net_io_level){
+							document.getElementById("id_switch_join_net_io_level_set").checked = false;
+						}
+						else{
+							document.getElementById("id_switch_join_net_io_level_set").checked = true;
+						}
+						if(0 == g_sys_exception_io_level){
+							document.getElementById("id_switch_sys_exception_io_level_set").checked = false;
+						}
+						else{
+							document.getElementById("id_switch_sys_exception_io_level_set").checked = true;
+						}
+
+						if(g_pwm_io > 4) g_pwm_io = 4;
+						document.getElementById("pwm_io_set").value = g_pwm_io;
+						set_element_value("pwm_frequency",g_pwm_frequency);
+						set_element_value("pwm_dutycycle", g_pwm_dutycycle);
+						if(0 == g_switch_suffix){
+							document.getElementById("id_switch_suffix").checked = false;
+						}
+						else{
+							document.getElementById("id_switch_suffix").checked = true;
+						}
+						form.render();
+					}
+				break;
+			}
+        }
+
+		myprint("\r\n recived data length:  " + len);
+		
+		
+	    for(var i = 0; i < len; i++){
+	        if(document.getElementById("HexOnRx").checked == true) {
+	           
+	          str = str + " 0x"+dec2hex(buff[i],2);
+	        }
+	        else {
+		      str = str + String.fromCharCode(buff[i]); 
+	        }
+		}
+		myprint(str);
+	}
+
+	function send_data(dataToSend,replay){
+		if(replay == void 0){
+			man_send_flag = 1;
+			g_command = dataToSend[0] + dataToSend[1];
+		}
+		else 
+			man_send_flag = 0;
+		var date     =  new Date(); 
+		var hour     =  date.getHours(); 
+		var min      =  date.getMinutes();
+		var second   =  date.getSeconds();
+		var msecond  =  date.getMilliseconds();
+		if(hour < 10)	  hour = "0"+hour;
+		if(min  < 10)	  min  = "0"+min;
+		if(second < 10)	  second = "0"+second;
+		if(msecond < 10)  msecond = "00"+msecond;		
+		else if(msecond<100) msecond = "0"+msecond;
+		//var now = hour+":"+min+":"+second+"."+msecond+"  :     ";
+		var now = hour+":"+min+":"+second +"  :     ";
+		// var dataToSend = document.getElementById("senddata").value;
+		// g_command = "";
+	    // console.log(g_command);
+		if(document.getElementById("addLine").checked == true) dataToSend = dataToSend + "\r\n";
+		if(document.getElementById("echoOn").checked == true) myprint("\r\n> " + now +  dataToSend);
+		//sendSerialLine(dataToSend);
+		if(document.getElementById("HexOn").checked == true) { // hex mode !
+			var str = dataToSend;
+			var arr = str.split(/\s+/);
+			var len = arr.length;
+			var temp_data = new Uint8Array(len);
+			for(var i = 0; i < len; i++){
+				temp_data[i] = String2hex("0x"+arr[i]);
+			}
+			sendSerialHexArray(temp_data);
+		}
+		else {  // string mode!
+			var temp_data = stringToUint8Array(dataToSend);
+			sendSerialHexArray(temp_data);
+		}
+	}
+
+	function send_input_data(){
+		var s_data = document.getElementById("senddata").value;
+		if(g_switch_suffix == 0) send_data(s_data,"no reply");
+		else send_data(s_data);
+	}
+
+	function query_state(){
+		send_data("20");
+		console.log("query_state");
+	}
+	
+	function reset_default(){
+		if(g_switch_suffix == 0) send_data("30","no reply");
+		else send_data("30");
+	}
+
+	function reset_chip(){
+		if(g_switch_suffix == 0) send_data("31","no reply");
+		else send_data("31");	
+	}
+	
+	function factory_settings(){
+		if(g_switch_suffix == 0) send_data("32","no reply");
+		else send_data("32");		
+	}
+
+	function close_pwm(){
+		if(g_switch_suffix == 0) send_data("11","no reply");
+		else send_data("11");
+	}
+
+	function reset_pwm(){ // 重启最后一次配置的PWM功能	
+		if(g_switch_suffix == 0) send_data("12","no reply");
+		else send_data("12");
+	}
+
+	function set_permit_time(){// 设置限定入网时间
+		var permit_time = document.getElementById("permit_time").value;
+		var s_data = "04" + " " + dec2hex(permit_time,2);
+		console.log("s_data: " + s_data);
+		if(g_switch_suffix == 0) send_data(s_data,"no reply");
+		else send_data(s_data);
+	}
+
+	function set_id(){
+		var device_id = document.getElementById("device_id").value;
+		var s_data = "05" + " " + String2hex(device_id,2);
+		console.log("s_data: " + s_data);
+		if(g_switch_suffix == 0) send_data(s_data,"no reply");
+		else send_data(s_data);
+	}
+
+	function set_per_bro_time(){
+		var device_id_period = document.getElementById("device_id_period").value;
+		var s_data = "06" + " " + dec2hex(device_id_period,2);
+		console.log("s_data: " + s_data);
+		if(g_switch_suffix == 0) send_data(s_data,"no reply");
+		else send_data(s_data);
+	}
+
+	function set_short_time(){
+		var short_time = document.getElementById("short_time").value;
+		var s_data = "07" + " " + dec2hex(short_time,2);
+		console.log("s_data: " + s_data);
+		if(g_switch_suffix == 0) send_data(s_data,"no reply");
+		else send_data(s_data);
+	}
+
+	function set_long_time(){
+		var long_time = document.getElementById("long_time").value;
+		var temp = dec2hex(long_time,4);//0D80
+		var s_data = "08" + " " + temp[0] + temp[1]+ " " + temp[2] + temp[3];
+		console.log("s_data: " + s_data);
+		if(g_switch_suffix == 0) send_data(s_data,"no reply");
+		else send_data(s_data);
+	}
+	
+	function pwm_set(){
+		var pwm_io =  dec2hex(document.getElementById("pwm_io_set").value,2);
+		var pwm_frequency =  dec2hex(document.getElementById("pwm_frequency").value,8);
+		var pwm_dutycycle = dec2hex(document.getElementById("pwm_dutycycle").value,2);
+		var s_data = "10" + " " + pwm_io + " " +
+		pwm_frequency[0] + pwm_frequency[1]+ " " + pwm_frequency[2] + pwm_frequency[3] + " " + 
+		pwm_frequency[4] + pwm_frequency[5]+ " " + pwm_frequency[6] + pwm_frequency[7] + " " + pwm_dutycycle;
+		console.log("s_data: " + s_data);
+		if(g_switch_suffix == 0) send_data(s_data,"no reply");
+		else send_data(s_data);
+	}
+
+	function unicast_send(){
+		var temp =  String2hex(document.getElementById("unicast_short_addr").value);
+		var unicast_data =  document.getElementById("unicast_data").value;
+		var s_data = "00" + " " + temp[0] + temp[1]+ " " + temp[2] + temp[3] + " " + unicast_data;
+		console.log("s_data: " + s_data);
+		if(g_switch_suffix == 0) send_data(s_data,"no reply");
+		else send_data(s_data);
+	}
+
+	function send_short_addr(){
+		if(g_switch_suffix == 0) send_data("09","no reply");
+		else send_data("09");
+	}
+
+	function send_long_addr(){
+		if(g_switch_suffix == 0) send_data("0A","no reply");
+		else send_data("0A");
+	}
+
+	function send_device_id(){
+		if(g_switch_suffix == 0) send_data("0B","no reply");
+		else send_data("0B");
+	}
+
+
+	var  install_dlg;
+    const butInstall = document.getElementById('btnInstall');
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Don't show the mini-info bar
+        e.preventDefault();
+        // Save the deferred prompt
+        install_dlg = e;
+        console.log('👀', 'install dialog saved!', '/');
+		butInstall.className = "layui-btn layui-btn-warm";
+    });
+    
+    butInstall.addEventListener('click', () => {
+		butInstall.className = "layui-btn layui-btn-disabled";
+        install_dlg.prompt();
+    });
+	// 确保每次加载到最新的 serviceWorker
+	window.addEventListener('load', async () => {
+		var script = document.createElement('script'); 
+		var firstScript = this.document.getElementsByTagName('script')[0];
+		script.type = 'text/javascript';
+		script.async = true;
+		script.src = './sw-register.js'//?v=' + Date.now()
+		firstScript.parentNode.insertBefore(script, firstScript)
+	})
+
+	if('serviceWorker' in navigator){
+		navigator.serviceWorker.oncontrollerchange = function(event) {
+		    alert("页面已更新");
+			console.log("页面已更新")
+		}
+	}
+	/*
+		如果页面一进来，我们发现用户没有联网，给用户一个通知
+	*/
+	if(Notification.permission === 'default'){
+		Notification.requestPermission()
+	}
+	if(!navigator.onLine){
+		new Notification('提示',{body:'你当前没有网络，你访问的是缓存'})
+	}
+	window.addEventListener('online',() => {
+		new Notification('提示',{body:'你已经连上网络了，请刷新访问最新的数据'})
+	})
+	window.addEventListener('offline',() => {
+		new Notification('提示',{body:'你的网络断开了'})
+	})
+	
+</script> 
+
+</body>
+</html>

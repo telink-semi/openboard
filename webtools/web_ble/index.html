@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <title>Telink WEB BLE v1.0.0</title>
+		<link rel = "shortcut icon" href = "./images/bt-48.png" />
+		<script type="text/javascript" src="./js/index.js"></script>
+		<link rel="manifest" href="./mainfest.json" />
+		<link rel = "shortcut icon" href = "./images/bt-48.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			input[type = text]{
+				color: rgb(179, 255, 179);
+				background-color: #104E8B;
+				height: 30px;
+				width: 300px;
+				font-size: 25px;
+
+			}
+			button{
+				color: #e8f0de;
+				border: solid 1px rgb(0,150,136);
+				background: rgb(0,150,136);
+				height:35px;
+				width: 80px;
+				border-radius:250px;
+				font-size: 16px;
+				margin-right:10px;
+				margin-left:10px;
+			} 
+			.btnhide{display:none;}
+		</style>
+	</head>
+	<body>
+		<div style = "background: linear-gradient(303deg, #6f86d6  0%, #0a2d72  71%);text-align:center;color:#fff;padding:10px 0;">
+			<div class = "mobile only column sixteen wide">
+				<h1 style = "font-size:32px;margin-top:5px;">Telink Web BLE</h1>
+			</div>
+		</div>
+		</br>
+		<button id = "scanBtn"  type = "button" onclick = "scanBtn_Onclick()">scan</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input  id = "sendDataInput" type = "text" value = "12 34 56 78">
+		<button id = "sendBtn"     	 type = "button">send</button>
+		<button id = "clearBtn"      type = "button" onclick = "clearBtn_Onclick()">clear</button>
+		<button id = "showBtn"       type = "button" onclick = "showBtn_Onclick()">show</button>
+		<button id = "readNameBtn"   type = "button">name</button>
+		<!-- <button id = "ClearConsoleBtn"   type = "button" onclick = "ClearConsole_Onclick()">console</button> -->
+		<button id = "installBtn"  type="button" class="btnhide">install</button>
+		<hr/>
+		<div style = "position: absolute;top: 160px;right: 10px;bottom:20px;left: 3px;" >
+			<textarea id = "Console1" style = "font-size:24px;
+			color:#00ff00;
+			background-color:#000000;
+			margin: 3px 3px 3px 3px;
+			overflow-y: auto;
+			width: 100%;
+			height: 100%;
+			outline: none;"></textarea>
+		</div>
+
+		<script>
+			var  install_dlg;
+			const butInstall = document.getElementById('installBtn');
+			window.addEventListener('beforeinstallprompt', (e) => {
+				// Don't show the mini-info bar
+				e.preventDefault();
+				// Save the deferred prompt
+				install_dlg = e;
+				console.log('👀', 'install dialog saved!', '/');
+				butInstall.className ="";
+			});
+			
+			butInstall.addEventListener('click', () => {
+				butInstall.className ="btnhide"
+				install_dlg.prompt();
+			});
+			
+			window.addEventListener('load', async () => {
+				var script = document.createElement('script'); 
+				var firstScript = this.document.getElementsByTagName('script')[0];
+				script.type = 'text/javascript';
+				script.async = true;
+				script.src = './sw-register.js'//?v=' + Date.now() // 确保每次加载到最新的 serviceWorker
+				firstScript.parentNode.insertBefore(script, firstScript)
+			})
+
+			if('serviceWorker' in navigator){
+				navigator.serviceWorker.oncontrollerchange = function(event) {
+					alert("页面已更新");
+					console.log("页面已更新");
+				}
+			}
+			/*
+				如果页面一进来，我们发现用户没有联网，给用户一个通知
+			*/
+			if(Notification.permission === 'default'){
+				Notification.requestPermission()
+			}
+			if(!navigator.onLine){
+				new Notification('提示',{body:'你当前没有网络，你访问的是缓存'})
+			}
+			window.addEventListener('online',() => {
+				new Notification('提示',{body:'你已经连上网络了，请刷新访问最新的数据'})
+			})
+			window.addEventListener('offline',() => {
+				new Notification('提示',{body:'你的网络断开了'})
+			})
+		</script>
+	</body>
+</html>

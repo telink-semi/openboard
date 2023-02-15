@@ -1,0 +1,2 @@
+Timestamp,TimeDelta,AddrMode,DevAddr,PacketInformation,CommandId,Status,Description
+22-08-02 17:15:19:752773,0,,,55 00 40 00 02 42 00 00 aa ,ZBHCI_CMD_NODES_JOINED_GET_REQ,,start_idx: 0x0

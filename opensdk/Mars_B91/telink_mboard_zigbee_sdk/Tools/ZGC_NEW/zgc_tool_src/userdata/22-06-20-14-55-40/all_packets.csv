@@ -1,0 +1,3 @@
+Timestamp,TimeDelta,AddrMode,DevAddr,PacketInformation,CommandId,Status,Description
+22-06-20 14:55:40:785287,0,,,55 00 40 00 02 42 00 00 aa ,ZBHCI_CMD_NODES_JOINED_GET_REQ,,start_idx: 0x0
+22-06-20 14:55:43:489033,2.703746,,,55 00 07 00 01 0d 0b aa ,ZBHCI_CMD_BDB_CHANNEL_SET,,channel: 11

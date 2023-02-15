@@ -1,0 +1,16 @@
+{
+  "id": "2756053",
+  "name": "no name",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "20935137",
+      "name": "芯片",
+      "font_class": "xinpian",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    }
+  ]
+}

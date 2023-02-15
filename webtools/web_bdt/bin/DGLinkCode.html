@@ -1,0 +1,137 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+    <meta charset="utf-8">
+    <title>WEB BDT v1.1.0</title>
+    <link rel="shortcut icon" href="../layui-v2.6.8/layui/logo/bitbug_favicon.ico" />
+    <link rel="stylesheet" href="../layui-v2.6.8/layui/myfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../layui-v2.6.8/layui/css/layui.css" />
+    <script src="../layui-v2.6.8/layui/layui.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body >
+    <hr/>
+
+    <div class="layui-col-md1">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="layui-col-md2">
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+        <span>Name:</span>
+        <input type="text" id="Name">
+    </div>
+    <div class="layui-col-md2">
+       <span>Password:</span>
+       <input type="text" id="Password">
+   </div>
+
+    <div class="layui-col-md5">
+        <div class="layui-col-md3">
+            <button type="button" id="NewCodeButton" class="layui-btn layui-btn-sm layui-btn-radius">
+                <i class="layui-icon layui-icon-download-circle"></i> NEW CODE
+            </button>
+        </div>
+        <div class="layui-col-md3">
+            <button type="button" id="GetCodeButton" class="layui-btn layui-btn-sm layui-btn-radius">
+                <i class="layui-icon layui-icon-download-circle"></i> GET CODE
+            </button>
+        </div>
+        <div class="layui-col-md3">
+            <button type="button" id="ClearALLButton" class="layui-btn layui-btn-sm layui-btn-radius">
+                <i class="layui-icon layui-icon-fonts-clear"></i> Clear Code
+            </button>
+        </div>
+        <div class="layui-col-md3">
+            <button type="button" id="ClearButton" class="layui-btn layui-btn-sm layui-btn-radius">
+                <i class="layui-icon layui-icon-fonts-clear"></i> Clear Log
+            </button>
+        </div>
+    </div>
+
+    <div style="background:white;color:white;position: absolute;top: 20%;right: 3px;bottom: 1%;
+        left: 3px;
+        color:#F00000;" class="container">
+        <textarea id="Console1" style = "font-size:20px;
+            color:#00ff00;
+            background-color:#000000;
+            margin: 0;
+            padding:20px;
+            overflow-y: auto;
+            resize: none;
+            width: 100%;
+            height: 100%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border: 2px #ddd solid;
+            outline: none;"></textarea>
+    </div>
+ 
+    <script>
+        const NewCodeButton = document.getElementById("NewCodeButton");   
+        const GetCodeButton = document.getElementById("GetCodeButton");  
+        const ClearALLButton = document.getElementById("ClearALLButton");  
+        const ClearButton = document.getElementById("ClearButton");
+        function  myprint(str){
+            var ele = document.getElementById("Console1");
+            var mstr = ele.value; 
+            mstr = mstr.replace(/\r/gi,"");
+            mstr = mstr.split("\n");
+            var   n = mstr.length;
+            ele.value = ele.value + str + "\r\n";
+            ele.scrollTop = ele.scrollHeight;
+            if(n > 50000) {
+                ele.value = ""; 
+            }
+        }
+        NewCodeButton.onclick = async () => {
+            console.log("NewCodeButton");
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (4 == this.readyState && 200 == this.status) {
+                    myprint(this.responseText);
+                }
+            };
+            xmlhttp.open("GET", "DGLinkCode.php", true);
+            xmlhttp.setRequestHeader("Mode","1");
+            xmlhttp.setRequestHeader("Name",Name.value);
+            xmlhttp.setRequestHeader("Password",Password.value);
+            xmlhttp.send();
+        }
+        GetCodeButton.onclick = async () => {
+            console.log("GetCodeButton");
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (4 == this.readyState && 200 == this.status) {
+                    myprint(this.responseText);
+                }
+            };
+            xmlhttp.open("GET", "DGLinkCode.php", true);
+            xmlhttp.setRequestHeader("Mode","2");
+            xmlhttp.setRequestHeader("Name",Name.value);
+            xmlhttp.setRequestHeader("Password",Password.value);
+            xmlhttp.send();
+        }
+        ClearALLButton.onclick = async () => {
+            console.log("ClearALLButton");
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (4 == this.readyState && 200 == this.status) {
+                    myprint(this.responseText);
+                }
+            };
+            xmlhttp.open("GET", "DGLinkCode.php", true);
+            xmlhttp.setRequestHeader("Mode","3");
+            xmlhttp.setRequestHeader("Name",Name.value);
+            xmlhttp.setRequestHeader("Password",Password.value);
+            xmlhttp.send();
+        }
+        ClearButton.onclick = async () => {
+            console.log("ClearButton");
+            var ele1 = document.getElementById("Console1");
+            ele1.value = ""; 
+        };
+    </script> 
+</body> 
+</html>
+ 

@@ -1,0 +1,21 @@
+{
+    "name" : "Telink Web BDT",
+    "short_name" : "Web BDT",
+    "start_url" : "./index.html",
+    "display" : "standalone",
+    "background_color" : "skyblue",
+    "theme_color" : "#0a2d72",
+    "description" : "Web BDT",
+    "icons" : [
+        {
+            "src" : "./images/bdt-512.png",
+            "sizes" : "512x512",
+            "type" : "image/png"
+        },
+        {
+            "src" : "./images/bdt-192.png",
+            "sizes" : "192x192",
+            "type" : "image/png"
+        }
+    ]
+}

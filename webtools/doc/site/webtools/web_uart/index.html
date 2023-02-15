@@ -1,0 +1,1143 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.1">
+    
+    
+      
+        <title>Web UART - Telink Web docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2e8b5541.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#web-uart" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Telink Web docs" class="md-header__button md-logo" aria-label="Telink Web docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Telink Web docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Web UART
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Telink Web docs" class="md-nav__button md-logo" aria-label="Telink Web docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Telink Web docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Boards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Boards" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Boards
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../boards/Mars_B91/" class="md-nav__link">
+        Mars_B91
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../boards/Mini_Burning_EVK/" class="md-nav__link">
+        Mini_Buring_EVK
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Tools
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tools" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web_bdt/" class="md-nav__link">
+        Web BDT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Web UART
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Web UART
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    工具介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    使用说明
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zigbee" class="md-nav__link">
+    ZigBee设备配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zigbeecommand" class="md-nav__link">
+    ZigBee设备command模式下的配置
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web_ble/" class="md-nav__link">
+        Web BLE
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    工具介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    使用说明
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zigbee" class="md-nav__link">
+    ZigBee设备配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zigbeecommand" class="md-nav__link">
+    ZigBee设备command模式下的配置
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="web-uart">Web Uart<a class="headerlink" href="#web-uart" title="Permanent link">&para;</a></h1>
+<p><span class="twemoji heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span>
+<img alt="🛠" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f6e0.svg" title=":tools:" />
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.71 20.29-1.42 1.42a1 1 0 0 1-1.41 0L7 9.85A3.81 3.81 0 0 1 6 10a4 4 0 0 1-3.78-5.3l2.54 2.54.53-.53 1.42-1.42.53-.53L4.7 2.22A4 4 0 0 1 10 6a3.81 3.81 0 0 1-.15 1l11.86 11.88a1 1 0 0 1 0 1.41M2.29 18.88a1 1 0 0 0 0 1.41l1.42 1.42a1 1 0 0 0 1.41 0l5.47-5.46-2.83-2.83M20 2l-4 2v2l-2.17 2.17 2 2L18 8h2l2-4Z"/></svg></span></p>
+<h2 id="_1">工具介绍<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Web Uart</p>
+<p>Web Uart是一个网页串口工具，可以进行串口数据收发，其中针对mboard 模块板的ZigBee应用做了一些特殊定制，可以配置mboard的ZigBee功能。</p>
+</div>
+<h2 id="_2">使用说明<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">硬件连接</p>
+<p>通过USB转UART板子，将模块连接到PC。如果使用官方的底板+模块，因为mboard底板上自带了USB转串口芯片CP2102，所以只需要下载安装CP2102驱动，然后通过USB接口连接PC。<span class="twemoji heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span><a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads" target="_blank">CP2102 驱动下载网址</a></p>
+<p>官方底板：
+<div class="div_center" style="text-align:center"> 
+<img src="../../Resource/images/evb.gif" class="image" style="width:40%">
+</div></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">打开 <span class="twemoji heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span> <a href="https://debug.telink-semi.cn/web_uart/" target="_blank">Web Uart</a></p>
+<p>点击"install"可将网页以原生应用的方式安装在电脑/手机上，并自动添加桌面快捷方式，用户也可将应用固定任务栏处。
+同时采用离线存储和后台同步技术，网页可在没有网络的条件下使用。</p>
+<p><div class="div_center" style="text-align:center">
+<img src="../../Resource/images/webuart1.jpg" class="image" style="width:75%">
+</div></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">使用软件</p>
+<ol>
+<li>选择波特率，第一次用，没改配置，默认 115200 即可。</li>
+<li>点击 "连接"后，选择想要通讯的uart端口
+<div class="div_center" style="text-align:center">
+<img src="../../Resource/images/webuart2.jpg" class="image" style="width:75%">
+</div>
+<div class="div_center" style="text-align:center">
+<img src="../../Resource/images/webuart3.jpg" class="image" style="width:75%">
+</div></li>
+</ol>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">异常处理</p>
+<p>使用时出现异常，可检查硬件并刷新网页后再次尝试。</p>
+</div>
+<h2 id="zigbee">ZigBee设备配置<a class="headerlink" href="#zigbee" title="Permanent link">&para;</a></h2>
+<p>一个典型的ZigBee mesh网络如下所示，新设备入网时，网络中必须有一个coordinator设备：</p>
+<div class="div_center" style="text-align:center"> 
+<img src="../../Resource/images/zigbee.png" class="image" style="width:70%">
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">mboard模块板构建ZigBee网络步骤如下：</p>
+<p><span class="twemoji heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span> 若使用旧版BDT工具进行下载，需先将下方固件下载到本地电脑端，若使用<a href="../web_bdt/#环境准备">Web BDT</a>，则可在线下载固件进芯片。</p>
+<ol>
+<li>下载  <a href="../../Resource/bin/Mars_B91/Mars_B91_ZigBee_C.bin" target="_blank">Mars_B91_ZigBee_C.bin</a>  到其中一个模块板(coordinator)</li>
+<li>下载  <a href="../../Resource/bin/Mars_B91/Mars_B91_ZigBee_R.bin" target="_blank">Mars_B91_ZigBee_R.bin</a>  到其他多个模块板(router)</li>
+<li>coordinator 设备先上电，此时模块板上led灯亮，表示允许其他设备入网（3分钟内）</li>
+<li>router 设备上电，router设备led闪烁，表示入网成功</li>
+<li>组网成功后，通过UART发送数据即可实现广播或者定点传输数据（UART发送一笔数据最长64字节）</li>
+</ol>
+</div>
+<p>固件默认相关配置说明:</p>
+<table>
+<thead>
+<tr>
+<th align="left">模块板接口</th>
+<th align="left">功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">TX/RX</td>
+<td align="left">UART TX/RX，8数据位，1停止位，无奇偶检验，波特率默认为115200</td>
+</tr>
+<tr>
+<td align="left">PC2</td>
+<td align="left">可接主控MCU，或者按键，上电初始化时需保持未按下状态<br><br>对于coordinator， 单击：限定时间内允许入网；双击：关闭入网许可<br><br>对于rounter， 单击：广播发送自身网络地址； 双击：广播用户自定义设备ID号；长按：恢复出厂设置</td>
+</tr>
+<tr>
+<td align="left">PD2，PD1</td>
+<td align="left">模式配置控制IO（使用过程中可动态切换模式，切换间隔与按键长按的时间一致，默认为两秒）: <br><br> 00: 广播透传模式，uart收到任何数据都通过ZigBee协议广播出去，收到数据的设备通过uart打印出数据<br><br>01: command模式，功能码使用示例见后面的描述<br><br>10: 定位模式，router收集移动模块定位数据，定期发送给coordinator<br><br>11: 移动模式，router定期广播自定义ID号</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">说明</p>
+<ul>
+<li>设备广播自身的ID号时，广播数据中会带有头部 5A A5；</li>
+<li>设备广播自身短地址时，广播数据中会带有头部 A5 5A；</li>
+<li>设备广播自身长地址时，广播数据中会带有头部 A5 A5；</li>
+<li>打开设置命令应答（默认关闭）后，command模式下，发送设置相关的command命令，设备返回的应答中会带有尾部 5A 5A；</li>
+</ul>
+</div>
+<p>设备出厂时的默认设定：</p>
+<table>
+<thead>
+<tr>
+<th align="left">功能</th>
+<th align="left">默认设置</th>
+<th align="left">功能</th>
+<th align="left">默认设置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">UART回显</td>
+<td align="left">关闭</td>
+<td align="left">UART波特率</td>
+<td align="left">115200</td>
+</tr>
+<tr>
+<td align="left">设置指令的命令应答(后缀5A A5)</td>
+<td align="left">不添加</td>
+<td align="left">设备ID</td>
+<td align="left">0x00</td>
+</tr>
+<tr>
+<td align="left">设备广播自身ID的周期</td>
+<td align="left">2秒</td>
+<td align="left">PWM设定</td>
+<td align="left">不开启</td>
+</tr>
+<tr>
+<td align="left">短按检测时间</td>
+<td align="left">200毫秒</td>
+<td align="left">长按检测时间</td>
+<td align="left">2秒</td>
+</tr>
+<tr>
+<td align="left">单击按键后协调器限定的入网时间</td>
+<td align="left">180秒</td>
+<td align="left">/</td>
+<td align="left">/</td>
+</tr>
+<tr>
+<td align="left">入网时的触发IO</td>
+<td align="left">GPIO_PA5</td>
+<td align="left">入网时的触发IO的触发电平</td>
+<td align="left">低电平</td>
+</tr>
+<tr>
+<td align="left">死机时的触发IO</td>
+<td align="left">GPIO_PA6</td>
+<td align="left">死机时的触发IO的触发电平</td>
+<td align="left">低电平</td>
+</tr>
+</tbody>
+</table>
+<p>透传模式系统框图如下所示</p>
+<div class="div_center" style="text-align:center"> 
+<img src="../../Resource/images/zigbee_uart.png" class="image" style="width:70%">
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">提示</p>
+<p>下方是其他模式的说明，若你只需使用ZigBee透传模式则不必往下看了。</p>
+</div>
+<h2 id="zigbeecommand">ZigBee设备command模式下的配置<a class="headerlink" href="#zigbeecommand" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">gpio_group和pwm_group数组定义如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">gpio_pin_e</span><span class="w"> </span><span class="n">gpio_group</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">GPIO_PD3</span><span class="p">,</span><span class="n">GPIO_PE0</span><span class="p">,</span><span class="n">GPIO_PA5</span><span class="p">,</span><span class="n">GPIO_PA6</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">GPIO_PA7</span><span class="p">,</span><span class="n">GPIO_PB2</span><span class="p">,</span><span class="n">GPIO_PB3</span><span class="p">,</span><span class="n">GPIO_PB4</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">GPIO_PB5</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">pwm_pin_e</span><span class="w"> </span><span class="n">pwm_group</span><span class="p">[][</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="n">PWM_PWM0_PB4</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="n">PWM_PWM1_PB5</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="n">PWM_PWM3_N_PD3</span><span class="p">,</span><span class="mi">3</span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="n">PWM_PWM3_PE0</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">配置为command模式时，命令格式如下（reurn为关闭回显和命令应答，执行完指令后UART的返回的数据；除了功能码0x00，其他控制命令长度固定；设定的值断电可保存）：</p>
+</div>
+<table>
+<thead>
+<tr>
+<th align="left">code</th>
+<th align="left">example</th>
+<th align="left">example describe</th>
+<th align="left">return</th>
+<th align="left">support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">0x00</td>
+<td align="left">00 5C 29 11 22 33</td>
+<td align="left">往网络地址为0x5c29的设备发送数据 11 22 33</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x01</td>
+<td align="left">01</td>
+<td align="left">打开回显功能</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x02</td>
+<td align="left">02</td>
+<td align="left">关闭回显功能</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x03</td>
+<td align="left">03 00 25 80</td>
+<td align="left">设置UART波特率为0x2580(9600，复位后生效)</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x04</td>
+<td align="left">04 B4</td>
+<td align="left">设置限定入网时间为0xB4秒</td>
+<td align="left">NULL</td>
+<td align="left">Coordinator</td>
+</tr>
+<tr>
+<td align="left">0x05</td>
+<td align="left">05 10</td>
+<td align="left">设置设备ID号为0x10</td>
+<td align="left">NULL</td>
+<td align="left">Router</td>
+</tr>
+<tr>
+<td align="left">0x06</td>
+<td align="left">06 05</td>
+<td align="left">设定广播ID的周期为0x05秒</td>
+<td align="left">NULL</td>
+<td align="left">Router</td>
+</tr>
+<tr>
+<td align="left">0x07</td>
+<td align="left">07 28</td>
+<td align="left">设置短按检测时间为0x28毫秒（复位后生效）</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x08</td>
+<td align="left">08 01 F4</td>
+<td align="left">设置短按检测时间为0x01F4毫秒（复位后生效）</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x09</td>
+<td align="left">09</td>
+<td align="left">广播发送自身短地址</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x0A</td>
+<td align="left">0A</td>
+<td align="left">广播发送自身长地址</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x0B</td>
+<td align="left">0B</td>
+<td align="left">广播发送自定义ID号</td>
+<td align="left">NULL</td>
+<td align="left">Router</td>
+</tr>
+<tr>
+<td align="left">0x0C</td>
+<td align="left">0C 00 01</td>
+<td align="left">设置引脚gpio_group[0x00]为0x01(高)电平</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x0D</td>
+<td align="left">0D 01</td>
+<td align="left">读取引脚gpio_group[0x01]电平</td>
+<td align="left">01（高电平）</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x0E</td>
+<td align="left">0E 02 00</td>
+<td align="left">设置设备（允许）入网时引脚gpio_group[0x02]为0x00(低)电平</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x0F</td>
+<td align="left">0F 03 00</td>
+<td align="left">设置设备死机时引脚gpio_group[0x03]为0x00(低)电平</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x10</td>
+<td align="left">10 00 00 00 27 10 32</td>
+<td align="left">设置引脚pwm_group[0x00]为PWM功能，频率为0x00002710HZ，占空比为0x32%</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x11</td>
+<td align="left">11</td>
+<td align="left">关闭所有设定的PWM功能</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x12</td>
+<td align="left">12</td>
+<td align="left">重启最后一次配置的PWM功能</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x13</td>
+<td align="left">13</td>
+<td align="left">返回0x01代表在正确模式下</td>
+<td align="left">01</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x14</td>
+<td align="left">14</td>
+<td align="left">显示自定义ID号</td>
+<td align="left">10</td>
+<td align="left">Router</td>
+</tr>
+<tr>
+<td align="left">0x15</td>
+<td align="left">15</td>
+<td align="left">显示广播自定义ID的周期</td>
+<td align="left">05</td>
+<td align="left">Router</td>
+</tr>
+<tr>
+<td align="left">0x16</td>
+<td align="left">16</td>
+<td align="left">显示限定入网时间（单位为秒）</td>
+<td align="left">B4</td>
+<td align="left">Coordinator</td>
+</tr>
+<tr>
+<td align="left">0x17</td>
+<td align="left">17</td>
+<td align="left">返回0x01代表开启了回显功能</td>
+<td align="left">00</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x18</td>
+<td align="left">18</td>
+<td align="left">显示PAN_ID</td>
+<td align="left">06 10</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x19</td>
+<td align="left">19</td>
+<td align="left">显示coordinator的长地址</td>
+<td align="left">A4 C1 38 D1 97 0B 25 3C</td>
+<td align="left">Router</td>
+</tr>
+<tr>
+<td align="left">0x1A</td>
+<td align="left">1A</td>
+<td align="left">显示本设备长地址</td>
+<td align="left">A4 C1 38 8E D6 90 F7 E0</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x1B</td>
+<td align="left">1B</td>
+<td align="left">显示本设备短地址</td>
+<td align="left">44 20</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x1C</td>
+<td align="left">1C</td>
+<td align="left">显示本设备类型 00:D_COORDINATOR  01:ROUTER  02:END_DEV</td>
+<td align="left">01</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x1D</td>
+<td align="left">1D</td>
+<td align="left">显示按键的短按时间(2B)和长按时间(1B)，单位:秒</td>
+<td align="left">C8 07 D0</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x1E</td>
+<td align="left">1E</td>
+<td align="left">显示入网和死机时的触发IO编号(gpio_group)及触发电平</td>
+<td align="left">02 00 03 00</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x1F</td>
+<td align="left">1F</td>
+<td align="left">显示PWM引脚编号(pwm_group，1B，ff表示未选)周期(4B)和占空比(1B)</td>
+<td align="left">00 00 00 27 10 32</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x20</td>
+<td align="left">20</td>
+<td align="left">显示所有数据</td>
+<td align="left">详情见下方描述</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x21</td>
+<td align="left">21</td>
+<td align="left">打开设置指令的命令应答(后缀5A A5)</td>
+<td align="left">5A 5A</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x22</td>
+<td align="left">22</td>
+<td align="left">关闭设置指令的命令应答(后缀5A A5)</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x30</td>
+<td align="left">30</td>
+<td align="left">设置参数为默认值</td>
+<td align="left">5A 5A</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x31</td>
+<td align="left">31</td>
+<td align="left">复位芯片</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+<tr>
+<td align="left">0x32</td>
+<td align="left">32</td>
+<td align="left">恢复出场设置</td>
+<td align="left">NULL</td>
+<td align="left">ALL</td>
+</tr>
+</tbody>
+</table>
+<p>在command模式下，关闭回显和命令应答后，发送指令0x20，UART返回所有设定相关的数据</p>
+<ul>
+<li>example: 01 01 C2 00 06 10 A4 C1 38 D1 97 0B 25 3C A4 C1 38 8E D6 90 F7 E0 44 20 14 00 00 02 C8 07 D0 02 00 03 00 00 00 00 27 10 32 00 01</li>
+<li>字段描述：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">describe</th>
+<th align="left">length</th>
+<th align="left">example</th>
+<th align="left">example describe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">当前模式</td>
+<td align="left">1</td>
+<td align="left">01</td>
+<td align="left">当前为command模式</td>
+</tr>
+<tr>
+<td align="left">复位后的波特率</td>
+<td align="left">3</td>
+<td align="left">01 C2 00</td>
+<td align="left">复位后波特率为0x01c200</td>
+</tr>
+<tr>
+<td align="left">PAN ID</td>
+<td align="left">2</td>
+<td align="left">06 10</td>
+<td align="left">PAN ID为0x0610</td>
+</tr>
+<tr>
+<td align="left">coordinator长地址</td>
+<td align="left">8</td>
+<td align="left">A4 C1 38 D1 97 0B 25 3C</td>
+<td align="left">0xA4C138D1970B253C</td>
+</tr>
+<tr>
+<td align="left">自身长地址</td>
+<td align="left">8</td>
+<td align="left">A4 C1 38 8E D6 90 F7 E0</td>
+<td align="left">0XA4C1388ED690F7E0</td>
+</tr>
+<tr>
+<td align="left">自身短地址</td>
+<td align="left">2</td>
+<td align="left">44 20</td>
+<td align="left">0X4420</td>
+</tr>
+<tr>
+<td align="left">限定入网时间</td>
+<td align="left">1</td>
+<td align="left">14</td>
+<td align="left">限定入网时间为0x14秒</td>
+</tr>
+<tr>
+<td align="left">回显功能</td>
+<td align="left">1</td>
+<td align="left">00</td>
+<td align="left">00：未开启回显 01：开启回显</td>
+</tr>
+<tr>
+<td align="left">设备ID</td>
+<td align="left">1</td>
+<td align="left">00</td>
+<td align="left">设备ID为0x00</td>
+</tr>
+<tr>
+<td align="left">ID广播周期</td>
+<td align="left">1</td>
+<td align="left">02</td>
+<td align="left">广播设备ID的周期为0x02秒</td>
+</tr>
+<tr>
+<td align="left">短按检测时间</td>
+<td align="left">1</td>
+<td align="left">C8</td>
+<td align="left">短按检测时间为0xC8毫秒</td>
+</tr>
+<tr>
+<td align="left">长按检测时间</td>
+<td align="left">2</td>
+<td align="left">07 D0</td>
+<td align="left">长按检测时间为0x07D0毫秒</td>
+</tr>
+<tr>
+<td align="left">入网时的触发IO编号(gpio_group)及触发电平</td>
+<td align="left">1+1</td>
+<td align="left">02 00</td>
+<td align="left">入网触发IO为gpio_group[2]，触发电平为0x00</td>
+</tr>
+<tr>
+<td align="left">死机时的触发IO编号(gpio_group)及触发电平</td>
+<td align="left">1+1</td>
+<td align="left">03 00</td>
+<td align="left">死机触发IO为gpio_group[3]，触发电平为0x00</td>
+</tr>
+<tr>
+<td align="left">PWM引脚pwm_group编号(ff表示未选)周期和占空比</td>
+<td align="left">1+4+1</td>
+<td align="left">00 00 00 27 10 32</td>
+<td align="left">设置pwm_group[0x00]引脚为PWM功能 频率为0x00002710HZ，占空比为0x32%</td>
+</tr>
+<tr>
+<td align="left">设置指令的命令应答(后缀5A A5)</td>
+<td align="left">1</td>
+<td align="left">00</td>
+<td align="left">00：不添加；01：添加</td>
+</tr>
+<tr>
+<td align="left">设备类型</td>
+<td align="left">1</td>
+<td align="left">01</td>
+<td align="left">00:D_COORDINATOR  01:ROUTER  02:END_DEV</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../web_bdt/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Web BDT" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Web BDT
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../web_ble/" class="md-footer__link md-footer__link--next" aria-label="Next: Web BLE" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Web BLE
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      沪ICP备17008231号-1 | 泰凌微电子版权所有 © 。保留所有权利。 2022
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.indexes", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d691e9de.min.js"></script>
+      
+    
+  </body>
+</html>

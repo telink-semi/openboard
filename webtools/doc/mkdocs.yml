@@ -1,0 +1,62 @@
+site_name: Telink Web docs
+
+nav:
+  - Boards: 
+    - Mars_B91: boards/Mars_B91.md
+    - Mini_Buring_EVK: boards/Mini_Burning_EVK.md
+  - Tools:
+    - Web BDT: webtools/web_bdt.md
+    - Web UART: webtools/web_uart.md
+    - Web BLE: webtools/web_ble.md
+
+theme:
+  name: material
+  font:
+    text: Roboto
+  palette: 
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    
+    # Palette toggle for light mode
+    - scheme: default
+      primary: blue
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+  features:
+    - navigation.expand
+    - navigation.indexes
+    - content.tabs.link
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - meta
+
+plugins:
+  - search
+  
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  generator: false
+copyright: 沪ICP备17008231号-1 | 泰凌微电子版权所有 © 。保留所有权利。 2022
+
+
+

@@ -1,0 +1,113 @@
+#OFFLINE_TABLE table,td,th
+{
+	border:1px solid green;
+	text-align:center;
+}
+#OFFLINE_TABLE th
+{
+	background-color:green;
+	color:white;
+}
+
+#OFFLINE_TABLE2 table,td,th
+{
+	border:1px solid green;
+	text-align:center;
+}
+#OFFLINE_TABLE2 th
+{
+	background-color:green;
+	color:white;
+}
+
+#TelinkDebug{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	width:100%;
+ 	border-collapse:collapse;
+}
+
+#TelinkDebug td, #TelinkDebug th {	
+	font-size:1em;
+	border:1px solid #98bf21;
+	padding: 10px 20px 10px 10px; /*边距 上内 右内 下内 左内 */
+}
+
+#TelinkDebug th {
+	font-size:1.1em;
+	text-align:left;
+	padding-top:5px;
+	padding-bottom:4px;
+	background-color:#A7C942;
+	color:#ffffff;
+}
+
+#TelinkDebug tr.alt td {
+	color:#000000;
+	background-color:#EAF2D3;
+}
+
+#TelinkDebug  thead, tbody tr {
+	display:table;
+	width:100%;
+	table-layout:fixed;
+}
+
+#TelinkDebug  tbody {
+	display:block;
+ 	overflow-y:scroll;
+}
+
+#TelinkDebug  thead {
+	width: calc(100% - 1em)
+}
+
+.DropDownbox {
+	width:  100px;
+	height: 21px;
+	clip: rect( 0px, 181px, 20px, 0px );
+	overflow: hidden;
+}
+
+.DropDownSelect {
+ position: absolute;
+ left: -1px;
+ top: -1px;
+ width: 100px;
+ height: 27px;
+ z-index: 1;
+ cursor: pointer;
+}
+
+.SelectInput {            
+ position: absolute;
+ z-index: 5;
+ height: 21px;
+ width: 76px;
+ left: -1px;
+ top: 0px;
+}
+
+.SettingBackGround {
+	background-color:#9ab3d4;
+}
+
+.MyInput {
+	width: 5%;
+ 	padding: 2px 2px;
+	margin:  2px 2px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.offline_fw_name_input{
+   width: 70%;
+   padding: 2px 2px;
+   margin:  2px 2px;
+   display: inline-block;
+   border: 3px solid rgb(56, 9, 224);
+   border-radius: 4px;
+   box-sizing: border-box;
+   text-align:center;
+}

@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+	    <meta charset = "utf-8">
+		<title>WEB BDT v1.0.0</title>
+		<link rel="manifest" href="./manifest2.json">
+		<link rel = "shortcut icon" href = "./images/bdt-32.png" />
+		<link rel = "stylesheet" type = "text/css" href = "./bdt.css" />
+		<link rel = "stylesheet" href = "layui-v2.6.8/layui/myfont/iconfont.css">
+  		<link rel = "stylesheet" type = "text/css" href = "layui-v2.6.8/layui/css/layui.css" />
+		<script src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src = "./bindata.js"></script>
+		<script src = "layui-v2.6.8/layui/layui.js" type = "text/javascript" charset = "UTF-8"></script>
+ 	</head>
+	
+	<body>
+
+		<div style="background: linear-gradient(303deg, #6f86d6  0%, #0a2d72  71%);text-align:center;color:#fff;padding:10px 0;">
+			<h1 style="font-size:32px;margin-top:5px;">Telink Web BDT</h1>
+		</div>
+		<hr/>
+
+		<button type="button" class="layui-btn layui-btn-sm layui-btn-radius layui-btn-disabled" id = 'btnInstall'>
+			<i class="layui-icon layui-icon-star-fill"></i> Install
+		</button>
+
+		<button type = "button" id = "usbConnectButton" class = "layui-btn layui-btn-sm layui-btn-radius">
+			<i class = "layui-icon layui-icon-link"></i> Connect
+		</button>
+
+		<button class = "layui-btn layui-btn-sm layui-btn-radius" id = "Chip">
+			<span class = "iconfont icon-xinpian"></span>
+			<i id = "ChipSelect">B91</i> 
+			<i class = "layui-icon layui-icon-down layui-font-12"></i> 
+		</button>
+	 
+		<input type = "file" id = "BinFileInput" style = "display: none" onchange = "BinFileRead()" accept = ".bin,.tbin">
+ 
+		<button type = "button" id = "BinFileImport" class = "layui-btn layui-btn-sm layui-btn-radius">
+			<i class = "layui-icon layui-icon-export"></i> File Import
+		</button>
+
+		<button type = "button" id = "DownloadButton" class = "layui-btn layui-btn-sm layui-btn-radius">
+			<i class = "layui-icon layui-icon-download-circle"></i> Download
+		</button>
+
+		<button type = "button" id = "ClearButton" class = "layui-btn layui-btn-sm layui-btn-radius">
+			<i class = "layui-icon layui-icon-fonts-clear"></i> Clear
+		</button>
+
+		<button type = "button" id = "ResetButton" class = "layui-btn layui-btn-sm layui-btn-radius">
+			<i class = "layui-icon layui-icon-refresh-3"></i> Reset
+		</button>
+
+		<button type = "button"  id = "SWSButton" class = "layui-btn layui-btn-sm layui-btn-radius">
+			<i class = "layui-icon layui-icon-chart"></i> SWS
+		</button>
+
+		<button type = "button" id = "ActivateButton" class = "layui-btn layui-btn-sm layui-btn-radius">
+			<i class = "layui-icon layui-icon-add-1"></i> Activate
+		</button>
+
+		<button type = "button" id = "EraseButton" class = "layui-btn layui-btn-sm layui-btn-radius">
+			<i class = "layui-icon layui-icon-delete"></i> Erase
+		</button>
+
+		<button type = "button" id = "StallButton" class = "layui-btn layui-btn-sm layui-btn-radius">
+			<i class = "layui-icon layui-icon-pause"></i> Stall
+		</button>
+
+		<button type = "button" id = "StartButton" class = "layui-btn layui-btn-sm layui-btn-radius">
+			<i class = "layui-icon layui-icon-play"></i> Start
+		</button>
+
+		<form action = "" class = "layui-form layui-form-pane" style = "display:inline">
+			<input type = "checkbox" lay-filter = "resetswitch" lay-skin = "switch" lay-text = "auto mode|manual mode"/>
+		</form>
+
+		<hr />
+ 
+		<div class = "layui-tab layui-tab-card">
+			<ul class = "layui-tab-title">
+				<li class = "layui-this">Download</li>
+				<li>Tdebug</li>
+				<li>Access Memory</li>
+				<li>Setting</li>
+				<li>Multi Addr Download</li>
+				<li>Online</li>
+				<li>Offline</li>
+				<li>Relase Note</li>
+			</ul>
+
+			<div class = "layui-tab-content">
+			    <div class = "layui-panel layui-tab-item layui-show layui-col-md12 layui-col-sm12 layui-col-xs12 layui-col-lg12" style = "padding: 250px;">
+					<table  class = "layui-table" lay-even lay-skin = "line" lay-size = "lg">
+						<div style = "position: absolute;top: 0%;right: 3px;bottom: 5px;left: 3px;" class = "container">
+							<textarea id = "Console1" style = "font-size:16px;color:#00ff00;
+							background-color:#000000;width: 100%;height: 95%;"></textarea>
+ 						</div>
+					</table>
+				</div>
+
+			    <div class = "layui-tab-item" >
+					<div class = "layui-col-md6 layui-col-sm6 layui-col-xs6 layui-col-lg6">
+						<div >
+							<div class = "layui-col-md4 layui-col-sm4 layui-col-xs4 layui-col-lg4">
+								<div class = "layui-col-md4" >
+									<form action = "" class = "layui-form layui-form-pane" style = "display:inline">
+										<input type = "checkbox"  lay-filter = "AnalysisObj"  lay-skin = "switch" lay-text = "function|variable"/>
+									</form> 
+								</div>
+								<div class = "layui-col-md4" >
+									<form action = "" class = "layui-form layui-form-pane" style = "display:inline">
+										<input type = "checkbox"  lay-filter = "SortMode" lay-skin = "switch" lay-text = "name|addr"/>
+									</form>
+								</div>
+								<div class = "layui-col-md4" >
+									<button type = "button"  onclick = "RefreshDatas()" id = "refreshDown" class = "layui-btn layui-btn-sm layui-btn-radius">
+										<i class = "layui-icon layui-icon-list"></i> refresh
+									</button>
+								</div>
+							</div>
+							<div class = "layui-col-md5 layui-col-sm5 layui-col-xs5 layui-col-lg5">
+								<div class = "layui-col-md3" >
+									<button type = "button" id = "PCButton" class = "layui-btn layui-btn-sm layui-btn-radius layui-btn-enabled">
+										<i class = "layui-icon layui-icon-search"></i> PC
+									</button>
+								</div>
+								<div class = "layui-col-md3" >
+									<button type = "button" id = "StepButton" class = "layui-btn layui-btn-sm layui-btn-radius layui-btn-enabled">
+										<i class = "layui-icon layui-icon-play"></i> Step
+									</button>
+								</div>
+								<div class = "layui-col-md3" >
+									<button type = "button" id = "RunButton" class = "layui-btn layui-btn-sm layui-btn-radius layui-btn-enabled">
+										<i class = "layui-icon layui-icon-play"></i> Run
+									</button>
+								</div>
+								<div class = "layui-col-md3" >
+									<button type = "button" id = "PauseButton" class = "layui-btn layui-btn-sm layui-btn-radius layui-btn-enabled">
+										<i class = "layui-icon layui-icon-pause "></i> Pause
+									</button>
+								</div>
+							</div>
+							<div class = "layui-col-md3 layui-col-sm3 layui-col-xs3 layui-col-lg3">
+								<div class = "layui-col-md7" >
+									<form action = "" class = "layui-form layui-form-pane" style = "display:inline">
+										<input type = "checkbox"  lay-filter = "singleswitch"  lay-skin = "switch"    lay-text = "continuous|Single step"/>
+									</form> 
+								</div>
+								<div class = "layui-col-md5" >	
+ 									<input type = "file"   id = "LstFileInput" style = "display: none" onchange = "LstFileRead()"  accept = ".lst,.txt">
+									<input type = "button" id = "LstFileImport" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "File Import">
+								</div>
+							</div>
+						</div> 
+						<div id = "TelinkDebug" > 
+						</div>
+					</div>
+					<div class = "container layui-col-md6 layui-col-sm6 layui-col-xs6 layui-col-lg6 layui-panel">
+						<textarea id = "Console2"style = "font-size:16px;color:#00ff00;
+						background-color:#000000;width: 100%;"></textarea>
+					</div>
+				</div>
+
+			    <div class = "layui-tab-item">
+					<div>
+						<span>Address:0x</span>
+						<input type = "text" id = "usbRWAddr" value = "80000">
+			 		    <span>Length:0x</span>
+						<input type = "text" id = "usbRWLength" value = "4">
+						<span>Data:0x</span>
+						<input type = "text" id = "usbRWData" value = "11 22 33 44">
+						<form action = "" class = "layui-form layui-form-pane" style = "display:inline">
+							<input type = "checkbox"  lay-filter = "SingleWrite"  lay-skin = "switch"    lay-text = "repeat|normal"/>
+						</form> 
+					</div>
+					<hr/>
+					
+					<button type = "button" id = "usbReadtButton" onclick = "usbReadtButtonFun()" class = "layui-btn layui-btn-sm layui-btn-radius">
+						<i class = "layui-icon layui-icon-read"></i> usb read
+					</button>
+			
+					<button type = "button" id = "usbWirtetButton" onclick = "usbWirtetButtonFun()" class = "layui-btn layui-btn-sm layui-btn-radius">
+						<i class = "layui-icon layui-icon-survey"></i> usb write
+					</button>
+						
+					<button type = "button" id = "CoreReadtButton" onclick = "CoreReadtButtonFun()" class = "layui-btn layui-btn-sm layui-btn-radius">
+						<i class = "layui-icon layui-icon-read"></i> Core read
+					</button>
+			
+					<button type = "button" id = "CoreWirtetButton" onclick = "CoreWirtetButtonFun()" class = "layui-btn layui-btn-sm layui-btn-radius">
+						<i class = "layui-icon layui-icon-survey"></i> Core write
+					</button>
+				
+					<button type = "button" id = "AnalogReadtButton" onclick = "AnalogReadtButtonFun()" class = "layui-btn layui-btn-sm layui-btn-radius">
+						<i class = "layui-icon layui-icon-read"></i> Analog read
+					</button>
+			
+					<button type = "button" id = "AnalogWirtetButton" onclick = "AnalogWirtetButtonFun()" class = "layui-btn layui-btn-sm layui-btn-radius">
+						<i class = "layui-icon layui-icon-survey"></i> Analog write
+					</button>
+
+					<button type = "button" id = "FlashReadtButton" onclick = "FlashReadtButtonFun()" class = "layui-btn layui-btn-sm layui-btn-radius">
+						<i class = "layui-icon layui-icon-read"></i> Flash read
+					</button>
+			
+					<button type = "button" id = "FlashWirtetButton" onclick = "FlashWirtetButtonFun()" class = "layui-btn layui-btn-sm layui-btn-radius">
+						<i class = "layui-icon layui-icon-survey"></i> Flash write
+					</button>
+
+
+
+					<div class = "layui-col-md12 layui-col-sm12 layui-col-xs12 layui-col-lg12">
+						<div class = "layui-panel">
+							<table  class = "layui-table" lay-even lay-skin = "line" lay-size = "lg">
+								<div style = "position: absolute;top: 0%;right: 3px;bottom: 5px;left: 3px;" class = "container">
+									<textarea id = "Console3" style = "font-size:16px;color:#00ff00;
+									background-color:#000000;width: 100%;height: 95%;"></textarea>
+								</div>
+							</table>
+ 						</div>   
+					</div>
+				</div>
+
+				<div class = "layui-tab-item">
+					<div class = "SettingBackGround"> 
+						<div class = "layui-row layui-col-space20">
+							<div class = "layui-col-md6" >
+								<div class = "layui-form">
+									<div class = "layui-col-md4" >
+										<input type = "radio" name = "downloadselect" lay-filter = "DownloadDst" value = "Flash" title = "Flash" checked>
+									</div>
+									<div class = "layui-col-md4" >
+										<input type = "radio" name = "downloadselect"  lay-filter = "DownloadDst" value = "SRAM" title = "SRAM">
+									</div>
+									<div class = "layui-col-md4" >
+										<input type = "radio" name = "downloadselect" lay-filter = "DownloadDst" value = "OTP" title = "OTP" disabled>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class = "layui-row layui-col-space2">
+							<div class = "layui-col-md4" >
+								<div class = "layui-col-md6">
+									<font  size = "3"> Download Addr:0x </font>
+								</div>
+								<div class = "layui-col-md4" >
+									<div class=DropDownbox id = "DropDownbox_id1">
+										<select name = "DownloadAddr" id = "DownloadAddr_id1" class = "DropDownSelect" onChange = "document.getElementById('DownloadAddrInput').value=this.options[this.selectedIndex].text">
+											<option value = "0" selected>0</option>
+											<option value = "20000">20000</option>
+											<option value = "40000">40000</option>
+											<option value = "80000">80000</option>
+										</select>
+										<input name = "SelectInput_id1" type = "text" class = "SelectInput" id = "DownloadAddrInput" value = "0" size = "10">
+									</div>
+								</div>
+							</div>
+							<div class = "layui-col-md6" >
+								<label> SWS:0x </label>
+							    <input class = "MyInput" type = "text" id = "input1" value = "b0" />
+								<input class = "MyInput" type = "text" id = "input2" value = "10" />
+								<input class = "MyInput" type = "text" id = "input3" value = "b0" />
+								<input class = "MyInput" type = "text" id = "input4" value = "10" />
+							</div>
+						</div>
+						</br>
+						<div class = "layui-row layui-col-space2">
+							<div class = "layui-col-md4" >
+								<div class = "layui-col-md6">
+									<font  size = "3"> Erase Flash Addr:0x </font>
+								</div>
+								<div class = "layui-col-md4" >
+									<div class=DropDownbox id = "DropDownbox_id2">
+										<select name = "EraseAddr" id = "EraseAddr_id1" class = "DropDownSelect" onChange = "document.getElementById('EraseAddrInput').value=this.options[this.selectedIndex].text">
+											<option value = "0" selected>0</option>
+											<option value = "20000">20000</option>
+											<option value = "40000">40000</option>
+										</select>
+										<input name = "SelectInput_id2" type = "text" class = "SelectInput" id = "EraseAddrInput" value = "0" size = "10">
+									</div>
+								</div>
+							</div>
+							<div class = "layui-col-md6" >
+								<label> Stall: 0x </label>
+								<input class = "MyInput" type = "text" id = "input5" value = "602" />
+								<input class = "MyInput" type = "text" id = "input6" value = "06" />
+							</div>
+						</div>
+						</br>
+						<div class = "layui-row layui-col-space2">
+							<div class = "layui-col-md4" >
+								<div class = "layui-col-md6">
+									<font  size = "3"> Sector Erase Size(K): </font>
+								</div>
+								<div class = "layui-col-md4" >
+									<div class=DropDownbox id = "DropDownbox_id3">
+										<select name = "EraseSize" id = "EraseSize_id1" class = "DropDownSelect" onChange = "document.getElementById('EraseSizeInput').value=this.options[this.selectedIndex].text">
+											<option value = "4">4</option>
+											<option value = "16">16</option>
+											<option value = "64">64</option>
+											<option value = "128">128</option>
+											<option value = "256">256</option>
+											<option value = "512">512</option>
+											<option value = "1024"selected>1024</option>
+										</select>
+										<input name = "SelectInput_id3" value = "1024" type = "text" class = "SelectInput" id = "EraseSizeInput" value = "0" size = "10">
+									</div>
+								</div>
+							</div>
+							<div class = "layui-col-md6" >
+								<label> Start:0x </label>
+								<input class = "MyInput" type = "text" id = "input7" value = "602" />
+								<input class = "MyInput" type = "text" id = "input8" value = "88" />
+							</div>
+						</div>
+						</br>
+						<div class = "layui-row layui-col-space2">
+							<div class = "layui-col-md4" >
+								<div class = "layui-col-md6">
+									<font  size = "3"> Sram Start Addr:0x </font>
+								</div>
+								<div class = "layui-col-md4" >
+									<div class=DropDownbox id = "DropDownbox_id4">
+										<select name = "SramDownloadAddr" id = "SramDownloadAddr_id1" class = "DropDownSelect" onChange = "document.getElementById('SramDownloadAddrInput').value=this.options[this.selectedIndex].text">
+											<option value = "40000" >40000</option>
+											<option value = "8000">8000</option>
+											<option value = "c0000000">c0000000</option>
+										</select>
+										<input name = "SelectInput_id4" value = "c0000000" type = "text" class = "SelectInput" id = "SramDownloadAddrInput" value = "0" size = "10">
+									</div>
+								</div>
+							</div>
+
+
+							<div class = "layui-col-md2" >
+								<font  size = "3"> show time: </font>
+								<form action = "" class = "layui-form layui-form-pane" style = "display:inline">
+									<input type = "checkbox"  lay-filter = "showtimeswitch"  lay-skin = "switch" lay-text = "yes|no" checked/>
+								</form> 
+							</div>
+
+						</div>
+						</br>
+					</div>
+					<div class = "layui-panel layui-tab-item layui-show layui-col-md12 layui-col-sm12 layui-col-xs12 layui-col-lg12" style = "padding: 250px;">
+						<table  class = "layui-table" lay-even lay-skin = "line" lay-size = "lg">
+							<div style = "position: absolute;top: 0%;right: 3px;bottom: 5px;left: 3px;"class = "container">
+								<textarea id = "Console4" style = "font-size:16px;color:#00ff00;
+								background-color:#000000;width: 100%;height: 95%;"></textarea>
+							 </div>
+						</table>
+					</div>
+ 				</div>
+ 
+			    <div class = "layui-tab-item" >
+					<div class = "layui-col-md12 layui-col-sm12 layui-col-xs12 layui-col-lg12">
+						<div class = "SettingBackGround"> 
+							</br>
+							<div class = "layui-row layui-col-space2">
+								<div class = "layui-col-md7" >
+									<div class = "layui-col-md3">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  										<font  size = "3"> Download Addr1:0x </font>
+									</div>
+									<div class = "layui-col-md2" >
+										<div class=DropDownbox >
+											<select  class = "DropDownSelect" onChange = "document.getElementById('DownloadAddrInput1').value=this.options[this.selectedIndex].text">
+												<option value = "0" selected>0</option>
+												<option value = "20000">20000</option>
+												<option value = "40000">40000</option>
+												<option value = "80000">80000</option>
+											</select>
+											<input  type = "text" class = "SelectInput" id = "DownloadAddrInput1" value = "0" size = "10">
+										</div>
+									</div>
+									
+									<div class = "layui-col-md3" >
+										<input id = "MultiCheck1" type = "checkbox" class = " ">
+										<input type = "file"   id = "MultiBinFileInput1" style = "display: none" onchange = "MultiBinFileRead('MultiBinFileInput1')"  accept = ".bin,.tbin">
+										<input type = "button" id = "MultiBinFileImport1" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "Local File Import">
+									</div>
+									<div class = "layui-col-md1" >
+
+									</div>
+	
+									<div class = "layui-col-md3" >
+										<input id = "MultiCheck6" type = "checkbox" class = " ">
+										 <input type = "button" id = "MultiBinFileImport6" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "Server File Import">
+									</div>
+								</div>
+
+							</div>
+							</br>
+							
+							<div class = "layui-row layui-col-space2">
+								<div class = "layui-col-md7" >
+									<div class = "layui-col-md3">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<font  size = "3"> Download Addr2:0x </font>
+									</div>
+									<div class = "layui-col-md2" >
+										<div class=DropDownbox>
+											<select  class = "DropDownSelect" onChange = "document.getElementById('DownloadAddrInput2').value=this.options[this.selectedIndex].text">
+												<option value = "0" selected>0</option>
+												<option value = "20000">20000</option>
+												<option value = "40000">40000</option>
+												<option value = "80000">80000</option>
+											</select>
+											<input  type = "text" class = "SelectInput" id = "DownloadAddrInput2" value = "0" size = "10">
+										</div>
+									</div>	
+									<div class = "layui-col-md3" >
+										<input id = "MultiCheck2" type = "checkbox" class = " ">
+										<input type = "file"   id = "MultiBinFileInput2" style = "display: none" onchange = "MultiBinFileRead('MultiBinFileInput2')"  accept = ".bin,.tbin">
+										<input type = "button" id = "MultiBinFileImport2" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "Local File Import">
+									</div>
+									<div class = "layui-col-md1" >
+
+									</div>
+									<div class = "layui-col-md3" >
+										<input id = "MultiCheck7" type = "checkbox" class = " ">
+										 <input type = "button" id = "MultiBinFileImport7" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "Server File Import">
+									</div>
+								</div>
+							</div>
+							</br>
+
+							<div class = "layui-row layui-col-space2">
+								<div class = "layui-col-md7" >
+									<div class = "layui-col-md3">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<font  size = "3"> Download Addr3:0x </font>
+									</div>
+									<div class = "layui-col-md2" >
+										<div class=DropDownbox>
+											<select  class = "DropDownSelect" onChange = "document.getElementById('DownloadAddrInput3').value=this.options[this.selectedIndex].text">
+												<option value = "0" selected>0</option>
+												<option value = "20000">20000</option>
+												<option value = "40000">40000</option>
+												<option value = "80000">80000</option>
+											</select>
+											<input  type = "text" class = "SelectInput" id = "DownloadAddrInput3" value = "0" size = "10">
+										</div>
+									</div>
+									<div class = "layui-col-md3" >
+										<input id = "MultiCheck3" type = "checkbox" class = " ">
+										<input type = "file"   id = "MultiBinFileInput3" style = "display: none" onchange = "MultiBinFileRead('MultiBinFileInput3')"  accept = ".bin,.tbin">
+										<input type = "button" id = "MultiBinFileImport3" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "Local File Import">
+									</div>
+									<div class = "layui-col-md1" >
+
+									</div>
+	
+									<div class = "layui-col-md3" >
+										<input id = "MultiCheck8" type = "checkbox" class = " ">
+										 <input type = "button" id = "MultiBinFileImport8" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "Server File Import">
+									</div>
+								</div>
+							</div>
+							</br>
+
+							<div class = "layui-row layui-col-space2">
+								<div class = "layui-col-md7" >
+									<div class = "layui-col-md3">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<font  size = "3"> Download Addr4:0x </font>
+									</div>
+									<div class = "layui-col-md2" >
+										<div class=DropDownbox >
+											<select  class = "DropDownSelect" onChange = "document.getElementById('DownloadAddrInput4').value=this.options[this.selectedIndex].text">
+												<option value = "0" selected>0</option>
+												<option value = "20000">20000</option>
+												<option value = "40000">40000</option>
+												<option value = "80000">80000</option>
+											</select>
+											<input type = "text" class = "SelectInput" id = "DownloadAddrInput4" value = "0" size = "10">
+										</div>
+									</div>
+									<div class = "layui-col-md3" >
+										<input id = "MultiCheck4" type = "checkbox" class = " ">
+										<input type = "file"   id = "MultiBinFileInput4" style = "display: none" onchange = "MultiBinFileRead('MultiBinFileInput4')"  accept = ".bin,.tbin">
+										<input type = "button" id = "MultiBinFileImport4" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "Local File Import">
+									</div>
+									<div class = "layui-col-md1" >
+
+									</div>
+									<div class = "layui-col-md3" >
+										<input id = "MultiCheck9" type = "checkbox" class = " ">
+										 <input type = "button" id = "MultiBinFileImport9" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "Server File Import">
+									</div>
+								</div>
+							</div>
+							</br>
+
+							<div class = "layui-row layui-col-space2">
+								<div class = "layui-col-md7" >
+									<div class = "layui-col-md3">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<font  size = "3"> Download Addr5:0x </font>
+									</div>
+									<div class = "layui-col-md2" >
+										<div class=DropDownbox >
+											<select  class = "DropDownSelect" onChange = "document.getElementById('DownloadAddrInput5').value=this.options[this.selectedIndex].text">
+												<option value = "0" selected>0</option>
+												<option value = "20000">20000</option>
+												<option value = "40000">40000</option>
+												<option value = "80000">80000</option>
+											</select>
+											<input  type = "text" class = "SelectInput" id = "DownloadAddrInput5" value = "0" size = "10">
+										</div>
+									</div>
+									<div class = "layui-col-md3" >
+										<input id = "MultiCheck5" type = "checkbox" class = " ">
+										<input type = "file"   id = "MultiBinFileInput5" style = "display: none" onchange = "MultiBinFileRead('MultiBinFileInput5')"  accept = ".bin,.tbin">
+										<input type = "button" id = "MultiBinFileImport5" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "Local File Import">
+									</div>
+									<div class = "layui-col-md1" >
+
+									</div>
+									<div class = "layui-col-md3" >
+										<input id = "MultiCheck10" type = "checkbox" class = " ">
+										 <input type = "button" id = "MultiBinFileImport10" class = "layui-btn  layui-btn-sm layui-btn-radius"  value = "Server File Import">
+									</div>
+								</div>
+								<div class = "layui-col-md5" >
+
+									<div class = "layui-col-md4" >
+										<button type = "button" id = "MultiDownloadButton" class = "layui-btn layui-btn-sm layui-btn-radius">
+											<i class = "layui-icon layui-icon-download-circle"></i> MultiDownload
+										</button>
+									</div>
+
+								</div>
+							</div>
+						</div>
+ 
+						<div class = "layui-panel layui-tab-item layui-show layui-col-md12 layui-col-sm12 layui-col-xs12 layui-col-lg12" style = "padding: 250px;">
+							<table  class = "layui-table" lay-even lay-skin = "line" lay-size = "lg">
+								<div style = "position: absolute;top: 0%;right: 3px;bottom: 5px;left: 3px;"class = "container">
+									<textarea id = "Console5" style = "font-size:16px;color:#00ff00;
+									background-color:#000000;width: 100%;height: 95%;"></textarea>
+								</div>
+							</table>
+						</div>
+ 					</div>
+				</div>
+ 		
+			    <div class = "layui-tab-item" >
+					<div class = "layui-col-md12 layui-col-sm12 layui-col-xs12 layui-col-lg12">
+						<ul class = "layui-nav layui-bg-cyan" lay-filter = "">
+							<li class = "layui-nav-item">
+								<a href = "javascript:;">Firmware</a>
+								<dl class = "layui-nav-child">
+									<dd><a href = "javascript:;" id = "FwDownloadButton1">   V3.6</a></dd>
+									<dd><a href = "javascript:;" id = "FwDownloadButton2">   V3.7</a></dd>
+									<dd>
+										<a href = "javascript:;"> 
+											<input type = "file"   id = "UPFileInput"  style = "display: none" onchange = "UPFileRead(CHIP_8266)" accept = ".bin,.tbin">
+											<input type = "button" id = "UPFileImport" class="layui-btn layui-btn-sm" value = "local">
+										</a> 
+									</dd>
+								</dl>
+							</li>
+						</ul>
+						</hr>
+ 
+						<div class = "SettingBackGround"> 
+						</br>
+							<div class = "layui-row layui-col-space2">
+								<div class = "layui-col-md6">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+									<span>LinkCode:</span>
+									<input type = "text" id = "LinkCode" value = "233">
+									
+									 <span>Directory:</span>
+									<input type = "text" id = "Directory" value = "hu">
+								</div>
+ 
+								<div class = "layui-col-md2" >
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+									<input type = "file"   id = "FileUploadInput" style = "display: none" onchange = "UPileRead()"  accept = ".bin,.tbin">
+									<button type = "button" id = "FileUploadImport" class = "layui-btn layui-btn-sm layui-btn-radius" >
+										<i class = "layui-icon layui-icon-upload-drag" ></i> Upload File
+									</button>
+								</div>
+
+							</div>
+						</br>
+						</div>
+					</hr>
+						<div class = "layui-panel layui-tab-item layui-show layui-col-md12 layui-col-sm12 layui-col-xs12 layui-col-lg12" style = "padding: 250px;">
+							<table  class = "layui-table" lay-even lay-skin = "line" lay-size = "lg">
+								<div style = "position: absolute;top: 0%;right: 3px;bottom: 5px;left: 3px;"class = "container">
+									<textarea id = "Console6" style = "font-size:16px;color:#00ff00;
+									background-color:#000000;width: 100%;height: 95%;"></textarea>
+								</div>
+							</table>
+					    </div>
+ 					</div>
+				</div>
+
+				<div class = "layui-tab-item" >
+					<div class = "layui-row layui-col-space2">
+						<div class = "layui-col-md2" ></div>
+	
+						<div class = "layui-col-md2" >
+							<input type = "file" id = "OffLineFWBinFileInput" style = "display: none" onchange = "OffLineFWBinFileRead()" accept = ".bin,.tbin">
+							<button type = "button" id = "OffLineFWBinFileImport" class = "layui-btn layui-btn-sm layui-btn-radius">
+								<i class = "layui-icon layui-icon-export"></i> Add
+							</button>
+						</div>
+	
+						<div class = "layui-col-md2" >
+							<button type = "button" id = "offline_del_user_bin" class = "layui-btn layui-btn-sm layui-btn-radius">
+								<i class = "layui-icon layui-icon-delete"></i> Delete
+							</button>
+						</div>
+	
+						<div class = "layui-col-md2" >
+							<button type = "button" id = "offline_download_user_bin" class = "layui-btn layui-btn-sm layui-btn-radius">
+								<i class = "layui-icon layui-icon-download-circle"></i> Download
+							</button>
+						</div>
+
+						<div class = "layui-col-md2" >
+							<button type = "button" id = "offline_list_ram_tool_bin" class = "layui-btn layui-btn-sm layui-btn-radius">
+								<i class = "layui-icon layui-icon-list"></i> ListToolBin 
+							</button>
+						</div>
+
+						<div class = "layui-col-md2" >
+							<button type = "button" id = "offline_download_ram_tool_bin" class = "layui-btn layui-btn-sm layui-btn-radius">
+								<i class = "layui-icon layui-icon-download-circle"></i> DownloadToolBin 
+							</button>
+						</div>
+					</div>
+					<hr/>
+					<div id = "OFFLINE_TABLE" class = "layui-row layui-col-space2">
+						<div class = "layui-col-md1" ></div>
+						<div class = "layui-col-md10" >
+							<table id="UserFwFileTable" > 
+								<tr>
+									<th>Chip_Type</th>
+									<th>Firmware_Type</th>
+									<th>Firmware_Name</th>
+									<th>Store_Addr</th>
+									<th>Firmware_Size</th>
+									<th>Download_Addr</th>
+									<th>Progress</th>
+								</tr>
+								<tbody id="tableBody">
+								</tbody>
+							</table>
+						</div>
+						<div class = "layui-col-md1" ></div>
+					</div>
+					<hr/>
+					<div id = "OFFLINE_TABLE2" class = "layui-row layui-col-space2">
+						<div class = "layui-col-md1" ></div>
+						<div class = "layui-col-md10" >
+							<table id="RamToolFileTable" > 
+								<tr>
+									<th>Chip_Number</th>
+									<th>Firmware_Name</th>
+									<th>Store_Addr</th>
+									<th>Firmware_Size</th>
+								</tr>
+								<tbody id="tableBody">
+								</tbody>
+							</table>
+						</div>
+						<div class = "layui-col-md1" ></div>
+					</div>
+				</div>
+
+				<div class = "layui-tab-item" >
+<!-- 
+					<dd>
+						<a lay-active = "e1">Relase Note</a>
+					</dd>
+-->
+					<div style="padding: 20px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">
+						<h1> Version: V1.1.0 <br><h1> <br>
+						<h2>Bug Fixes<br></h2>
+						<font size="3"> N/A<br> </font>
+						<br>
+						<h2>Features<br></h2>
+						<font size="3"> 1. add read and write functions to DUT's flash and analog<br> </font>
+						<font size="3"> 2. add relase Note page<br> </font>
+						<font size="3"> 3. update README<br> </font>
+						<font size="3"> 4. remove drag and drop downloads<br> </font>
+						<br>
+						<h2>BREAKING CHANGES<br></h2>
+						<font size="3"> N/A<br> </font>
+						<br>
+						<h2>Refactoring<br></h2>
+						<font size="3"> N/A<br> </font>
+					</div>
+				</div>
+
+ 			</div>
+		</div>
+
+		<script>
+			var num;
+			var myObj;
+			var FileNumberLimit  =  5;	
+			var ServerFileName   =  new Array(FileNumberLimit);
+			var ServerFilePath   =  new Array(FileNumberLimit);
+			var ServerFileLength =  new Array(FileNumberLimit);
+			var ServerFileAttribute  =  new Array(FileNumberLimit);	
+		
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if(4 == this.readyState && 200 == this.status) {
+					myObj = JSON.parse(this.responseText);
+					for(var n = 6; n < 6 + FileNumberLimit; n++) {
+						document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+					}
+					for(var i = 0; i < FileNumberLimit; i++) {
+						ServerFileName[i] 	   =  "NULL";
+						ServerFilePath[i] 	   =  "NULL";
+						ServerFileLength[i]    =   0;
+						ServerFileAttribute[i] =   "NULL";
+					}
+					if(undefined == myObj.CHIP_91) {
+						LogConsole("There is no file corresponding to this chip on the server");
+					}
+					else {
+						num = myObj.CHIP_91[0].number;
+						if(num > FileNumberLimit) {
+							num = FileNumberLimit;
+						}
+						for(var i = 0; i < num; i++) {
+							var n = i + 6;
+							document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_91[i+1].info[0];
+							ServerFileName[i] 	   =  myObj.CHIP_91[i+1].info[0];
+							ServerFileLength[i]    =  myObj.CHIP_91[i+1].info[1];
+							ServerFileAttribute[i] =  myObj.CHIP_91[i+1].info[3];
+							ServerFilePath[i] 	   =  myObj.CHIP_91[i+1].info[2] + myObj.CHIP_91[i+1].name;							
+						}
+					} 
+				}
+			};
+			xmlhttp.open("GET", "./bin/configure", true);
+			xmlhttp.send();
+
+			layui.use('util', function() {
+				var util = layui.util
+				util.event('lay-active', {
+					e1: function() {
+					    var version = 
+						'<div style="padding: 20px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">'
+						+ '<h1>Version: V1.1.0<br><h1>'+ '<br>'
+						+ '<h2>Bug Fixes<br></h2>'
+						+ '<font size="3"> N/A<br> </font>'
+						+ '<br>'
+						+ '<h2>Features<br></h2>'
+						+ '<font size="3"> 1. add read and write functions to DUT\'s flash and analog<br> </font>'
+						+ '<font size="3"> 2. add relase Note page<br> </font>'
+						+ '<font size="3"> 3. update README<br> </font>'
+						+ '<font size="3"> 4. remove drag and drop downloads<br> </font>'
+						+ '<br>'
+						+ '<h2>BREAKING CHANGES<br></h2>'
+						+ '<font size="3"> N/A<br> </font>'
+						+ '<br>'
+						+ '<h2>Refactoring<br></h2>'
+						+ '<font size="3"> N/A<br> </font>'
+						+ '</div>';
+						layer.open({
+							type: 1
+							,title: "V1.1.0"
+							,closeBtn: false
+							,area: '600px;'
+							,shade: 0.8
+							,id: 'LAY_layuipro' // 设定一个id，防止重复弹出
+							,btn: ['Abort Telink','Cancel']
+							,btnAlign: 'c'
+							,moveType: 1 //拖拽模式，0或者1
+							,content: version
+							,success: function(layero){
+							  var btn = layero.find('.layui-layer-btn');
+							  btn.find('.layui-layer-btn0').attr({
+									href: 'https://www.telink-semi.com/'
+								,target: '_blank'
+							  });
+							}
+						});
+					}
+				});
+			});
+
+			layui.use('element',function() {
+				var element = layui.element;
+			});	
+
+			layui.use(['layer', 'form'], function() {
+				var layer = layui.layer,form = layui.form;		
+				form.on('switch(resetswitch)', function(data) {
+					if(true == this.checked) {
+						AutoResetFlag = 1;
+						layer.tips('Automatic reset after downloading', data.othis);
+					}
+					else {
+						AutoResetFlag = 0;
+						layer.tips('Manual reset after downloading', data.othis);
+					}
+				});
+
+				form.on('switch(showtimeswitch)', function(data) {
+					if(true == this.checked) {
+						ShowTimeFlag = 1;
+					}
+					else {
+						ShowTimeFlag = 0;
+					}
+				});
+
+				form.on('switch(singleswitch)', function(data) {
+					if(true == this.checked) {
+						SingleStepFlag = 0;
+					}
+					else {
+						SingleStepFlag = 1;
+					}
+				});
+
+				form.on('switch(SingleWrite)', function(data) {
+					if(true == this.checked) {
+						SingleWriteFlag = 1;
+						layer.tips("repeat writing byte: 0x" + usbRWData.value[0]+usbRWData.value[1] + "   0x"+usbRWLength.value + " times at start address:  " +  usbRWAddr.value, data.othis);	
+					}
+					else {
+						SingleWriteFlag = 0;
+						layer.tips('Write data:  0x'+usbRWData.value + '  at address: 0x'+ usbRWAddr.value, data.othis);
+					}
+				}); 
+				
+				form.on('switch(AnalysisObj)', function(data) {
+					if(true == this.checked) {
+						ShowVariableFlag = 0; // 0：解析反汇编文件中的函数
+					}
+					else {
+						ShowVariableFlag = 1; //1: 解析反汇编文件中的变量 
+					}
+				});
+				form.on('switch(SortMode)', function(data) {
+					if(true == this.checked) {
+						LstFileSortMode = 2;
+					}
+					else {
+						LstFileSortMode = 1;
+					}
+				});
+
+				form.on('radio(DownloadDst)', function(data) {
+					if(data.value == "Flash") {
+						LoadOBJChoose = 0x1;
+						layer.tips('Download into Flash', data.othis);
+					}
+					else if(data.value == "SRAM") {
+						LoadOBJChoose = 0x2;
+						layer.tips('Download into SRAM', data.othis);
+					}
+				});  
+			});
+
+			layui.use('dropdown', function() {
+			var dropdown = layui.dropdown
+			dropdown.render({
+				elem: '#Chip'
+				,data: [
+				{
+					title: '83xx'
+					,id: 8300
+					,child: [{
+						title: '8366'
+						,id: 8366
+					},{
+						title: '8368'
+						,id: 8368
+					},{
+						title: '8367_i'
+						,id: 83671
+					},{
+						title: '8367_e'
+						,id: 83672
+					},{
+						title: '8369_i'
+						,id: 83691
+					},{
+						title: '8369_e'
+						,id: 83692
+					}]
+				},
+				{
+					title: '82xx'
+					,id: 8200
+					,child: [{
+					title: '8232'
+					,id: 8232
+					},{
+						title: '8233'
+						,id: 8233
+					},{
+						title: '8266'
+						,id: 8266
+					},{
+						title: '8267'
+						,id: 8267
+					},{
+						title: '8269'
+						,id: 8269
+					},{
+						title: '8255'
+						,id: 8255
+					},{
+						title: '8258'
+						,id: 8258
+					},{
+						title: '8278'
+						,id: 8278
+					}]
+				},
+				{
+				title: 'B91'
+				,id: 91
+				},
+				{
+				title: 'Mars_B91'
+				,id: 9218
+				},]
+				,id: 'Chip'
+				//菜单被点击的事件
+				,click: function(obj) {
+					LogConsole(obj,"backstage");
+					switch(obj.id) { //	
+						case 8366:    
+							var htmlStr = '8366'; 
+							ChipSelect.innerHTML = htmlStr;  
+							ChipType = CHIP_8366;  
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_8366) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_8366[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_8366[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_8366[i+1].info[2]  + myObj.CHIP_8366[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_8366[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_8366[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_8366[i+1].info[0];
+								}
+							} 
+						break;
+						case 8368:
+							var htmlStr = '8368'; 
+							//htmlStr += '<i class = "layui-icon layui-icon-down layui-font-12"></i>'; 
+							ChipSelect = CHIP_8368;  	
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_8368) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_8368[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_8368[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_8368[i+1].info[2] +  myObj.CHIP_8368[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_8368[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_8368[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_8368[i+1].info[0];
+								}
+							} 
+						break;
+						case 83671:
+							var htmlStr = '8367_i'; 
+							ChipSelect.innerHTML = htmlStr;  
+							ChipType = CHIP_83671;   
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_83671) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_83671[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_83671[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_83671[i+1].info[2] +  myObj.CHIP_83671[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_83671[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_83671[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_83671[i+1].info[0];
+								}
+							} 
+						break;
+						case 83672: 	
+							var htmlStr = '8367_e'; 
+							ChipSelect.innerHTML = htmlStr; 
+							ChipType = CHIP_83672;  
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_83672) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_83672[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_83672[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_83672[i+1].info[2] + myObj.CHIP_83672[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_83672[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_83672[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_83672[i+1].info[0];
+								}
+							} 
+						break;
+						case 83691: 	
+							var htmlStr = '8369_i'; 
+							ChipSelect.innerHTML = htmlStr; 
+							ChipType = CHIP_83691;  
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_83691) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_83691[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_83691[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_83691[i+1].info[2] + myObj.CHIP_83691[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_83691[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_83691[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_83691[i+1].info[0];
+								}
+							} 
+						break;
+						case 83692:
+							var htmlStr = '8369_e'; 
+							ChipSelect.innerHTML = htmlStr;  
+							ChipType = CHIP_83692;  
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_83692) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_83692[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_83692[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_83692[i+1].info[2] + myObj.CHIP_83692[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_83692[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_83692[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_83692[i+1].info[0];
+								}
+							} 
+						break;
+						case 8232:  	
+							var htmlStr = '8232'; 
+							ChipSelect.innerHTML = htmlStr; 
+							ChipType = CHIP_8232; 	
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_8232) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_8232[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_8232[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_8232[i+1].info[2]  + myObj.CHIP_8232[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_8232[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_8232[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_8232[i+1].info[0];
+								}
+							} 
+						break;
+						case 8233: 	
+							var htmlStr = '8233'; 
+							ChipSelect.innerHTML = htmlStr; 
+							ChipType = CHIP_8233; 
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_8233) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_8233[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_8233[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_8233[i+1].info[2] + myObj.CHIP_8233[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_8233[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_8233[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_8233[i+1].info[0];
+								}
+							} 
+						break;
+						case 8266:    
+							var htmlStr = '8266'; 
+							ChipSelect.innerHTML = htmlStr;  
+							ChipType = CHIP_8266; 
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_8266) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_8266[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_8266[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_8266[i+1].info[2] + myObj.CHIP_8266[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_8266[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_8266[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_8266[i+1].info[0];
+								}
+							} 
+						break;
+						case 8267:
+							var htmlStr = '8267'; 
+							ChipSelect.innerHTML = htmlStr;  
+							ChipType = CHIP_8267; 
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_8267) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_8267[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_8267[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_8267[i+1].info[2] +  myObj.CHIP_8267[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_8267[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_8267[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_8267[i+1].info[0];
+								}
+							} 
+						break;
+						case 8269:
+							var htmlStr = '8269'; 
+							ChipSelect.innerHTML = htmlStr;  
+							ChipType = CHIP_8269; 
+							SramDownloadAddrInput.value = "8000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_8269) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_8269[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_8269[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_8269[i+1].info[2] +  myObj.CHIP_8269[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_8269[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_8269[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_8269[i+1].info[0];
+								}
+							} 
+						break;
+						case 8255:    
+							var htmlStr = '8255'; 
+							ChipSelect.innerHTML = htmlStr;  
+							ChipType = CHIP_8255; 
+							SramDownloadAddrInput.value = "40000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_8255) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_8255[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_8255[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_8255[i+1].info[2] +  myObj.CHIP_8255[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_8255[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_8255[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_8255[i+1].info[0];
+								}
+							} 
+						break;
+						case 8258:    
+							var htmlStr = '8258'; 
+							ChipSelect.innerHTML = htmlStr;
+							ChipType = CHIP_8258;
+							SramDownloadAddrInput.value = "40000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_8258) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_8258[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_8258[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_8258[i+1].info[2] + myObj.CHIP_8258[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_8258[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_8258[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_8258[i+1].info[0];
+								}
+							} 
+						break;
+						case 8278:  	
+							var htmlStr = '8278'; 
+							ChipSelect.innerHTML = htmlStr; 
+							ChipType = CHIP_8278; 
+							SramDownloadAddrInput.value = "40000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_8278) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_8278[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_8278[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_8278[i+1].info[2] + myObj.CHIP_8278[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_8278[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_8278[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_8278[i+1].info[0];
+								}
+							} 
+						break;
+						case 91:    
+							var htmlStr = 'B91'; 
+							ChipSelect.innerHTML = htmlStr;  
+							ChipType = CHIP_91; 	
+							SramDownloadAddrInput.value = "c0000000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.CHIP_91) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.CHIP_91[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.CHIP_91[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.CHIP_91[i+1].info[2]+ myObj.CHIP_91[i+1].name;
+									ServerFileAttribute[i] =  myObj.CHIP_91[i+1].info[3];
+									ServerFileLength[i]    =  myObj.CHIP_91[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.CHIP_91[i+1].info[0];
+								}
+							} 
+						break;
+						case 9218:
+							var htmlStr = 'Mars_B91'; 
+							ChipSelect.innerHTML = htmlStr;  
+							ChipType = Mars_B91; 	
+							SramDownloadAddrInput.value = "c0000000";
+							for(var n = 6; n < 6 + FileNumberLimit; n++) {
+								document.getElementById("MultiBinFileImport" + n).value = "Server File Import";
+							}
+							for(var i = 0; i < FileNumberLimit; i++) {
+								ServerFilePath[i] 	   =  "NULL";
+								ServerFileAttribute[i] =   "NULL";
+								ServerFileLength[i]    = 0;
+								ServerFileName[i] = "NULL";
+							}
+							if(undefined == myObj.Mars_B91) {
+								LogConsole("There is no file corresponding to this chip on the server");
+								break;
+							}
+							else {
+								num = myObj.Mars_B91[0].number;
+								if(num > FileNumberLimit) {
+									num = FileNumberLimit;
+								}
+								for(var i = 0; i < num; i++) {
+									var n = i + 6;
+									document.getElementById("MultiBinFileImport" + n).value = myObj.Mars_B91[i+1].info[0];
+									ServerFilePath[i] 	   =  myObj.Mars_B91[i+1].info[2]+ myObj.Mars_B91[i+1].name;
+									ServerFileAttribute[i] =  myObj.Mars_B91[i+1].info[3];
+									ServerFileLength[i]    =  myObj.Mars_B91[i+1].info[1];
+									ServerFileName[i] 	   =  myObj.Mars_B91[i+1].info[0];
+								}
+							} 
+						break;
+						default: 
+							LogConsole("Wrong chip model selection"); 
+						break;
+					}
+					layer.msg("The selected chip type is: " + ChipName[ChipType] ); 
+				}});
+				
+			});
+		</script> 	
+		<script src = "./usb.js" ></script>
+		<script src = "./click.js"></script>	
+		<script>
+			for(let i = 0; i < OffLineDownloadNumMax; i++) {
+				OffLineChipSelect[i] = CHIP_91;
+				OffLineFirmware_Type[i] = 3;
+				var Type = get_Offline_ChipType_Chip_RAM_Type(OffLineChipSelect[i]);
+				OffLineChipType[i] = Type[0]; 	 // 固件适配的目标芯片 1B
+				OffLineChip_RAM_Type[i] = Type[1]; // 工具固件适配的目标芯片 1B
+			}
+		</script>		
+		<script>
+			function getOsInfo() {
+				var userAgent = navigator.userAgent.toLowerCase();
+				var name = 'Unknown';
+				var version = 'Unknown';
+				if (userAgent.indexOf('win') > -1) {
+					name = 'Windows';
+					IsWindows = 1;
+					if (userAgent.indexOf('windows nt 5.0') > -1) {
+						version = 'Windows 2000';
+					} else if (userAgent.indexOf('windows nt 5.1') > -1 || userAgent.indexOf('windows nt 5.2') > -1) {
+						version = 'Windows XP';
+					} else if (userAgent.indexOf('windows nt 6.0') > -1) {
+						version = 'Windows Vista';
+					} else if (userAgent.indexOf('windows nt 6.1') > -1 || userAgent.indexOf('windows 7') > -1) {
+						version = 'Windows 7';
+					} else if (userAgent.indexOf('windows nt 6.2') > -1 || userAgent.indexOf('windows 8') > -1) {
+						version = 'Windows 8';
+					} else if (userAgent.indexOf('windows nt 6.3') > -1) {
+						version = 'Windows 8.1';
+					} else if (userAgent.indexOf('windows nt 6.2') > -1 || userAgent.indexOf('windows nt 10.0') > -1) {
+						version = 'Windows 10';
+					} else {
+						version = 'Unknown';
+					}
+				} else if (userAgent.indexOf('iphone') > -1) {
+					name = 'Iphone';
+				} else if (userAgent.indexOf('mac') > -1) {
+					name = 'Mac';
+				} else if (userAgent.indexOf('x11') > -1 || userAgent.indexOf('unix') > -1 || userAgent.indexOf('sunname') > -1 || userAgent.indexOf('bsd') > -1) {
+					name = 'Unix';
+				} else if (userAgent.indexOf('linux') > -1) {
+					if (userAgent.indexOf('android') > -1) {
+						name = 'Android';
+					} else {
+						name = 'Linux';
+					}
+				} else {
+					name = 'Unknown';
+				}
+				return { name, version };
+			}
+			console.log("OS:" + getOsInfo().name);
+			console.log("version:" + getOsInfo().version);
+			AutoZoom();
+			async function AutoZoom() {
+				console.log("AutoZoom:");
+				var winHeight = 0;
+				if (window.innerHeight)
+					winHeight = window.innerHeight;
+				else if((document.body) && (document.body.clientHeight))
+					winHeight = document.body.clientHeight;
+				if (document.documentElement && document.documentElement.clientHeight) {
+					winHeight = document.documentElement.clientHeight;
+					document.getElementById("Console1").style.height= winHeight-220 +"px";
+					document.getElementById("Console2").style.height= winHeight-220 +"px";
+					document.getElementById("Console3").style.height= winHeight-300 +"px";
+					document.getElementById("Console4").style.height= winHeight-410+"px";
+					document.getElementById("Console5").style.height= winHeight-450+"px";
+					document.getElementById("Console6").style.height= winHeight-270+"px";
+				}
+				if(1 == RefreshFlag) {
+					document.getElementById("TelinkDebug").getElementsByTagName("tbody")[0].style.height= winHeight-260 +"px"
+				}
+			}
+			window.onresize = AutoZoom;
+
+			var  install_dlg;
+			const butInstall = document.getElementById('btnInstall');
+			window.addEventListener('beforeinstallprompt', (e) => {
+				// Don't show the mini-info bar
+				e.preventDefault();
+				// Save the deferred prompt
+				install_dlg = e;
+				console.log('👀', 'install dialog saved!', '/');
+				butInstall.className = "layui-btn layui-btn-sm layui-btn-radius";
+			});
+
+			butInstall.addEventListener('click', () => {
+				butInstall.className ="layui-btn layui-btn-sm layui-btn-radius layui-btn-disabled";
+				install_dlg.prompt();
+			});
+
+	
+			// 确保每次加载到最新的 serviceWorker
+			window.addEventListener('load', async () => {
+				var script = document.createElement('script'); 
+				var firstScript = this.document.getElementsByTagName('script')[0];
+				script.type = 'text/javascript';
+				script.async = true;
+				script.src = './sw-register.js'//?v=' + Date.now()
+				firstScript.parentNode.insertBefore(script, firstScript)
+			})
+
+			if('serviceWorker' in navigator){
+				navigator.serviceWorker.oncontrollerchange = function(event) {
+					alert("页面已更新");
+					console.log("页面已更新");
+				}
+			}
+			
+			//	如果页面一进来，我们发现用户没有联网，给用户一个通知
+			
+			if(Notification.permission === 'default'){
+				Notification.requestPermission()
+			}
+			if(!navigator.onLine){
+				new Notification('提示',{body:'你当前没有网络，你访问的是缓存'})
+			}
+			window.addEventListener('online',() => {
+				new Notification('提示',{body:'你已经连上网络了，请刷新访问最新的数据'})
+			})
+			window.addEventListener('offline',() => {
+				new Notification('提示',{body:'你的网络断开了'})
+			})
+
+		</script>
+    </body>
+</html>

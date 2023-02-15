@@ -1,0 +1,33 @@
+{
+    "name":"Demo",
+    "kind":15,
+    "CHIP_91": [
+        { "number":7},
+        { "name":"GPIO_Demo.bin",  "info":[ "GPIO_Demo", "6470", "./bin/demo/B91/", "TargetBoardBin" ] },
+        { "name":"ADC_Demo.bin",   "info":[ "ADC_Demo", "6678", "./bin/demo/B91/", "TargetBoardBin"] },
+        { "name":"I2C_Demo.bin",   "info":[ "I2C_Demo", "6374", "./bin/demo/B91/", "TargetBoardBin"] },
+        { "name":"PM_Demo.bin",    "info":[ "PM_Demo", "6134", "./bin/demo/B91/", "TargetBoardBin"] },
+        { "name":"UART_Demo.bin",  "info":[ "UART_Demo", "7352", "./bin/demo/B91/", "TargetBoardBin" ] },
+        { "name":"TIMER_Demo.bin", "info":[ "TIMER_Demo", "6230", "./bin/demo/B91/", "TargetBoardBin" ] },
+        { "name":"PWM_Demo.bin",   "info":[ "PWM_Demo", "6332", "./bin/demo/B91/", "TargetBoardBin" ] }
+    ],
+    "Mars_B91": [
+        { "number":3},
+        { "name":"Mars_B91_BLE.bin",   "info":[ "ble_module", "56820", "./bin/demo/Mars_B91/", "TargetBoardBin" ] },
+        { "name":"Mars_B91_ZigBee_C.bin",    "info":[ "zigbee_coordinator", "122308", "./bin/demo/Mars_B91/", "TargetBoardBin"] },
+        { "name":"Mars_B91_ZigBee_R.bin", "info":[ "zigbee_router", "136564", "./bin/demo/Mars_B91/", "TargetBoardBin"] }
+    ],
+    "CHIP_8258": [
+        { "number":5},
+        { "name":"GPIO_Demo.bin",       "info":[ "GPIO_Demo", "5476", "./bin/demo/8258/", "TargetBoardBin"] },
+        { "name":"PM_Demo.bin",         "info":[ "PM_Demo", "6424", "./bin/demo/8258/", "TargetBoardBin" ] },
+        { "name":"SRAM_GPIO_Demo.bin",  "info":[ "SRAM_GPIO_Demo", "5220", "./bin/demo/8258/", "TargetBoardBin"] },
+        { "name":"SRAM_PM_Demo.bin",    "info":[ "SRAM_PM_Demo", "6424", "./bin/demo/8258/", "TargetBoardBin"] },
+        { "name":"USB_PRINT_LOG.bin",   "info":[ "USB_PRINT_LOG", "5380", "./bin/demo/8258/", "TargetBoardBin" ] }
+    ],
+    "CHIP_8232": [
+        { "number":2},
+        { "name":"8232_GPIO_Demo.bin",       "info":[ "8232_GPIO_Demo", "3092", "./bin/demo/8232/", "TargetBoardBin"] },
+        { "name":"8232_PM_Demo.bin",         "info":[ "8232_PM_Demo", "2288", "./bin/demo/8232/", "TargetBoardBin" ] }
+    ]
+}

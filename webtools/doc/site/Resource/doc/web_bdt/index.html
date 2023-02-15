@@ -1,0 +1,681 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.1">
+    
+    
+      
+        <title>WEB BDT V1.1.0 - Telink Web docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2e8b5541.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#web-bdt-v110" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Telink Web docs" class="md-header__button md-logo" aria-label="Telink Web docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Telink Web docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              WEB BDT V1.1.0
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Telink Web docs" class="md-nav__button md-logo" aria-label="Telink Web docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Telink Web docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Boards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Boards" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Boards
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../boards/Mars_B91/" class="md-nav__link">
+        Mars_B91
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../boards/Mini_Burning_EVK/" class="md-nav__link">
+        Mini_Buring_EVK
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Tools
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tools" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../webtools/web_bdt/" class="md-nav__link">
+        Web BDT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../webtools/web_uart/" class="md-nav__link">
+        Web UART
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../webtools/web_ble/" class="md-nav__link">
+        Web BLE
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="web-bdt-v110">WEB BDT V1.1.0<a class="headerlink" href="#web-bdt-v110" title="Permanent link">&para;</a></h1>
+<style>
+ .image{
+    display: block;
+    margin: 0 auto;
+}
+table {
+margin: auto;
+border: 1px solid red
+}
+</style>
+<p><a href="./README_en.html">English</a>&nbsp;&nbsp;&nbsp;
+<a href="tools/off-line.zip">off-line for Windows</a>&nbsp;&nbsp;&nbsp;
+<a href="http://wiki.telink-semi.cn/wiki/IDE-and-Tools/Burning-and-Debugging-Tools-for-all-Series/">BDT for Windows</a>&nbsp;&nbsp;&nbsp;
+<a href="https://zadig.akeo.ie/">driver for WEB BDT</a>&nbsp;&nbsp;&nbsp;
+<a href="tools/8266_tlink_20211118.bin">firmware for Burning EVK</a>&nbsp;&nbsp;&nbsp;
+<a href="README.pdf">PDF版下载</a>&nbsp;&nbsp;&nbsp;</p>
+<blockquote>
+<h1 id="_1">目录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h3 id="1"><a href="#1">1、简介</a><a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<h4 id="11"><a href="#1.1">1.1 功能概述</a><a class="headerlink" href="#11" title="Permanent link">&para;</a></h4>
+</blockquote>
+<h3 id="2"><a href="#2">2、操作指南</a><a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<blockquote>
+<h4 id="21"><a href="#2.1">2.1 准备工作</a><a class="headerlink" href="#21" title="Permanent link">&para;</a></h4>
+<blockquote>
+<h5 id="211-burning-evk-libusb"><a href="#2.1.1">2.1.1 Burning EVK libusb驱动安装</a><a class="headerlink" href="#211-burning-evk-libusb" title="Permanent link">&para;</a></h5>
+<h5 id="212"><a href="#2.1.2">2.1.2 设备连接</a><a class="headerlink" href="#212" title="Permanent link">&para;</a></h5>
+</blockquote>
+<h4 id="22"><a href="#2.2">2.2 固件下载</a><a class="headerlink" href="#22" title="Permanent link">&para;</a></h4>
+<blockquote>
+<h5 id="221-flash"><a href="#2.2.1">2.2.1 下载固件到FLASH中</a><a class="headerlink" href="#221-flash" title="Permanent link">&para;</a></h5>
+<h5 id="222-sram"><a href="#2.2.2">2.2.2 下载固件到SRAM中</a><a class="headerlink" href="#222-sram" title="Permanent link">&para;</a></h5>
+</blockquote>
+<h4 id="23-flash"><a href="#2.3">2.3 FLASH擦除</a><a class="headerlink" href="#23-flash" title="Permanent link">&para;</a></h4>
+<h4 id="24-activate-mcu"><a href="#2.4">2.4 Activate MCU</a><a class="headerlink" href="#24-activate-mcu" title="Permanent link">&para;</a></h4>
+<h4 id="25-debug"><a href="#2.5">2.5 Debug</a><a class="headerlink" href="#25-debug" title="Permanent link">&para;</a></h4>
+<blockquote>
+<h4 id="251"><a href="#2.5.1">2.5.1 数据的读写</a><a class="headerlink" href="#251" title="Permanent link">&para;</a></h4>
+<blockquote>
+<h5 id="2511"><a href="#2.5.1.1">2.5.1.1 数据的读</a><a class="headerlink" href="#2511" title="Permanent link">&para;</a></h5>
+<h5 id="2512"><a href="#2.5.1.2">2.5.1.2 数据的写</a><a class="headerlink" href="#2512" title="Permanent link">&para;</a></h5>
+</blockquote>
+<h4 id="252"><a href="#2.5.2">2.5.2 反汇编文件的解析</a><a class="headerlink" href="#252" title="Permanent link">&para;</a></h4>
+<h4 id="253-debug-mcu"><a href="#2.5.3">2.5.3 Debug MCU</a><a class="headerlink" href="#253-debug-mcu" title="Permanent link">&para;</a></h4>
+<blockquote>
+<h5 id="2531-run-mcu"><a href="#2.5.3.1">2.5.3.1 Run MCU</a><a class="headerlink" href="#2531-run-mcu" title="Permanent link">&para;</a></h5>
+<h5 id="2532-pause-mcu"><a href="#2.5.3.2">2.5.3.2 Pause MCU</a><a class="headerlink" href="#2532-pause-mcu" title="Permanent link">&para;</a></h5>
+<h5 id="2533-trace-pc"><a href="#2.5.3.3">2.5.3.3 Trace PC</a><a class="headerlink" href="#2533-trace-pc" title="Permanent link">&para;</a></h5>
+<h5 id="2534-step-mcu"><a href="#2.5.3.4">2.5.3.4 Step MCU</a><a class="headerlink" href="#2534-step-mcu" title="Permanent link">&para;</a></h5>
+<h5 id="2535-stall-mcu"><a href="#2.5.3.5">2.5.3.5 Stall MCU</a><a class="headerlink" href="#2535-stall-mcu" title="Permanent link">&para;</a></h5>
+<h5 id="2536-start-mcu"><a href="#2.5.3.6">2.5.3.6 Start MCU</a><a class="headerlink" href="#2536-start-mcu" title="Permanent link">&para;</a></h5>
+</blockquote>
+</blockquote>
+<h4 id="26-sws"><a href="#2.6">2.6 SWS</a><a class="headerlink" href="#26-sws" title="Permanent link">&para;</a></h4>
+<h4 id="27"><a href="#2.7">2.7 多地址下载</a><a class="headerlink" href="#27" title="Permanent link">&para;</a></h4>
+<h4 id="28"><a href="#2.8">2.8 固件升级</a><a class="headerlink" href="#28" title="Permanent link">&para;</a></h4>
+<h4 id="29"><a href="#2.9">2.9 文件上传</a><a class="headerlink" href="#29" title="Permanent link">&para;</a></h4>
+</blockquote>
+<h3 id="3web-bdt"><a href="#3">3、单机版WEB BDT</a><a class="headerlink" href="#3web-bdt" title="Permanent link">&para;</a></h3>
+<h3 id="4windows-for-bdt"><a href="#4">4、Windows for BDT</a><a class="headerlink" href="#4windows-for-bdt" title="Permanent link">&para;</a></h3>
+</blockquote>
+<hr />
+<blockquote>
+<h2 id="1_1"><span id="1">1、简介</span><a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;“WEB BDT(Telink Burning and Debugging Tool)”适用于泰凌芯片的下载和调试。本文档介绍了如何使用“WEB BDT”。
+</br>&nbsp;&nbsp;&nbsp;&nbsp;Telink原来的调试下载工具为<a href="http://wiki.telink-semi.cn/wiki/IDE-and-Tools/Burning-and-Debugging-Tools-for-all-Series/"  target="_blank"> BDT </a>，可在Windows平台下使用。为了工具能跨平台使用，同时用户可即开即用，而不必去下载和安装工具，Telink新推出了基于Web的下载调试工具<a href="https://debug.telink-semi.cn/web_bdt/" target="_blank"> Web BDT </a>(开源，可二次开发)。用户可以通过网页来进行程序的下载和调试，网页支持Windows，Linux，macOS，Android等平台，只需要一个兼容的网页浏览器即可，推荐使用较新版本的Chrome或者Edge。</p>
+<blockquote>
+<h3 id="11_1"><span id="1.1">1.1 功能概述</span><a class="headerlink" href="#11_1" title="Permanent link">&para;</a></h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; 在开发过程中，通过使用BDT可将固件下载到目标板中，其主要功能包括：FLASH的擦除、固件的下载、芯片的激活、读写全局变量、变量列表的展示、单步调试、读取PC值、暂停和启动芯片、在线或本地多固件多地址下载、在线或本地"Burning EVK"固件更新、上传文件到服务器等。
+<img src="./images/1.jpg" width="80%" class="image">
+&nbsp;&nbsp;&nbsp;&nbsp; 点击"install"可将网页以原生应用的方式安装在电脑/手机上，并自动添加桌面快捷方式，用户也可将应用固定任务栏处。同时采用离线存储和后台同步技术，网页可在没有网络的条件下使用(从服务器上下载程序功能除外)。
+<img src="./images/webbdt1.png" width="50%" class="image">
+&nbsp;&nbsp;&nbsp;&nbsp;"WEB BDT"支持Windows系统、macOS系统、Android系统、Linux系统，推荐使用较新版本的Edge/Chrome浏览器。浏览器支持情况如下图:
+<img src="./images/0.png" width="50%" class="image"></p>
+</blockquote>
+<h2 id="2_1"><span id="2">2、操作指南</span><a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<h3 id="21_1"><span id="2.1">2.1 准备工作</span><a class="headerlink" href="#21_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<h4 id="211-burning-evk-libusb_1"><span id="2.1.1">2.1.1 Burning EVK libusb驱动安装</span><a class="headerlink" href="#211-burning-evk-libusb_1" title="Permanent link">&para;</a></h4>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Web BDT通过Web USB控制Telink burning evk(一款下载调试器)，为了能使用Web BDT，需要给电脑安装libusb驱动。而传统BDT工具通过Windows自带的usb printer驱动去操控Telink burning evk。
+</br>&nbsp;&nbsp;&nbsp;&nbsp;为了避免Windows平台同时使用Web BDT和传统的BDT时需要频繁的切换驱动，需要更新Telink burning evk本身的固件程序。更新之后，通过Telink burning evk上的按键SW2来切换USB PID。
+1. 如果上电后Telink Burning EVK单个LED常亮，则不需要更新固件，否则就需要下载对应的 <a href="./tools/8266_tlink_20211118.bin" target="_blank">固件</a>  到模块板中，通过旧的BDT工具更新固件后重新上电。
+<img src="./images/update.gif" width="70%" class="image">
+2. BDT和Web BDT对应的LED状态如下图，传统BDT用绿灯指示，Web BDT用蓝灯指示，通过按键SW2可以切换USB PID并改变LED状态(切换状态后，需要重新上电)。
+<img src="./images/state_change.png" width="70%" class="image">
+3. 使用Web BDT前需要先安装一次libusb驱动，方法如下：下载<a href="https://zadig.akeo.ie/" target="_blank"> Zadig </a> Telink burning evk设置为蓝灯状态（若上电后改变了LED状态，需要重新上电后生效设置），通过USB连接PC，安装libusb驱动，过程见下图，驱动安装需要几十秒甚至更长时间，需要耐心等待。
+<img src="./images/zadig.gif" width="70%" class="image"></p>
+<h4 id="212_1"><span id="2.1.2">2.1.2 设备连接</span><a class="headerlink" href="#212_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>通过USB线缆连接Burning EVK和电脑，把Burning EVK的SWM，3V3，GND 分别开发板的 SWS，3V3，GND连接</li>
+<li>通过Burning EVK上的SW2切换为LED蓝灯状态并重新连接USB(如果上一次连接的时候已经切换为该状态则可跳过这一步)</li>
+<li>点击下拉菜单Device中的Connect，浏览器会跳出器件连接的选择，选择Telink Web Debugger设备并点击连接(若有多个"Burning EVK"连接，则弹出的列表中会有多个Telink Web Debugger设备，请选择自己想要连接的设备)。
+<img src="./images/webbdt3.jpg" class="image" style="width:40%"></li>
+</ol>
+</blockquote>
+<h3 id="22_1"><span id="2.2">2.2 固件下载</span><a class="headerlink" href="#22_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<h4 id="burning-evk"><table><tr><td bgcolor=yellow>在下载固件前，请先确保目标板和电脑已通过"Burning EVK"正确连接并且可以进行通信。 </td></tr></table><a class="headerlink" href="#burning-evk" title="Permanent link">&para;</a></h4>
+<h4 id="221-flash_1"><span id="2.2.1">2.2.1 下载固件到FLASH中</span><a class="headerlink" href="#221-flash_1" title="Permanent link">&para;</a></h4>
+<p>用户可以按照本节中的指南将固件下载到目标板中指定的FLASH地址空间中。
+1. 点击芯片选择下拉菜单并选择目标板的芯片型号，默认是B91。
+2. 在"Setting"选项卡中的Download Addr:0x输入框中输入FLASH下载的首地址（十六进制），例如0（默认首地址为0）或者20000（首地址为0x20000）。
+3. FLASH/SRAM选框中选择FLASH(默认)。
+<img src="./images/12.png" class="image" style="width:80%">
+4. 点击"File Import"按钮选择要下载到目标板中的固件文件。文件的名称和生成的时间会打印到下方日志窗口中，文件名会显示在"File Import"按钮上。
+5. 检查目标板与电脑的连接，如果还没连接或者连接断开，再次连接也是可行的。
+6. 点击下载按钮，就可以将所选固件下载到所设置的FLASH地址中去，日志窗口会显示相应的日志信息。
+7. 复位MCU，使新下载的程序运行而无需关闭MCU的电源。用户可以按照以下两种方法中的任意一种复位MCU。</p>
+<blockquote>
+<ul>
+<li>manual mode/auto mode选框中如果选择的是manual mode，下载后用户需要手动点击Reset按钮对芯片进行复位。</li>
+<li>manual mode/auto mode选框中如果选择的是auto mode，下载后设备会自动复位。
+<img src="./images/22.png" class="image" style="width:80%"></li>
+</ul>
+</blockquote>
+<h4 id="222-sram_1"><span id="2.2.2">2.2.2 下载固件到SRAM中</span><a class="headerlink" href="#222-sram_1" title="Permanent link">&para;</a></h4>
+<p>固件下载到SRAM中的操作流程跟下载到FLASH中类似，与下载到FLASH中不同的是，需要在FLASH/SRAM选框中选择SRAM(默认是FLASH)。并且需要在Sram Start Addr:0x输入框中输入SRAM下载的首地址（十六进制），例如c0000000（0xc0000000，B91的默认首地址）或者c0002000（首地址为0xc0002000）。将程序下载到B91芯片SRAM中并自动复位的演示如下图。
+<img src="./images/23.png"  class="image" style="width:80%"></p>
+</blockquote>
+<h3 id="23-flash_1"><span id="2.3">2.3 FLASH擦除</span><a class="headerlink" href="#23-flash_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>FLASH擦除功能用来擦除以4KB为单位的指定FLASH地址，用户可以按照以下步骤操作。
+1. 在Erase Flash Addr:0x输入框中设置要擦除的闪存空间的起始地址（十六进制），例如0（默认首地址为0）或者2000（首地址为0x2000）。
+2. 在Sector Erase Size(K)输入框中设置要擦除的闪存空间的大小（十进制），例如512（默认擦除大小为512KB）或者1024（擦除大小为1024KB）。
+3. 单击"Erase"按钮开始擦除目标板的指定闪存空间。擦除B91芯片中从0地址开始的512KB大小的FLASH演示如下图。
+<img src="./images/24.png" class="image" style="width:80%"> </p>
+</blockquote>
+<h3 id="24-activate-mcu_1"><span id="2.4">2.4 Activate MCU</span><a class="headerlink" href="#24-activate-mcu_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>当电脑与目标板通信失败时（例如芯片进入低功耗模式），可以通过按钮Activate去激活芯片。激活成功时，日志窗口会打印"Activate OK!"，失败会打印"Activate failed!"。
+<img src="./images/25.png"  class="image" style="width:80%"> </p>
+</blockquote>
+<h3 id="25-debug_1"><span id="2.5">2.5 Debug</span><a class="headerlink" href="#25-debug_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<h4 id="251_1"><span id="2.5.1">2.5.1 数据的读写</span><a class="headerlink" href="#251_1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<h4 id="2511_1"><span id="2.5.1.1">2.5.1.1 数据的读</span><a class="headerlink" href="#2511_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>选择对应的芯片型号。</li>
+<li>点击"Access Memory"选项卡。</li>
+<li>输入框"Address:0x"中输入地址（十六进制），例如80000（0x80000)。</li>
+<li>输入框"“Length:0x"中输入需要读取的字节数量（十六进制），例如10（0x10)。</li>
+<li>点击"usb read"按钮，可读取"Burning EVK"的数据（起始地址和大小由上面步骤设置）,点击"evk read"按钮，可读取目标板的数据（起始地址和大小由上面步骤设置）。</li>
+</ol>
+<h4 id="2512_1"><span id="2.5.1.2">2.5.1.2 数据的写</span><a class="headerlink" href="#2512_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>选择对应的芯片型号。</li>
+<li>点击"Access Memory"选项卡。</li>
+<li>输入框"Address:0x"中输入地址（十六进制），例如80000（0x80000)。</li>
+<li>输入框"Length:0x"中输入需要写入的字节数量（十六进制），例如10（0x10)。</li>
+<li>输入框"Data:0x"中输入需要写入的数据。</li>
+<li>normal/repeat选框可以选择写入数据的模式，normal模式：将Data输入框中的数据写入起始地址处；repeat模式：将Data输入框中第一个数据写入起始地址处，写入个数为输入框Length中的输入数。</li>
+<li>点击"usb write"按钮，可往"Burning EVK"写入数据（数据、起始地址和大小由上面步骤设置）,点击"evk write"按钮，可往目标板写入数据（数据、起始地址和大小由上面步骤设置）。  <br />
+数据的读写操作演示如下图
+<img src="./images/10.png" class="image"  style="width:80%">
+<img src="./images/11.png" class="image"  style="width:80%"></li>
+</ol>
+</blockquote>
+<h4 id="252_1"><span id="2.5.2">2.5.2 反汇编文件的解析</span><a class="headerlink" href="#252_1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<ol>
+<li>选择对应的芯片型号。</li>
+<li>打开"Tdebug"选项卡进入Tdebug页面，点击"File Import"按钮，选择反汇编文件（默认后缀为.lst或者.txt）。</li>
+<li>点击"refresh"按钮，网页会从反汇编文件中的符号表中找到全局变量端数据信息，并根据不同芯片解析出每条数据的变量名和地址以及长度。并且根据这些数据调用目标板数据读取功能，一一进行读取数据，并将数据显示在下方列表中（显示数据时，低字节在前，无论数据长度多长都打印在网页中显示）。点击"refresh"按钮，可以更新一次读取，数据更新完会在右侧的日志窗口中有提示。
+ variable/function选框可以选择显示的是变量列表还是函数列表，addr/name选框可以选择是按地址排序还是按名称排序，两个选项可以组合使用。
+下图演示了对反汇编文件的读取：
+<img src="./images/7.png" class="image" style="width:80%"> 
+<img src="./images/8.png" class="image" style="width:80%"> </li>
+</ol>
+</blockquote>
+<h4 id="253-debug-mcu_1"><span id="2.5.3">2.5.3 Debug MCU</span><a class="headerlink" href="#253-debug-mcu_1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>在使用"Stall"、"Start"、"Run"、"Pause"、"Step"、"PC"这些功能前，请确保所选MCU支持此功能，有关详细信息，请参阅下方功能支持列表。      <br />
+|      |8266|8368|8367_i|8367_e|8369_i|8369_e|8232|8233|8266|8267|8269|8255|8258|8278|B91|
+|   -  |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:| -:|
+| Stall| √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | × |
+| Start| √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | × |
+|  Run | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | × |
+| Pause| √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | × |
+| Step | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | × |
+|  PC  | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | √ | × |</p>
+<h4 id="2531-run-mcu_1"><span id="2.5.3.1">2.5.3.1 Run MCU</span><a class="headerlink" href="#2531-run-mcu_1" title="Permanent link">&para;</a></h4>
+<p>点击"Pause"或"Step"按钮后，用户可以单击"Run"按钮使MCU继续从停下的位置开始运行，可以通过点击"PC"按钮读取PC以确保程序再次运行。</p>
+<h4 id="2532-pause-mcu_1"><span id="2.5.3.2">2.5.3.2 Pause MCU</span><a class="headerlink" href="#2532-pause-mcu_1" title="Permanent link">&para;</a></h4>
+<p>要查看MCU状态的详细信息，用户可以单击"Pause"按钮暂停微控制器。点击"Run"按钮，MCU将从当前位置继续运行。</p>
+<h4 id="2533-trace-pc_1"><span id="2.5.3.3">2.5.3.3 Trace PC</span><a class="headerlink" href="#2533-trace-pc_1" title="Permanent link">&para;</a></h4>
+<p>如果与目标板的通信可用，用户可以单击"PC"按钮，查看指令的当前位置。通过选择Single step/continue选框来控制是单步模式还是追踪模式，如下所示。
+<img src="./images/26.png" class="image" style="width:80%"></p>
+<h4 id="2534-step-mcu_1"><span id="2.5.3.4">2.5.3.4 Step MCU</span><a class="headerlink" href="#2534-step-mcu_1" title="Permanent link">&para;</a></h4>
+<p>如果与目标板的通信可用，用户可以单击"Step"按钮，逐步查看指令的当前位置。通过选择Single step/continue选框来控制是单步模式还是追踪模式，如下所示。
+<img src="./images/27.png" class="image" style="width:80%"></p>
+<h4 id="2535-stall-mcu_1"><span id="2.5.3.5">2.5.3.5 Stall MCU</span><a class="headerlink" href="#2535-stall-mcu_1" title="Permanent link">&para;</a></h4>
+<p>当没有足够的时间查看MCU的状态时，用户可以单击"Stall"按钮以暂停MCU并查看MCU的状态或更改MCU的配置。</p>
+<h4 id="2536-start-mcu_1"><span id="2.5.3.6">2.5.3.6 Start MCU</span><a class="headerlink" href="#2536-start-mcu_1" title="Permanent link">&para;</a></h4>
+<p>暂停MCU后，点击"Start"按钮启动MCU，使MCU从SRAM起始处运行。
+<img src="./images/28.png" class="image" style="width:80%"></p>
+</blockquote>
+</blockquote>
+<h3 id="26-sws_1"><span id="2.6">2.6 SWS</span><a class="headerlink" href="#26-sws_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<blockquote>
+<p>在设置单线同步速度之前，请确保项目：</p>
+<blockquote>
+<ol>
+<li>电源正常；</li>
+<li>MCU未处于"低功耗"模式；</li>
+<li>具备单片机的单线功能；</li>
+<li>系统时钟正常。     </li>
+</ol>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;当"Burning EVK"和目标板之间无法建立连接时，用户可以尝试设置Swire的同步速度来建立连接。注：Swire寄存器地址可能因芯片类型而异。"SWS"按钮前的四个可编辑框可以更改"Burning EVK"和目标板的速度，单击"SWS"按钮以执行Swire同步。
+&nbsp;&nbsp;&nbsp;&nbsp;建议在将固件下载到目标板或调试MCU之前，执行一次Swire同步检查与目标板的通信是否正常。如果与目标板的通信状态错误，可以根据第2.6节开头提到的方法解决问题。下图为同步成功时的演示图。
+<img src="./images/29.png" class="image" style="width:80%"></p>
+</blockquote>
+</blockquote>
+<h3 id="27_1"><span id="2.7">2.7 多地址下载</span><a class="headerlink" href="#27_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>选择与目标板对应的芯片型号，打开"Multi Addr Download"选项卡，在输入框中输入下载的首地址，点击靠左边的一列的按钮可以选择本地文件，靠右侧的一列按钮上显示的文件名称根据所选芯片不同而不同，右侧文件存储在服务器端，本地文件和服务器端文件可混合多选，进而多地址下载。多地址下载功能的使用示意图如下：
+<img src="./images/30.png" class="image" style="width:80%"></p>
+</blockquote>
+<h3 id="28_1"><span id="2.8">2.8 固件升级</span><a class="headerlink" href="#28_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>固件升级分为两类，一类是选择本地固件进而对"Burning EVK"进行升级，另一类是从服务器端下载固件进行更新。点击"Online"选项卡下的Firmware下拉框选择本地或者服务器端对应的固件。固件更新功能演示示意图如下：
+<img src="./images/webbdt5.jpg" class="image" style="width:10%">
+<img src="./images/34.png" class="image" style="width:80%"></p>
+</blockquote>
+<h3 id="29_1"><span id="2.9">2.9 文件上传</span><a class="headerlink" href="#29_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>打开"Online"选项卡，在LinkCode输入框中填入正确的一次性连接码，点击"Upload File"按钮，选择要上传的本地文件，Directory输入框中输入的是保存在服务器中的相对目录名。文件上传功能演示示意图如下：
+<img src="./images/16.png" class="image" style="width:80%">
+<img src="./images/17.png" class="image" style="width:80%"></p>
+</blockquote>
+</blockquote>
+<h2 id="3web-bdt_1"><span id="3">3、单机版WEB BDT</span><a class="headerlink" href="#3web-bdt_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;下载&nbsp;&nbsp;&nbsp;<a href="tools/off-line.zip">off-line for Windows</a>&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;安装好USB驱动&nbsp;&nbsp;&nbsp;<a href="https://zadig.akeo.ie/">driver for WEB BDT</a>&nbsp;&nbsp;&nbsp;并且更新最新版的"Burning EVK"的固件&nbsp;&nbsp;&nbsp;<a href="tools/8266_tlink_20211118.bin">firmware for Burning EVK</a>&nbsp;&nbsp;&nbsp;
+点击"启动.vbs"和"关闭.vbs"用来打开和关闭程序。</p>
+</blockquote>
+<h2 id="4windows-for-bdt_1"><span id="4">4、Windows for BDT</span><a class="headerlink" href="#4windows-for-bdt_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;下载：<a href="http://wiki.telink-semi.cn/wiki/IDE-and-Tools/Burning-and-Debugging-Tools-for-all-Series/">Windows for BDT</a>&nbsp;&nbsp;&nbsp;使用说明在下载文件里有。</p>
+</blockquote>
+</blockquote>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      沪ICP备17008231号-1 | 泰凌微电子版权所有 © 。保留所有权利。 2022
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.expand", "navigation.indexes", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d691e9de.min.js"></script>
+      
+    
+  </body>
+</html>
