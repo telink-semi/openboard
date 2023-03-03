@@ -456,16 +456,24 @@
 <div class="admonition note">
 <p class="admonition-title">离线下载功能使用步骤</p>
 </div>
-<p>本文档主要介绍使用Web BDT和Mini_Burning_EVK实现离线下载功能，其他功能的使用说明可参考BDT文档和Web BDT文档。</p>
-<p>1、将<a href="../../Resource/bin/Mini_Burning_EVK/Mini_Burning_EVK.bin" target="_blank">固件</a>下载到Mini_Burning_EVK的FLASH 0地址处。更新固件的操作：Web BDT在Online选项卡处，BDT在Help-&gt;Upgrade处。正确更新后会有对应的提示，更新成功后需要插拔USB线重连设备。</p>
+<p>本文档介绍使用Web BDT和Mini_Burning_EVK实现离线下载功能，其他功能的使用说明可参考BDT文档和Web BDT文档。</p>
+<p>1、更新V3.7及更高版本的固件：Web BDT在Online选项卡处，BDT在Help-&gt;Upgrade处。正确更新后会有对应的提示，更新成功后需要插拔USB线重连设备。</p>
 <p><img src="../../Resource/images/web_bdt_online.jpg" class="image" style="width:80%"></p>
 <p><img src="../../Resource/images/bdt_upgrade.png" class="image" style="width:80%"></p>
 <p>2、参考<a href="../../webtools/web_bdt/" target="_blank">web_bdt文档</a>，准备好环境。</p>
-<p>3、打开Web BDT，点击connect成功连接上设备并打开offline选项卡，点击DownloadToolBin按钮，等待下载成功的提示。</p>
-<p>4、插拔USB线重连设备，点击Add按钮添加bin文件，可根据实际情况修改bin文件的目标芯片和固件类型以及固件名称(小于或等于十个字符)。</p>
-<p>5、点击Download可以将所选中的文件下载到Mini_Burning_EVK对应的FLASH处，等待下载成功的提示。</p>
-<p>6、给Mini_Burning_EVK重新上电，根据屏幕提示，结合按键使用即可进行离线下载等操作。</p>
-<p>注意：前三步如果先前做过，且固件不需要进行更新，则可直接从第四步执行。</p>
+<p>3、打开Web BDT，点击connect成功连接上设备并打开offline选项卡</p>
+<ul>
+<li>
+<p>点击Add按钮添加bin文件，可根据实际情况修改bin文件的目标芯片和固件类型以及固件名称(不超过十个字符)。</p>
+</li>
+<li>
+<p>点击Delete按钮可删除待下载列表中最后添加的bin文件。</p>
+</li>
+<li>
+<p>点击Download可以将所选中的文件下载到Mini_Burning_EVK对应的FLASH处，等待下载成功的提示。</p>
+</li>
+</ul>
+<p>4、给Mini_Burning_EVK重新上电，根据屏幕提示，结合按键使用即可进行离线下载等操作。</p>
 
 
 

@@ -1,1 +1,3130 @@
-var _0x50c1f3=_0xa8c3;(function(_0x1d8c21,_0x2f8071){var _0x4a7fbd=_0xa8c3,_0x405c0e=_0x1d8c21();while(!![]){try{var _0x441363=parseInt(_0x4a7fbd(0x10a))/0x1+parseInt(_0x4a7fbd(0xfe))/0x2+-parseInt(_0x4a7fbd(0x9f))/0x3+-parseInt(_0x4a7fbd(0x7a))/0x4+-parseInt(_0x4a7fbd(0x177))/0x5+-parseInt(_0x4a7fbd(0xe5))/0x6+parseInt(_0x4a7fbd(0x151))/0x7;if(_0x441363===_0x2f8071)break;else _0x405c0e['push'](_0x405c0e['shift']());}catch(_0x327875){_0x405c0e['push'](_0x405c0e['shift']());}}}(_0x27bf,0x35ecb));var CHIP_8366=0x1,CHIP_8368=0x2,CHIP_83671=0x3,CHIP_83672=0x4,CHIP_83691=0x5,CHIP_83692=0x6,CHIP_8232=0x7,CHIP_8233=0x8,CHIP_8266=0x9,CHIP_8267=0xa,CHIP_8269=0xb,CHIP_8255=0xc,CHIP_8258=0xd,CHIP_8278=0xe,CHIP_91=0xf,Mars_B91=0xf,ChipNumber=0x10,UCMD_CORE=0x100,UCMD_FRD=0x8000,UCMD_FSWIRE=0x4000,ChipName=new Array(ChipNumber),LoadBinary=new Array(ChipNumber);ChipName[CHIP_8366]='8366',ChipName[CHIP_8368]=_0x50c1f3(0x185),ChipName[CHIP_83671]=_0x50c1f3(0xee),ChipName[CHIP_83672]=_0x50c1f3(0x133),ChipName[CHIP_83691]=_0x50c1f3(0x104),ChipName[CHIP_83692]=_0x50c1f3(0x153),ChipName[CHIP_8232]=_0x50c1f3(0x94),ChipName[CHIP_8233]=_0x50c1f3(0x14b),ChipName[CHIP_8266]=_0x50c1f3(0x165),ChipName[CHIP_8267]=_0x50c1f3(0xb2),ChipName[CHIP_8269]='8269',ChipName[CHIP_8255]=_0x50c1f3(0x9d),ChipName[CHIP_8258]=_0x50c1f3(0x157),ChipName[CHIP_8278]=_0x50c1f3(0x13f),ChipName[CHIP_91]=_0x50c1f3(0x130),LoadBinary[CHIP_8366]=dut_8366_flash_v0244,LoadBinary[CHIP_8368]=dut_8368_flash_v0246,LoadBinary[CHIP_83671]=dut_8231_flash_i_v0002,LoadBinary[CHIP_83672]=dut_8231_flash_e_v0002,LoadBinary[CHIP_83691]=dut_8231_flash_i_v0002,LoadBinary[CHIP_83692]=dut_8231_flash_e_v0002,LoadBinary[CHIP_8232]=dut_8232_flash_v0002,LoadBinary[CHIP_8233]=dut_8233_flash_v0002,LoadBinary[CHIP_8266]=dut_8266_flash_v0245,LoadBinary[CHIP_8267]=dut_8267_flash_v0002,LoadBinary[CHIP_8269]=dut_8269_flash_v0002,LoadBinary[CHIP_8255]=dut_8255_flash_v0002,LoadBinary[CHIP_8258]=dut_8258_flash_v0005,LoadBinary[CHIP_8278]=dut_8278_flash_v0001,LoadBinary[CHIP_91]=dut_9518_flash_v0001;var lock_flash_buffer=new Uint8Array([0xe,0x80,0x1,0x0,0x0,0x0,0x0,0x0,0x4b,0x4e,0x4c,0x54,0x0,0x1,0x88,0x0,0x56,0x80,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x24,0x8,0x25,0x9,0x25,0xa,0x91,0x2,0x2,0xca,0x8,0x50,0x4,0xb1,0xfa,0x87,0x14,0x8,0xc0,0x6b,0x15,0x8,0x85,0x6,0x13,0x8,0xc0,0x6b,0x14,0x8,0x85,0x6,0x0,0xa0,0x14,0x9,0x14,0xa,0x91,0x2,0x2,0xca,0x8,0x50,0x4,0xb1,0xfa,0x87,0x13,0x9,0x14,0xa,0x91,0x2,0x2,0xca,0x8,0x50,0x4,0xb1,0xfa,0x87,0xf,0x9,0x3,0xa0,0x8,0x40,0x4,0xa0,0x48,0x40,0xf,0x9,0x10,0xa,0x10,0xb,0x9a,0x2,0x4,0xca,0x8,0x58,0x10,0x50,0x4,0xb1,0x4,0xb2,0xf8,0x87,0x0,0x90,0x5e,0x98,0xfe,0x87,0xc0,0x46,0x12,0x0,0x0,0x0,0x13,0x0,0x0,0x0,0x80,0x9f,0x80,0x0,0xc0,0x9f,0x80,0x0,0x0,0x8c,0x80,0x0,0x4,0x8c,0x80,0x0,0xc,0x6,0x80,0x0,0x0,0x83,0x80,0x0,0x0,0x84,0x80,0x0,0x84,0x1,0x0,0x0,0x0,0x8c,0x80,0x0,0x0,0x8c,0x80,0x0,0x0,0x0,0x0,0x0,0x0,0x8c,0x80,0x0,0x0,0xc0,0x80,0x0,0x0,0x65,0xff,0x64,0xd8,0x6b,0x41,0x6,0x4a,0x6,0x53,0x6,0x5c,0x6,0x65,0x6,0x3f,0x64,0x0,0x90,0x31,0x98,0x3f,0x6c,0x88,0x6,0x91,0x6,0x9a,0x6,0xa3,0x6,0xac,0x6,0xd0,0x6b,0xff,0x6c,0x0,0x69,0xc0,0x46,0xc0,0x46,0xc0,0x46,0xc0,0x46,0xf0,0x65,0x0,0xa9,0x1d,0xcd,0x3,0xec,0x80,0xa0,0x4,0xf4,0x0,0xa2,0x40,0xa6,0x3f,0xa7,0xa4,0x6,0x3,0x80,0x1,0xb2,0x4,0xb3,0x8a,0x2,0x11,0xc0,0x5d,0x48,0x1c,0x48,0x2d,0xf2,0x25,0x3,0xdc,0x48,0x98,0x48,0x26,0x2,0xf3,0xc0,0x3c,0x0,0x3,0xac,0xf0,0xc1,0x64,0x6,0x25,0x3,0x1,0xb2,0x28,0x40,0x4,0xb3,0x8a,0x2,0xed,0xc1,0x8,0xec,0xf0,0x6d,0xc0,0x46,0x70,0x7,0xc0,0x46,0x0,0x65,0x6,0xb,0x0,0xa2,0x1a,0x40,0x5,0x8,0x8,0xa1,0xff,0x97,0xd2,0x9f,0x4,0xb,0x1a,0x58,0x1,0xb2,0x1a,0x50,0xfb,0x87,0xc0,0x46,0x73,0x0,0x80,0x0,0x64,0x1,0x0,0x0,0x0,0x8c,0x80,0x0,0xd,0x0,0x1,0xc3,0xd,0x0,0x0,0xc3,0xc,0x0,0x6,0xc3,0xd,0x0,0x1,0xc3,0xd,0x0,0x0,0xc3,0xc,0x0,0x1,0xc3,0xc,0x0,0x7e,0xc3,0xd,0x0,0x1,0xc3]),unlock_flash_buffer=new Uint8Array([0xe,0x80,0x1,0x0,0x0,0x0,0x0,0x0,0x4b,0x4e,0x4c,0x54,0x0,0x1,0x88,0x0,0x56,0x80,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x24,0x8,0x25,0x9,0x25,0xa,0x91,0x2,0x2,0xca,0x8,0x50,0x4,0xb1,0xfa,0x87,0x14,0x8,0xc0,0x6b,0x15,0x8,0x85,0x6,0x13,0x8,0xc0,0x6b,0x14,0x8,0x85,0x6,0x0,0xa0,0x14,0x9,0x14,0xa,0x91,0x2,0x2,0xca,0x8,0x50,0x4,0xb1,0xfa,0x87,0x13,0x9,0x14,0xa,0x91,0x2,0x2,0xca,0x8,0x50,0x4,0xb1,0xfa,0x87,0xf,0x9,0x3,0xa0,0x8,0x40,0x4,0xa0,0x48,0x40,0xf,0x9,0x10,0xa,0x10,0xb,0x9a,0x2,0x4,0xca,0x8,0x58,0x10,0x50,0x4,0xb1,0x4,0xb2,0xf8,0x87,0x0,0x90,0x5e,0x98,0xfe,0x87,0xc0,0x46,0x12,0x0,0x0,0x0,0x13,0x0,0x0,0x0,0x80,0x9f,0x80,0x0,0xc0,0x9f,0x80,0x0,0x0,0x8c,0x80,0x0,0x4,0x8c,0x80,0x0,0xc,0x6,0x80,0x0,0x0,0x83,0x80,0x0,0x0,0x84,0x80,0x0,0x84,0x1,0x0,0x0,0x0,0x8c,0x80,0x0,0x0,0x8c,0x80,0x0,0x0,0x0,0x0,0x0,0x0,0x8c,0x80,0x0,0x0,0xc0,0x80,0x0,0x0,0x65,0xff,0x64,0xd8,0x6b,0x41,0x6,0x4a,0x6,0x53,0x6,0x5c,0x6,0x65,0x6,0x3f,0x64,0x0,0x90,0x31,0x98,0x3f,0x6c,0x88,0x6,0x91,0x6,0x9a,0x6,0xa3,0x6,0xac,0x6,0xd0,0x6b,0xff,0x6c,0x0,0x69,0xc0,0x46,0xc0,0x46,0xc0,0x46,0xc0,0x46,0xf0,0x65,0x0,0xa9,0x1d,0xcd,0x3,0xec,0x80,0xa0,0x4,0xf4,0x0,0xa2,0x40,0xa6,0x3f,0xa7,0xa4,0x6,0x3,0x80,0x1,0xb2,0x4,0xb3,0x8a,0x2,0x11,0xc0,0x5d,0x48,0x1c,0x48,0x2d,0xf2,0x25,0x3,0xdc,0x48,0x98,0x48,0x26,0x2,0xf3,0xc0,0x3c,0x0,0x3,0xac,0xf0,0xc1,0x64,0x6,0x25,0x3,0x1,0xb2,0x28,0x40,0x4,0xb3,0x8a,0x2,0xed,0xc1,0x8,0xec,0xf0,0x6d,0xc0,0x46,0x70,0x7,0xc0,0x46,0x0,0x65,0x6,0xb,0x0,0xa2,0x1a,0x40,0x5,0x8,0x8,0xa1,0xff,0x97,0xd2,0x9f,0x4,0xb,0x1a,0x58,0x1,0xb2,0x1a,0x50,0xfb,0x87,0xc0,0x46,0x73,0x0,0x80,0x0,0x64,0x1,0x0,0x0,0x0,0x8c,0x80,0x0,0xd,0x0,0x1,0xc3,0xd,0x0,0x0,0xc3,0xc,0x0,0x6,0xc3,0xd,0x0,0x1,0xc3,0xd,0x0,0x0,0xc3,0xc,0x0,0x1,0xc3,0xc,0x0,0x0,0xc3,0xd,0x0,0x1,0xc3]),TL_CMDTypdef={'DOWNLOAD':0x1,'ERASE':0x2,'ACTIVATE':0x3,'SETTING':0x4,'READ':0x5,'WRITE':0x6,'RESET':0x7,'START':0x8,'STALL':0x9,'RUN':0xa,'STOP':0xb,'STEP':0xc,'PC':0xd,'BKP':0xe,'SWS':0xf,'LOG':0x10,'HELP':0x11},TL_ObjTypdef={'FLASH':0x1,'CORE':0x2,'ANALOG':0x3,'OTP':0x4,'MCU':0x5,'INI_FILE':0x6},TL_ModeTypdef={'USB':0x1,'EVK':0x4},TL_Dut_Flash_cmdTypdef={'TL_DUTCMD_FLASH_ASK':0x40,'TL_DUTCMD_FLASH_WRITE':0x41,'TL_DUTCMD_FLASH_CHECK':0x42,'TL_DUTCMD_FLASH_WBYTE':0x43,'TL_DUTCMD_FLASH_BYTE_CHK':0x44,'TL_DUTCMD_FLASH_WID':0x45,'TL_DUTCMD_FLASH_ID_CHK':0x46,'TL_DUTCMD_FLASH_ZERO':0x47,'TL_DUTCMD_FLASH_CPID':0x48,'TL_DUTCMD_FLASH_FAST_WRITE':0x49,'TL_DUTCMD_FLASH_ERASE':0x4d,'TL_DUTCMD_FLASH_PROTECT':0x4e,'TL_DUTCMD_FLASH_READ':0x4f,'TL_DUTCMD_FLASH_CRC':0x50},ERROR_Typdef={'EPERM':-0x1,'ENOENT':-0x2,'EINTR':-0x3,'ENAMETOOLONG':-0x4,'ENOMEM':-0x5,'EAGAIN':-0x6,'EPIPE':-0x7,'EFBIG':-0x8,'EBUSY':-0x9,'ESPIPE':-0xa,'E2BIG':-0xb,'EOPDIS':-0xc,'ECRC':-0xd,'ERANGE':-0xe,'ETYPE':-0xf,'ESUPPORT':-0x10,'EEVKCMD':-0x11,'ESWIRE':-0x12,'ETIME':-0x13,'EACK':-0x14,'ERESET':-0x15,'EACTIVE':-0x16,'ELOCKFLASH':-0x17},PRINT_Typdef={'SYS_LOG_ERR':0x4,'SYS_LOG_DBG':0x3,'SYS_LOG_WRN':0x2,'SYS_LOG_INF':0x1,'SYS_LOG_OFF':0x0},AutoResetFlag=0x0,ChipType=CHIP_91,BinFileChanged=-0x1,USBConnectedFlag=-0x1,BinLoadAdr=0x0,PC=0x0,LoadOBJChoose=0x1,crc_ret=0x0,crc_check=0x0,USBEvkCmdFlag=0x0,SingleStepFlag=0x1,SingleWriteFlag=0x0,ShowVariableFlag=0x1,LstFileSortMode=0x1,LoadBootBinFlag=0x1,RefreshFlag=0x0,BurningEVKBusy=0x0,NetWorkBusy=0x0,LoopOnce=0x0,ShowTimeFlag=0x1,IsWindows=0x0,PrintLevel=PRINT_Typdef['SYS_LOG_DBG'],crc32_table=new Array(),crc_generate_one_flag=0x0,R_BUF_SIZE=0x400*0x400*0x4,R_buffer=new Uint8Array(0x400*0x400*0x4),device,g_rcv_len,g_rcv_data=new Uint8Array(0x1000*0x20),g_evk_rcv_data=new Uint8Array(0x1000*0x20),MultiBinFileLen1,MultiBinFileName1,MultiBinFileData1=new Uint8Array(0x400*0x400*0x4),MultiBinFileLen2,MultiBinFileName2,MultiBinFileData2=new Uint8Array(0x400*0x400*0x4),MultiBinFileLen3,MultiBinFileName3,MultiBinFileData3=new Uint8Array(0x400*0x400*0x4),MultiBinFileLen4,MultiBinFileName4,MultiBinFileData4=new Uint8Array(0x400*0x400*0x4),MultiBinFileLen5,MultiBinFileName5,MultiBinFileData5=new Uint8Array(0x400*0x400*0x4);function sleep(_0x11289e){return new Promise(_0x52527c=>setTimeout(_0x52527c,_0x11289e));}async function LogConsole(_0x43d3a0,_0x5ccb4d=_0x50c1f3(0x140),_0x51861e=PrintLevel){var _0x53ea2a=_0x50c1f3;if(_0x51861e>=PRINT_Typdef['SYS_LOG_DBG'])switch(_0x5ccb4d){case _0x53ea2a(0x140):LogPrint(_0x43d3a0,_0x53ea2a(0x182)),LogPrint(_0x43d3a0,'Console2'),LogPrint(_0x43d3a0,_0x53ea2a(0x7b)),LogPrint(_0x43d3a0,_0x53ea2a(0x97)),LogPrint(_0x43d3a0,_0x53ea2a(0x11e)),LogPrint(_0x43d3a0,_0x53ea2a(0x161));break;case _0x53ea2a(0x182):LogPrint(_0x43d3a0,_0x53ea2a(0x182));break;case _0x53ea2a(0x129):LogPrint(_0x43d3a0,_0x53ea2a(0x129));break;case _0x53ea2a(0x7b):LogPrint(_0x43d3a0,_0x53ea2a(0x7b));break;case'Console4':LogPrint(_0x43d3a0,_0x53ea2a(0x97));break;case _0x53ea2a(0x11e):LogPrint(_0x43d3a0,_0x53ea2a(0x11e));break;case _0x53ea2a(0x161):LogPrint(_0x43d3a0,_0x53ea2a(0x161));break;case'backstage':console['log'](_0x43d3a0);break;default:LogConsole('Print\x20parameter\x20error:'+_0x43d3a0,'ALL');break;}}async function LogPrint(_0xba25a0,_0x3b59e3=_0x50c1f3(0x182)){var _0x40d956=_0x50c1f3,_0x1c7a50=new Date(),_0x9b92a=_0x1c7a50['getHours'](),_0x2abe85=_0x1c7a50['getMinutes'](),_0x37335e=_0x1c7a50[_0x40d956(0x15d)](),_0x5fc588=_0x1c7a50['getMilliseconds']();if(_0x9b92a<0xa)_0x9b92a='0'+_0x9b92a;if(_0x2abe85<0xa)_0x2abe85='0'+_0x2abe85;if(_0x37335e<0xa)_0x37335e='0'+_0x37335e;if(_0x5fc588<0xa)_0x5fc588='00'+_0x5fc588;else{if(_0x5fc588<0x64)_0x5fc588='0'+_0x5fc588;}var _0x41bf51=_0x40d956(0xbe)+_0x9b92a+':'+_0x2abe85+':'+_0x37335e+'.'+_0x5fc588+'\x20\x20\x20\x20',_0x5570aa=document[_0x40d956(0xc3)](_0x3b59e3),_0x561c41=_0x5570aa[_0x40d956(0x9b)];_0x561c41=_0x561c41['replace'](/\r/gi,''),_0x561c41=_0x561c41[_0x40d956(0x17b)]('\x0a');var _0x904028=_0x561c41[_0x40d956(0x181)];0x1==ShowTimeFlag?_0x5570aa[_0x40d956(0x9b)]=_0x5570aa[_0x40d956(0x9b)]+_0x41bf51+_0xba25a0+'\x0d\x0a':_0x5570aa[_0x40d956(0x9b)]=_0x5570aa[_0x40d956(0x9b)]+_0xba25a0+'\x0d\x0a',_0x5570aa[_0x40d956(0xaf)]=_0x5570aa[_0x40d956(0x122)],_0x904028>0x1388&&(_0x5570aa[_0x40d956(0x9b)]='');}function usb_evk_rcv_buffer_print(_0x28fd5d,_0xad9ea3){var _0x225925=_0x50c1f3;for(var _0x1f375e=0x0;_0x1f375e<_0x28fd5d;_0x1f375e++){LogConsole(_0x225925(0x174)+(_0x1f375e+_0xad9ea3)[_0x225925(0xc1)](0x10)+_0x225925(0x15a)+g_evk_rcv_data[_0x1f375e][_0x225925(0xc1)](0x10),_0x225925(0xd3));}}function dec2hex(_0x4180d2,_0x2f6b3f){var _0x8e4185=_0x50c1f3,_0x332dee='';_0x4180d2=_0x4180d2+0x0;while(_0x4180d2){var _0x5e4c7d=_0x4180d2&0xf;_0x332dee=String['fromCharCode']((_0x5e4c7d>0x9?0x37:0x30)+_0x5e4c7d)+_0x332dee,_0x4180d2>>=0x4;}if(_0x2f6b3f){while(_0x332dee[_0x8e4185(0x181)]<_0x2f6b3f)_0x332dee='0'+_0x332dee;}return _0x332dee;}function dec2hex2(_0x321972){var _0x5d92ad=_0x50c1f3;return _0x321972[_0x5d92ad(0xc1)](0x10);}function hex2int(_0x60f72d){var _0x2dbfb8=_0x50c1f3,_0x5ef718=_0x60f72d['length'],_0xb426b3=new Array(_0x5ef718),_0x54147a;for(var _0x2b8715=0x0;_0x2b8715<_0x5ef718;_0x2b8715++){_0x54147a=_0x60f72d[_0x2dbfb8(0xa7)](_0x2b8715),0x30<=_0x54147a&&_0x54147a<0x3a?_0x54147a-=0x30:_0x54147a=(_0x54147a&0xdf)-0x41+0xa,_0xb426b3[_0x2b8715]=_0x54147a;}return _0xb426b3[_0x2dbfb8(0x16c)](function(_0x796ed9,_0xe1fa07){return _0x796ed9=0x10*_0x796ed9+_0xe1fa07,_0x796ed9;},0x0);}function exchange(_0x104921){var _0x16c6b8=_0x50c1f3,_0x153410=_0x104921[_0x16c6b8(0x17b)]('');for(var _0x56f8b8=0x0;_0x56f8b8<_0x153410[_0x16c6b8(0x181)];_0x56f8b8++){_0x153410[_0x56f8b8]==0x0?_0x153410[_0x56f8b8]=0x1:_0x153410[_0x56f8b8]=0x0;}return _0x104921=_0x153410[_0x16c6b8(0xfb)](''),_0x104921;}function Num2Binary(_0x5dd6a5){var _0x4847a8=_0x50c1f3;if(_0x5dd6a5<0x0){_0x5dd6a5=-_0x5dd6a5,_0x5dd6a5=_0x5dd6a5-0x1;var _0x5e378e=(Array(0x20)[_0x4847a8(0xfb)]('0')+_0x5dd6a5[_0x4847a8(0xc1)](0x2))[_0x4847a8(0xa8)](-0x20);_0x5e378e=exchange(_0x5e378e);}else var _0x5e378e=(Array(0x20)[_0x4847a8(0xfb)]('0')+_0x5dd6a5[_0x4847a8(0xc1)](0x2))[_0x4847a8(0xa8)](-0x20);return _0x5e378e;}function _0x27bf(){var _0x3d8b4d=['\x09\x09Page_num:','MultiBinFileImport3','>-0x','Function\x20list\x20refresh\x20complete','setRequestHeader','getSeconds','innerHTML','\x20\x20</thead>','\x20\x20\x20\x20<th>AnalyNameVar</th>\x0a','Console6','\x20crc_ret:\x20\x20','Load\x20success','end:','8266','Automatic\x20reset\x20after\x20download','FileUploadInput','responseText','\x20This\x20chip\x20done\x20not\x20support\x20the\x20function\x20','\x20stall\x20mcu\x20','00000000','reduce','BurningEVK\x20is\x20Busy','USB\x20device\x20not\x20connected!','Analog\x20write\x20done!','TC32\x20EVK\x20:\x20Swire\x20OK','Error\x20checking\x20boot\x20bin','toLocaleString','#UPFileImport','[usb_evk_rcv_buffer_print]:state<','File\x20Download\x20to\x20Flash\x20at\x20address\x200x','files','488090bNsVdt','POST','#MultiBinFileInput3','Content-Type','split','pause\x20mcu,\x20pc\x20:\x200x','\x20Write\x20size\x20','\x20\x20bytes','status','click','length','Console1','TelinkDebug','#MultiBinFileImport2','8368','download\x20error!','\x09:\x20\x20','\x20\x20done\x20not\x20support\x20the\x20function\x20','1192660zlxpPb','Console3','<thead>\x0a','response','\x20FlASH\x20Write\x20Failed!\x20TL_DUTCMD_FLASH_ASK\x20','GET','Null','#BinFileImport','EEVKCMD','\x20reset\x20mcu\x20','\x20lock\x20flash\x20succeed!\x20','end2:','MultiBinFileInput5','\x20crc\x20check\x20success!','\x20crc\x20check\x20err!\x20','usb','controlTransferOut','usb\x20connect\x20fail!','#MultiBinFileImport3','<table\x20border\x20=\x20\x221\x22>','TL_DUTCMD_FLASH_ASK','catch','The\x20selected\x20chip\x20type\x20is:\x20','USB','\x20[131]:\x20TC32\x20EVK:\x20Swire\x20err!','Path','8232','\x20[132]:\x20reset\x20mcu\x20err!\x20','\x20file\x20check\x20err!','Console4','vendor','ESWIRE','USB\x20mode\x20is\x20temporarily\x20not\x20supported','value','\x20TC32\x20EVK:\x20Swire\x20err!\x20','8255','readAsArrayBuffer','1111689rFVDVA','\x20crc\x20check\x20success!\x20','\x20ERROR\x20:\x20MultiBinFileRead\x20','arraybuffer','responseType','Wrong\x20file\x20type!','readyState','MultiBinFileImport5','charCodeAt','slice','Please\x20select\x20the\x20correct\x20chip\x20type!','\x20TC32\x20USB\x20:\x20USB\x20Err!\x20','Too\x20many\x20parameters\x20or\x20spaces','ECRC','indexOf','floor','scrollTop','\x20read\x20memory\x20size\x20exceed!\x20','file\x20read\x20test\x20begin...','8267','onreadystatechange','temp:\x20\x20','#FileUploadImport','#MultiBinFileImport4','This\x20chip\x20does\x20not\x20support\x20this\x20function','\x09\x09Sector_num:','Flash\x20write\x20done!','#FileUploadInput','Sram\x20Page\x20Program\x20at\x20address:\x200x',':\x20\x20','Get\x20success','time:','\x20sum_size:\x20','download\x20start!','toString','</td>\x0a','getElementById','string','\x20Activate\x20failed!\x20','crc_check:\x20\x20','len:','#MultiBinFileImport1','then','step\x20mcu,\x20pc\x20:\x200x','msge',':\x20\x20\x20','\x20program\x20run\x20','[usb_evk_cmd]:error!','MultiBinFileInput1','Network\x20error\x20:','Core\x20write\x20done!','\x20Write\x20\x20','backstage','XMLHttpRequest','#MultiBinFileImport5','g_file_length2:\x20','Too\x20many\x20spaces','EVK','Data\x20refreshing.\x20Please\x20wait','EBUSY','CORE','Boot\x20bin\x20loaded\x20correctly','usb\x20write\x20done!','./bin/upload_file.php','READ','start:','\x20mcu\x20run\x20','send','ERANGE','getUint8','1309092lgZgkT','LstFileInput','#LstFileInput','name','TL_DUTCMD_FLASH_CRC','plese\x20select\x20file\x20or\x20chip\x20type\x20correctly!','function','Link','does\x20not\x20support\x20this\x20function','8367_i','wait\x20for\x20ack\x20timeout:\x20\x20','Flash\x20Page\x20Program\x20at\x20address:\x200x','result','\x20\x20\x20\x20<th>AnalyLenVar</th>\x0a','match','Microsoft.XMLHTTP','claimInterface','\x20crc_ret:\x20','WRITE','\x20FlASH\x20Write\x20Failed!\x20TL_DUTCMD_FLASH_WRITE','interface','crc_ret:\x20\x20','join','error','\x20aign_256byte_num:\x20','206050GTzvuN','\x20TC32\x20EVK\x20:\x20Swire\x20OK\x20','Total\x20Time:\x20\x20','UPFileInput','C0200000','TL_DUTCMD_FLASH_WRITE','8369_i','temp:\x20','\x20wait\x20for\x20ack\x20err!\x20','substr','withCredentials','\x20Activate\x20OK!\x20','318864FiyuRE','Get\x20failed\x20\x20erro\x20code:','TL_DUTCMD_FLASH_ERASE','BinFileInput','MultiBinFileImport4','\x20FlASH\x20Read\x20Failed!\x20','\x20Update\x20FW\x20succeed!\x20','</table>','usb\x20connected!','\x20This\x20chip\x20does\x20not\x20support\x20this\x20function','open','ENOENT','bytes\x20at\x20address\x20','lastModified','EPERM','\x20\x20TC32\x20EVK:\x20Swire\x20err!\x20','11101101101110001000001100100000','MultiBinFileInput4','\x09\x09EraseSector_Num:\x20','File\x20length:\x20\x20','Console5','\x20crc_check:\x20','\x20\x20read\x20analog\x20register\x20timeout:\x20','#BinFileInput','scrollHeight','MultiBinFileImport1','UPBinLength:\x20','Error\x20loading\x20boot\x20bin','\x20sbyte_num:\x20','\x20\x20\x20\x20<th>Addr</th>\x0a','#UPFileInput','Console2','C0000000','BinFileImport','erase\x20flash\x20:\x20','trim','\x20\x20\x20\x20<td>','<i\x20class\x20=\x20\x22layui-icon\x20layui-icon-export\x22\x20></i>','B91','msg','\x20\x20write\x20analog\x20register\x20timeout:\x20','8367_e','size:\x20','addEventListener','file\x20read\x20end...','EACK','\x20\x20bytes\x20have\x20finished!','reset\x20mcu\x20err!\x20','MultiBinFileInput2','data','selectConfiguration','MultiBinFileInput3','ERESET','8278','ALL','FLASH','\x20\x20bytes\x20at\x20address\x20','<tr>\x0a','\x20---------------\x20upgrade\x20firmware\x20succeed,\x20please\x20power\x20on\x20again\x20------------------\x20\x09\x20','ESUPPORT','\x20TC32\x20EVK:\x20Swire\x20ok!\x20','EACTIVE','onload','\x20\x20ms','\x20\x20</tr>','8233','MultiBinFileImport2','File\x20Download\x20to\x20SRAM\x20at\x20address\x200x','E2BIG','ETIME','number','5484598NEuntK','\x20\x20BinLoadAdr:\x20\x20','8369_e','ChipType:\x20','\x20\x20\x20','FileUploadImport','8258'];_0x27bf=function(){return _0x3d8b4d;};return _0x27bf();}async function crc32_check_look_table(_0x2b02c1,_0x3a4634,_0x1a4538){var _0x141fb8=_0x50c1f3,_0x2148f4=0x0,_0x4fd237='',_0x5092d2=_0x141fb8(0x11a);if(_0x1a4538==0x0)return crc_ret=_0x2b02c1,ERROR_Typdef[_0x141fb8(0xe3)];if(!crc_generate_one_flag){for(var _0x3bfbc0=0x0;_0x3bfbc0<0x100;_0x3bfbc0++){_0x2148f4=_0x3bfbc0;for(var _0x470325=0x0;_0x470325<0x8;_0x470325++){if(typeof _0x2148f4==_0x141fb8(0x150))_0x2148f4=Num2Binary(_0x2148f4);else{if(typeof _0x2148f4==_0x141fb8(0xc4)){}}if(_0x2148f4[_0x141fb8(0xa8)](-0x1)=='1'){_0x2148f4='0'+_0x2148f4[_0x141fb8(0xa8)](0x0,0x1f);for(var _0x3ec635=0x0;_0x3ec635<0x20;_0x3ec635++){_0x2148f4[_0x3ec635]==_0x5092d2[_0x3ec635]?_0x4fd237+='0':_0x4fd237+='1';}_0x2148f4=_0x4fd237,_0x4fd237='';}else _0x2148f4='0'+_0x2148f4[_0x141fb8(0xa8)](0x0,0x1f);}crc32_table[_0x3bfbc0]=parseInt(_0x2148f4,0x2);}crc_generate_one_flag=0x1;}_0x4fd237='';var _0x2203d9,_0xfcfdaf,_0x58bd55,_0x45822c;for(var _0x13c526=0x0;_0x13c526<_0x1a4538;_0x13c526++){if(typeof _0x2b02c1==_0x141fb8(0x150))_0x2b02c1=Num2Binary(_0x2b02c1);else{if(typeof _0x2b02c1==_0x141fb8(0xc4)){}}_0x2203d9=Num2Binary(_0x3a4634[_0x13c526]);for(var _0x3ec635=0x0;_0x3ec635<0x20;_0x3ec635++){_0x2b02c1[_0x3ec635]==_0x2203d9[_0x3ec635]?_0x4fd237+='0':_0x4fd237+='1';}_0xfcfdaf=_0x4fd237[_0x141fb8(0xa8)](-0x8),_0x58bd55=crc32_table[parseInt(_0xfcfdaf,0x2)],_0x58bd55=Num2Binary(_0x58bd55),_0x45822c=_0x141fb8(0x16b)+_0x2b02c1[_0x141fb8(0xa8)](0x0,0x18),_0x4fd237='';for(var _0x221e47=0x0;_0x221e47<0x20;_0x221e47++){_0x58bd55[_0x221e47]==_0x45822c[_0x221e47]?_0x4fd237+='0':_0x4fd237+='1';}_0x2b02c1=_0x4fd237,_0x4fd237='';}_0x4fd237='',_0x2b02c1=Num2Binary(_0x2b02c1);for(var _0x4b7fcc=0x0;_0x4b7fcc<0x20;_0x4b7fcc++){_0x2b02c1[_0x4b7fcc]=='1'?_0x4fd237+='0':_0x4fd237+='1';}return _0x2b02c1=parseInt(_0x4fd237,0x2),crc_ret=_0x2b02c1,0x0;}async function usb_connect(){var _0x477dbb=_0x50c1f3;const _0x2eed8e=[{'vendorId':0x2341,'productId':0x8036},{'vendorId':0x248a,'productId':0x826a}];await navigator[_0x477dbb(0x89)]['requestDevice']({'filters':_0x2eed8e})[_0x477dbb(0xc9)](_0x29dceb=>{var _0x57f4d8=_0x477dbb;return device=_0x29dceb,device[_0x57f4d8(0x114)]();})[_0x477dbb(0xc9)](()=>{var _0x8e7f05=_0x477dbb;return USBConnectedFlag=0x1,layer[_0x8e7f05(0x131)]('usb\x20connected!'),LogConsole(_0x8e7f05(0x112)),LogConsole(device,_0x8e7f05(0xd3)),device[_0x8e7f05(0x13c)](0x1),device[_0x8e7f05(0xf5)](0x0);})[_0x477dbb(0x8f)](_0x272f91=>{var _0xd3c01d=_0x477dbb;console[_0xd3c01d(0xfc)](_0x272f91),USBConnectedFlag=-0x1,LogConsole(_0xd3c01d(0x8b)),layer[_0xd3c01d(0xcb)](_0xd3c01d(0x8b));});}async function usb_read(_0xb5de87,_0x43778f){var _0x463619=_0x50c1f3,_0x15c45f=_0xb5de87,_0x450327=new Uint8Array(_0x43778f);return _0x450327[0x0]=0x2,_0x450327[0x1]=0x3,_0x450327[0x2]=0x4,_0x450327[0x3]=0x5,await device['controlTransferIn']({'requestType':_0x463619(0x98),'recipient':_0x463619(0xf9),'request':0x2,'value':_0x15c45f,'index':0x0},0x6+0x4+_0x43778f)[_0x463619(0xc9)](_0x47e7d8=>{var _0x1651bf=_0x463619;for(var _0x351fc4=0x0;_0x351fc4<_0x43778f;_0x351fc4++){_0x450327[_0x351fc4]=_0x47e7d8[_0x1651bf(0x13b)][_0x1651bf(0xe4)](_0x351fc4),g_rcv_data[_0x351fc4]=_0x47e7d8[_0x1651bf(0x13b)][_0x1651bf(0xe4)](_0x351fc4);}g_rcv_len=_0x43778f;}),_0x450327;}async function usb_write(_0x293cf5,_0x16c61f,_0x2c972c){var _0x565dc1=_0x50c1f3,_0x30277a=_0x293cf5,_0x57788d=new Uint8Array(_0x2c972c+0x8);_0x57788d[0x0]=0x2,_0x57788d[0x1]=_0x30277a>>0x8&0xff,_0x57788d[0x2]=_0x30277a&0xff,_0x57788d[0x3]=_0x16c61f[0x0],_0x57788d[0x4]=_0x16c61f[0x0],_0x57788d[0x5]=_0x16c61f[0x0],_0x57788d[0x6]=_0x16c61f[0x0],_0x57788d[0x7]=_0x16c61f[0x0];for(var _0x3cf498=0x0;_0x3cf498<_0x2c972c;_0x3cf498++){_0x57788d[0x8+_0x3cf498]=_0x16c61f[_0x3cf498];}device['controlTransferOut']({'requestType':_0x565dc1(0x98),'recipient':_0x565dc1(0xf9),'request':0x2,'value':_0x30277a,'index':0x0},_0x57788d)[_0x565dc1(0xc9)](_0x4aac19=>{}),await sleep(0x2);}async function usb_write2(_0x3f7da9,_0x52e2f3,_0x342518){var _0x4a2de7=_0x50c1f3,_0x2561cd=_0x3f7da9,_0x54040d=new Uint8Array(_0x342518+0x8),_0x27d659=_0x2561cd>>0x10&0x3f;_0x54040d[0x0]=0x80|_0x27d659,_0x54040d[0x1]=_0x2561cd>>0x8&0xff,_0x54040d[0x2]=_0x2561cd&0xff,_0x54040d[0x3]=_0x52e2f3[0x0],_0x54040d[0x4]=_0x52e2f3[0x0],_0x54040d[0x5]=_0x52e2f3[0x0],_0x54040d[0x6]=_0x52e2f3[0x0],_0x54040d[0x7]=_0x52e2f3[0x0];for(var _0x5b363d=0x0;_0x5b363d<_0x342518;_0x5b363d++){_0x54040d[0x8+_0x5b363d]=_0x52e2f3[_0x5b363d];}device[_0x4a2de7(0x8a)]({'requestType':'vendor','recipient':_0x4a2de7(0xf9),'request':0x2,'value':_0x2561cd,'index':0x0},_0x54040d)[_0x4a2de7(0xc9)](_0x51f885=>{});}async function usb_write3(_0x56abc4,_0x48a2d6,_0xc40bda){var _0x3d2871=0x400,_0x53c345=new Uint8Array(0x400);for(var _0x3ccf1e=0x0;_0x3ccf1e<_0xc40bda;_0x3ccf1e=_0x3ccf1e+_0x3d2871){var _0x4a5b43=_0xc40bda-_0x3ccf1e>_0x3d2871?_0x3d2871:_0xc40bda-_0x3ccf1e,_0x1f6714=_0x56abc4+_0x3ccf1e;for(var _0x4f6b74=0x0;_0x4f6b74<_0x3d2871;_0x4f6b74++){_0x53c345[_0x4f6b74]=_0x48a2d6[_0x3ccf1e+_0x4f6b74];}await usb_write(_0x1f6714,_0x53c345,_0x4a5b43);}}async function usb_evk_cmd(_0x18ac28,_0x11cfea,_0x4d16bc){var _0x2757ac=_0x50c1f3,_0x32558f,_0x407648,_0x545817=-0x1,_0xa73035=new Uint8Array(0x8);_0xa73035[0x0]=_0x18ac28&0xff,_0xa73035[0x1]=_0x18ac28>>0x8&0xff,_0xa73035[0x2]=_0x18ac28>>0x10&0xff,_0xa73035[0x3]=_0x18ac28>>0x18&0xff,_0xa73035[0x4]=_0x11cfea&0xff,_0xa73035[0x5]=_0x11cfea>>0x8&0xff,_0xa73035[0x6]=_0x4d16bc&0xff,_0xa73035[0x7]=_0x4d16bc>>0x8&0xff,await usb_write(0x9ff8,_0xa73035,0x8),_0x32558f=new Date();while(_0x545817!=_0x11cfea){await usb_read(0x9ff0,0x10),_0x545817=g_rcv_data[0x1]*0x100+g_rcv_data[0x0];if((g_rcv_data[0x3]&0xf0)!=0x0)return await LogConsole(_0x2757ac(0xce)),USBEvkCmdFlag=-0x1,ERROR_Typdef[_0x2757ac(0x82)];else{if(_0x545817==_0x11cfea)return USBEvkCmdFlag=0x0,0x0;}await sleep(0x2),_0x407648=new Date();if(parseInt(_0x407648-_0x32558f)>0x7d0)return await LogConsole(_0x2757ac(0xef)+parseInt(_0x407648-_0x32558f)+_0x2757ac(0x149)),ERROR_Typdef[_0x2757ac(0x14f)];}return 0x0;}async function usb_evk_write(_0x5275c8,_0x12c113,_0x115271){var _0x2e1da9=0x400,_0x5a99e3=new Uint8Array(0x400);for(var _0x5155f5=0x0;_0x5155f5<_0x115271;_0x5155f5=_0x5155f5+_0x2e1da9){var _0x251731=_0x115271-_0x5155f5>_0x2e1da9?_0x2e1da9:_0x115271-_0x5155f5,_0x1565c9=_0x5275c8+_0x5155f5;for(var _0x2d7e1a=0x0;_0x2d7e1a<_0x2e1da9;_0x2d7e1a++){_0x5a99e3[_0x2d7e1a]=_0x12c113[_0x5155f5+_0x2d7e1a];}await usb_write(0xa000,_0x5a99e3,_0x251731),await usb_evk_cmd(_0x1565c9,_0x251731,UCMD_CORE|UCMD_FSWIRE);}}async function usb_evk_read(_0xa0441f,_0x29af59){var _0x118464=0x400,_0x2c1b4f=new Uint8Array(_0x29af59);for(var _0x534ab2=0x0;_0x534ab2<_0x29af59;_0x534ab2=_0x534ab2+_0x118464){var _0x1f0971=_0x29af59-_0x534ab2>_0x118464?_0x118464:_0x29af59-_0x534ab2,_0x4f8214=_0xa0441f+_0x534ab2;await usb_evk_cmd(_0x4f8214,_0x1f0971,UCMD_CORE|UCMD_FSWIRE|UCMD_FRD),await usb_read(0xa000,_0x1f0971);for(var _0x2c3c27=0x0;_0x2c3c27<_0x118464;_0x2c3c27++){g_evk_rcv_data[_0x534ab2+_0x2c3c27]=g_rcv_data[_0x2c3c27],_0x2c1b4f[_0x534ab2+_0x2c3c27]=g_rcv_data[_0x2c3c27];}}return _0x2c1b4f;}async function usb_evk_set_chip(_0x88c501){var _0x2fc47a=new Uint8Array(0x2);if(CHIP_91==_0x88c501)_0x2fc47a[0x0]=0xd0,await usb_write(0x9fff,_0x2fc47a,0x1);else CHIP_8255==_0x88c501||CHIP_8258==_0x88c501||CHIP_8278==_0x88c501?(_0x2fc47a[0x0]=0x50,await usb_write(0x9fff,_0x2fc47a,0x1)):(_0x2fc47a[0x0]=0x10,await usb_write(0x9fff,_0x2fc47a,0x1));return await sleep(0xa),0x0;}async function usb_evk_dut_cmd(_0x50a328,_0x56e9e6,_0x15279d,_0x45ff33,_0x262151=TL_ModeTypdef['EVK']){var _0x46a997=_0x50c1f3,_0x2a8b61=0x0,_0x320547,_0x119e0c,_0x126ce7=new Uint8Array(0x10);_0x126ce7[0x0]=_0x56e9e6,_0x126ce7[0x1]=_0x15279d&0xff,_0x126ce7[0x2]=_0x15279d>>0x8&0xff,_0x126ce7[0x3]=_0x15279d>>0x10&0xff,_0x126ce7[0x4]=_0x15279d>>0x18&0xff,_0x126ce7[0x5]=_0x45ff33&0xff,_0x126ce7[0x6]=_0x45ff33>>0x8&0xff,_0x126ce7[0x7]=_0x45ff33>>0x10&0xff,_0x126ce7[0x8]=_0x45ff33>>0x18&0xff;var _0x14d709=0x1f40;TL_Dut_Flash_cmdTypdef[_0x46a997(0xe9)]==_0x56e9e6&&(_0x45ff33>0x400*0x200&&(_0x45ff33%0x80000==0x0?_0x2a8b61=_0x45ff33/0x80000:_0x2a8b61=_0x45ff33/0x80000+0x1,_0x14d709=0x1f40*_0x2a8b61));if(TL_ModeTypdef[_0x46a997(0xd8)]==_0x262151){if(CHIP_91==_0x50a328){await usb_evk_write(0xc0000007,_0x126ce7,0x9),_0x126ce7[0x0]=_0x56e9e6|0x80,await usb_evk_write(0xc0000007,_0x126ce7,0x1),_0x320547=new Date(),await usb_evk_read(0xc0000007,0x1);while(g_evk_rcv_data[0x0]&0x80){await usb_evk_read(0xc0000007,0x1),_0x119e0c=new Date();if(parseInt(_0x119e0c-_0x320547)>_0x14d709)return LogConsole(_0x46a997(0xef)+parseInt(_0x119e0c-_0x320547)+_0x46a997(0x149)),ERROR_Typdef[_0x46a997(0x14f)];}await usb_evk_read(0xc0000004,0xc);if((g_evk_rcv_data[0x2]&0xff)!=_0x56e9e6)return LogConsole(_0x46a997(0x106)),ERROR_Typdef[_0x46a997(0x137)];}else{if(CHIP_8255==_0x50a328||CHIP_8258==_0x50a328||CHIP_8278==_0x50a328){await usb_evk_write(0x40007,_0x126ce7,0x9),_0x126ce7[0x0]=_0x56e9e6|0x80,await usb_evk_write(0x40007,_0x126ce7,0x1),_0x320547=new Date(),await usb_evk_read(0x40007,0x1);while(g_evk_rcv_data[0x0]&0x80){await usb_evk_read(0x40007,0x1),_0x119e0c=new Date();if(parseInt(_0x119e0c-_0x320547)>_0x14d709)return LogConsole('wait\x20for\x20ack\x20timeout:\x20\x20'+parseInt(_0x119e0c-_0x320547)+_0x46a997(0x149)),ERROR_Typdef[_0x46a997(0x14f)];}await usb_evk_read(0x40004,0xc);if((g_evk_rcv_data[0x2]&0xff)!=_0x56e9e6)return LogConsole(_0x46a997(0x106)),ERROR_Typdef[_0x46a997(0x137)];}else{await usb_evk_write(0x8007,_0x126ce7,0x9),_0x126ce7[0x0]=_0x56e9e6|0x80,await usb_evk_write(0x8007,_0x126ce7,0x1),_0x320547=new Date(),g_evk_rcv_data[0x0]=0x80;while(g_evk_rcv_data[0x0]&0x80){await usb_evk_read(0x8007,0x1),_0x119e0c=new Date();if(_0x119e0c-_0x320547>_0x14d709)return LogConsole(_0x46a997(0xef)+parseInt(_0x119e0c-_0x320547)+_0x46a997(0x149)),ERROR_Typdef[_0x46a997(0x14f)];}await usb_evk_read(0x8004,0xc);if((g_evk_rcv_data[0x2]&0xff)!=_0x56e9e6)return LogConsole(_0x46a997(0x106)),ERROR_Typdef[_0x46a997(0x137)];}}}else{if(TL_ModeTypdef['USB']==_0x262151){if(CHIP_8255==_0x50a328||CHIP_8258==_0x50a328||CHIP_8278==_0x50a328){await usb_write2(0x40007,_0x126ce7,0x9),_0x126ce7[0x0]=_0x56e9e6|0x80,await usb_write2(0x40007,_0x126ce7,0x1),_0x320547=new Date(),await usb_read(0x40007,0x1);while(g_rcv_data[0x0]&0x80){await usb_read(0x40007,0x1),_0x119e0c=new Date();if(parseInt(_0x119e0c-_0x320547)>_0x14d709)return LogConsole(_0x46a997(0xef)+parseInt(_0x119e0c-_0x320547)+_0x46a997(0x149)),ERROR_Typdef[_0x46a997(0x14f)];}await usb_read(0x40004,0xc);if((g_rcv_data[0x2]&0xff)!=_0x56e9e6)return LogConsole(_0x46a997(0x106)),ERROR_Typdef['EACK'];}else{await usb_write3(0x8007,_0x126ce7,0x9),await sleep(0xa),_0x126ce7[0x0]=_0x56e9e6|0x80,await usb_write3(0x8007,_0x126ce7,0x1),_0x320547=new Date(),g_rcv_data[0x0]=0x80;while(g_rcv_data[0x0]&0x80){await usb_read(0x8007,0x1),_0x119e0c=new Date();if(_0x119e0c-_0x320547>_0x14d709)return await LogConsole(_0x46a997(0xef)+parseInt(_0x119e0c-_0x320547)+_0x46a997(0x149)),ERROR_Typdef[_0x46a997(0x14f)];}await usb_read(0x8004,0xc);if((g_rcv_data[0x2]&0xff)!=_0x56e9e6)return await LogConsole('\x20wait\x20for\x20ack\x20err!\x20'),ERROR_Typdef['EACK'];}}}if(TL_Dut_Flash_cmdTypdef[_0x46a997(0x8e)]==_0x56e9e6){BinLoadAdr=g_rcv_data[0x0]+g_rcv_data[0x1]*0x100;if(CHIP_8255==_0x50a328||CHIP_8258==_0x50a328||CHIP_8278==_0x50a328)BinLoadAdr=BinLoadAdr+0x40000-0x8000;else CHIP_91==_0x50a328?BinLoadAdr=BinLoadAdr+0xc0000000:BinLoadAdr=BinLoadAdr;}if(TL_Dut_Flash_cmdTypdef[_0x46a997(0xe9)]==_0x56e9e6){var _0x492e2c=g_rcv_data[0x4]+g_rcv_data[0x5]*0x100+g_rcv_data[0x6]*0x100*0x100+g_rcv_data[0x7]*0x100*0x100*0x100;crc_check=g_rcv_data[0x8]+g_rcv_data[0x9]*0x100+g_rcv_data[0xa]*0x100*0x100+g_rcv_data[0xb]*0x100*0x100*0x100,crc_check=crc_check>>>0x0;if(_0x492e2c!=_0x45ff33)return LogConsole(_0x46a997(0x88)),LogConsole(_0x46a997(0x11f)+crc_check),LogConsole(_0x46a997(0xbf)+_0x492e2c),ERROR_Typdef[_0x46a997(0xac)];}return 0x0;}async function ANALOG_RW_Func(_0x3103c1,_0x4a17ed,_0x5f1ec3,_0x70ecdb,_0x2490de,_0xc71d86){var _0x380c1a=_0x50c1f3,_0x9735e0,_0xdbb2ee,_0x979691=0x0,_0x5b0a6c=new Uint8Array(0x2),_0x501233=new Uint8Array(0x2),_0x340c3c=new Uint8Array(0x2);if(TL_ModeTypdef[_0x380c1a(0x91)]==_0x3103c1)return LogConsole(_0x380c1a(0x188)),ERROR_Typdef[_0x380c1a(0x145)];if(TL_ModeTypdef['EVK']==_0x3103c1){await usb_evk_set_chip(_0x4a17ed);if(TL_CMDTypdef[_0x380c1a(0xdf)]==_0xc71d86){_0x70ecdb>R_BUF_SIZE&&LogConsole('\x20read\x20memory\x20size\x20exceed!\x20');for(var _0x16e9d9=0x0;_0x16e9d9<R_BUF_SIZE;_0x16e9d9++){R_buffer[_0x16e9d9]=0x0;}for(var _0x5b2305=0x0;_0x5b2305<_0x70ecdb;_0x5b2305++){_0x5b0a6c[0x0]=_0x5f1ec3+_0x5b2305,_0x501233[0x0]=0x40;CHIP_91==_0x4a17ed?(await usb_evk_write(0x140180,_0x5b0a6c,0x1),await usb_evk_write(0x140182,_0x501233,0x1)):(await usb_evk_write(0xb8,_0x5b0a6c,0x1),await usb_evk_write(0xba,_0x501233,0x1));_0x9735e0=new Date();while((_0x501233[0x0]&0x1)!=0x0){CHIP_91==_0x4a17ed?(await usb_evk_read(0x140182,0x1),_0x501233[0x0]=g_evk_rcv_data[0x0]):(await usb_evk_read(0xba,0x1),_0x501233[0x0]=g_evk_rcv_data[0x0]);_0xdbb2ee=new Date();if(parseInt(_0xdbb2ee-_0x9735e0)>0x64){_0x979691=0x1,LogConsole(_0x380c1a(0x120)+0x64+'\x20ms');break;}}if(_0x979691==0x1)return ERROR_Typdef['ETIME'];CHIP_91==_0x4a17ed?(await usb_evk_read(0x140184,0x1),_0x5b0a6c[0x0]=g_evk_rcv_data[0x0]):(await usb_evk_read(0xb9,0x1),_0x5b0a6c[0x0]=g_evk_rcv_data[0x0]);R_buffer[_0x5b2305]=_0x5b0a6c[0x0];if(0x0==(_0x5b2305+0x1)%0x40)LogConsole(_0x5b2305+0x1+_0x380c1a(0x138));}}else{if(TL_CMDTypdef['WRITE']==_0xc71d86){_0x979691=0x0;for(var _0x55ee82=0x0;_0x55ee82<_0x70ecdb;_0x55ee82++){_0x5b0a6c[0x0]=_0x5f1ec3+_0x55ee82,_0x501233[0x0]=_0x2490de[_0x55ee82],_0x340c3c[0x0]=0x60;CHIP_91==_0x4a17ed?(await usb_evk_write(0x140180,_0x5b0a6c,0x1),await usb_evk_write(0x140184,_0x501233,0x1),await usb_evk_write(0x140182,_0x340c3c,0x1)):(await usb_evk_write(0xb8,_0x5b0a6c,0x1),await usb_evk_write(0xb9,_0x501233,0x1),await usb_evk_write(0xba,_0x340c3c,0x1));_0x340c3c[0x0]=0x1,_0x9735e0=new Date();while((_0x340c3c[0x0]&0x1)!=0x0){CHIP_91==_0x4a17ed?(await usb_evk_read(0x140182,0x1),_0x340c3c[0x0]=g_evk_rcv_data[0x0]):(await usb_evk_read(0xba,0x1),_0x340c3c[0x0]=g_evk_rcv_data[0x0]);_0xdbb2ee=new Date();if(parseInt(_0xdbb2ee-_0x9735e0)>0x64){_0x979691=0x1,LogConsole(_0x380c1a(0x132)+0x64+'\x20ms');break;}}if(0x1==_0x979691)return ERROR_Typdef['ETIME'];_0x5b0a6c[0x0]=0x0,CHIP_91==_0x4a17ed?await usb_evk_write(0x140182,_0x5b0a6c,0x1):await usb_evk_write(0xba,_0x5b0a6c,0x1);}}}LogConsole(_0x380c1a(0x17d)+_0x70ecdb+_0x380c1a(0x116)+_0x5f1ec3,_0x380c1a(0xd3));}return 0x0;}async function FlASH_RW_Func(_0x3c81ba,_0x46bd61,_0x32905c,_0x1a7f70,_0x33b2b2,_0x313ac0){var _0x54807f=_0x50c1f3,_0xb442d7=0x8,_0x3069c9=Math['floor'](_0x1a7f70/_0xb442d7),_0x492470=_0x1a7f70-_0x3069c9*_0xb442d7;if(TL_ModeTypdef[_0x54807f(0x91)]==_0x3c81ba)return LogConsole(_0x54807f(0x188)),ERROR_Typdef[_0x54807f(0x145)];if(TL_ModeTypdef['EVK']==_0x3c81ba){await usb_evk_mcu_load_ram_bin(TL_ModeTypdef[_0x54807f(0xd8)],_0x46bd61,LoadBinary[_0x46bd61],LoadBinary[_0x46bd61][_0x54807f(0x181)]);if(TL_CMDTypdef[_0x54807f(0xdf)]==_0x313ac0){_0x1a7f70>R_BUF_SIZE&&LogConsole(_0x54807f(0xb0));for(var _0x5d8def=0x0;_0x5d8def<R_BUF_SIZE;_0x5d8def++){R_buffer[_0x5d8def]=0x0;}for(var _0x13ec27=0x0;_0x13ec27<_0x3069c9;_0x13ec27++){var _0x210e95=await usb_evk_dut_cmd(_0x46bd61,TL_Dut_Flash_cmdTypdef['TL_DUTCMD_FLASH_READ'],_0x32905c+_0xb442d7*_0x13ec27,_0xb442d7);if(_0x210e95!=0x0)return LogConsole('\x20FlASH\x20Read\x20Failed!\x20'),ERROR_Typdef[_0x54807f(0xac)];var _0x236818=0x8004;if(CHIP_8255==_0x46bd61||CHIP_8258==_0x46bd61||CHIP_8278==_0x46bd61)_0x236818=0x40004;else CHIP_91==_0x46bd61?_0x236818=0xc0000004:_0x236818=0x8004;if(_0xb442d7>0x2){if(CHIP_8255==_0x46bd61||CHIP_8258==_0x46bd61||CHIP_8278==_0x46bd61)_0x236818=0x40008;else CHIP_91==_0x46bd61?_0x236818=0xc0000008:_0x236818=0x8008;}await usb_evk_set_chip(_0x46bd61),await usb_evk_read(_0x236818,_0xb442d7);for(var _0x5d8def=0x0;_0x5d8def<_0xb442d7;_0x5d8def++){R_buffer[_0xb442d7*_0x13ec27+_0x5d8def]=g_evk_rcv_data[_0x5d8def];}if(0x0==(_0x13ec27+0x1)*_0xb442d7%0x400)LogPrint((_0x13ec27+0x1)*_0xb442d7+_0x54807f(0x138));}if(_0x492470!=0x0){var _0x210e95=await usb_evk_dut_cmd(_0x46bd61,TL_Dut_Flash_cmdTypdef['TL_DUTCMD_FLASH_READ'],_0x32905c+_0xb442d7*_0x3069c9,_0x492470);if(_0x210e95!=0x0)return LogConsole(_0x54807f(0x10f)),-0x1;var _0x236818=0x8004;if(CHIP_8255==_0x46bd61||CHIP_8258==_0x46bd61||CHIP_8278==_0x46bd61)_0x236818=0x40004;else CHIP_91==_0x46bd61?_0x236818=0xc0000004:_0x236818=0x8004;if(_0x492470>0x2){if(CHIP_8255==_0x46bd61||CHIP_8258==_0x46bd61||CHIP_8278==_0x46bd61)_0x236818=0x40008;else CHIP_91==_0x46bd61?_0x236818=0xc0000008:_0x236818=0x8008;}await usb_evk_set_chip(_0x46bd61),await usb_evk_read(_0x236818,_0x492470);for(var _0x5d8def=0x0;_0x5d8def<_0x492470;_0x5d8def++){R_buffer[_0xb442d7*_0x3069c9+_0x5d8def]=g_evk_rcv_data[_0x5d8def];}}LogConsole(_0x3069c9*_0xb442d7+_0x492470+_0x54807f(0x138));}else{if(TL_CMDTypdef['WRITE']==_0x313ac0){var _0x210e95=await usb_evk_dut_cmd(_0x46bd61,TL_Dut_Flash_cmdTypdef[_0x54807f(0x8e)],0x0,0x0);if(_0x210e95!=0x0)return LogConsole(_0x54807f(0x7e)),ERROR_Typdef[_0x54807f(0xac)];await usb_evk_write(BinLoadAdr,_0x33b2b2,_0x1a7f70);var _0x210e95=await usb_evk_dut_cmd(_0x46bd61,TL_Dut_Flash_cmdTypdef[_0x54807f(0x103)],_0x32905c,_0x1a7f70);if(_0x210e95!=0x0)return LogConsole(_0x54807f(0xf8)),ERROR_Typdef[_0x54807f(0xac)];LogConsole(_0x54807f(0xd2)+_0x1a7f70+_0x54807f(0x142)+dec2hex2(_0x32905c));}}}return 0x0;}async function usb_evk_sws_mcu(_0xec61cb,_0xeb585b){var _0xd3f82b=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0xd3f82b(0x16e)),ERROR_Typdef[_0xd3f82b(0x118)];var _0x463fc0=new Uint8Array(0x2);_0x463fc0[0x0]=_0xeb585b[0x1],await usb_write(_0xeb585b[0x0]+0x2,_0x463fc0,0x1),await usb_evk_set_chip(_0xec61cb);CHIP_91==_0xec61cb?(_0x463fc0[0x0]=_0xeb585b[0x3],await usb_evk_cmd(0x100c00+0x3,0x1,0xf00),await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_write(0x100c00+0x2,_0x463fc0,0x1),await usb_evk_read(0x100c00+0x2,0x1),_0x463fc0[0x1]=g_evk_rcv_data[0x0]):(_0x463fc0[0x0]=_0xeb585b[0x3],await usb_evk_cmd(_0xeb585b[0x2]+0x3,0x1,0xf00),await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_write(_0xeb585b[0x2]+0x2,_0x463fc0,0x1),await usb_evk_read(_0xeb585b[0x2]+0x2,0x1));if(g_evk_rcv_data[0x0]==_0xeb585b[0x3]&&0x0==USBEvkCmdFlag)LogConsole(_0xd3f82b(0x146));else return USBEvkCmdFlag=-0x1,LogConsole(_0xd3f82b(0x9c)),ERROR_Typdef[_0xd3f82b(0x99)];return 0x0;}async function usb_evk_stall_mcu(_0x683557,_0x4b4b49,_0x53f40c,_0x4a3259){var _0x1c1f33=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0x1c1f33(0x16e)),ERROR_Typdef[_0x1c1f33(0x118)];var _0x4cd997=new Array();if(TL_ModeTypdef['EVK']==_0x683557){if(CHIP_91==_0x4b4b49)return LogConsole(_0x1c1f33(0x169)),ERROR_Typdef['ESUPPORT'];await usb_evk_set_chip(_0x4b4b49),_0x4cd997[0x0]=_0x4a3259,await usb_write(0xa000,_0x4cd997,0x1),await usb_evk_cmd(_0x53f40c,0x1,0x900);}else{if(TL_ModeTypdef[_0x1c1f33(0x91)]==_0x683557)return LogConsole('\x20\x20done\x20not\x20support\x20the\x20function\x20'),ERROR_Typdef[_0x1c1f33(0x145)];}return LogConsole(_0x1c1f33(0x16a)),0x0;}async function usb_evk_start_mcu(_0x46be45,_0x2a4420,_0x39246d,_0x249cd4){var _0x5112ca=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0x5112ca(0x16e)),ERROR_Typdef['EPERM'];var _0x50eb39=new Array();if(TL_ModeTypdef['EVK']==_0x46be45){if(CHIP_91==_0x2a4420)return LogConsole(_0x5112ca(0xb7)),ERROR_Typdef['ESUPPORT'];await usb_evk_set_chip(_0x2a4420),_0x50eb39[0x0]=_0x249cd4,await usb_evk_write(_0x39246d,_0x50eb39,0x1);}else{if(TL_ModeTypdef[_0x5112ca(0x91)]==_0x46be45)return LogConsole(_0x5112ca(0xed)),ERROR_Typdef[_0x5112ca(0x145)];}return await LogConsole('\x20start\x20mcu\x20'),0x0;}async function usb_evk_activate_mcu(_0x339e52){var _0x552006=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0x552006(0x16e)),ERROR_Typdef[_0x552006(0x118)];var _0x4e2c61=new Uint8Array(0x2),_0x220c08,_0xc6022a,_0x220976,_0x318948;_0x4e2c61[0x0]=0x0;for(var _0x550934=0x0;_0x550934<0x2;_0x550934++){await usb_evk_set_chip(_0x339e52),await usb_read(0x9ff4,0x4),_0x220c08=g_rcv_data[0x3]*0x100*0x100*0x100+g_rcv_data[0x2]*0x100*0x100+g_rcv_data[0x1]*0x100+g_rcv_data[0x0],_0x4e2c61[0x0]=0x4d,await usb_write(0x9fff,_0x4e2c61,0x1),await usb_read(0x9ff4,0x4),_0xc6022a=g_rcv_data[0x3]*0x100*0x100*0x100+g_rcv_data[0x2]*0x100*0x100+g_rcv_data[0x1]*0x100+g_rcv_data[0x0],_0x220976=new Date();while(_0x220c08==_0xc6022a){await usb_read(0x9ff4,0x4),_0xc6022a=g_rcv_data[0x3]*0x100*0x100*0x100+g_rcv_data[0x2]*0x100*0x100+g_rcv_data[0x1]*0x100+g_rcv_data[0x0],sleep(0x64),_0x318948=new Date();if(parseInt(_0x318948-_0x220976)>0x1388)return LogConsole('\x20activate\x20timeout!\x20\x20\x20'+parseInt(_0x318948-_0x220976)+_0x552006(0x149)),ERROR_Typdef[_0x552006(0x14f)];}}return _0x4e2c61[0x0]=0x0,g_evk_rcv_data[0x0]=0x0,CHIP_91==_0x339e52?(await usb_evk_read(0x1401c0+0x3f,0x1),_0x4e2c61[0x0]=g_evk_rcv_data[0x0]):(await usb_evk_read(0x7f,0x1),_0x4e2c61[0x0]=g_evk_rcv_data[0x0]),(_0x4e2c61[0x0]==0x53||_0x4e2c61[0x0]==0x55)&&0x0==USBEvkCmdFlag?(LogConsole(_0x552006(0x109)),0x0):(LogConsole(_0x552006(0xc5)),ERROR_Typdef[_0x552006(0x147)]);}async function usb_evk_run_mcu(_0x2ba88f,_0x2fa9f8){var _0x3fc865=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0x3fc865(0x16e)),ERROR_Typdef[_0x3fc865(0x118)];var _0x333897=new Uint8Array(0x2);if(TL_ModeTypdef[_0x3fc865(0xd8)]==_0x2ba88f){if(CHIP_91==_0x2fa9f8)return LogConsole(_0x3fc865(0x113)),ERROR_Typdef[_0x3fc865(0x145)];await usb_evk_set_chip(_0x2fa9f8),await usb_evk_read(0x613,0x1),_0x333897[0x0]=g_evk_rcv_data[0x0]|0x80,await usb_evk_write(0x613,_0x333897,0x1),await usb_evk_read(0x602,0x1),_0x333897[0x0]=g_evk_rcv_data[0x0]&0xfd,await usb_evk_write(0x602,_0x333897,0x1);}else{if(TL_ModeTypdef[_0x3fc865(0x91)]==_0x2ba88f)return LogConsole(_0x3fc865(0xed)),ERROR_Typdef['ESUPPORT'];}return LogConsole(_0x3fc865(0xe1)),0x0;}async function usb_evk_pause_mcu(_0x5ac41e,_0xebda55){var _0x3094c2=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0x3094c2(0x16e)),ERROR_Typdef['EPERM'];var _0x213e0c=new Uint8Array(0x2);if(TL_ModeTypdef['EVK']==_0x5ac41e){if(CHIP_91==_0xebda55)return LogConsole(_0x3094c2(0x113)),ERROR_Typdef[_0x3094c2(0x145)];await usb_evk_set_chip(_0xebda55),await usb_evk_read(0x602,0x1),_0x213e0c[0x0]=g_evk_rcv_data[0x0]|0x2,await usb_evk_write(0x602,_0x213e0c,0x1),await usb_evk_read(0x6bc,0x4);}else{if(TL_ModeTypdef[_0x3094c2(0x91)]==_0x5ac41e)return LogConsole(_0x3094c2(0xed)),ERROR_Typdef[_0x3094c2(0x145)];}return PC=g_evk_rcv_data[0x0]+g_evk_rcv_data[0x1]*0x100+g_evk_rcv_data[0x2]*0x100*0x100+g_evk_rcv_data[0x3]*0x100*0x100*0x100,LogConsole(_0x3094c2(0x17c)+dec2hex(PC,0x6)),0x0;}async function usb_evk_step_mcu(_0x48a209,_0xc4f8e5){var _0xf07da4=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole('USB\x20device\x20not\x20connected!',_0xf07da4(0x129)),ERROR_Typdef[_0xf07da4(0x118)];var _0x468b41=new Uint8Array(0x2);if(TL_ModeTypdef['EVK']==_0x48a209){if(CHIP_91==_0xc4f8e5)return LogConsole(_0xf07da4(0x169),'Console2'),ERROR_Typdef[_0xf07da4(0x145)];await usb_evk_set_chip(_0xc4f8e5),await usb_evk_read(0x602,0x1),_0x468b41[0x0]=g_evk_rcv_data[0x0],_0x468b41[0x0]=_0x468b41[0x0]|0x2,await usb_evk_write(0x602,_0x468b41,0x1),await usb_evk_read(0x613,0x1),_0x468b41[0x0]=g_evk_rcv_data[0x0],_0x468b41[0x0]=_0x468b41[0x0]|0x80,await usb_evk_write(0x613,_0x468b41,0x1),await usb_evk_read(0x6bc,0x4);}else{if(TL_ModeTypdef[_0xf07da4(0x91)]==_0x48a209)return LogConsole(_0xf07da4(0xed)),ERROR_Typdef['ESUPPORT'];}return PC=g_evk_rcv_data[0x0]+g_evk_rcv_data[0x1]*0x100+g_evk_rcv_data[0x2]*0x100*0x100+g_evk_rcv_data[0x3]*0x100*0x100*0x100,LogConsole(_0xf07da4(0xca)+dec2hex(PC,0x6),_0xf07da4(0x129)),0x0;}async function usb_evk_reset_mcu(_0x2b739a,_0x4deb8e,_0x428ea1){var _0xaf0f4d=_0x50c1f3,_0x398d77=new Uint8Array(0x1),_0x1504ca=new Uint8Array(0x2);_0x1504ca[0x0]=0x20;if(USBConnectedFlag!=0x1)return LogConsole(_0xaf0f4d(0x16e)),ERROR_Typdef[_0xaf0f4d(0x118)];if(TL_ModeTypdef[_0xaf0f4d(0x91)]==_0x2b739a)return LogConsole(_0xaf0f4d(0xed)),ERROR_Typdef[_0xaf0f4d(0x145)];else TL_ModeTypdef[_0xaf0f4d(0xd8)]==_0x2b739a&&(await usb_evk_set_chip(_0x4deb8e),TL_ObjTypdef[_0xaf0f4d(0xdb)]==_0x428ea1?CHIP_91==_0x4deb8e?(_0x1504ca[0x0]=0xff,await usb_evk_write(0x1401e2,_0x1504ca,0x1)):(_0x1504ca[0x0]=0x88,await usb_evk_write(0x602,_0x1504ca,0x1)):CHIP_91==_0x4deb8e?(_0x398d77[0x0]=0x1,await ANALOG_RW_Func(TL_ModeTypdef[_0xaf0f4d(0xd8)],CHIP_91,0x7f,0x1,_0x398d77,TL_CMDTypdef[_0xaf0f4d(0xf7)]),await usb_evk_write(0x1401ef,_0x1504ca,0x1)):await usb_evk_write(0x6f,_0x1504ca,0x1));return TL_ObjTypdef[_0xaf0f4d(0xdb)]==_0x428ea1?LogConsole(_0xaf0f4d(0xcd)):LogConsole(_0xaf0f4d(0x83)),0x0;}async function usbReadtButtonFun(){var _0x311402=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0x311402(0x16e),'Console3'),ERROR_Typdef[_0x311402(0x118)];if(0x0==BurningEVKBusy){BurningEVKBusy=0x1;var _0x4c4cce=hex2int(usbRWAddr[_0x311402(0x9b)]),_0x131cd7=hex2int(usbRWLength[_0x311402(0x9b)]);await usb_read(_0x4c4cce,_0x131cd7);var _0x4f3527='';for(var _0x1b9064=0x0;_0x1b9064<_0x131cd7;_0x1b9064++){_0x4f3527+=dec2hex(g_rcv_data[_0x1b9064],0x2)+'\x20';}LogConsole(_0x4f3527,'Console3'),BurningEVKBusy=0x0;}else return LogConsole(_0x311402(0x16d)),ERROR_Typdef[_0x311402(0xda)];return 0x0;}function _0xa8c3(_0x890f40,_0x29b397){var _0x27bf76=_0x27bf();return _0xa8c3=function(_0xa8c316,_0x5b23a0){_0xa8c316=_0xa8c316-0x7a;var _0x48bc2f=_0x27bf76[_0xa8c316];return _0x48bc2f;},_0xa8c3(_0x890f40,_0x29b397);}async function usbWirtetButtonFun(){var _0x329ad2=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole('USB\x20device\x20not\x20connected!',_0x329ad2(0x7b)),ERROR_Typdef['EPERM'];if(0x0==BurningEVKBusy){BurningEVKBusy=0x1;if(0x1==SingleWriteFlag){var _0x5e6a49=usbRWData[_0x329ad2(0x9b)][0x0]+usbRWData['value'][0x1],_0x19e6bd=RegExp('\x20');if(_0x5e6a49['match'](_0x19e6bd))return LogConsole(_0x329ad2(0xab),'Console3'),ERROR_Typdef['E2BIG'];var _0x160092=hex2int(_0x5e6a49),_0x596520=hex2int(usbRWLength[_0x329ad2(0x9b)]),_0x3c138d=hex2int(usbRWAddr[_0x329ad2(0x9b)]),_0x2efa42=new Uint8Array(_0x596520);for(var _0x549c4c=0x0;_0x549c4c<_0x596520;_0x549c4c++){_0x2efa42[_0x549c4c]=_0x160092&0xff;}await usb_write(_0x3c138d,_0x2efa42,_0x596520),LogConsole(_0x329ad2(0xdd),_0x329ad2(0x7b));}else{var _0x1e950e=RegExp('\x20\x20');if(usbRWData['value'][_0x329ad2(0xf3)](_0x1e950e))return LogConsole(_0x329ad2(0xd7),_0x329ad2(0x7b)),ERROR_Typdef[_0x329ad2(0x14e)];var _0x160092=usbRWData[_0x329ad2(0x9b)][_0x329ad2(0x12d)]()['split']('\x20'),_0x596520=_0x160092['length'],_0x3c138d=hex2int(usbRWAddr[_0x329ad2(0x9b)]),_0x2efa42=new Uint8Array(_0x596520);for(var _0x549c4c=0x0;_0x549c4c<_0x596520;_0x549c4c++){_0x2efa42[_0x549c4c]=hex2int(_0x160092[_0x549c4c])&0xff;}await usb_write(_0x3c138d,_0x2efa42,_0x596520),LogConsole(_0x329ad2(0xdd),_0x329ad2(0x7b));}BurningEVKBusy=0x0;}else return LogConsole('BurningEVK\x20is\x20Busy'),ERROR_Typdef[_0x329ad2(0xda)];return 0x0;}async function CoreReadtButtonFun(){var _0x3f48cd=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0x3f48cd(0x16e),_0x3f48cd(0x7b)),ERROR_Typdef['EPERM'];if(0x0==BurningEVKBusy){BurningEVKBusy=0x1;var _0x35c5b9=hex2int(usbRWLength[_0x3f48cd(0x9b)]),_0x6fdbe9=hex2int(usbRWAddr[_0x3f48cd(0x9b)]);if(CHIP_91==ChipType){if(_0x6fdbe9>=0x0&&_0x6fdbe9<=0x20000)_0x6fdbe9=_0x6fdbe9+hex2int(_0x3f48cd(0x12a));else _0x6fdbe9>=0x80000&&_0x6fdbe9<=0xa0000&&(_0x6fdbe9=_0x6fdbe9+hex2int('C0200000'));}await usb_evk_set_chip(ChipType),await usb_evk_read(_0x6fdbe9,_0x35c5b9);var _0x168c50='0x'+usbRWAddr[_0x3f48cd(0x9b)]+_0x3f48cd(0xcc);for(var _0x2b83c7=0x0;_0x2b83c7<_0x35c5b9;_0x2b83c7++){_0x168c50+=dec2hex(g_rcv_data[_0x2b83c7],0x2)+'\x20';}LogConsole(_0x168c50,_0x3f48cd(0x7b)),BurningEVKBusy=0x0;}else return LogConsole('BurningEVK\x20is\x20Busy'),ERROR_Typdef[_0x3f48cd(0xda)];return 0x0;}async function CoreWirtetButtonFun(){var _0x55ab4b=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole('USB\x20device\x20not\x20connected!','Console3'),ERROR_Typdef[_0x55ab4b(0x118)];if(0x0==BurningEVKBusy){BurningEVKBusy=0x1;if(0x1==SingleWriteFlag){var _0x40e485=usbRWData['value'][0x0]+usbRWData[_0x55ab4b(0x9b)][0x1],_0x2ed6ea=RegExp('\x20');if(_0x40e485[_0x55ab4b(0xf3)](_0x2ed6ea))return LogConsole(_0x55ab4b(0xab),'Console3'),ERROR_Typdef[_0x55ab4b(0x14e)];var _0x29f8aa=hex2int(_0x40e485),_0x2396c7=hex2int(usbRWLength['value']),_0x33cf66=hex2int(usbRWAddr['value']);if(CHIP_91==ChipType){if(_0x33cf66>=0x0&&_0x33cf66<=0x20000)_0x33cf66=_0x33cf66+hex2int(_0x55ab4b(0x12a));else _0x33cf66>=0x80000&&_0x33cf66<=0xa0000&&(_0x33cf66=_0x33cf66+hex2int('C0200000'));}var _0x40a5ae=new Uint8Array(_0x2396c7);for(var _0x1e692f=0x0;_0x1e692f<_0x2396c7;_0x1e692f++){_0x40a5ae[_0x1e692f]=_0x29f8aa&0xff;}await usb_evk_write(_0x33cf66,_0x40a5ae,_0x2396c7),LogConsole(_0x55ab4b(0xd1),_0x55ab4b(0x7b));}else{var _0x5c2634=RegExp('\x20\x20');if(usbRWData['value']['match'](_0x5c2634))return LogConsole(_0x55ab4b(0xd7),'Console3'),ERROR_Typdef['E2BIG'];var _0x29f8aa=usbRWData[_0x55ab4b(0x9b)][_0x55ab4b(0x12d)]()[_0x55ab4b(0x17b)]('\x20'),_0x2396c7=_0x29f8aa[_0x55ab4b(0x181)],_0x33cf66=hex2int(usbRWAddr[_0x55ab4b(0x9b)]);if(CHIP_91==ChipType){if(_0x33cf66>=0x0&&_0x33cf66<=0x20000)_0x33cf66=_0x33cf66+hex2int(_0x55ab4b(0x12a));else _0x33cf66>=0x80000&&_0x33cf66<=0xa0000&&(_0x33cf66=_0x33cf66+hex2int(_0x55ab4b(0x102)));}var _0x40a5ae=new Uint8Array(_0x2396c7);for(var _0x1e692f=0x0;_0x1e692f<_0x2396c7;_0x1e692f++){_0x40a5ae[_0x1e692f]=hex2int(_0x29f8aa[_0x1e692f])&0xff;}await usb_evk_write(_0x33cf66,_0x40a5ae,_0x2396c7),LogConsole('Core\x20write\x20done!','Console3');}BurningEVKBusy=0x0;}else return LogConsole(_0x55ab4b(0x16d)),ERROR_Typdef['EBUSY'];return 0x0;}async function AnalogReadtButtonFun(){var _0x425b13=_0x50c1f3,_0x1e69d9=new Uint8Array(0x1);if(USBConnectedFlag!=0x1)return LogConsole(_0x425b13(0x16e),_0x425b13(0x7b)),ERROR_Typdef['EPERM'];if(0x0==BurningEVKBusy){BurningEVKBusy=0x1;var _0xf89c9e=hex2int(usbRWLength['value']),_0x2e87ec=hex2int(usbRWAddr[_0x425b13(0x9b)]);await ANALOG_RW_Func(TL_ModeTypdef[_0x425b13(0xd8)],ChipType,_0x2e87ec,_0xf89c9e,_0x1e69d9,TL_CMDTypdef[_0x425b13(0xdf)]);var _0x43a68b='0x'+usbRWAddr[_0x425b13(0x9b)]+_0x425b13(0xcc);for(var _0x1c7b31=0x0;_0x1c7b31<_0xf89c9e;_0x1c7b31++){_0x43a68b+=dec2hex(R_buffer[_0x1c7b31],0x2)+'\x20';}LogConsole(_0x43a68b,_0x425b13(0x7b)),BurningEVKBusy=0x0;}else return LogConsole(_0x425b13(0x16d)),ERROR_Typdef['EBUSY'];return 0x0;}async function AnalogWirtetButtonFun(){var _0x43993d=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole('USB\x20device\x20not\x20connected!',_0x43993d(0x7b)),ERROR_Typdef[_0x43993d(0x118)];if(0x0==BurningEVKBusy){BurningEVKBusy=0x1;if(0x1==SingleWriteFlag){var _0x469a9b=usbRWData[_0x43993d(0x9b)][0x0]+usbRWData[_0x43993d(0x9b)][0x1],_0x34d9bd=RegExp('\x20');if(_0x469a9b[_0x43993d(0xf3)](_0x34d9bd))return LogConsole(_0x43993d(0xab),_0x43993d(0x7b)),ERROR_Typdef[_0x43993d(0x14e)];var _0x2ff691=hex2int(_0x469a9b),_0x17df74=hex2int(usbRWLength[_0x43993d(0x9b)]),_0x5cc46f=hex2int(usbRWAddr[_0x43993d(0x9b)]),_0x5d5190=new Uint8Array(_0x17df74);for(var _0x5f1cef=0x0;_0x5f1cef<_0x17df74;_0x5f1cef++){_0x5d5190[_0x5f1cef]=_0x2ff691&0xff;}await ANALOG_RW_Func(TL_ModeTypdef['EVK'],ChipType,_0x5cc46f,_0x17df74,_0x5d5190,TL_CMDTypdef[_0x43993d(0xf7)]),LogConsole(_0x43993d(0x16f),_0x43993d(0x7b));}else{var _0x521764=RegExp('\x20\x20');if(usbRWData[_0x43993d(0x9b)][_0x43993d(0xf3)](_0x521764))return LogConsole('Too\x20many\x20spaces',_0x43993d(0x7b)),ERROR_Typdef[_0x43993d(0x14e)];var _0x2ff691=usbRWData[_0x43993d(0x9b)]['trim']()['split']('\x20'),_0x17df74=_0x2ff691['length'],_0x5cc46f=hex2int(usbRWAddr[_0x43993d(0x9b)]),_0x5d5190=new Uint8Array(_0x17df74);for(var _0x5f1cef=0x0;_0x5f1cef<_0x17df74;_0x5f1cef++){_0x5d5190[_0x5f1cef]=hex2int(_0x2ff691[_0x5f1cef])&0xff;}await ANALOG_RW_Func(TL_ModeTypdef[_0x43993d(0xd8)],ChipType,_0x5cc46f,_0x17df74,_0x5d5190,TL_CMDTypdef[_0x43993d(0xf7)]),LogConsole(_0x43993d(0x16f),_0x43993d(0x7b));}BurningEVKBusy=0x0;}else return LogConsole(_0x43993d(0x16d)),ERROR_Typdef['EBUSY'];return 0x0;}async function FlashReadtButtonFun(){var _0x590529=_0x50c1f3,_0x56f97e=new Uint8Array(0x1);if(USBConnectedFlag!=0x1)return LogConsole(_0x590529(0x16e),_0x590529(0x7b)),ERROR_Typdef[_0x590529(0x118)];if(0x0==BurningEVKBusy){BurningEVKBusy=0x1;var _0x5974db=hex2int(usbRWLength[_0x590529(0x9b)]),_0x26fa0d=hex2int(usbRWAddr['value']);await FlASH_RW_Func(TL_ModeTypdef[_0x590529(0xd8)],ChipType,_0x26fa0d,_0x5974db,_0x56f97e,TL_CMDTypdef[_0x590529(0xdf)]);var _0x51fac3='0x'+usbRWAddr[_0x590529(0x9b)]+_0x590529(0xcc);for(var _0x460d8c=0x0;_0x460d8c<_0x5974db;_0x460d8c++){_0x51fac3+=dec2hex(R_buffer[_0x460d8c],0x2)+'\x20';}LogConsole(_0x51fac3,'Console3'),BurningEVKBusy=0x0;}else return LogConsole('BurningEVK\x20is\x20Busy'),ERROR_Typdef[_0x590529(0xda)];}async function FlashWirtetButtonFun(){var _0x4f45a5=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0x4f45a5(0x16e),_0x4f45a5(0x7b)),ERROR_Typdef['EPERM'];if(0x0==BurningEVKBusy){BurningEVKBusy=0x1;if(0x1==SingleWriteFlag){var _0x433d49=usbRWData[_0x4f45a5(0x9b)][0x0]+usbRWData['value'][0x1],_0x2e8349=RegExp('\x20');if(_0x433d49['match'](_0x2e8349))return LogConsole(_0x4f45a5(0xab),_0x4f45a5(0x7b)),ERROR_Typdef['E2BIG'];var _0x21dbfd=hex2int(_0x433d49),_0x18adf8=hex2int(usbRWLength[_0x4f45a5(0x9b)]),_0x3b953e=hex2int(usbRWAddr[_0x4f45a5(0x9b)]),_0x18871a=new Uint8Array(_0x18adf8);for(var _0x5a774f=0x0;_0x5a774f<_0x18adf8;_0x5a774f++){_0x18871a[_0x5a774f]=_0x21dbfd&0xff;}await FlASH_RW_Func(TL_ModeTypdef[_0x4f45a5(0xd8)],ChipType,_0x3b953e,_0x18adf8,_0x18871a,TL_CMDTypdef[_0x4f45a5(0xf7)]),LogConsole(_0x4f45a5(0xb9),_0x4f45a5(0x7b));}else{var _0x571e02=RegExp('\x20\x20');if(usbRWData[_0x4f45a5(0x9b)]['match'](_0x571e02))return LogConsole(_0x4f45a5(0xd7),_0x4f45a5(0x7b)),ERROR_Typdef[_0x4f45a5(0x14e)];var _0x21dbfd=usbRWData[_0x4f45a5(0x9b)][_0x4f45a5(0x12d)]()[_0x4f45a5(0x17b)]('\x20'),_0x18adf8=_0x21dbfd['length'],_0x3b953e=hex2int(usbRWAddr['value']),_0x18871a=new Uint8Array(_0x18adf8);for(var _0x5a774f=0x0;_0x5a774f<_0x18adf8;_0x5a774f++){_0x18871a[_0x5a774f]=hex2int(_0x21dbfd[_0x5a774f])&0xff;}await FlASH_RW_Func(TL_ModeTypdef[_0x4f45a5(0xd8)],ChipType,_0x3b953e,_0x18adf8,_0x18871a,TL_CMDTypdef['WRITE']),LogConsole(_0x4f45a5(0xb9),_0x4f45a5(0x7b));}BurningEVKBusy=0x0;}else return LogConsole('BurningEVK\x20is\x20Busy'),ERROR_Typdef['EBUSY'];return 0x0;}async function SectorEraseFlash(_0x1e27a1,_0x1a847f,_0x1340c4,_0x287a95,_0xdea159){var _0x594a85=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0x594a85(0x16e)),ERROR_Typdef[_0x594a85(0x118)];var _0x4f4d5f=0x0;if(_0x1e27a1==TL_ModeTypdef[_0x594a85(0x91)])return LogConsole(_0x594a85(0xed)),ERROR_Typdef['ESUPPORT'];if(_0x1e27a1==TL_ModeTypdef[_0x594a85(0xd8)]){await usb_evk_mcu_load_ram_bin2(_0x1a847f,TL_ModeTypdef['EVK']);if(USBEvkCmdFlag==-0x1)return await LogConsole(_0x594a85(0x125)),ERROR_Typdef['EEVKCMD'];for(var _0x4b5cf6=0x0;_0x4b5cf6<_0x287a95;_0x4b5cf6++){await usb_evk_dut_cmd(_0x1a847f,TL_Dut_Flash_cmdTypdef[_0x594a85(0x10c)],_0x1340c4+_0x4b5cf6*0x1000,0x4),_0x4f4d5f=0x1,typeof _0xdea159==_0x594a85(0xeb)&&_0x4f4d5f==0x1&&_0xdea159(hex2int(EraseAddrInput[_0x594a85(0x9b)])+_0x4b5cf6*0x1000);}}return 0x0;}async function usb_evk_mcu_load_ram_bin(_0x4837cf,_0xa8f005,_0x16c4c7,_0x31e9e4){var _0x900453=_0x50c1f3,_0x8ef68d=new Uint8Array(0x2),_0x321dbb=new Uint8Array(0x2);if(TL_ModeTypdef[_0x900453(0x91)]==_0x4837cf)return LogConsole(_0x900453(0x9a)),ERROR_Typdef[_0x900453(0x145)];else{if(TL_ModeTypdef['EVK']==_0x4837cf){await usb_evk_set_chip(_0xa8f005);if(CHIP_91==_0xa8f005){for(var _0x58c2da=0x0;_0x58c2da<0x4;_0x58c2da++){_0x8ef68d[0x0]=0x10,await usb_evk_cmd(0x100c03,0x1,0xf00),await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_write(0x100c02,_0x8ef68d,0x1),await usb_evk_read(0x100c02,0x1);if(0x10==g_evk_rcv_data[0x0]&&0x0==USBEvkCmdFlag){LogConsole(_0x900453(0x170));break;}else{if(_0x58c2da>=0x3)return LogConsole(_0x900453(0x119)),ERROR_Typdef[_0x900453(0x99)];}}await usb_evk_set_chip(CHIP_91),_0x8ef68d[0x0]=0xe7,await usb_evk_write(0x1401e2,_0x8ef68d,0x1),_0x8ef68d[0x0]=0x0,await usb_evk_write(0x1401d5,_0x8ef68d,0x1),await usb_evk_write(0x1401d6,_0x8ef68d,0x1),await usb_evk_write(0x1401d7,_0x8ef68d,0x1),await usb_evk_write(0xc0000000,_0x16c4c7,_0x31e9e4),_0x8ef68d[0x0]=0xff,await usb_evk_write(0x1401e2,_0x8ef68d,0x1);}else{_0x8ef68d[0x0]=0xab,_0x8ef68d[0x1]=0x0;for(var _0x16d2ba=0x0;_0x16d2ba<0x4;_0x16d2ba++){await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_cmd(0xb2,0x1,0x8100);CHIP_8255==_0xa8f005||CHIP_8258==_0xa8f005||CHIP_8278==_0xa8f005?(await usb_evk_write(0x40004,_0x8ef68d,0x1),await usb_evk_read(0x40004,0x1),_0x321dbb[0x0]=g_evk_rcv_data[0x0]):(await usb_evk_write(0x8004,_0x8ef68d,0x1),await usb_evk_read(0x8004,0x1),_0x321dbb[0x0]=g_evk_rcv_data[0x0]);if(0xab==g_evk_rcv_data[0x0]&&0x0==USBEvkCmdFlag){LogConsole(_0x900453(0x170));break;}else{if(_0x16d2ba>=0x3)return LogConsole(_0x900453(0x92)),ERROR_Typdef[_0x900453(0x99)];}}if(USBEvkCmdFlag==-0x1)return ERROR_Typdef[_0x900453(0x82)];_0x8ef68d[0x0]=0x5;for(var _0x3d8875=0x0;_0x3d8875<0x4;_0x3d8875++){await usb_evk_write(0x602,_0x8ef68d,0x1),await usb_evk_read(0x602,0x1),_0x321dbb[0x0]=g_evk_rcv_data[0x0];if((_0x321dbb[0x0]&0x5)==0x5)break;else _0x3d8875>=0x3&&await LogConsole(_0x900453(0x139));}await LogConsole('TC32\x20EVK:\x20Swire\x20OK!'),_0x8ef68d[0x0]=0x0,await usb_evk_write(0x622,_0x8ef68d,0x1),await usb_evk_write(0x643,_0x8ef68d,0x1),CHIP_8255==_0xa8f005||CHIP_8258==_0xa8f005||CHIP_8278==_0xa8f005?await usb_evk_write(0x40000,_0x16c4c7,_0x31e9e4):(await usb_evk_write(0x8000,_0x16c4c7,_0x31e9e4),(_0xa8f005==CHIP_8366||_0xa8f005==CHIP_8368)&&(_0x8ef68d[0x0]=0x1,await usb_evk_write(0x8ff0,_0x8ef68d,0x1),await usb_evk_write(0x8ff1,_0x8ef68d,0x1))),_0x8ef68d[0x0]=0x88,await usb_evk_write(0x602,_0x8ef68d,0x1);}}}return 0x0;}async function usb_evk_mcu_load_ram_bin2(_0x3b31e1,_0x2afa9a){var _0x55acd3=_0x50c1f3;if(_0x3b31e1<=ChipNumber)layer[_0x55acd3(0x131)]('The\x20selected\x20chip\x20type\x20is:\x20'+ChipName[_0x3b31e1]),LogConsole(_0x55acd3(0x90)+ChipName[_0x3b31e1]);else return layer[_0x55acd3(0x131)](_0x55acd3(0xa9)),LogConsole(_0x55acd3(0xa9)),ERROR_Typdef['ERANGE'];await usb_evk_mcu_load_ram_bin(_0x2afa9a,_0x3b31e1,LoadBinary[_0x3b31e1],LoadBinary[_0x3b31e1][_0x55acd3(0x181)]),await sleep(0xa);if(USBEvkCmdFlag==-0x1)return await LogConsole(_0x55acd3(0x125)),ERROR_Typdef[_0x55acd3(0x82)];if(CHIP_91==_0x3b31e1)await usb_evk_read(0xc0000000,LoadBinary[_0x3b31e1]['length']);else CHIP_8255==_0x3b31e1||CHIP_8258==_0x3b31e1||CHIP_8278==_0x3b31e1?await usb_evk_read(0x40000,LoadBinary[_0x3b31e1][_0x55acd3(0x181)]):await usb_evk_read(0x8000,LoadBinary[_0x3b31e1][_0x55acd3(0x181)]);await sleep(0xa);for(var _0x32c2d5=0x0;_0x32c2d5<LoadBinary[_0x3b31e1][_0x55acd3(0x181)];_0x32c2d5++){if(g_evk_rcv_data[_0x32c2d5]!=LoadBinary[_0x3b31e1][_0x32c2d5]){await LogConsole(_0x55acd3(0x171)),await LogConsole('i:'+_0x32c2d5+_0x55acd3(0x155)+g_evk_rcv_data[_0x32c2d5]+':'+LoadBinary[_0x3b31e1][_0x32c2d5]);break;}}if(_0x32c2d5<LoadBinary[_0x3b31e1]['length'])return ERROR_Typdef[_0x55acd3(0xac)];return 0x0;}async function MCU_Init_None_Log(_0x9e935c,_0x1fadb2){var _0x3d9878=_0x50c1f3;if(TL_ModeTypdef[_0x3d9878(0x91)]==_0x1fadb2){var _0x441850=0x0,_0x11b608=new Uint8Array(0x2);_0x11b608[0x0]=0x5,_0x11b608[0x1]=0x0,g_rcv_data[0x0]=0x0;while((g_rcv_data[0x0]&0x5)!=0x5){CHIP_8255==_0x9e935c||CHIP_8258==_0x9e935c||CHIP_8278==_0x9e935c?(await usb_write2(0x602,_0x11b608,0x1),await usb_read(0x602,0x1)):(await usb_write(0x602,_0x11b608,0x1),await usb_read(0x602,0x1));_0x441850++;if(_0x441850>0x3)return LogConsole(_0x3d9878(0xaa)),ERROR_Typdef[_0x3d9878(0x118)];}CHIP_8255==_0x9e935c||CHIP_8258==_0x9e935c||CHIP_8278==_0x9e935c?(_0x11b608[0x0]=0x0,await usb_write2(0x622,_0x11b608,0x1),await usb_write2(0x643,_0x11b608,0x1),_0x11b608[0x0]=0xff,await usb_write2(0x60c,_0x11b608,0x1),await usb_write2(0x60d,_0x11b608,0x1),_0x11b608[0x0]=0xff,await usb_write2(0x104,_0x11b608,0x1),await usb_write3(0x40000,LoadBinary[_0x9e935c],LoadBinary[_0x9e935c]['length']),_0x11b608[0x0]=0x88,await usb_write2(0x602,_0x11b608,0x1)):(_0x11b608[0x0]=0x0,await usb_write(0x622,_0x11b608,0x1),await usb_write(0x643,_0x11b608,0x1),_0x11b608[0x0]=0x40,await usb_write(0x60c,_0x11b608,0x1),await usb_write(0x60d,_0x11b608,0x1),_0x11b608[0x0]=0xff,await usb_write(0x104,_0x11b608,0x1),CHIP_91==_0x9e935c?await usb_write3(0xc0000000,LoadBinary[_0x9e935c],LoadBinary[_0x9e935c][_0x3d9878(0x181)]):await usb_write3(0x8000,LoadBinary[_0x9e935c],LoadBinary[_0x9e935c][_0x3d9878(0x181)]),(CHIP_8366==_0x9e935c||CHIP_8368==_0x9e935c)&&(_0x11b608[0x0]=0x1,await usb_write(0x8ff0,_0x11b608,0x1),await usb_write(0x8ff1,_0x11b608,0x1)),_0x11b608[0x0]=0x88,await usb_write(0x602,_0x11b608,0x1));}return 0x0;}async function TL_Dut_Flash_cmd_Process_None_Log(_0x116fe7,_0x47ab84,_0x2045ad,_0x3b62d3,_0x475892=TL_ModeTypdef[_0x50c1f3(0xd8)]){var _0x259221=_0x50c1f3,_0x4f44f9=new Uint8Array(0x10),_0x401b66,_0x201c48,_0x37525f=0x7d0;_0x4f44f9[0x0]=_0x47ab84,_0x4f44f9[0x1]=_0x2045ad&0xff,_0x4f44f9[0x2]=_0x2045ad>>0x8&0xff,_0x4f44f9[0x3]=_0x2045ad>>0x10&0xff,_0x4f44f9[0x4]=_0x2045ad>>0x18&0xff,_0x4f44f9[0x5]=_0x3b62d3&0xff,_0x4f44f9[0x6]=_0x3b62d3>>0x8&0xff,_0x4f44f9[0x7]=_0x3b62d3>>0x10&0xff,_0x4f44f9[0x8]=_0x3b62d3>>0x18&0xff;if(TL_ModeTypdef[_0x259221(0x91)]==_0x475892){if(CHIP_8255==_0x116fe7||CHIP_8258==_0x116fe7||CHIP_8278==_0x116fe7){await usb_write2(0x40007,_0x4f44f9,0x9),_0x4f44f9[0x0]=_0x47ab84|0x80,await usb_write2(0x40007,_0x4f44f9,0x1),_0x401b66=new Date(),await usb_read(0x40007,0x1);while(g_rcv_data[0x0]&0x80){await usb_read(0x40007,0x1),_0x201c48=new Date();if(parseInt(_0x201c48-_0x401b66)>_0x37525f)return LogConsole('wait\x20for\x20ack\x20timeout:\x20\x20'+parseInt(_0x201c48-_0x401b66)+_0x259221(0x149)),ERROR_Typdef[_0x259221(0x14f)];}await usb_read(0x40004,0xc);if((g_rcv_data[0x2]&0xff)!=_0x47ab84)return LogConsole('\x20lock\x20flash\x20succeed!\x20'),0x0;}else{await usb_write3(0x8007,_0x4f44f9,0x9),_0x4f44f9[0x0]=_0x47ab84|0x80,await usb_write3(0x8007,_0x4f44f9,0x1),_0x401b66=new Date(),g_rcv_data[0x0]=0x80;while(g_rcv_data[0x0]&0x80){await usb_read(0x8007,0x1),_0x201c48=new Date();if(_0x201c48-_0x401b66>_0x37525f)return await LogConsole(_0x259221(0xef)+parseInt(_0x201c48-_0x401b66)+_0x259221(0x149)),ERROR_Typdef[_0x259221(0x14f)];}await usb_read(0x8004,0xc);if((g_rcv_data[0x2]&0xff)!=_0x47ab84)return await LogConsole(_0x259221(0x84)),0x0;}}if(TL_Dut_Flash_cmdTypdef[_0x259221(0x8e)]==_0x47ab84){BinLoadAdr=g_rcv_data[0x0]+g_rcv_data[0x1]*0x100;if(CHIP_8255==_0x116fe7||CHIP_8258==_0x116fe7||CHIP_8278==_0x116fe7)BinLoadAdr=BinLoadAdr+0x40000-0x8000;else CHIP_91==_0x116fe7?BinLoadAdr=BinLoadAdr+0xc0000000:BinLoadAdr=BinLoadAdr;}if(TL_Dut_Flash_cmdTypdef['TL_DUTCMD_FLASH_CRC']==_0x47ab84){var _0x2d7149=g_rcv_data[0x4]+g_rcv_data[0x5]*0x100+g_rcv_data[0x6]*0x100*0x100+g_rcv_data[0x7]*0x100*0x100*0x100;crc_check=g_rcv_data[0x8]+g_rcv_data[0x9]*0x100+g_rcv_data[0xa]*0x100*0x100+g_rcv_data[0xb]*0x100*0x100*0x100,crc_check=crc_check>>>0x0;if(_0x2d7149!=_0x3b62d3)return LogConsole('\x20crc\x20check\x20err!\x20'),LogConsole(_0x259221(0x11f)+crc_check),LogConsole(_0x259221(0xbf)+_0x2d7149),ERROR_Typdef['ECRC'];}return 0x0;}async function usb_evk_flash_write(_0xc12fcc,_0x58f6e8,_0x418682,_0x115ec2,_0x551378){var _0x2820fa=_0x50c1f3,_0x1eb08f,_0x251a3b;await usb_evk_mcu_load_ram_bin2(_0xc12fcc,TL_ModeTypdef[_0x2820fa(0xd8)]);if(USBEvkCmdFlag==-0x1)return await LogConsole(_0x2820fa(0x125)),ERROR_Typdef['EEVKCMD'];await LogConsole(_0x2820fa(0xdc)),_0x1eb08f=new Date(),await usb_evk_dut_cmd(_0xc12fcc,TL_Dut_Flash_cmdTypdef[_0x2820fa(0x8e)],0x0,0x0);var _0x2c4306=_0x418682%0x1000==0x0?Math[_0x2820fa(0xae)](_0x418682/0x1000):Math[_0x2820fa(0xae)](_0x418682/0x1000+0x1),_0x19987a=_0x418682%0x100==0x0?Math[_0x2820fa(0xae)](_0x418682/0x100):Math[_0x2820fa(0xae)](_0x418682/0x100+0x1);LogConsole(_0x2820fa(0xc7)+_0x418682+_0x2820fa(0xb8)+_0x2c4306+_0x2820fa(0x158)+_0x19987a);for(var _0x2bdb79=0x0;_0x2bdb79<_0x2c4306;_0x2bdb79++){await usb_evk_dut_cmd(_0xc12fcc,TL_Dut_Flash_cmdTypdef[_0x2820fa(0x10c)],_0x115ec2+_0x2bdb79*0x1000,0x4),LogConsole(_0x2820fa(0x12c)+dec2hex(_0x115ec2+_0x2bdb79*0x1000));}for(var _0x2bdb79=0x0;_0x2bdb79<_0x19987a;_0x2bdb79++){var _0x2e4832,_0x1060f1,_0xc038c0=0x0;_0x2bdb79<_0x19987a-0x1?(_0x1060f1=_0x58f6e8[_0x2820fa(0xa8)](_0x2bdb79*0x100,_0x2bdb79*0x100+0x100),_0x2e4832=0x100,_0x2bdb79%0x10==0x0&&(_0xc038c0=0x1)):(_0x1060f1=_0x58f6e8[_0x2820fa(0xa8)](_0x2bdb79*0x100,_0x418682),_0x2e4832=_0x418682-_0x2bdb79*0x100,_0x2e4832>0x100&&(_0x2e4832=0x100),_0xc038c0=0x1),await usb_evk_write(BinLoadAdr,_0x1060f1,_0x2e4832),await usb_evk_dut_cmd(_0xc12fcc,TL_Dut_Flash_cmdTypdef[_0x2820fa(0x103)],_0x2bdb79*0x100+_0x115ec2,_0x2e4832),typeof _0x551378==_0x2820fa(0xeb)&&_0xc038c0==0x1&&_0x551378(_0x115ec2+_0x2bdb79*0x100);}await crc32_check_look_table(0xffffffff,_0x58f6e8,_0x418682),await usb_evk_dut_cmd(_0xc12fcc,TL_Dut_Flash_cmdTypdef['TL_DUTCMD_FLASH_CRC'],_0x115ec2,_0x418682);if(crc_ret!=crc_check)return LogConsole(_0x2820fa(0x96)),LogConsole(_0x2820fa(0xfa)+crc_ret['toString'](0x10)),LogConsole(_0x2820fa(0xc6)+crc_check[_0x2820fa(0xc1)](0x10)),ERROR_Typdef['ECRC'];else LogConsole('\x20file\x20check\x20success!');return LogConsole(_0x2820fa(0x175)+dec2hex(_0x115ec2)+':\x20\x20'+_0x418682+_0x2820fa(0x17e)),_0x251a3b=new Date(),LogConsole(_0x2820fa(0x100)+parseInt(_0x251a3b-_0x1eb08f)+_0x2820fa(0x149)),0x0;}async function usb_evk_ram_write(_0x5e4ce5,_0x59ada4,_0x5105c3,_0x497659,_0x1bde57){var _0x2f72db=_0x50c1f3,_0x4b8945=new Uint8Array(0x2),_0x2bf925=0x1,_0x4be009,_0x3e12b5,_0xb4622c;await usb_evk_set_chip(_0x5e4ce5);if(CHIP_91==_0x5e4ce5){_0x4b8945[0x0]=0xab,_0x4b8945[0x1]=0x0;for(var _0x346c1d=0x0;_0x346c1d<0x4;_0x346c1d++){await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_cmd(0x100c02,0x1,0x8100),await usb_evk_write(0xc0000004,_0x4b8945,0x1),await usb_evk_read(0xc0000004,0x1);if(0xab==g_evk_rcv_data[0x0]){LogConsole('\x20TC32\x20EVK:\x20Swire\x20ok!\x20');break;}else{if(_0x346c1d>=0x3)return LogConsole(_0x2f72db(0x9c)),ERROR_Typdef[_0x2f72db(0x99)];}}}else{_0x4b8945[0x0]=0xab,_0x4b8945[0x1]=0x0;for(var _0x36840d=0x0;_0x36840d<0x4;_0x36840d++){await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_cmd(0x0,0x1,0x700),await usb_evk_cmd(0xb2,0x1,0x8100);CHIP_8255==_0x5e4ce5||CHIP_8258==_0x5e4ce5||CHIP_8278==_0x5e4ce5?(await usb_evk_write(0x40004,_0x4b8945,0x1),await usb_evk_read(0x40004,0x1)):(await usb_evk_write(0x8004,_0x4b8945,0x1),await usb_evk_read(0x8004,0x1));if(0xab==g_evk_rcv_data[0x0]){LogConsole(_0x2f72db(0x146));break;}else{if(_0x36840d>=0x3)return LogConsole('\x20TC32\x20EVK:\x20Swire\x20err!\x20'),ERROR_Typdef['ESWIRE'];}}_0x4b8945[0x0]=0x5;for(var _0x3f0fe2=0x0;_0x3f0fe2<0x4;_0x3f0fe2++){await usb_evk_write(0x602,_0x4b8945,0x1),await usb_evk_read(0x602,0x1);if((g_evk_rcv_data[0x0]&0x5)==0x5){LogConsole(_0x2f72db(0xff));break;}else{if(_0x3f0fe2>=0x3)return LogConsole(_0x2f72db(0x95)),ERROR_Typdef[_0x2f72db(0x13e)];}}}_0x4b8945[0x0]=0xab,_0x4b8945[0x1]=0x0,_0x4b8945[0x0]=0x0;CHIP_91==_0x5e4ce5?(_0x4b8945[0x0]=0x0,await usb_evk_write(0x140142,_0x4b8945,0x1),_0x4b8945[0x0]=0xe7,await usb_evk_write(0x1401e2,_0x4b8945,0x1),_0x4b8945[0x0]=0x0,await usb_evk_write(0x1401d5,_0x4b8945,0x1),_0x4b8945[0x0]=0x0,await usb_evk_write(0x1401d6,_0x4b8945,0x1),_0x4b8945[0x0]=0x0,await usb_evk_write(0x1401d7,_0x4b8945,0x1)):(_0x4b8945[0x0]=0x0,await usb_evk_write(0x622,_0x4b8945,0x1),await usb_evk_write(0x643,_0x4b8945,0x1));var _0x52bcd7=_0x5105c3/0x100,_0x48166e=_0x5105c3%0x100,_0x5491bf;_0x4be009=new Date();if(CHIP_91==_0x5e4ce5){for(var _0x346c1d=0x0;_0x346c1d<_0x52bcd7;_0x346c1d++){_0x5491bf=_0x59ada4['slice'](_0x346c1d*0x100,_0x346c1d*0x100+0x100),await usb_evk_write(_0x497659+_0x346c1d*0x100,_0x5491bf,0x100),typeof _0x1bde57==_0x2f72db(0xeb)&&_0x2bf925==0x1&&_0x1bde57(_0x497659+_0x346c1d*0x100);}_0x48166e!=0x0&&(_0x5491bf=_0x59ada4['slice'](_0x52bcd7*0x100,_0x5105c3),await usb_evk_write(_0x497659+_0x52bcd7*0x100,_0x5491bf,_0x48166e));}else{if(CHIP_8255==_0x5e4ce5||CHIP_8258==_0x5e4ce5||CHIP_8278==_0x5e4ce5){for(var _0x346c1d=0x0;_0x346c1d<_0x52bcd7;_0x346c1d++){_0x5491bf=_0x59ada4['slice'](_0x346c1d*0x100,_0x346c1d*0x100+0x100),await usb_evk_write(_0x497659+_0x346c1d*0x100,_0x5491bf,0x100),typeof _0x1bde57==_0x2f72db(0xeb)&&_0x2bf925==0x1&&_0x1bde57(_0x497659+_0x346c1d*0x100);}_0x48166e!=0x0&&(_0x5491bf=_0x59ada4['slice'](_0x52bcd7*0x100,_0x5105c3),await usb_evk_write(_0x497659+_0x52bcd7*0x100,_0x5491bf,_0x48166e));}else{for(var _0x346c1d=0x0;_0x346c1d<_0x52bcd7;_0x346c1d++){_0x5491bf=_0x59ada4[_0x2f72db(0xa8)](_0x346c1d*0x100,_0x346c1d*0x100+0x100),await usb_evk_write(_0x497659+_0x346c1d*0x100,_0x5491bf,0x100),typeof _0x1bde57==_0x2f72db(0xeb)&&_0x2bf925==0x1&&_0x1bde57(_0x497659+_0x346c1d*0x100);}_0x48166e!=0x0&&(_0x5491bf=_0x59ada4[_0x2f72db(0xa8)](_0x52bcd7*0x100,_0x5105c3),await usb_evk_write(_0x497659+_0x52bcd7*0x100,_0x5491bf,_0x48166e)),(_0x5e4ce5==CHIP_8366||_0x5e4ce5==CHIP_8368)&&(_0x4b8945[0x0]=0x1,await usb_evk_write(0x8ff0,_0x5491bf,0x1),await usb_evk_write(0x8ff1,_0x5491bf,0x1));}}LogConsole(_0x2f72db(0x14d)+dec2hex2(_0x497659)+_0x2f72db(0xbc)+_0x5105c3+_0x2f72db(0x17e)),await crc32_check_look_table(0xffffffff,_0x59ada4,_0x5105c3),_0xb4622c=crc_ret,await usb_evk_read(_0x497659,_0x5105c3),await crc32_check_look_table(0xffffffff,g_evk_rcv_data,_0x5105c3);if(_0xb4622c!=crc_ret)return LogConsole('\x20crc\x20check\x20err!'),LogConsole(_0x2f72db(0xb4)+_0xb4622c+_0x2f72db(0x162)+crc_ret),ERROR_Typdef[_0x2f72db(0xac)];else LogConsole(_0x2f72db(0x87));return _0x3e12b5=new Date(),LogConsole(_0x2f72db(0x100)+parseInt(_0x3e12b5-_0x4be009)+_0x2f72db(0x149)),0x0;}$(_0x50c1f3(0x173))[_0x50c1f3(0x180)](function(){var _0xe42eb0=_0x50c1f3;$(_0xe42eb0(0x128))['click']();});async function UPFileRead(_0x3095b5){var _0xddc289=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0xddc289(0x16e)),ERROR_Typdef[_0xddc289(0x118)];var _0x2f7a00,_0x23f70f,_0x3fb67b=new Uint8Array(0x400*0x400*0x4);await LogConsole(_0xddc289(0x154)+_0x3095b5),_0x2f7a00=document[_0xddc289(0xc3)](_0xddc289(0x101))[_0xddc289(0x176)][0x0],LogConsole(_0x2f7a00,_0xddc289(0xd3));var _0x4e2db5=new FileReader();const _0x5a9147=this;_0x4e2db5[_0xddc289(0x9e)](_0x2f7a00),_0x4e2db5[_0xddc289(0x148)]=function(){var _0x58d512=_0xddc289,_0x3426e9=new Uint8Array(_0x4e2db5['result']),_0x51a278=new Date(_0x2f7a00[_0x58d512(0x117)]);dateTime=_0x51a278[_0x58d512(0x172)](),LogConsole(_0x2f7a00[_0x58d512(0xe8)]+_0x58d512(0x187)+dateTime);for(var _0x55a839=0x0;_0x55a839<_0x3426e9['length'];_0x55a839++){_0x3fb67b[_0x55a839]=_0x3426e9[_0x55a839];}_0x23f70f=_0x3426e9[_0x58d512(0x181)],LogConsole(_0x58d512(0xd6)+_0x23f70f);},document['getElementById'](_0xddc289(0x101))[_0xddc289(0x9b)]=null,await sleep(0x14),await upgrade(_0x3095b5,_0x3fb67b,_0x23f70f);}async function upgrade(_0x1d38e5,_0x2bc4dc,_0x178116){var _0x3a628a=_0x50c1f3,_0x30c45d=0x0,_0x4955e1,_0xc6ed40,_0x473909,_0x613d77,_0x5b39b7,_0x283612=new Uint8Array(0x2);_0x4955e1=unlock_flash_buffer['length'],_0x283612[0x0]=0x5,_0x283612[0x1]=0x0,g_rcv_data[0x0]=0x0;while((g_rcv_data[0x0]&0x5)!=0x5){await usb_write(0x602,_0x283612,0x1),await usb_read(0x602,0x1),_0x30c45d++;if(_0x30c45d>0x3)return await LogConsole(_0x3a628a(0xaa)),ERROR_Typdef[_0x3a628a(0x118)];}_0x283612[0x0]=0x0,_0x5b39b7=Math[_0x3a628a(0xae)](_0x4955e1/0x100),_0x473909=Math['floor'](_0x4955e1%0x100),await LogConsole(_0x3a628a(0x134)+_0x4955e1+_0x3a628a(0xfd)+_0x5b39b7+_0x3a628a(0x126)+_0x473909),await usb_write(0x622,_0x283612,0x1),await usb_write(0x643,_0x283612,0x1),_0x283612[0x0]=0x40,await usb_write(0x60c,_0x283612,0x1),await usb_write(0x60d,_0x283612,0x1),_0x283612[0x0]=0xff,await usb_write(0x104,_0x283612,0x1);for(_0x30c45d=0x0;_0x30c45d<_0x5b39b7;_0x30c45d++){_0x613d77=unlock_flash_buffer['slice'](_0x30c45d*0x100,_0x30c45d*0x100+0x100),await usb_write3(0x8000+_0x30c45d*0x100,_0x613d77,0x100);}_0x473909!=0x0&&(_0x613d77=unlock_flash_buffer[_0x3a628a(0xa8)](_0x5b39b7*0x100,_0x4955e1),await usb_write3(0x8000+_0x5b39b7*0x100,_0x613d77,_0x473909));await crc32_check_look_table(0xffffffff,unlock_flash_buffer,_0x4955e1),_0xc6ed40=crc_ret;for(_0x30c45d=0x0;_0x30c45d<_0x4955e1;_0x30c45d++){unlock_flash_buffer[_0x30c45d]=0x0;}await usb_read(0x8000,_0x4955e1),await crc32_check_look_table(0xffffffff,g_rcv_data,_0x4955e1);if(_0xc6ed40!=crc_ret)return await LogConsole(_0x3a628a(0x88)),await LogConsole('temp:\x20'+_0xc6ed40+_0x3a628a(0xf6)+crc_ret),ERROR_Typdef[_0x3a628a(0xac)];else await LogConsole(_0x3a628a(0xa0));_0x283612[0x0]=0x88,await usb_write(0x602,_0x283612,0x1),await sleep(0xa),await MCU_Init_None_Log(_0x1d38e5,TL_ModeTypdef[_0x3a628a(0x91)]),await LogConsole('\x20succeed!\x20'),await usb_evk_dut_cmd(_0x1d38e5,TL_Dut_Flash_cmdTypdef[_0x3a628a(0x10c)],0x0,0x4,TL_ModeTypdef[_0x3a628a(0x91)]),await LogConsole('\x20unlock\x20flash\x20succeed!'),await MCU_Init_None_Log(_0x1d38e5,TL_ModeTypdef[_0x3a628a(0x91)]);var _0x406925,_0x57a95e,_0x13e9f8=0x0==_0x178116%0x1000?Math['floor'](_0x178116/0x1000):Math['floor'](_0x178116/0x1000+0x1),_0x11d7ba=0x0==_0x178116%0x100?Math[_0x3a628a(0xae)](_0x178116/0x100):Math[_0x3a628a(0xae)](_0x178116/0x100+0x1);_0x406925=new Date(),await LogConsole(_0x3a628a(0x124)+_0x178116+_0x3a628a(0x11c)+_0x13e9f8+'\x09\x09PageWrite_Num:\x20'+_0x11d7ba),await usb_evk_dut_cmd(_0x1d38e5,TL_Dut_Flash_cmdTypdef[_0x3a628a(0x8e)],0x0,0x0,TL_ModeTypdef[_0x3a628a(0x91)]);var _0x39e62e=0x0;await LogConsole(_0x3a628a(0x152)+BinLoadAdr);for(_0x30c45d=0x0;_0x30c45d<_0x13e9f8;_0x30c45d++){await usb_evk_dut_cmd(_0x1d38e5,TL_Dut_Flash_cmdTypdef[_0x3a628a(0x10c)],_0x39e62e+_0x30c45d*0x1000,0x4,TL_ModeTypdef[_0x3a628a(0x91)]);}for(var _0xef4ae8=0x0;_0xef4ae8<_0x11d7ba;_0xef4ae8++){var _0x613d77,_0xd334fb,_0xc4022a=0x0;_0xef4ae8<_0x11d7ba-0x1?(_0x613d77=_0x2bc4dc['slice'](_0xef4ae8*0x100,_0xef4ae8*0x100+0x100),_0xd334fb=0x100,0x0==_0xef4ae8%0x10&&(_0xc4022a=0x1)):(_0x613d77=_0x2bc4dc['slice'](_0xef4ae8*0x100,_0x178116),_0xd334fb=_0x178116-_0xef4ae8*0x100,_0xd334fb>0x100&&(_0xd334fb=0x100),_0xc4022a=0x1),await usb_write3(BinLoadAdr,_0x613d77,_0xd334fb),await usb_evk_dut_cmd(_0x1d38e5,TL_Dut_Flash_cmdTypdef[_0x3a628a(0x103)],_0xef4ae8*0x100+_0x39e62e,_0xd334fb,TL_ModeTypdef[_0x3a628a(0x91)]),0x1==_0xc4022a&&await LogConsole('Flash\x20Page\x20Program\x20at\x20address:\x200x'+dec2hex2(_0x39e62e+_0xef4ae8*0x100));}_0x57a95e=new Date(),await LogConsole(_0x3a628a(0x100)+parseInt(_0x57a95e-_0x406925)+'\x20\x20ms'),await crc32_check_look_table(0xffffffff,_0x2bc4dc,_0x178116),await usb_evk_dut_cmd(_0x1d38e5,TL_Dut_Flash_cmdTypdef[_0x3a628a(0xe9)],_0x39e62e,_0x178116,TL_ModeTypdef[_0x3a628a(0x91)]);if(crc_ret!=crc_check)return await LogConsole(_0x3a628a(0x96)),await LogConsole(_0x3a628a(0xfa)+crc_ret[_0x3a628a(0xc1)](0x10)),await LogConsole('crc_check:\x20\x20'+crc_check[_0x3a628a(0xc1)](0x10)),ERROR_Typdef[_0x3a628a(0xac)];else await LogConsole(_0x3a628a(0x110));_0x4955e1=lock_flash_buffer[_0x3a628a(0x181)],_0x283612[0x0]=0x5,_0x283612[0x1]=0x0,_0x30c45d=0x0,g_rcv_data[0x0]=0x0;while((g_rcv_data[0x0]&0x5)!=0x5){await usb_write(0x602,_0x283612,0x1),await usb_read(0x602,0x1),_0x30c45d++;if(_0x30c45d>0x3)return await LogConsole(_0x3a628a(0xaa)),0x0;}_0x5b39b7=Math['floor'](_0x4955e1/0x100),_0x473909=Math[_0x3a628a(0xae)](_0x4955e1%0x100),await LogConsole(_0x3a628a(0x134)+_0x4955e1+_0x3a628a(0xfd)+_0x5b39b7+'\x20sbyte_num:\x20'+_0x473909),_0x283612[0x0]=0x0,await usb_write(0x622,_0x283612,0x1),await usb_write(0x643,_0x283612,0x1),_0x283612[0x0]=0x40,await usb_write(0x60c,_0x283612,0x1),await usb_write(0x60d,_0x283612,0x1),_0x283612[0x0]=0xff,await usb_write(0x104,_0x283612,0x1);for(_0x30c45d=0x0;_0x30c45d<_0x5b39b7;_0x30c45d++){_0x613d77=lock_flash_buffer[_0x3a628a(0xa8)](_0x30c45d*0x100,_0x30c45d*0x100+0x100),await usb_write3(0x8000+_0x30c45d*0x100,_0x613d77,0x100);}_0x473909!=0x0&&(_0x613d77=lock_flash_buffer[_0x3a628a(0xa8)](_0x5b39b7*0x100,_0x4955e1),await usb_write3(0x8000+_0x5b39b7*0x100,_0x613d77,_0x473909));await crc32_check_look_table(0xffffffff,lock_flash_buffer,_0x4955e1),_0xc6ed40=crc_ret;for(_0x30c45d=0x0;_0x30c45d<_0x4955e1;_0x30c45d++){lock_flash_buffer[_0x30c45d]=0x0;}await usb_read(0x8000,_0x4955e1),await crc32_check_look_table(0xffffffff,g_rcv_data,_0x4955e1);if(_0xc6ed40!=crc_ret)return await LogConsole(_0x3a628a(0x88)),await LogConsole(_0x3a628a(0x105)+_0xc6ed40+_0x3a628a(0xf6)+crc_ret),ERROR_Typdef[_0x3a628a(0xac)];else await LogConsole('\x20crc\x20check\x20success!\x20');return _0x283612[0x0]=0x88,await usb_write(0x602,_0x283612,0x1),await sleep(0xa),await MCU_Init_None_Log(_0x1d38e5,TL_ModeTypdef['USB']),await TL_Dut_Flash_cmd_Process_None_Log(_0x1d38e5,TL_Dut_Flash_cmdTypdef[_0x3a628a(0x10c)],0x0,0x4,TL_ModeTypdef[_0x3a628a(0x91)]),await LogConsole(_0x3a628a(0x144)),0x0;}async function DownloadBin(_0x3e0bf4,_0x438d7c,_0x44f5cc,_0x519c7a=_0x50c1f3(0x80)){var _0x4b81f4=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole('USB\x20device\x20not\x20connected!'),ERROR_Typdef[_0x4b81f4(0x118)];var _0x51e6a3=new Uint8Array(0x400*0x400*0x4);await LogConsole(_0x4b81f4(0x154)+_0x3e0bf4);var _0x2b07f0;window[_0x4b81f4(0xd4)]?_0x2b07f0=new XMLHttpRequest():_0x2b07f0=new ActiveXObject(_0x4b81f4(0xf4)),_0x2b07f0[_0x4b81f4(0xb3)]=async function(){var _0x5d3746=_0x4b81f4;0x4==_0x2b07f0[_0x5d3746(0xa5)]&&0xc8==_0x2b07f0[_0x5d3746(0x17f)]&&await LogConsole(_0x5d3746(0xbd)),_0x2b07f0[_0x5d3746(0x17f)]!=0xc8&&_0x2b07f0[_0x5d3746(0x17f)]!=0x0&&await LogConsole(_0x5d3746(0x10b)+_0x2b07f0[_0x5d3746(0x17f)]);},_0x2b07f0[_0x4b81f4(0x114)](_0x4b81f4(0x7f),_0x438d7c,!![]),_0x2b07f0[_0x4b81f4(0xa3)]=_0x4b81f4(0xa2),_0x2b07f0['onload']=async function(_0x3b3bdd){var _0x282463=_0x4b81f4;_0x51e6a3=new Uint8Array(this[_0x282463(0x7d)]);if(0x4==_0x2b07f0['readyState']&&0xc8==_0x2b07f0[_0x282463(0x17f)]){await LogConsole(_0x282463(0x11d)+_0x51e6a3[_0x282463(0x181)]),await LogConsole(_0x282463(0x163));if('BurningEVKFirmware'==_0x44f5cc)await upgrade(_0x3e0bf4,_0x51e6a3,_0x51e6a3[_0x282463(0x181)]);else'TargetBoardBin'==_0x44f5cc?await NetWorkDownload(_0x3e0bf4,_0x51e6a3,_0x51e6a3['length'],_0x519c7a):await LogConsole(_0x282463(0xa4));}else await LogConsole('.....................');},await _0x2b07f0[_0x4b81f4(0xe2)](),await sleep(0xa);}async function NetWorkDownload(_0x39ae9f,_0x410f27,_0x20457e,_0x330555){var _0x26e4b3=_0x50c1f3;if(TL_ObjTypdef[_0x26e4b3(0x141)]==LoadOBJChoose)_0x26e4b3(0x80)==_0x330555?await usb_evk_flash_write(_0x39ae9f,_0x410f27,_0x20457e,hex2int(DownloadAddrInput[_0x26e4b3(0x9b)]),download_callback):await usb_evk_flash_write(_0x39ae9f,_0x410f27,_0x20457e,hex2int(_0x330555),download_callback);else TL_ObjTypdef[_0x26e4b3(0xdb)]==LoadOBJChoose&&(_0x26e4b3(0x80)==_0x330555?await usb_evk_ram_write(_0x39ae9f,_0x410f27,_0x20457e,hex2int(SramDownloadAddrInput[_0x26e4b3(0x9b)]),download_callback):await usb_evk_flash_write(_0x39ae9f,_0x410f27,_0x20457e,hex2int(_0x330555),download_callback));'Null'==_0x330555&&(0x1==AutoResetFlag&&(await LogConsole(_0x26e4b3(0x166)),await usb_evk_reset_mcu(TL_ModeTypdef[_0x26e4b3(0xd8)],_0x39ae9f,LoadOBJChoose))),0x1==NetWorkBusy&&(NetWorkBusy=0x0),0x1==BurningEVKBusy&&(BurningEVKBusy=0x0);}async function BinDownload(_0x22cfd5,_0x1719f9,_0x7feae1,_0x48b152='0'){var _0xfbdd2a=_0x50c1f3;if(USBConnectedFlag!=0x1)return await LogConsole('USB\x20device\x20not\x20connected!'),ERROR_Typdef[_0xfbdd2a(0x118)];else{if(_0x48b152=='0'){if(-0x1==BinFileChanged)return await LogConsole('You\x20haven\x27t\x20chosen\x20to\x20download\x20files\x20yet!'),ERROR_Typdef[_0xfbdd2a(0x115)];else{if(0x0==BinFileChanged)await LogConsole('Download\x20the\x20same\x20file\x20as\x20last\x20time!');else{if(BinFileChanged!=0x1)return await LogConsole(_0xfbdd2a(0x186)),ERROR_Typdef['ENOENT'];}}var _0x4f32a9=new Date(localFile[_0xfbdd2a(0x117)]);dateTime=_0x4f32a9['toLocaleString'](),await LogConsole(localFile['name']+'\x09:\x20\x20'+dateTime),await LogConsole(_0xfbdd2a(0xc0)),LogConsole(localFile[_0xfbdd2a(0xe8)],_0xfbdd2a(0xd3));if(TL_ObjTypdef['FLASH']==LoadOBJChoose)await usb_evk_flash_write(ChipType,_0x22cfd5,_0x1719f9,_0x7feae1,download_callback);else TL_ObjTypdef['CORE']==LoadOBJChoose&&await usb_evk_ram_write(ChipType,_0x22cfd5,_0x1719f9,_0x7feae1,download_callback);0x1==AutoResetFlag&&(await LogConsole('Automatic\x20reset\x20after\x20download'),await usb_evk_reset_mcu(TL_ModeTypdef[_0xfbdd2a(0xd8)],ChipType,LoadOBJChoose));}else'1'==_0x48b152&&await usb_evk_flash_write(ChipType,_0x22cfd5,_0x1719f9,_0x7feae1,download_callback);}return 0x0;}async function download_callback(_0x36d53b){var _0x1b8bf7=_0x50c1f3;if(TL_ObjTypdef['FLASH']==LoadOBJChoose)await LogConsole(_0x1b8bf7(0xf0)+dec2hex2(_0x36d53b));else TL_ObjTypdef['CORE']==LoadOBJChoose&&await LogConsole(_0x1b8bf7(0xbb)+dec2hex2(_0x36d53b));}$(_0x50c1f3(0x81))[_0x50c1f3(0x180)](function(){var _0x4c0d3c=_0x50c1f3;$(_0x4c0d3c(0x121))[_0x4c0d3c(0x180)]();});var localFile,lastlocalFile,g_file_length=0x0,g_file_data=new Uint8Array(0x400*0x400*0x4);async function BinFileRead(){var _0x560582=_0x50c1f3;LogConsole('file\x20read\x20test\x20begin...','backstage'),localFile=document['getElementById']('BinFileInput')['files'][0x0],LogConsole(localFile,_0x560582(0xd3)),LogConsole(lastlocalFile,_0x560582(0xd3));undefined==lastlocalFile?BinFileChanged=0x1:lastlocalFile[_0x560582(0xe8)]==localFile[_0x560582(0xe8)]&&lastlocalFile[_0x560582(0x117)]==localFile[_0x560582(0x117)]?BinFileChanged=0x0:BinFileChanged=0x1;lastlocalFile=localFile;var _0x56a543=new FileReader();return _0x56a543[_0x560582(0x9e)](localFile),_0x56a543[_0x560582(0x148)]=function(){var _0x802450=_0x560582,_0x431efe=new Uint8Array(_0x56a543['result']),_0x1ff3c5=new Date(localFile[_0x802450(0x117)]);dateTime=_0x1ff3c5[_0x802450(0x172)](),LogConsole(localFile[_0x802450(0xe8)]+_0x802450(0x187)+dateTime);for(var _0x513bb1=0x0;_0x513bb1<_0x431efe['length'];_0x513bb1++){g_file_data[_0x513bb1]=_0x431efe[_0x513bb1];}g_file_length=_0x431efe[_0x802450(0x181)],LogConsole(_0x802450(0x136),_0x802450(0xd3)),document['getElementById'](_0x802450(0x12b))[_0x802450(0x15e)]=_0x802450(0x12f)+localFile[_0x802450(0xe8)];},document[_0x560582(0xc3)](_0x560582(0x10d))['value']=null,0x0;}$(_0x50c1f3(0xb5))['click'](function(){var _0x49a923=_0x50c1f3;$(_0x49a923(0xba))['click']();});async function UPileRead(){var _0x82809b=_0x50c1f3,_0x1a3e22=document[_0x82809b(0xc3)](_0x82809b(0x167))[_0x82809b(0x176)][0x0],_0x420080=_0x1a3e22[_0x82809b(0xe8)];LogConsole(document[_0x82809b(0xc3)](_0x82809b(0x167)),_0x82809b(0xd3)),LogConsole(document[_0x82809b(0xc3)](_0x82809b(0x167))[_0x82809b(0x176)],'backstage'),LogConsole(_0x1a3e22,_0x82809b(0xd3));var _0x406fb0=new FileReader();return _0x406fb0[_0x82809b(0x9e)](_0x1a3e22),_0x406fb0['onload']=function(){var _0x588b2e=_0x82809b;LogConsole(_0x406fb0[_0x588b2e(0xf1)],_0x588b2e(0xd3));var _0x2643fc=_0x406fb0[_0x588b2e(0xf1)];window['XMLHttpRequest']?xhr=new XMLHttpRequest():xhr=new ActiveXObject(_0x588b2e(0xf4)),xhr[_0x588b2e(0x108)]=!![],xhr[_0x588b2e(0x135)]('readystatechange',function(){var _0x3056c7=_0x588b2e;this[_0x3056c7(0xa5)]==0x4&&this[_0x3056c7(0x17f)]==0xc8&&LogConsole(this[_0x3056c7(0x168)]),this['status']!=0xc8&&this[_0x3056c7(0x17f)]!=0x0&&LogConsole(_0x3056c7(0xd0)+this[_0x3056c7(0x17f)]);}),xhr[_0x588b2e(0x114)](_0x588b2e(0x178),_0x588b2e(0xde)),xhr[_0x588b2e(0x15c)](_0x588b2e(0x93),Directory[_0x588b2e(0x9b)]),xhr['setRequestHeader'](_0x588b2e(0xec),LinkCode[_0x588b2e(0x9b)]),xhr[_0x588b2e(0x15c)]('Name',_0x420080),xhr['setRequestHeader'](_0x588b2e(0x17a),'application/octet-stream'),xhr['send'](_0x2643fc),LogConsole(_0x588b2e(0x136),'backstage'),document[_0x588b2e(0xc3)](_0x588b2e(0x156))[_0x588b2e(0x15e)]='<i\x20class\x20=\x20\x22layui-icon\x20layui-icon-upload-drag\x22\x20></i>\x20'+_0x420080;},document['getElementById'](_0x82809b(0x167))['value']=null,0x0;}$(_0x50c1f3(0xc8))['click'](function(){var _0x3382ac=_0x50c1f3;$('#MultiBinFileInput1')[_0x3382ac(0x180)]();}),$(_0x50c1f3(0x184))[_0x50c1f3(0x180)](function(){var _0x277d89=_0x50c1f3;$('#MultiBinFileInput2')[_0x277d89(0x180)]();}),$(_0x50c1f3(0x8c))['click'](function(){var _0x5ea783=_0x50c1f3;$(_0x5ea783(0x179))[_0x5ea783(0x180)]();}),$(_0x50c1f3(0xb6))[_0x50c1f3(0x180)](function(){var _0x1b3ca9=_0x50c1f3;$('#MultiBinFileInput4')[_0x1b3ca9(0x180)]();}),$(_0x50c1f3(0xd5))['click'](function(){$('#MultiBinFileInput5')['click']();});async function MultiBinFileRead(_0x3a77db){var _0x10b678=_0x50c1f3;LogConsole(_0x10b678(0xb1),_0x10b678(0xd3));var _0x2cdda4=document[_0x10b678(0xc3)](_0x3a77db)[_0x10b678(0x176)][0x0];LogConsole(_0x2cdda4,_0x10b678(0xd3));var _0x8845a5=new Date(_0x2cdda4['lastModified']);dateTime=_0x8845a5[_0x10b678(0x172)](),LogConsole(_0x2cdda4[_0x10b678(0xe8)]+'\x09:\x20\x20'+dateTime);var _0x3e8245=new FileReader();return _0x3e8245[_0x10b678(0x9e)](_0x2cdda4),_0x3e8245[_0x10b678(0x148)]=function(){var _0x41cd03=_0x10b678,_0x59341b=new Uint8Array(_0x3e8245[_0x41cd03(0xf1)]);if(_0x3a77db==_0x41cd03(0xcf)){for(var _0x2a79df=0x0;_0x2a79df<_0x59341b[_0x41cd03(0x181)];_0x2a79df++){MultiBinFileData1[_0x2a79df]=_0x59341b[_0x2a79df];}MultiBinFileLen1=_0x59341b[_0x41cd03(0x181)],MultiBinFileName1=_0x2cdda4[_0x41cd03(0xe8)],document[_0x41cd03(0xc3)](_0x41cd03(0x123))[_0x41cd03(0x9b)]=_0x2cdda4['name'];}else{if(_0x3a77db==_0x41cd03(0x13a)){for(var _0x2a79df=0x0;_0x2a79df<_0x59341b[_0x41cd03(0x181)];_0x2a79df++){MultiBinFileData2[_0x2a79df]=_0x59341b[_0x2a79df];}MultiBinFileLen2=_0x59341b['length'],MultiBinFileName2=_0x2cdda4['name'],document[_0x41cd03(0xc3)](_0x41cd03(0x14c))[_0x41cd03(0x9b)]=_0x2cdda4[_0x41cd03(0xe8)];}else{if(_0x3a77db==_0x41cd03(0x13d)){for(var _0x2a79df=0x0;_0x2a79df<_0x59341b[_0x41cd03(0x181)];_0x2a79df++){MultiBinFileData3[_0x2a79df]=_0x59341b[_0x2a79df];}MultiBinFileLen3=_0x59341b[_0x41cd03(0x181)],MultiBinFileName3=_0x2cdda4[_0x41cd03(0xe8)],document[_0x41cd03(0xc3)](_0x41cd03(0x159))[_0x41cd03(0x9b)]=_0x2cdda4['name'];}else{if(_0x3a77db==_0x41cd03(0x11b)){for(var _0x2a79df=0x0;_0x2a79df<_0x59341b[_0x41cd03(0x181)];_0x2a79df++){MultiBinFileData4[_0x2a79df]=_0x59341b[_0x2a79df];}MultiBinFileLen4=_0x59341b[_0x41cd03(0x181)],MultiBinFileName4=_0x2cdda4['name'],document[_0x41cd03(0xc3)](_0x41cd03(0x10e))[_0x41cd03(0x9b)]=_0x2cdda4[_0x41cd03(0xe8)];}else{if(_0x3a77db==_0x41cd03(0x86)){for(var _0x2a79df=0x0;_0x2a79df<_0x59341b[_0x41cd03(0x181)];_0x2a79df++){MultiBinFileData5[_0x2a79df]=_0x59341b[_0x2a79df];}MultiBinFileLen5=_0x59341b[_0x41cd03(0x181)],MultiBinFileName5=_0x2cdda4[_0x41cd03(0xe8)],document[_0x41cd03(0xc3)](_0x41cd03(0xa6))['value']=_0x2cdda4[_0x41cd03(0xe8)];}else return LogConsole(_0x41cd03(0xa1)),ERROR_Typdef['ERANGE'];}}}}document[_0x41cd03(0xc3)](_0x3a77db)[_0x41cd03(0x9b)]=null,LogConsole('file\x20read\x20end...',_0x41cd03(0xd3));},0x0;}async function usb_evk_getpc_mcu(_0x3917c7,_0x551718){var _0x2e8780=_0x50c1f3;if(USBConnectedFlag!=0x1)return LogConsole(_0x2e8780(0x16e),'Console2'),ERROR_Typdef['EPERM'];if(TL_ModeTypdef['EVK']==_0x3917c7){if(CHIP_91==_0x551718)return LogConsole(_0x2e8780(0x169),_0x2e8780(0x129)),ERROR_Typdef['ESUPPORT'];await usb_evk_set_chip(_0x551718),await usb_evk_read(0x6bc,0x4);}else{if(TL_ModeTypdef['USB']==_0x3917c7)return LogConsole(_0x2e8780(0xed)),ERROR_Typdef['ESUPPORT'];}PC=g_evk_rcv_data[0x0]+g_evk_rcv_data[0x1]*0x100+g_evk_rcv_data[0x2]*0x100*0x100+g_evk_rcv_data[0x3]*0x100*0x100*0x100,LogConsole('\x20pc\x20:\x200x'+dec2hex(PC,0x6),_0x2e8780(0x129));for(var _0x1c061f=0x0;_0x1c061f<LstFileLineCount;_0x1c061f++){if(PC>=hex2int(LineAddrSort[_0x1c061f])&&PC<hex2int(LineAddrSort[_0x1c061f+0x1])){LogConsole(LineFunctionSort[_0x1c061f],_0x2e8780(0x129));var _0x328466=dec2hex2(PC);for(var _0x59ef61=LineCount[_0x1c061f];_0x59ef61<LineCount[_0x1c061f+0x1];_0x59ef61++){LstFileRow[_0x59ef61][_0x2e8780(0xad)](_0x328466)>0x0&&LstFileRow[_0x59ef61]['indexOf'](_0x328466+'\x20<')<=0x0&&LogConsole(LstFileRow[_0x59ef61],_0x2e8780(0x129));}}}return 0x0;}var LstFileRow=0x0,ValidAnalyNumVar=0x0,ValidAnalyNumFun=0x0,AnalyNameVar=new Array(),AnalyAddrVar=new Array(),AnalyLenVar=new Array(),AnalyNameFun=new Array(),AnalyAddrFun=new Array(),AnalyLenFun=new Array(),Addr=new Array(),VariableName2=new Array(),OriginalAddr2=new Array(),Addr2=new Array(),Len2=new Array(),FunctionVariableName2=new Array(),FunctionOriginalAddr2=new Array(),FunctionLen2=new Array(),Data=new Array(),LineCount=new Array(),LineAddrSort=new Array(),LineFunctionSort=new Array(),LstFileLineCount=0x0;$('#LstFileImport')['click'](function(){var _0x2cf18d=_0x50c1f3;$(_0x2cf18d(0xe7))[_0x2cf18d(0x180)]();});function LstFileRead(){var _0x4a3125=_0x50c1f3;ValidAnalyNumVar=0x0,ValidAnalyNumFun=0x0;var _0x5b58ea=document[_0x4a3125(0xc3)]('LstFileInput')[_0x4a3125(0x176)][0x0];LogConsole(_0x5b58ea,_0x4a3125(0xd3));var _0x2a8b16=new FileReader();_0x2a8b16['readAsText'](_0x5b58ea),_0x2a8b16['onload']=function(){var _0x5789a9=_0x4a3125;LogConsole(_0x5b58ea[_0x5789a9(0xe8)],_0x5789a9(0xd3));var _0x25a7c2=_0x2a8b16[_0x5789a9(0xf1)];LstFileRow=_0x25a7c2[_0x5789a9(0x17b)]('\x0a'),LogConsole(_0x25a7c2[_0x5789a9(0x181)],_0x5789a9(0xd3)),LogConsole(_0x5789a9(0x136),_0x5789a9(0xd3)),LogConsole(LstFileRow[_0x5789a9(0x181)],_0x5789a9(0xd3));var _0x551871=RegExp(/SYMBOL TABLE:/),_0x47212e=RegExp(/Disassembly of section .vectors:/),_0x371f0a=RegExp(/Disassembly of section .ram_boot:/),_0x287b36=RegExp(/Disassembly of section .rodata:/),_0x4f5638=RegExp(/>:/),_0x4cbd92=RegExp(/00000000/),_0x329a97=RegExp(/data_no_init/),_0x419938=RegExp(/\.data/),_0x59ddb9=RegExp(/\.retention_data/),_0x13f6b7=RegExp(/\.sbss/),_0x576804=RegExp(/\.bss/),_0x507911=RegExp(/ l/),_0x32d02d=RegExp(/\.ram_code/),_0x156dba=RegExp(/\.text/),_0x5ca9a1=RegExp(/\.hidden/);for(var _0x297c0c=0x0;_0x297c0c<LstFileRow[_0x5789a9(0x181)];_0x297c0c++){if(LstFileRow[_0x297c0c][_0x5789a9(0xf3)](_0x551871))var _0x29014b=_0x297c0c;}for(var _0x297c0c=_0x29014b;_0x297c0c<LstFileRow[_0x5789a9(0x181)];_0x297c0c++){if(LstFileRow[_0x297c0c][_0x5789a9(0xf3)](_0x47212e)||LstFileRow[_0x297c0c][_0x5789a9(0xf3)](_0x371f0a))var _0x1d2570=_0x297c0c;}for(var _0x297c0c=_0x1d2570;_0x297c0c<LstFileRow[_0x5789a9(0x181)];_0x297c0c++){if(LstFileRow[_0x297c0c][_0x5789a9(0xf3)](_0x287b36))var _0x3361e5=_0x297c0c;}isNaN(_0x3361e5)&&(_0x3361e5=LstFileRow[_0x5789a9(0x181)]+0x1);_0x29014b=_0x29014b+0x1,_0x1d2570=_0x1d2570-0x3,_0x3361e5=_0x3361e5-0x1,LogConsole(_0x5789a9(0xe0)+_0x29014b,_0x5789a9(0xd3)),LogConsole(_0x5789a9(0x164)+_0x1d2570,_0x5789a9(0xd3)),LogConsole(_0x5789a9(0x85)+_0x3361e5,_0x5789a9(0xd3)),LstFileLineCount=0x0;for(var _0x297c0c=_0x1d2570+0x5;_0x297c0c<_0x3361e5;_0x297c0c++){LstFileRow[_0x297c0c][_0x5789a9(0xf3)](_0x4f5638)&&(LineCount[LstFileLineCount]=_0x297c0c,LineAddrSort[LstFileLineCount]=LstFileRow[_0x297c0c][_0x5789a9(0x107)](0x0,0x8),LineFunctionSort[LstFileLineCount]=LstFileRow[_0x297c0c],LstFileLineCount++);}for(var _0x552f08=_0x29014b;_0x552f08<_0x1d2570;_0x552f08++){if(!LstFileRow[_0x552f08]['match'](_0x4cbd92)&&!LstFileRow[_0x552f08][_0x5789a9(0xf3)](_0x329a97)){if(LstFileRow[_0x552f08][_0x5789a9(0xf3)](_0x419938)||LstFileRow[_0x552f08][_0x5789a9(0xf3)](_0x59ddb9)||LstFileRow[_0x552f08][_0x5789a9(0xf3)](_0x13f6b7)||LstFileRow[_0x552f08][_0x5789a9(0xf3)](_0x576804)){AnalyAddrVar[ValidAnalyNumVar]=LstFileRow[_0x552f08][_0x5789a9(0x107)](0x0,0x8);var _0x517d0f=LstFileRow[_0x552f08]['substr'](0x0,0x8);if(CHIP_91==ChipType){if(hex2int(_0x517d0f)>=0x0&&hex2int(_0x517d0f)<=0x20000)Addr[ValidAnalyNumVar]=hex2int(_0x517d0f)+hex2int(_0x5789a9(0x12a));else hex2int(_0x517d0f)>=0x80000&&hex2int(_0x517d0f)<=0xa0000&&(Addr[ValidAnalyNumVar]=hex2int(_0x517d0f)+hex2int(_0x5789a9(0x102)));}else Addr[ValidAnalyNumVar]=hex2int(_0x517d0f);if(LstFileRow[_0x552f08][_0x5789a9(0xf3)](_0x419938))AnalyNameVar[ValidAnalyNumVar]=LstFileRow[_0x552f08]['substr'](0x20),AnalyNameVar[ValidAnalyNumVar]['match'](_0x5ca9a1)&&(AnalyNameVar[ValidAnalyNumVar]=AnalyNameVar[ValidAnalyNumVar][_0x5789a9(0x107)](0x7)),AnalyLenVar[ValidAnalyNumVar]=LstFileRow[_0x552f08][_0x5789a9(0x107)](0x17,0x8);else{if(LstFileRow[_0x552f08][_0x5789a9(0xf3)](_0x59ddb9))AnalyNameVar[ValidAnalyNumVar]=LstFileRow[_0x552f08][_0x5789a9(0x107)](0x2a),AnalyNameVar[ValidAnalyNumVar][_0x5789a9(0xf3)](_0x5ca9a1)&&(AnalyNameVar[ValidAnalyNumVar]=AnalyNameVar[ValidAnalyNumVar][_0x5789a9(0x107)](0x7)),AnalyLenVar[ValidAnalyNumVar]=LstFileRow[_0x552f08]['substr'](0x21,0x8);else{if(LstFileRow[_0x552f08]['match'](_0x13f6b7))AnalyNameVar[ValidAnalyNumVar]=LstFileRow[_0x552f08]['substr'](0x20),AnalyNameVar[ValidAnalyNumVar][_0x5789a9(0xf3)](_0x5ca9a1)&&(AnalyNameVar[ValidAnalyNumVar]=AnalyNameVar[ValidAnalyNumVar][_0x5789a9(0x107)](0x7)),AnalyLenVar[ValidAnalyNumVar]=LstFileRow[_0x552f08][_0x5789a9(0x107)](0x17,0x8);else LstFileRow[_0x552f08][_0x5789a9(0xf3)](_0x576804)&&(AnalyNameVar[ValidAnalyNumVar]=LstFileRow[_0x552f08][_0x5789a9(0x107)](0x1f),AnalyNameVar[ValidAnalyNumVar][_0x5789a9(0xf3)](_0x5ca9a1)&&(AnalyNameVar[ValidAnalyNumVar]=AnalyNameVar[ValidAnalyNumVar][_0x5789a9(0x107)](0x7)),AnalyLenVar[ValidAnalyNumVar]=LstFileRow[_0x552f08][_0x5789a9(0x107)](0x16,0x8));}}ValidAnalyNumVar=ValidAnalyNumVar+0x1;}else{if(LstFileRow[_0x552f08]['match'](_0x32d02d)||LstFileRow[_0x552f08]['match'](_0x156dba)){AnalyAddrFun[ValidAnalyNumFun]=LstFileRow[_0x552f08][_0x5789a9(0x107)](0x0,0x8);if(LstFileRow[_0x552f08][_0x5789a9(0xf3)](_0x32d02d))AnalyNameFun[ValidAnalyNumFun]=LstFileRow[_0x552f08][_0x5789a9(0x107)](0x24),AnalyNameFun[ValidAnalyNumFun]['match'](_0x5ca9a1)&&(AnalyNameFun[ValidAnalyNumFun]=AnalyNameFun[ValidAnalyNumFun][_0x5789a9(0x107)](0x7)),AnalyLenFun[ValidAnalyNumFun]=LstFileRow[_0x552f08][_0x5789a9(0x107)](0x1c,0x8);else LstFileRow[_0x552f08][_0x5789a9(0xf3)](_0x156dba)&&(AnalyNameFun[ValidAnalyNumFun]=LstFileRow[_0x552f08][_0x5789a9(0x107)](0x20),AnalyNameFun[ValidAnalyNumFun][_0x5789a9(0xf3)](_0x5ca9a1)&&(AnalyNameFun[ValidAnalyNumFun]=AnalyNameFun[ValidAnalyNumFun][_0x5789a9(0x107)](0x7)),AnalyLenFun[ValidAnalyNumFun]=LstFileRow[_0x552f08]['substr'](0x18,0x8));ValidAnalyNumFun=ValidAnalyNumFun+0x1;}}}}var _0x517d0f;for(var _0x5d23e8=0x0;_0x5d23e8<ValidAnalyNumVar;_0x5d23e8++){VariableName2[_0x5d23e8]=AnalyNameVar[_0x5d23e8],OriginalAddr2[_0x5d23e8]=AnalyAddrVar[_0x5d23e8],Addr2[_0x5d23e8]=Addr[_0x5d23e8],Len2[_0x5d23e8]=AnalyLenVar[_0x5d23e8];}for(var _0x16fe9d=0x0;_0x16fe9d<ValidAnalyNumFun;_0x16fe9d++){FunctionVariableName2[_0x16fe9d]=AnalyNameFun[_0x16fe9d],FunctionOriginalAddr2[_0x16fe9d]=AnalyAddrFun[_0x16fe9d],FunctionLen2[_0x16fe9d]=AnalyLenFun[_0x16fe9d];}for(var _0x44f49d=0x0;_0x44f49d<ValidAnalyNumVar;_0x44f49d++){for(var _0x502e2c=0x0;_0x502e2c<ValidAnalyNumVar-0x1-_0x44f49d;_0x502e2c++){VariableName2[_0x502e2c]>VariableName2[_0x502e2c+0x1]&&(_0x517d0f=VariableName2[_0x502e2c+0x1],VariableName2[_0x502e2c+0x1]=VariableName2[_0x502e2c],VariableName2[_0x502e2c]=_0x517d0f,_0x517d0f=OriginalAddr2[_0x502e2c+0x1],OriginalAddr2[_0x502e2c+0x1]=OriginalAddr2[_0x502e2c],OriginalAddr2[_0x502e2c]=_0x517d0f,_0x517d0f=Addr2[_0x502e2c+0x1],Addr2[_0x502e2c+0x1]=Addr2[_0x502e2c],Addr2[_0x502e2c]=_0x517d0f,_0x517d0f=Len2[_0x502e2c+0x1],Len2[_0x502e2c+0x1]=Len2[_0x502e2c],Len2[_0x502e2c]=_0x517d0f);}}for(var _0x28d54a=0x0;_0x28d54a<ValidAnalyNumFun;_0x28d54a++){for(var _0x297c0c=0x0;_0x297c0c<ValidAnalyNumFun-0x1-_0x28d54a;_0x297c0c++){FunctionVariableName2[_0x297c0c]>FunctionVariableName2[_0x297c0c+0x1]&&(_0x517d0f=FunctionVariableName2[_0x297c0c+0x1],FunctionVariableName2[_0x297c0c+0x1]=FunctionVariableName2[_0x297c0c],FunctionVariableName2[_0x297c0c]=_0x517d0f,_0x517d0f=FunctionOriginalAddr2[_0x297c0c+0x1],FunctionOriginalAddr2[_0x297c0c+0x1]=FunctionOriginalAddr2[_0x297c0c],FunctionOriginalAddr2[_0x297c0c]=_0x517d0f,_0x517d0f=FunctionLen2[_0x297c0c+0x1],FunctionLen2[_0x297c0c+0x1]=FunctionLen2[_0x297c0c],FunctionLen2[_0x297c0c]=_0x517d0f);}}var _0x37ecae=new Array();for(var _0x6216a=0x0;_0x6216a<ValidAnalyNumVar;_0x6216a++){_0x37ecae[_0x6216a]=hex2int(AnalyAddrVar[_0x6216a]);}for(var _0x44f49d=0x0;_0x44f49d<ValidAnalyNumVar;_0x44f49d++){for(var _0x502e2c=0x0;_0x502e2c<ValidAnalyNumVar-0x1-_0x44f49d;_0x502e2c++){_0x37ecae[_0x502e2c]>_0x37ecae[_0x502e2c+0x1]&&(_0x517d0f=_0x37ecae[_0x502e2c+0x1],_0x37ecae[_0x502e2c+0x1]=_0x37ecae[_0x502e2c],_0x37ecae[_0x502e2c]=_0x517d0f,_0x517d0f=Addr[_0x502e2c+0x1],Addr[_0x502e2c+0x1]=Addr[_0x502e2c],Addr[_0x502e2c]=_0x517d0f,_0x517d0f=AnalyNameVar[_0x502e2c+0x1],AnalyNameVar[_0x502e2c+0x1]=AnalyNameVar[_0x502e2c],AnalyNameVar[_0x502e2c]=_0x517d0f,_0x517d0f=AnalyLenVar[_0x502e2c+0x1],AnalyLenVar[_0x502e2c+0x1]=AnalyLenVar[_0x502e2c],AnalyLenVar[_0x502e2c]=_0x517d0f);}}for(var _0x478020=0x0;_0x478020<ValidAnalyNumVar;_0x478020++){AnalyAddrVar[_0x478020]=dec2hex(_0x37ecae[_0x478020],0x8);}var _0x2d8398=new Array();for(var _0x11d9a2=0x0;_0x11d9a2<ValidAnalyNumFun;_0x11d9a2++){_0x2d8398[_0x11d9a2]=hex2int(AnalyAddrFun[_0x11d9a2]);}for(var _0x28d54a=0x0;_0x28d54a<ValidAnalyNumFun;_0x28d54a++){for(var _0x297c0c=0x0;_0x297c0c<ValidAnalyNumFun-0x1-_0x28d54a;_0x297c0c++){_0x2d8398[_0x297c0c]>_0x2d8398[_0x297c0c+0x1]&&(_0x517d0f=_0x2d8398[_0x297c0c+0x1],_0x2d8398[_0x297c0c+0x1]=_0x2d8398[_0x297c0c],_0x2d8398[_0x297c0c]=_0x517d0f,_0x517d0f=AnalyNameFun[_0x297c0c+0x1],AnalyNameFun[_0x297c0c+0x1]=AnalyNameFun[_0x297c0c],AnalyNameFun[_0x297c0c]=_0x517d0f,_0x517d0f=AnalyLenFun[_0x297c0c+0x1],AnalyLenFun[_0x297c0c+0x1]=AnalyLenFun[_0x297c0c],AnalyLenFun[_0x297c0c]=_0x517d0f);}}for(var _0x11d9a2=0x0;_0x11d9a2<ValidAnalyNumFun;_0x11d9a2++){AnalyAddrFun[_0x11d9a2]=dec2hex(_0x2d8398[_0x11d9a2],0x8);}},document[_0x4a3125(0xc3)](_0x4a3125(0xe6))[_0x4a3125(0x9b)]=null;}async function RefreshDatas(){var _0x41b94e=_0x50c1f3;if(0x0==BurningEVKBusy){BurningEVKBusy=0x1;if(0x1==ShowVariableFlag){if(USBConnectedFlag!=0x1)return await LogConsole('USB\x20device\x20not\x20connected!'),BurningEVKBusy=0x0,ERROR_Typdef[_0x41b94e(0x118)];await LogConsole(_0x41b94e(0xd9));if(ValidAnalyNumVar!=0x0){if(undefined==Addr[0x0])return await LogConsole(_0x41b94e(0xea),_0x41b94e(0x129)),BurningEVKBusy=0x0,ERROR_Typdef[_0x41b94e(0xe3)];else{for(var _0x40ca47=0x0;_0x40ca47<ValidAnalyNumVar;_0x40ca47++){Data[_0x40ca47]='';}await usb_evk_set_chip(ChipType);if(0x1==LstFileSortMode)for(var _0x40ca47=0x0;_0x40ca47<ValidAnalyNumVar;_0x40ca47++){await usb_evk_read(Addr[_0x40ca47],hex2int(AnalyLenVar[_0x40ca47]));for(var _0x12e859=0x0;_0x12e859<hex2int(AnalyLenVar[_0x40ca47]);_0x12e859++){Data[_0x40ca47]+=dec2hex(g_rcv_data[_0x12e859],0x2)+'\x20';}}else for(var _0x40ca47=0x0;_0x40ca47<ValidAnalyNumVar;_0x40ca47++){await usb_evk_read(Addr2[_0x40ca47],hex2int(Len2[_0x40ca47]));for(var _0x12e859=0x0;_0x12e859<hex2int(Len2[_0x40ca47]);_0x12e859++){Data[_0x40ca47]+=dec2hex(g_rcv_data[_0x12e859],0x2)+'\x20';}}}}else return await LogConsole('plese\x20select\x20file\x20or\x20chip\x20type\x20correctly!','Console2'),BurningEVKBusy=0x0,ERROR_Typdef[_0x41b94e(0xe3)];var _0x418787=_0x41b94e(0x8d);_0x418787+='<thead>\x0a'+_0x41b94e(0x160)+_0x41b94e(0x127)+_0x41b94e(0xf2)+'\x20\x20\x20\x20<th>Data(LSB\x20first)</th>\x0a'+_0x41b94e(0x15f);var _0x3d8e49=document[_0x41b94e(0xc3)](_0x41b94e(0x183));if(0x1==LstFileSortMode)for(var _0x12e859=0x0;_0x12e859<ValidAnalyNumVar;_0x12e859++){_0x418787+=_0x41b94e(0x143)+_0x41b94e(0x12e)+AnalyNameVar[_0x12e859]+'</td>\x0a'+_0x41b94e(0x12e)+AnalyAddrVar[_0x12e859]+_0x41b94e(0xc2)+_0x41b94e(0x12e)+AnalyLenVar[_0x12e859]+'</td>\x0a'+'\x20\x20\x20\x20<td>'+Data[_0x12e859]+'</td>\x0a'+_0x41b94e(0x14a);}else for(var _0x12e859=0x0;_0x12e859<ValidAnalyNumVar;_0x12e859++){_0x418787+=_0x41b94e(0x143)+_0x41b94e(0x12e)+VariableName2[_0x12e859]+_0x41b94e(0xc2)+'\x20\x20\x20\x20<td>'+OriginalAddr2[_0x12e859]+_0x41b94e(0xc2)+_0x41b94e(0x12e)+Len2[_0x12e859]+_0x41b94e(0xc2)+_0x41b94e(0x12e)+Data[_0x12e859]+_0x41b94e(0xc2)+_0x41b94e(0x14a);}_0x418787+='</table>',_0x3d8e49['innerHTML']=_0x418787,RefreshFlag=0x1,await AutoZoom(),await LogConsole('Data\x20list\x20refresh\x20complete',_0x41b94e(0x129));}else{if(ValidAnalyNumFun!=0x0){if(undefined==AnalyAddrFun[0x0])return await LogConsole('plese\x20select\x20file\x20or\x20chip\x20type\x20correctly!',_0x41b94e(0x129)),BurningEVKBusy=0x0,ERROR_Typdef['ERANGE'];}else return await LogConsole(_0x41b94e(0xea),'Console2'),BurningEVKBusy=0x0,ERROR_Typdef[_0x41b94e(0xe3)];var _0x418787='<table\x20border\x20=\x20\x221\x22>';_0x418787+=_0x41b94e(0x7c)+_0x41b94e(0x160)+_0x41b94e(0x127)+_0x41b94e(0xf2)+'\x20\x20</thead>';var _0x3d8e49=document[_0x41b94e(0xc3)](_0x41b94e(0x183));if(0x1==LstFileSortMode)for(var _0x12e859=0x0;_0x12e859<ValidAnalyNumFun;_0x12e859++){_0x418787+='<tr>\x0a'+'\x20\x20\x20\x20<td>'+AnalyNameFun[_0x12e859]+'</td>\x0a'+'\x20\x20\x20\x20<td>'+AnalyAddrFun[_0x12e859]+_0x41b94e(0xc2)+_0x41b94e(0x12e)+AnalyLenFun[_0x12e859]+_0x41b94e(0xc2)+_0x41b94e(0x14a);}else for(var _0x12e859=0x0;_0x12e859<ValidAnalyNumFun;_0x12e859++){_0x418787+=_0x41b94e(0x143)+_0x41b94e(0x12e)+FunctionVariableName2[_0x12e859]+_0x41b94e(0xc2)+'\x20\x20\x20\x20<td>'+FunctionOriginalAddr2[_0x12e859]+_0x41b94e(0xc2)+'\x20\x20\x20\x20<td>'+FunctionLen2[_0x12e859]+_0x41b94e(0xc2)+_0x41b94e(0x14a);}_0x418787+=_0x41b94e(0x111),_0x3d8e49[_0x41b94e(0x15e)]=_0x418787,RefreshFlag=0x1,await AutoZoom(),await LogConsole(_0x41b94e(0x15b),_0x41b94e(0x129));}BurningEVKBusy=0x0;}else return LogConsole(_0x41b94e(0x16d)),ERROR_Typdef[_0x41b94e(0xda)];return 0x0;}
+var CHIP_8366   = 0x01;
+var CHIP_8368   = 0x02;
+var CHIP_83671  = 0x03;
+var CHIP_83672  = 0x04;
+var CHIP_83691  = 0x05;
+var CHIP_83692  = 0x06;
+var CHIP_8232   = 0x07;
+var CHIP_8233   = 0x08;
+var CHIP_8266   = 0x09;
+var CHIP_8267   = 0x0a;
+var CHIP_8269   = 0x0b;
+var CHIP_8255   = 0x0c;
+var CHIP_8258   = 0x0d;
+var CHIP_8278   = 0x0e;
+var CHIP_91     = 0x0f;
+
+var Mars_B91    = 0x0f;
+var ChipNumber  = 0x10;
+
+var UCMD_CORE   = 0x0100;
+var UCMD_FRD    = 0x8000;
+var UCMD_FSWIRE = 0x4000;
+
+var ChipName   = new Array(ChipNumber);
+var LoadBinary = new Array(ChipNumber);
+
+ChipName[CHIP_8366]  = "8366";     ChipName[CHIP_8368]  = "8368";     
+ChipName[CHIP_83671] = "8367_i";   ChipName[CHIP_83672] = "8367_e";   
+ChipName[CHIP_83691] = "8369_i";   ChipName[CHIP_83692] = "8369_e"; 
+ChipName[CHIP_8232]  = "8232";     ChipName[CHIP_8233]  = "8233";		
+ChipName[CHIP_8266]  = "8266";     ChipName[CHIP_8267]  = "8267";     
+ChipName[CHIP_8269]  = "8269";     ChipName[CHIP_8255]  = "8255";
+ChipName[CHIP_8258]  = "8258";     ChipName[CHIP_8278]  = "8278";   
+ChipName[CHIP_91]	 = "B91";
+
+LoadBinary[CHIP_8366]  = dut_8366_flash_v0244;	  
+LoadBinary[CHIP_8368]  = dut_8368_flash_v0246;   
+LoadBinary[CHIP_83671] = dut_8231_flash_i_v0002;
+LoadBinary[CHIP_83672] = dut_8231_flash_e_v0002;  
+LoadBinary[CHIP_83691] = dut_8231_flash_i_v0002;   
+LoadBinary[CHIP_83692] = dut_8231_flash_e_v0002; 
+LoadBinary[CHIP_8232]  = dut_8232_flash_v0002;     
+LoadBinary[CHIP_8233]  = dut_8233_flash_v0002;
+LoadBinary[CHIP_8266]  = dut_8266_flash_v0245;    
+LoadBinary[CHIP_8267]  = dut_8267_flash_v0002;     
+LoadBinary[CHIP_8269]  = dut_8269_flash_v0002;  	 
+LoadBinary[CHIP_8255]  = dut_8255_flash_v0002;
+LoadBinary[CHIP_8258]  = dut_8258_flash_v0005;     
+LoadBinary[CHIP_8278]  = dut_8278_flash_v0001;    	 
+LoadBinary[CHIP_91]    = dut_9518_flash_v0001;  
+ 
+var lock_flash_buffer =  new Uint8Array([	
+    0x0e,0x80,0x01,0x00,0x00,0x00,0x00,0x00,0x4b,0x4e,0x4c,0x54,0x00,0x01,0x88,0x00,
+    0x56,0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+    0x24,0x08,0x25,0x09,0x25,0x0a,0x91,0x02,0x02,0xca,0x08,0x50,0x04,0xb1,0xfa,0x87,
+    0x14,0x08,0xc0,0x6b,0x15,0x08,0x85,0x06,0x13,0x08,0xc0,0x6b,0x14,0x08,0x85,0x06,
+    0x00,0xa0,0x14,0x09,0x14,0x0a,0x91,0x02,0x02,0xca,0x08,0x50,0x04,0xb1,0xfa,0x87,
+    0x13,0x09,0x14,0x0a,0x91,0x02,0x02,0xca,0x08,0x50,0x04,0xb1,0xfa,0x87,0x0f,0x09,
+    0x03,0xa0,0x08,0x40,0x04,0xa0,0x48,0x40,0x0f,0x09,0x10,0x0a,0x10,0x0b,0x9a,0x02,
+    0x04,0xca,0x08,0x58,0x10,0x50,0x04,0xb1,0x04,0xb2,0xf8,0x87,0x00,0x90,0x5e,0x98,
+    0xfe,0x87,0xc0,0x46,0x12,0x00,0x00,0x00,0x13,0x00,0x00,0x00,0x80,0x9f,0x80,0x00,
+    0xc0,0x9f,0x80,0x00,0x00,0x8c,0x80,0x00,0x04,0x8c,0x80,0x00,0x0c,0x06,0x80,0x00,
+    0x00,0x83,0x80,0x00,0x00,0x84,0x80,0x00,0x84,0x01,0x00,0x00,0x00,0x8c,0x80,0x00,
+    0x00,0x8c,0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x8c,0x80,0x00,0x00,0xc0,0x80,0x00,
+    0x00,0x65,0xff,0x64,0xd8,0x6b,0x41,0x06,0x4a,0x06,0x53,0x06,0x5c,0x06,0x65,0x06,
+    0x3f,0x64,0x00,0x90,0x31,0x98,0x3f,0x6c,0x88,0x06,0x91,0x06,0x9a,0x06,0xa3,0x06,
+    0xac,0x06,0xd0,0x6b,0xff,0x6c,0x00,0x69,0xc0,0x46,0xc0,0x46,0xc0,0x46,0xc0,0x46,
+    0xf0,0x65,0x00,0xa9,0x1d,0xcd,0x03,0xec,0x80,0xa0,0x04,0xf4,0x00,0xa2,0x40,0xa6,
+    0x3f,0xa7,0xa4,0x06,0x03,0x80,0x01,0xb2,0x04,0xb3,0x8a,0x02,0x11,0xc0,0x5d,0x48,
+    0x1c,0x48,0x2d,0xf2,0x25,0x03,0xdc,0x48,0x98,0x48,0x26,0x02,0xf3,0xc0,0x3c,0x00,
+    0x03,0xac,0xf0,0xc1,0x64,0x06,0x25,0x03,0x01,0xb2,0x28,0x40,0x04,0xb3,0x8a,0x02,
+    0xed,0xc1,0x08,0xec,0xf0,0x6d,0xc0,0x46,0x70,0x07,0xc0,0x46,0x00,0x65,0x06,0x0b,
+    0x00,0xa2,0x1a,0x40,0x05,0x08,0x08,0xa1,0xff,0x97,0xd2,0x9f,0x04,0x0b,0x1a,0x58,
+    0x01,0xb2,0x1a,0x50,0xfb,0x87,0xc0,0x46,0x73,0x00,0x80,0x00,0x64,0x01,0x00,0x00,
+    0x00,0x8c,0x80,0x00,0x0d,0x00,0x01,0xc3,0x0d,0x00,0x00,0xc3,0x0c,0x00,0x06,0xc3,
+    0x0d,0x00,0x01,0xc3,0x0d,0x00,0x00,0xc3,0x0c,0x00,0x01,0xc3,0x0c,0x00,0x7e,0xc3,
+    0x0d,0x00,0x01,0xc3]);
+
+var unlock_flash_buffer =  new Uint8Array([	
+    0x0e,0x80,0x01,0x00,0x00,0x00,0x00,0x00,0x4b,0x4e,0x4c,0x54,0x00,0x01,0x88,0x00,
+    0x56,0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+    0x24,0x08,0x25,0x09,0x25,0x0a,0x91,0x02,0x02,0xca,0x08,0x50,0x04,0xb1,0xfa,0x87,
+    0x14,0x08,0xc0,0x6b,0x15,0x08,0x85,0x06,0x13,0x08,0xc0,0x6b,0x14,0x08,0x85,0x06,
+    0x00,0xa0,0x14,0x09,0x14,0x0a,0x91,0x02,0x02,0xca,0x08,0x50,0x04,0xb1,0xfa,0x87,
+    0x13,0x09,0x14,0x0a,0x91,0x02,0x02,0xca,0x08,0x50,0x04,0xb1,0xfa,0x87,0x0f,0x09,
+    0x03,0xa0,0x08,0x40,0x04,0xa0,0x48,0x40,0x0f,0x09,0x10,0x0a,0x10,0x0b,0x9a,0x02,
+    0x04,0xca,0x08,0x58,0x10,0x50,0x04,0xb1,0x04,0xb2,0xf8,0x87,0x00,0x90,0x5e,0x98,
+    0xfe,0x87,0xc0,0x46,0x12,0x00,0x00,0x00,0x13,0x00,0x00,0x00,0x80,0x9f,0x80,0x00,
+    0xc0,0x9f,0x80,0x00,0x00,0x8c,0x80,0x00,0x04,0x8c,0x80,0x00,0x0c,0x06,0x80,0x00,
+    0x00,0x83,0x80,0x00,0x00,0x84,0x80,0x00,0x84,0x01,0x00,0x00,0x00,0x8c,0x80,0x00,
+    0x00,0x8c,0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x8c,0x80,0x00,0x00,0xc0,0x80,0x00,
+    0x00,0x65,0xff,0x64,0xd8,0x6b,0x41,0x06,0x4a,0x06,0x53,0x06,0x5c,0x06,0x65,0x06,
+    0x3f,0x64,0x00,0x90,0x31,0x98,0x3f,0x6c,0x88,0x06,0x91,0x06,0x9a,0x06,0xa3,0x06,
+    0xac,0x06,0xd0,0x6b,0xff,0x6c,0x00,0x69,0xc0,0x46,0xc0,0x46,0xc0,0x46,0xc0,0x46,
+    0xf0,0x65,0x00,0xa9,0x1d,0xcd,0x03,0xec,0x80,0xa0,0x04,0xf4,0x00,0xa2,0x40,0xa6,
+    0x3f,0xa7,0xa4,0x06,0x03,0x80,0x01,0xb2,0x04,0xb3,0x8a,0x02,0x11,0xc0,0x5d,0x48,
+    0x1c,0x48,0x2d,0xf2,0x25,0x03,0xdc,0x48,0x98,0x48,0x26,0x02,0xf3,0xc0,0x3c,0x00,
+    0x03,0xac,0xf0,0xc1,0x64,0x06,0x25,0x03,0x01,0xb2,0x28,0x40,0x04,0xb3,0x8a,0x02,
+    0xed,0xc1,0x08,0xec,0xf0,0x6d,0xc0,0x46,0x70,0x07,0xc0,0x46,0x00,0x65,0x06,0x0b,
+    0x00,0xa2,0x1a,0x40,0x05,0x08,0x08,0xa1,0xff,0x97,0xd2,0x9f,0x04,0x0b,0x1a,0x58,
+    0x01,0xb2,0x1a,0x50,0xfb,0x87,0xc0,0x46,0x73,0x00,0x80,0x00,0x64,0x01,0x00,0x00,
+    0x00,0x8c,0x80,0x00,0x0d,0x00,0x01,0xc3,0x0d,0x00,0x00,0xc3,0x0c,0x00,0x06,0xc3,
+    0x0d,0x00,0x01,0xc3,0x0d,0x00,0x00,0xc3,0x0c,0x00,0x01,0xc3,0x0c,0x00,0x00,0xc3,
+    0x0d,0x00,0x01,0xc3]);
+
+// cmd list
+var TL_CMDTypdef ={
+	DOWNLOAD  :0x01,
+	ERASE	  :0x02,
+	ACTIVATE  :0x03,
+	SETTING   :0x04,
+	READ      :0x05,
+	WRITE     :0x06,
+	RESET     :0x07,
+	START     :0x08,
+	STALL     :0x09,
+	RUN       :0x0a,
+	STOP      :0x0b,
+	STEP      :0x0c,
+	PC        :0x0d,
+	BKP       :0x0e,
+	SWS       :0x0f,
+	LOG       :0x10,
+	HELP      :0x11,
+};
+
+// object list
+var TL_ObjTypdef = {
+	FLASH	  :0x01,
+	CORE	  :0x02,
+	ANALOG	  :0x03,
+	OTP	      :0x04,
+	MCU   	  :0x05,
+	INI_FILE  :0x06,
+};
+
+//communicate list
+var TL_ModeTypdef = {
+	USB		: 0x01,
+  //RSVD	: 0x02,
+	EVK		: 0x04,
+};
+
+//flash operate list
+var TL_Dut_Flash_cmdTypdef = {
+    TL_DUTCMD_FLASH_ASK        : 0x40,
+    TL_DUTCMD_FLASH_WRITE      : 0x41,
+    TL_DUTCMD_FLASH_CHECK      : 0x42,
+    TL_DUTCMD_FLASH_WBYTE	   : 0x43,   //write_bytes
+    TL_DUTCMD_FLASH_BYTE_CHK   : 0x44,
+    TL_DUTCMD_FLASH_WID		   : 0x45,   //write_id
+    TL_DUTCMD_FLASH_ID_CHK	   : 0x46,
+    TL_DUTCMD_FLASH_ZERO       : 0x47,
+    TL_DUTCMD_FLASH_CPID       : 0x48,
+    TL_DUTCMD_FLASH_FAST_WRITE : 0x49,
+    TL_DUTCMD_FLASH_ERASE      : 0x4d,
+    TL_DUTCMD_FLASH_PROTECT    : 0x4e,
+    TL_DUTCMD_FLASH_READ	   : 0x4f,
+    TL_DUTCMD_FLASH_CRC        : 0x50,
+};
+ 
+var ERROR_Typdef = { 
+	EPERM    	 : -1,   //  没有操作权限 资源不存在
+	ENOENT   	 : -2,   //  没有这个文件或者文件夹
+ 	EINTR    	 : -3,   //  中断占用
+    ENAMETOOLONG : -4,   //  文件名太长
+	ENOMEM       : -5,   //  内存不够/溢出
+	EAGAIN		 : -6,   //	 再试一次
+	EPIPE    	 : -7,   //  连接太多
+	EFBIG  		 : -8,	 //  文件太大
+	EBUSY    	 : -9,   //  设备或者资源在忙
+ 	ESPIPE   	 : -10,  //  非法定位
+ 	E2BIG 		 : -11,  //  参数太长
+    EOPDIS 	     : -12,  //  操作中断 
+	ECRC 	     : -13,  //  校验出错
+	ERANGE 	     : -14,  //  不在范围内
+	ETYPE 	     : -15,  //  类型出错
+	ESUPPORT     : -16,  //  功能不支持
+	EEVKCMD      : -17,  //  USB发送命令返回出错
+	ESWIRE 		 : -18,  //  Swire同步出错
+	ETIME 		 : -19,  //  超时出错
+	EACK 		 : -20,  //  ACK出错
+	ERESET		 : -21,  //  复位出错
+	EACTIVE		 : -22,  //  激活出错
+	ELOCKFLASH   : -23,  //  FLASH解锁/上锁出错
+};
+
+var PRINT_Typdef = { 
+	SYS_LOG_ERR  : 4, 
+	SYS_LOG_DBG  : 3, 
+	SYS_LOG_WRN  : 2, 
+	SYS_LOG_INF  : 1, 
+	SYS_LOG_OFF  : 0,
+};
+
+var	AutoResetFlag     = 0;	    //	自动复位标志位 1:下载后自动复位 0：下载后手动复位
+var ChipType          = CHIP_91;//	芯片类型 默认B91
+var BinFileChanged    = -1;	    //	下载文件是否与上次一样  -1:还没有选择过 0：选择的跟上次一样  1：首次打开或者与上次不一样
+var USBConnectedFlag  = -1;	    //	USB设备是否已经连接 	1：已经连接 
+var BinLoadAdr        = 0;		//  USB下载地址  
+var PC 				  = 0;		//	PC地址
+var	LoadOBJChoose     = 0x01;   //	下载位置选择  0x01:FLASH  0x02：SRAM   
+var crc_ret 		  = 0;		//  JS计算出来的CRC结果
+var crc_check 		  = 0;		//  发送命令返回过来的CRC结果		
+var USBEvkCmdFlag     = 0;      //  usb_evk_cmd发送命令是否成功标志位 0：成功  -1:失败  
+var SingleStepFlag    = 1;      //  1：单步  0：连续
+var SingleWriteFlag   = 0;	    //  1: 从起始地址写同一数据	0: 从起始地址写多组数据
+var ShowVariableFlag  = 1;   	//  1: 解析反汇编文件中的变量  0：解析反汇编文件中的函数
+var LstFileSortMode   = 1;		//  1: 按地址来排序	2: 按名称来排序
+var LoadBootBinFlag   = 1;   	//  1: 加载bin是对的， 0：加载引导bin是错的
+var RefreshFlag       = 0; 	    //  1: refresh按下过  html中缩放界面用
+var BurningEVKBusy    = 0;		//  1: busy  0:idle
+var NetWorkBusy   	  = 0;		//  1: busy  0:idle
+var LoopOnce          = 0;	    //  单次循环变量
+var ShowTimeFlag 	  = 1;		//  显示时间戳标志位
+var IsWindows         = 0;		//  是不是windows系统
+var PrintLevel 		  = PRINT_Typdef.SYS_LOG_DBG; // 打印限制等级 默认3 
+
+var crc32_table = new Array();
+var crc_generate_one_flag = 0;
+var R_BUF_SIZE = 1024*1024*4;				 // 单次读写FLASH/模拟寄存器最大值
+var R_buffer = new Uint8Array(1024*1024*4);  // 读写FLASH/模拟寄存器buffer
+var device; 								 // This is the USBDevice selected by the user
+var g_rcv_len;								 // usb读取数据长度
+var g_rcv_data = new Uint8Array(4096*32);	 // usb读 返回
+var g_evk_rcv_data = new Uint8Array(4096*32);// evk读 返回
+
+// 多地址下载 文件名 长度 缓存
+
+var MultiBinFileLen1;
+var MultiBinFileName1;
+var MultiBinFileData1 = new Uint8Array(1024*1024*4);
+
+var MultiBinFileLen2;
+var MultiBinFileName2;
+var MultiBinFileData2 = new Uint8Array(1024*1024*4);
+
+var MultiBinFileLen3;
+var MultiBinFileName3;
+var MultiBinFileData3 = new Uint8Array(1024*1024*4);
+
+var MultiBinFileLen4;
+var MultiBinFileName4;
+var MultiBinFileData4 = new Uint8Array(1024*1024*4);
+
+var MultiBinFileLen5;
+var MultiBinFileName5;
+var MultiBinFileData5 = new Uint8Array(1024*1024*4);
+
+function sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+async function LogConsole(str,target = "ALL",level = PrintLevel) {
+	if(level >= PRINT_Typdef.SYS_LOG_DBG) {
+		switch(target) {
+			case "ALL":	      LogPrint(str,"Console1");
+							  LogPrint(str,"Console2");
+							  LogPrint(str,"Console3");
+							  LogPrint(str,"Console4"); 
+							  LogPrint(str,"Console5"); 
+							  LogPrint(str,"Console6"); break;
+			case "Console1":  LogPrint(str,"Console1"); break;
+			case "Console2":  LogPrint(str,"Console2"); break;
+			case "Console3":  LogPrint(str,"Console3"); break;
+			case "Console4":  LogPrint(str,"Console4"); break;
+			case "Console5":  LogPrint(str,"Console5"); break;
+			case "Console6":  LogPrint(str,"Console6"); break;
+			case "backstage": console.log(str);	   		break;
+			default: 		  LogConsole("Print parameter error:" + str,"ALL");break;
+		}
+	}
+}
+
+async function LogPrint(str,target = "Console1") {
+	var date     =  new Date(); 
+	var hour     =  date.getHours(); 
+	var min      =  date.getMinutes();
+	var second   =  date.getSeconds();
+	var msecond  =  date.getMilliseconds();
+	if(hour < 10)	  hour = "0"+hour;
+	if(min  < 10)	  min  = "0"+min;
+	if(second < 10)	  second = "0"+second;
+	if(msecond < 10)  msecond = "00"+msecond;		
+	else if(msecond<100) msecond = "0"+msecond;
+	var now = "time:"+hour+":"+min+":"+second+"."+msecond+"    ";
+	var ele = document.getElementById(target);
+	var mstr = ele.value; 
+	mstr = mstr.replace(/\r/gi,"");
+	mstr = mstr.split("\n");
+	var n = mstr.length;
+	if(1 == ShowTimeFlag) {
+		ele.value = ele.value  + now + str +"\r\n";
+	}
+	else { 
+		ele.value = ele.value + str + "\r\n";
+	}
+	ele.scrollTop = ele.scrollHeight;	
+	if(n > 5000) {
+		ele.value = ""; 
+	}
+}
+
+function usb_evk_rcv_buffer_print(len,offset) {
+	for(var i = 0; i < len; i++) {
+		LogConsole("[usb_evk_rcv_buffer_print]:state<"+(i+offset).toString(16)+">-0x"+g_evk_rcv_data[i].toString(16),"backstage");	
+	}
+}
+
+function dec2hex(dec, len) {
+	  var hex = "";
+	  dec = dec +0;
+	  while(dec) {
+		  var last = dec & 15;
+		  hex = String.fromCharCode(((last>9)?55:48)+last) + hex;
+		  dec >>= 4;
+	  }
+	  if(len) {
+		  while(hex.length < len) hex = '0' + hex;
+	  }
+	  return hex;
+}
+
+function dec2hex2(dec) {
+	return (dec).toString(16);
+}
+
+function hex2int(hex) {
+	var len = hex.length, a = new Array(len), code;
+	for(var i = 0; i < len; i++) {
+		code = hex.charCodeAt(i);
+		if (48 <= code && code < 58) {
+			code -= 48;
+		} else {
+			code = (code & 0xdf) - 65 + 10;
+		}
+		a[i] = code;
+	}
+	return a.reduce(function(acc, c) {
+	    acc = 16 * acc + c;
+		return acc;
+	},0);
+}
+
+function exchange(str) {
+    var arr = str.split('');
+    for(var i = 0; i < arr.length; i++) {
+        if(arr[i] == 0) {
+            arr[i] = 1;
+        }
+		else {
+            arr[i] = 0;
+        }
+    }
+    str = arr.join("");
+    return str;
+}
+
+function Num2Binary(number) { // complement
+    //-123: -1111011  123:1111011
+    //0000101 == ~(-(-123)-1) == ~1111010 
+    if(number < 0) {
+        number = -number;
+        number = number - 1;
+        var str = (Array(32).join("0") + number.toString(2)).slice(-32);
+        str = exchange(str);
+    }
+	else {
+        var str = (Array(32).join("0") + number.toString(2)).slice(-32);
+    }
+	return str;
+}
+
+async function crc32_check_look_table(crc,array,length) {
+    var crc_value = 0;
+	var temp = "";
+	var poly_value = "11101101101110001000001100100000"; // 0xedb88320
+	if(length == 0) {
+		crc_ret = crc;
+		return ERROR_Typdef.ERANGE;
+	}
+	if(!crc_generate_one_flag) {
+		for(var i = 0; i < 256; i++) {
+			crc_value = i;
+			for(var j = 0; j < 8; j++) { //crc_value = (crc_value&1?(crc_value>>1)^poly_value:crc_value>>1);
+				if(typeof crc_value == "number") {
+					crc_value = Num2Binary(crc_value);
+				}
+				else if(typeof crc_value == "string") {}
+				if(crc_value.slice(-1) == "1") {
+					crc_value = "0" + crc_value.slice(0,31);
+					for(var k = 0; k < 32; k++) {
+						if(crc_value[k] == poly_value[k]) {
+							temp += "0";
+						}
+						else {
+							temp += "1";
+						}
+					}
+					crc_value = temp;
+					temp = "";
+				}
+				else {
+					crc_value = "0" + crc_value.slice(0,31);
+				}	
+			}
+			crc32_table[i] = parseInt(crc_value,2);
+		}
+		crc_generate_one_flag  = 1;		
+	}
+	temp = "";
+	var value0;
+	var value1;
+	var value2;
+	var value3;
+	for(var f = 0; f < length; f++) {// crc = crc32_table[(crc^array[i])&0xff]^(crc>>8);
+		if(typeof crc == "number") {
+			crc  = Num2Binary(crc);
+		}
+		else if(typeof crc == "string") {
+
+		}
+		value0 = Num2Binary(array[f]);
+		for(var k = 0;k < 32; k++) {
+			if(crc[k] == value0[k]) {
+				temp += "0";
+			}
+			else {
+				temp += "1";
+			}
+		}
+		value1 = temp.slice(-8);
+		value2 = crc32_table[parseInt(value1,2)];
+		value2 = Num2Binary(value2);
+		value3 = "00000000" + crc.slice(0,24);
+		temp = "";
+		for(var d = 0; d < 32; d++) {
+			if(value2[d] == value3[d]) {
+				temp += "0";
+			}
+			else {
+				temp += "1";
+			}
+		}
+		crc = temp;
+		//crc = parseInt(temp,2);
+		temp  = "";
+ 	}
+	temp  = "";
+	crc  = Num2Binary(crc);
+	for(var g = 0; g < 32; g++) {    // crc_ret ^= 0xffffffff;
+		if(crc[g] == "1") {
+			temp += "0";
+		}
+		else {
+			temp += "1";
+		}
+	}
+	crc = parseInt(temp,2);
+	//LogConsole("crc:  " + crc);
+	//LogConsole("crc:  " + crc.toString(16));
+	crc_ret = crc;
+	return 0; 
+}
+
+async function usb_connect() {
+	const myfilters = [
+        { 'vendorId': 0x2341, 'productId': 0x8036 },
+        { 'vendorId': 0x248A, 'productId': 0x826A }, ];
+	await navigator.usb.requestDevice({ filters:  myfilters})
+        .then((selectedDevice) => {
+        device = selectedDevice;
+        return device.open(); // Begin a session.
+    })
+    .then(() => {
+		USBConnectedFlag = 1;
+		layer.msg("usb connected!");
+ 		LogConsole("usb connected!");
+		LogConsole(device,"backstage");
+		device.selectConfiguration(1);   // 1 Select configuration #1 for the device.
+		return device.claimInterface(0); // 1 Request exclusive control over interface #2.
+    })
+    .catch((error) => {
+		console.error(error);
+		USBConnectedFlag = -1;
+		LogConsole("usb connect fail!");
+		layer.msge("usb connect fail!");
+    });
+}
+
+async function usb_read(adr,len) {
+	var t_int = adr;
+	var temp_data = new Uint8Array(len);
+	temp_data[0] = 2;
+	temp_data[1] = 3;
+	temp_data[2] = 4;
+	temp_data[3] = 5;
+	await device.controlTransferIn({
+        requestType: "vendor",
+		recipient: "interface",
+		request: 0x02, // vendor-specific request: enable channels
+		value: t_int,  // 0x7c (channels 1, 2 and 5)
+		index: 0x00,   // Interface 1 is the recipient
+        },
+        6+4+len
+    ).then((res) => {
+	    for(var i = 0 ; i < len; i++) {
+			temp_data[i]  = res.data.getUint8(i);
+			g_rcv_data[i] = res.data.getUint8(i);			 
+		}
+		g_rcv_len = len;  // then the actual read data is obtained according to res
+	});
+	//await sleep(2); 
+	return temp_data;
+}
+
+async function usb_write(adr,data,len) {
+	//if(Object.prototype.toString.call(data)=='[object Array]')
+	var t_int = adr;
+	var temp_data = new Uint8Array(len+8);
+	temp_data[0] = 0x02;
+	temp_data[1] = (t_int>>8) & 0xff; 
+	temp_data[2] = t_int & 0xff;
+	temp_data[3] = data[0];
+	temp_data[4] = data[0];
+	temp_data[5] = data[0];
+	temp_data[6] = data[0];
+	temp_data[7] = data[0];
+	for(var i = 0; i < len; i++) {
+		temp_data[8+i] = data[i];
+	}
+	device.controlTransferOut({
+		requestType: "vendor",
+		recipient: "interface",
+		request: 0x02, // vendor-specific request: enable channels
+		value: t_int, // 0x7c (channels 1, 2 and 5)
+		index: 0x00, // Interface 1 is the recipient
+	},temp_data)	 
+	.then( (res) => {
+	// console.log(res);  
+	}) 
+	/* 
+	if(0 == IsWindows) { 
+		await sleep(2);
+	}
+	*/
+	await sleep(2);
+}
+
+async function usb_write2(adr,data,len) {
+	var t_int = adr;
+	var temp_data = new Uint8Array(len+8);
+	var adr_h = (t_int >> 16) & 0x3f;
+	temp_data[0] = 0x80 | adr_h;
+	temp_data[1] = (t_int>>8) & 0xff; 
+	temp_data[2] = t_int & 0xff;
+	temp_data[3] = data[0];
+	temp_data[4] = data[0];
+	temp_data[5] = data[0];
+	temp_data[6] = data[0];
+	temp_data[7] = data[0];
+	for(var i = 0; i < len; i++) {
+	    temp_data[8+i] = data[i];
+	}
+	device.controlTransferOut({
+		requestType: "vendor",
+		recipient: "interface",
+		request: 0x02, // vendor-specific request: enable channels
+		value: t_int, // 0x7c (channels 1, 2 and 5)
+		index: 0x00, // Interface 1 is the recipient
+	},temp_data)	 
+	.then( (res) => {
+	// console.log(res);  
+	}) 
+}
+
+async function usb_write3(adr,data,len) {
+	var step = 1024;
+	var buff = new Uint8Array(1024);
+	for(var i = 0; i < len; i = i+step) {
+		var n = (len - i) > step ? step : (len - i);
+		var madr = adr + i;
+		for(var j = 0; j < step; j++) {
+			buff[j] = data[i+j];
+		}
+		await usb_write(madr,buff,n); // write to evk buffer
+ 	}
+}
+ 
+async function usb_evk_cmd(adr,len,cmd) { // EVKCommand
+	var msecond1;
+	var msecond2;
+	var rlen = -1;
+	var cmdbuf = new Uint8Array(8);
+ 	cmdbuf[0] = adr & 0xff;
+	cmdbuf[1] = (adr>>8) & 0xff;
+	cmdbuf[2] = (adr>>16) & 0xff;
+	cmdbuf[3] = (adr>>24) & 0xff;
+	cmdbuf[4] = len & 0xff;
+	cmdbuf[5] = (len>>8) & 0xff;
+	cmdbuf[6] = cmd & 0xff;
+	cmdbuf[7] = (cmd>>8) & 0xff;
+	await usb_write(0x9ff8,cmdbuf,8);
+	msecond1 = new Date();
+	while(rlen != len) {
+		await usb_read(0x9ff0,16); // wait usb read done!
+		rlen = (g_rcv_data[1]*256) + g_rcv_data[0];
+		if((g_rcv_data[3]&0xf0) != 0) {
+		    await LogConsole("[usb_evk_cmd]:error!");
+			USBEvkCmdFlag = -1;
+			return ERROR_Typdef.EEVKCMD;
+		}
+		else if(rlen == len) {
+			//LogConsole("usb_evk_cmd ok!");
+			USBEvkCmdFlag = 0;
+			return 0;
+		}
+	    await sleep(2);
+		msecond2 = new Date();
+		if(parseInt(msecond2-msecond1) > 2000) {
+			await LogConsole("wait for ack timeout:  "+ parseInt(msecond2-msecond1) +"  ms");
+			return ERROR_Typdef.ETIME;
+		}
+	}
+	return 0; 
+}
+
+async function usb_evk_write(adr,data,len) {
+	var step = 1024;
+	var buff = new Uint8Array(1024);
+	for(var i = 0; i < len; i = i + step) {
+		var n = (len - i) > step ? step : (len - i);
+		var madr = adr + i;
+		for(var j = 0; j < step; j++) {
+			buff[j] = data[i+j];
+		}
+		await usb_write(0xa000,buff,n); // write to evk buffer
+		await usb_evk_cmd(madr,n,UCMD_CORE|UCMD_FSWIRE);	
+	}
+}
+
+async function usb_evk_read(adr,len) {
+	var step = 1024;
+	var buff = new Uint8Array(len);
+ 	for(var i = 0; i < len; i = i + step) {
+		var n = (len - i) > step ? step : (len - i);
+		var madr = adr + i;
+		await usb_evk_cmd(madr,n,UCMD_CORE|UCMD_FSWIRE|UCMD_FRD);
+		await usb_read(0xa000,n);
+		for(var j = 0; j < step; j++) {	
+			g_evk_rcv_data[i+j] = g_rcv_data[j];
+			buff[i+j] = g_rcv_data[j];
+		}	
+	}
+	return buff;
+}
+
+async function usb_evk_set_chip(type) {
+	var cmdbuf = new Uint8Array(2);
+	if(CHIP_91 == type) {
+ 	    cmdbuf[0] = 0xd0;
+		await usb_write(0x9fff,cmdbuf,1);
+	}
+	else if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) { 
+ 		cmdbuf[0] = 0x50;
+		await usb_write(0x9fff,cmdbuf,1);
+	}
+	else {
+ 		cmdbuf[0] = 0x10;
+		await usb_write(0x9fff,cmdbuf,1);
+	}
+	await  sleep(10);
+	return 0; 
+}
+
+async function usb_evk_dut_cmd(type, cmd ,p0,p1, mode = TL_ModeTypdef.EVK) { // TL_Dut_Flash_cmd_Process
+	var cnt = 0;
+	var msecond1;
+	var msecond2;
+	var cmdbuf = new Uint8Array(16);
+	cmdbuf[0] = cmd;
+	cmdbuf[1] = p0 & 0xff;
+	cmdbuf[2] = (p0>>8) & 0xff;
+	cmdbuf[3] = (p0>>16) & 0xff;
+	cmdbuf[4] = (p0>>24) & 0xff;
+	cmdbuf[5] = p1 & 0xff;
+	cmdbuf[6] = (p1>>8) & 0xff;
+	cmdbuf[7] = (p1>>16) & 0xff;
+	cmdbuf[8] = (p1>>24) & 0xff;
+	var timeout_ms = 8000;
+	if(TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_CRC == cmd) {
+	    if(p1 > 1024*512) {
+		    if((p1%524288) == 0) {
+			   cnt = p1/524288;
+		    }
+		    else {
+			    cnt = (p1/524288)+1;
+		    }
+		    timeout_ms = 8000*cnt;
+	   }
+	}
+	if(TL_ModeTypdef.EVK == mode) {
+		if(CHIP_91 == type) {
+			await usb_evk_write(0xc0000007,cmdbuf,9);
+			cmdbuf[0] = cmd|0x80;
+			await usb_evk_write(0xc0000007,cmdbuf,1);
+			msecond1 = new Date();
+			await usb_evk_read(0xc0000007,1);
+			while(g_evk_rcv_data[0]&0x80) {
+				await usb_evk_read(0xc0000007,1);
+				msecond2 = new Date();
+				if(parseInt(msecond2-msecond1) > timeout_ms) {
+					LogConsole("wait for ack timeout:  "+ parseInt(msecond2-msecond1) +"  ms");
+					return ERROR_Typdef.ETIME;
+				}
+			}
+			await usb_evk_read(0xc0000004,12);
+			if((g_evk_rcv_data[2]&0xff) != cmd) {
+				LogConsole(" wait for ack err! ");
+				return ERROR_Typdef.EACK;
+			}
+		}
+		else if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+			await usb_evk_write(0x40007,cmdbuf,9);
+			cmdbuf[0] = cmd|0x80;
+			await usb_evk_write(0x40007,cmdbuf,1);
+			msecond1 = new Date();	
+			await usb_evk_read(0x40007,1);
+			while(g_evk_rcv_data[0]&0x80) {
+			    await usb_evk_read(0x40007,1);
+				msecond2 = new Date();
+				if(parseInt(msecond2-msecond1) > timeout_ms) {
+					LogConsole("wait for ack timeout:  "+ parseInt(msecond2-msecond1) +"  ms");
+					return ERROR_Typdef.ETIME;
+				}
+			}
+			await usb_evk_read(0x40004,12);
+			if((g_evk_rcv_data[2]&0xff) != cmd) {
+				LogConsole(" wait for ack err! ");
+				return ERROR_Typdef.EACK;
+			}
+		}
+		else {
+			await usb_evk_write(0x8007,cmdbuf,9);
+			cmdbuf[0] = cmd|0x80;
+			await usb_evk_write(0x8007,cmdbuf,1);
+			msecond1 = new Date();
+			g_evk_rcv_data[0] = 0x80;
+			while(g_evk_rcv_data[0]&0x80) {
+				await usb_evk_read(0x8007,1);
+				msecond2 = new Date();
+				if(msecond2-msecond1 > timeout_ms) {
+					LogConsole("wait for ack timeout:  "+ parseInt(msecond2-msecond1) +"  ms");
+					return ERROR_Typdef.ETIME;
+				}
+			}
+			await usb_evk_read(0x8004,12);
+			if((g_evk_rcv_data[2]&0xff) != cmd) {
+				LogConsole(" wait for ack err! ");
+				return ERROR_Typdef.EACK;
+			}
+		}
+	}
+	else if(TL_ModeTypdef.USB == mode ) {
+		if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+			await usb_write2(0x40007,cmdbuf,9);
+			cmdbuf[0] = cmd|0x80;
+			await usb_write2(0x40007,cmdbuf,1);
+			msecond1 = new Date();	
+			await usb_read(0x40007,1);
+			while(g_rcv_data[0]&0x80) {
+				await usb_read(0x40007,1);
+				msecond2 = new Date();
+				if(parseInt(msecond2-msecond1) > timeout_ms) {
+					LogConsole("wait for ack timeout:  "+ parseInt(msecond2-msecond1) +"  ms");
+					return ERROR_Typdef.ETIME;
+				}
+			}
+			await usb_read(0x40004,12);
+			if((g_rcv_data[2]&0xff) != cmd) {
+				LogConsole(" wait for ack err! ");
+				return ERROR_Typdef.EACK;
+			}
+		}
+		else {
+			await usb_write3(0x8007,cmdbuf,9);
+			await sleep(10);
+			cmdbuf[0] = cmd|0x80;
+			await usb_write3(0x8007,cmdbuf,1);
+ 			msecond1 = new Date();
+		    g_rcv_data[0] = 0x80;
+			while(g_rcv_data[0]&0x80) {
+ 				await usb_read(0x8007,1);
+				msecond2 = new Date();
+				if(msecond2-msecond1 > timeout_ms) {
+					await LogConsole("wait for ack timeout:  "+ parseInt(msecond2-msecond1) +"  ms");
+					return ERROR_Typdef.ETIME;
+				}
+			}
+ 			await usb_read(0x8004,12);
+			if((g_rcv_data[2]&0xff) != cmd) {
+				await LogConsole(" wait for ack err! ");
+				return ERROR_Typdef.EACK;
+			}
+		}
+	}
+	if(TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ASK == cmd) {
+		BinLoadAdr = g_rcv_data[0] + (g_rcv_data[1]*256);
+		if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+			BinLoadAdr = (BinLoadAdr+0x40000-0x8000);
+		}
+		else if(CHIP_91 == type) {
+			BinLoadAdr = (BinLoadAdr+0xC0000000);
+		}
+		else {
+			BinLoadAdr = BinLoadAdr; //B150
+		}
+	}
+	if(TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_CRC == cmd) {
+		var sum_size = g_rcv_data[4] + g_rcv_data[5]*256 + g_rcv_data[6]*256*256 + g_rcv_data[7]*256*256*256;
+		crc_check = g_rcv_data[8] + g_rcv_data[9]*256 + g_rcv_data[10]*256*256 + g_rcv_data[11]*256*256*256;
+		crc_check = crc_check>>>0;
+        if(sum_size != p1) {
+			LogConsole(" crc check err! ");
+			LogConsole(" crc_check: " + crc_check);
+			LogConsole(" sum_size: " + sum_size);
+			return ERROR_Typdef.ECRC;
+		}
+	}
+	return 0; 
+}
+
+async function ANALOG_RW_Func(mode,type,addr,size,value,cmd) { // ANALOG_RW_Func
+	var msecond1;
+	var msecond2;
+ 	var Break_W  = 0;
+    var buffer1  = new Uint8Array(2);
+	var buffer2  = new Uint8Array(2);
+	var buffer3  = new Uint8Array(2);
+	if(TL_ModeTypdef.USB == mode ) {
+		LogConsole("  done not support the function ");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	if(TL_ModeTypdef.EVK == mode) {
+		await usb_evk_set_chip(type);
+		if(TL_CMDTypdef.READ == cmd) {
+			if(size > R_BUF_SIZE) {
+				LogConsole(" read memory size exceed! ");
+			}
+			for(var j = 0; j < R_BUF_SIZE; j++) {
+				R_buffer[j] = 0;
+			}
+            for(var i = 0; i < size; i++) {
+				buffer1[0] = addr + i;
+				buffer2[0] = 0x40;
+				if(CHIP_91 == type) {
+					await usb_evk_write(0x140180,buffer1,1);
+					await usb_evk_write(0x140182,buffer2,1);
+				}
+				else {
+					await usb_evk_write(0xb8,buffer1,1);	
+					await usb_evk_write(0xba,buffer2,1);						
+				}
+				msecond1 = new Date();
+ 				while((buffer2[0]&0x01) != 0x00) {
+					if(CHIP_91 == type) {
+						await usb_evk_read(0x140182,1);
+						buffer2[0] = g_evk_rcv_data[0];
+					}
+					else {
+						await usb_evk_read(0xba,1);	
+						buffer2[0] = g_evk_rcv_data[0];						
+					}
+					msecond2 = new Date();
+					if(parseInt(msecond2-msecond1)>100) {
+						Break_W=1;
+						LogConsole("  read analog register timeout: " + 100 + " ms");
+						break;
+					}
+				}
+				if(Break_W == 1) {
+					return ERROR_Typdef.ETIME;
+				}
+				if(CHIP_91 == type) {
+					await usb_evk_read(0x140184,1);
+					buffer1[0] = g_evk_rcv_data[0];
+				}
+				else {
+					await usb_evk_read(0xb9,1);	
+					buffer1[0] = g_evk_rcv_data[0];						
+				}
+				R_buffer[i] = buffer1[0];
+				if(0 == (i+1)%64) LogConsole( i+1 + "  bytes have finished!");
+			}
+		}
+		else if(TL_CMDTypdef.WRITE == cmd) {
+			Break_W = 0;
+			for(var k = 0; k < size; k++) {
+				buffer1[0] = addr + k;
+                buffer2[0] = value[k];
+                buffer3[0] = 0x60;
+				if(CHIP_91 == type) {
+					await usb_evk_write(0x140180,buffer1,1);
+					await usb_evk_write(0x140184,buffer2,1);
+					await usb_evk_write(0x140182,buffer3,1);
+				}
+				else {
+					await usb_evk_write(0xb8,buffer1,1);	
+					await usb_evk_write(0xb9,buffer2,1);	
+					await usb_evk_write(0xba,buffer3,1);					
+				}
+				buffer3[0] = 0x01;
+				msecond1 = new Date();
+				while((buffer3[0]&0x01) != 0x00) {
+					if(CHIP_91 == type) {
+						await usb_evk_read(0x140182,1);
+						buffer3[0] = g_evk_rcv_data[0];
+					}
+					else {
+						await usb_evk_read(0xba,1);	
+						buffer3[0] = g_evk_rcv_data[0];						
+					}
+					msecond2 = new Date();
+					if(parseInt(msecond2-msecond1) > 100) {
+						Break_W = 1;
+						LogConsole("  write analog register timeout: " + 100 + " ms");
+						break;
+					}
+				}
+				if(1 == Break_W) {
+					return ERROR_Typdef.ETIME;
+				}
+				buffer1[0] = 0;
+				if(CHIP_91 == type) {
+					await usb_evk_write(0x140182,buffer1,1);
+				}
+				else {
+					await usb_evk_write(0xba,buffer1,1);	
+				}
+			}	
+			//LogConsole(" Write  "+size+"  bytes at address "+ dec2hex2(addr));			
+		}
+		LogConsole(" Write size "+  size + "bytes at address " + addr,"backstage");
+	}
+	return 0; 
+}
+
+async function FlASH_RW_Func(mode,type,addr,size,value,cmd) { // FlASH_RW_Func
+	var max_rdat_len = 8;
+	var num   = Math.floor(size/max_rdat_len);
+	var num_s = size - (num*max_rdat_len);
+
+	if(TL_ModeTypdef.USB == mode ) {
+		LogConsole("  done not support the function ");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	if(TL_ModeTypdef.EVK == mode) {
+		await usb_evk_mcu_load_ram_bin(TL_ModeTypdef.EVK,type,LoadBinary[type],LoadBinary[type].length);
+		if(TL_CMDTypdef.READ == cmd) {
+			if(size > R_BUF_SIZE) {
+				LogConsole(" read memory size exceed! ");
+			}
+			for(var j = 0; j < R_BUF_SIZE; j++) {
+				R_buffer[j] = 0;
+			}
+			for(var i = 0; i < num; i++) {
+				var ret = await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_READ,addr+max_rdat_len*i,max_rdat_len);// TL_Dut_Flash_cmd_Process 
+				if(ret != 0) {
+					LogConsole(" FlASH Read Failed! ");
+					return ERROR_Typdef.ECRC;
+				}
+				var ram_adr = 0x8004;
+				if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+					ram_adr = 0x40004;
+				}
+				else if(CHIP_91 == type) {
+					ram_adr = 0xC0000004;
+				}
+				else {
+					ram_adr = 0x8004;
+				}
+				if(max_rdat_len > 2) {
+					if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+						ram_adr = 0x40008; 
+					}
+					else if(CHIP_91 == type) {
+						ram_adr = 0xC0000008; 
+					}
+					else {
+						ram_adr = 0x8008;
+					}
+				}
+				await usb_evk_set_chip(type);
+				await usb_evk_read(ram_adr,max_rdat_len);
+				for(var j = 0; j < max_rdat_len; j++) {
+					R_buffer[max_rdat_len*i + j] = g_evk_rcv_data[j];
+				}
+				if(0 == ((i+1)*max_rdat_len)%1024) LogPrint((i+1)*max_rdat_len + "  bytes have finished!");
+			}
+			if(num_s != 0){
+				var ret = await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_READ,addr+max_rdat_len*num,num_s);
+				if(ret != 0) {
+					LogConsole(" FlASH Read Failed! ");
+					return -1;
+				}
+				var ram_adr = 0x8004;
+				if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+					ram_adr = 0x40004;
+				}
+				else if(CHIP_91 == type) {
+					ram_adr = 0xC0000004;
+				}
+				else {
+					ram_adr = 0x8004;
+				}
+				if(num_s > 2) {
+					if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+						ram_adr = 0x40008; 
+					}
+					else if(CHIP_91 == type) {
+						ram_adr = 0xC0000008; 
+					}
+					else {
+						ram_adr = 0x8008;
+					}
+				}
+				await usb_evk_set_chip(type);
+				await usb_evk_read(ram_adr,num_s);
+				for(var j = 0; j < num_s; j++) {
+					R_buffer[max_rdat_len*num + j] = g_evk_rcv_data[j];
+				}
+			}
+			LogConsole(num*max_rdat_len+num_s + "  bytes have finished!");
+		}
+		else if(TL_CMDTypdef.WRITE == cmd) {
+			var ret = await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ASK,0,0);
+			if(ret != 0) {
+				LogConsole(" FlASH Write Failed! TL_DUTCMD_FLASH_ASK ");
+				return ERROR_Typdef.ECRC;
+			}
+			await usb_evk_write(BinLoadAdr,value,size);
+			var ret = await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_WRITE,addr,size);
+			if(ret != 0) {
+				LogConsole(" FlASH Write Failed! TL_DUTCMD_FLASH_WRITE");
+				return ERROR_Typdef.ECRC;
+			}
+			LogConsole(" Write  "+ size + "  bytes at address " + dec2hex2(addr));			
+		}
+	}
+	return 0; 
+}
+
+async function usb_evk_sws_mcu(type,sws_config) { // SWS_MCU
+ 	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+ 	var buffer = new Uint8Array(2);
+	buffer[0] = sws_config[1];
+ 	await usb_write(sws_config[0]+2,buffer,1);
+	await usb_evk_set_chip(type);
+ 	if(CHIP_91 == type) {
+		buffer[0] = sws_config[3];
+		await usb_evk_cmd(0x100c00+3,1,0x0f00);//set slave fifo mode enable register of sws
+		await usb_evk_cmd(0x00,1,0x0700);
+		await usb_evk_cmd(0x00,1,0x0700);
+		await usb_evk_write(0x100c00+2,buffer,1);
+		await usb_evk_read(0x100c00+2,1);
+ 		buffer[1] = g_evk_rcv_data[0];
+	}
+	else {
+		buffer[0] = sws_config[3];
+		await usb_evk_cmd(sws_config[2]+3,1,0x0f00);//set slave fifo mode enable register of sws
+		await usb_evk_cmd(0x00,1,0x0700);
+		await usb_evk_cmd(0x00,1,0x0700);
+		await usb_evk_write(sws_config[2]+2,buffer,1);
+		await usb_evk_read(sws_config[2]+2,1);
+	}
+	if((g_evk_rcv_data[0] == sws_config[3]) && (0 == USBEvkCmdFlag)) {
+		LogConsole(" TC32 EVK: Swire ok! ");
+	}	
+	else {
+		USBEvkCmdFlag = -1;
+		LogConsole(" TC32 EVK: Swire err! ");
+		return ERROR_Typdef.ESWIRE; 
+	}
+	return 0; 
+}
+
+async  function usb_evk_stall_mcu(mode,type,adr,data) { // Stall_Func
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+	var cmdbuf = new Array();
+  	if(TL_ModeTypdef.EVK == mode) {
+		if(CHIP_91 == type) {
+			LogConsole(" This chip done not support the function ");
+			return ERROR_Typdef.ESUPPORT;
+		}
+		await usb_evk_set_chip(type); 
+		cmdbuf[0] = data;
+ 		await usb_write(0xa000,cmdbuf,1);   // 1.write adr and data to sram 
+		await usb_evk_cmd(adr,1,0x0900); 	// send cmd to evk 
+	}
+	else if(TL_ModeTypdef.USB == mode ) {
+		LogConsole("  done not support the function ");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	LogConsole(" stall mcu ");
+	return 0;
+}
+
+async function usb_evk_start_mcu(mode,type,adr,data) { // Start_Func
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+	var cmdbuf = new Array();
+	if(TL_ModeTypdef.EVK == mode) {
+		if(CHIP_91 == type) {
+			LogConsole("This chip does not support this function");
+			return ERROR_Typdef.ESUPPORT;
+		}
+		await usb_evk_set_chip(type); 
+		cmdbuf[0] = data;
+ 		await usb_evk_write(adr,cmdbuf,1);   
+ 	}
+	else if(TL_ModeTypdef.USB == mode ) {
+		LogConsole("does not support this function");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	await LogConsole(" start mcu ");
+	return 0;
+}
+
+async function usb_evk_activate_mcu(type) { // Activate_MCU
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+  	var buffer = new Uint8Array(2);
+ 	var mstatus1;
+	var mstatus2;
+	var msecond1;
+	var msecond2;
+	buffer[0] = 0;
+	for(var m = 0; m < 2; m++) {
+		await usb_evk_set_chip(type);
+	    await usb_read(0x9ff4,4);
+		mstatus1 = g_rcv_data[3]*256*256*256 + g_rcv_data[2]*256*256+g_rcv_data[1]*256 + g_rcv_data[0];
+		buffer[0] = 0x4d;
+		await usb_write(0x9fff,buffer,1);
+		await usb_read(0x9ff4,4);
+		mstatus2 = g_rcv_data[3]*256*256*256 + g_rcv_data[2]*256*256+g_rcv_data[1]*256 + g_rcv_data[0];
+	    msecond1 = new Date();
+ 		while(mstatus1 == mstatus2) {
+			await usb_read(0x9ff4,4);
+			mstatus2 = g_rcv_data[3]*256*256*256 + g_rcv_data[2]*256*256+g_rcv_data[1]*256 + g_rcv_data[0];
+			sleep(100);
+			msecond2 = new Date();
+			if(parseInt(msecond2-msecond1) > 5000) {
+				 LogConsole(" activate timeout!   "+ parseInt(msecond2-msecond1) + "  ms");
+				 return ERROR_Typdef.ETIME;
+			}
+		}
+ 	}
+	buffer[0] = 0;
+	g_evk_rcv_data[0] = 0;
+	if(CHIP_91 == type) {
+		await usb_evk_read(0x1401c0+0x3f,1);
+		buffer[0] = g_evk_rcv_data[0];
+	}
+	else {
+		await usb_evk_read(0x7f,1);
+		buffer[0] = g_evk_rcv_data[0];
+	}
+ 	if((buffer[0] == 0x53||buffer[0] == 0x55) && (0 == USBEvkCmdFlag)) {
+ 		LogConsole(" Activate OK! ");
+		return 0;
+    }
+    else {
+ 		LogConsole(" Activate failed! ");
+		 return ERROR_Typdef.EACTIVE;
+    }
+}
+
+async function usb_evk_run_mcu(mode,type) { // Run_MCU
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+	var buffer = new Uint8Array(2);
+	if(TL_ModeTypdef.EVK == mode) {
+		if(CHIP_91 == type) {
+			LogConsole(" This chip does not support this function");
+			return ERROR_Typdef.ESUPPORT;
+		}
+		await usb_evk_set_chip(type); 
+		await usb_evk_read(0x613,1);
+		buffer[0] = (g_evk_rcv_data[0]|0x80);
+ 		await usb_evk_write(0x613,buffer,1);   
+	    await usb_evk_read(0x602,1);
+		buffer[0] = (g_evk_rcv_data[0]&0xfd);
+		await usb_evk_write(0x602,buffer,1);  
+ 	}
+	else if(TL_ModeTypdef.USB == mode ) {
+		LogConsole("does not support this function");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	LogConsole(" mcu run ");
+	return 0;
+}
+
+async function usb_evk_pause_mcu(mode,type) { // Stop_MCU
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+	var buffer = new Uint8Array(2);
+	if(TL_ModeTypdef.EVK == mode) {
+		if(CHIP_91 == type) {
+			LogConsole(" This chip does not support this function");
+			return ERROR_Typdef.ESUPPORT;
+		}
+		await usb_evk_set_chip(type); 
+		await usb_evk_read(0x602,1);
+		buffer[0] = (g_evk_rcv_data[0]|0x02);
+ 		await usb_evk_write(0x602,buffer,1);   
+	    await usb_evk_read(0x6bc,4);
+ 	}
+	else if(TL_ModeTypdef.USB == mode) {
+		LogConsole("does not support this function");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	PC = g_evk_rcv_data[0] + g_evk_rcv_data[1]*256 + g_evk_rcv_data[2]*256*256 + g_evk_rcv_data[3]*256*256*256;
+	LogConsole("pause mcu, pc : 0x"+dec2hex(PC,6));
+	return 0;
+}
+
+async function usb_evk_step_mcu(mode,type) { // Step_Func
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!","Console2");
+		return ERROR_Typdef.EPERM;
+	}
+	var cmdbuf = new Uint8Array(2);	
+ 	if(TL_ModeTypdef.EVK == mode) {
+		if(CHIP_91 == type) {
+			LogConsole(" This chip done not support the function ","Console2");
+			return ERROR_Typdef.ESUPPORT;
+		}
+		await usb_evk_set_chip(type); 
+		await usb_evk_read(0x602,1);
+		cmdbuf[0] = g_evk_rcv_data[0];
+	    cmdbuf[0] = (cmdbuf[0]|0x02);
+		await usb_evk_write(0x602,cmdbuf,1);
+		await usb_evk_read(0x613,1);
+		cmdbuf[0] = g_evk_rcv_data[0];
+		cmdbuf[0] = (cmdbuf[0]|0x80);
+		await usb_evk_write(0x613,cmdbuf,1);
+		await usb_evk_read(0x6bc,4);
+ 	}
+	else if(TL_ModeTypdef.USB == mode ) {
+		LogConsole("does not support this function");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	PC = g_evk_rcv_data[0] + g_evk_rcv_data[1]*256 + g_evk_rcv_data[2]*256*256 + g_evk_rcv_data[3]*256*256*256;
+	LogConsole("step mcu, pc : 0x"+dec2hex(PC,6),"Console2");
+	return 0;
+}
+
+async function usb_evk_reset_mcu(mode,type,dst) { // Reset_MCU
+	var value  = new Uint8Array(1);
+	var cmdbuf = new Uint8Array(2);
+	cmdbuf[0] = 0x20;
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+	if(TL_ModeTypdef.USB == mode ) {
+		LogConsole("does not support this function");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	else if(TL_ModeTypdef.EVK == mode) {
+		await usb_evk_set_chip(type);
+		if(TL_ObjTypdef.CORE == dst) {
+			if(CHIP_91 == type) {
+				cmdbuf[0] = 0xff;
+				await usb_evk_write(0x1401e2,cmdbuf,1);
+			}
+			else {
+				cmdbuf[0] = 0x88;
+				// if(type == CHIP_8255) cmd_buffer[0] = 0x80;// if(Type == CHIP_8255_A2) 
+				await usb_evk_write(0x602,cmdbuf,1);	
+			}
+		}
+		else {
+			if(CHIP_91 == type) {
+				value[0] = 0x01;
+				await ANALOG_RW_Func(TL_ModeTypdef.EVK,CHIP_91,0x7f,1,value,TL_CMDTypdef.WRITE); 
+ 				await usb_evk_write(0x1401ef,cmdbuf,1);
+			}
+			else {
+ 				await usb_evk_write(0x6f,cmdbuf,1);
+			}
+		}
+	}
+	if(TL_ObjTypdef.CORE == dst) {
+        LogConsole(" program run ");
+    }
+    else {
+		LogConsole(" reset mcu ");
+    }
+	return 0;
+}
+
+async function usbReadtButtonFun() {
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!","Console3");
+		return ERROR_Typdef.EPERM;
+	}
+	if(0 == BurningEVKBusy) {
+		BurningEVKBusy = 1;
+		var t_addr = hex2int(usbRWAddr.value);
+		var t_len  = hex2int(usbRWLength.value);
+		await usb_read(t_addr,t_len);
+		var Rdata = "";
+		for(var i = 0; i < t_len; i++) {
+			Rdata += dec2hex(g_rcv_data[i],2)+" ";
+		}
+		LogConsole(Rdata,"Console3");
+		BurningEVKBusy = 0; 
+	}
+	else {
+		LogConsole("BurningEVK is Busy");
+		return ERROR_Typdef.EBUSY; 
+	}
+	return 0;
+}
+
+async function usbWirtetButtonFun() {
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!","Console3");
+		return ERROR_Typdef.EPERM;
+	}
+	if(0 == BurningEVKBusy) {
+		BurningEVKBusy = 1;
+		if(1 == SingleWriteFlag) {
+			var readtwobytes = usbRWData.value[0]+usbRWData.value[1];
+			var reg1 = RegExp(" ");
+			if(readtwobytes.match(reg1)) {
+				LogConsole("Too many parameters or spaces","Console3");
+				return ERROR_Typdef.E2BIG;
+			}
+			var t_data = hex2int(readtwobytes);
+			var t_len  = hex2int(usbRWLength.value);
+			var t_addr = hex2int(usbRWAddr.value);
+			var s_data = new Uint8Array(t_len);
+			for(var i = 0 ; i < t_len; i++) {
+				s_data[i] = t_data&0xff;
+			}
+			await usb_write(t_addr,s_data,t_len);
+			LogConsole("usb write done!","Console3");
+		}
+		else {
+			var reg2 = RegExp("  ");
+			if(usbRWData.value.match(reg2)) {
+				LogConsole("Too many spaces","Console3");
+				return ERROR_Typdef.E2BIG;
+			}
+			var t_data = usbRWData.value.trim().split(" ");
+			var t_len  = t_data.length;
+			var t_addr = hex2int(usbRWAddr.value);
+			var s_data = new Uint8Array(t_len);
+			for(var i = 0; i < t_len; i++) {
+				s_data[i] = hex2int(t_data[i])&0xff;
+			}
+			await usb_write(t_addr,s_data,t_len);
+			LogConsole("usb write done!","Console3");
+		}
+		BurningEVKBusy = 0; 
+	}
+	else {
+		LogConsole("BurningEVK is Busy");
+		return ERROR_Typdef.EBUSY; 
+	}
+	return 0;
+}
+
+async function CoreReadtButtonFun() {
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!","Console3");
+		return ERROR_Typdef.EPERM;
+	}
+	if(0 == BurningEVKBusy) {
+		BurningEVKBusy = 1;
+		var t_len  = hex2int(usbRWLength.value);
+		var t_addr = hex2int(usbRWAddr.value);
+		if(CHIP_91 == ChipType) {
+			if((t_addr >= 0) && (t_addr <= 0x20000)) {
+				t_addr = t_addr + hex2int("C0000000");//ILM
+			}
+			else if( (t_addr>=0x80000)&&(t_addr<=0xA0000)) {
+				t_addr = t_addr + hex2int("C0200000");//DLM
+			}
+		}
+		await usb_evk_set_chip(ChipType);
+		await usb_evk_read(t_addr,t_len);
+		var Rdata = "0x" + usbRWAddr.value + ":   ";
+		for(var i = 0; i < t_len; i++) {
+				Rdata+=dec2hex(g_rcv_data[i],2)+" ";
+		}
+		LogConsole(Rdata,"Console3");
+		BurningEVKBusy = 0; 
+	}
+	else {
+		LogConsole("BurningEVK is Busy");
+		return ERROR_Typdef.EBUSY; 
+	}
+	return 0;
+}
+
+async function CoreWirtetButtonFun() {
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!","Console3");
+		return ERROR_Typdef.EPERM;
+	}
+	if(0 == BurningEVKBusy) {
+		BurningEVKBusy = 1;	
+		if(1 == SingleWriteFlag) {
+			var readtwobytes = usbRWData.value[0]+usbRWData.value[1];
+			var reg1 = RegExp(" ");
+			if(readtwobytes.match(reg1)) {
+				LogConsole("Too many parameters or spaces","Console3");
+				return ERROR_Typdef.E2BIG;
+			}
+			var t_data = hex2int(readtwobytes);
+			var t_len  = hex2int(usbRWLength.value);
+			var t_addr = hex2int(usbRWAddr.value);
+			if(CHIP_91 == ChipType) {
+				if((t_addr >= 0) && (t_addr <= 0x20000)) {
+					t_addr = t_addr +hex2int("C0000000");//ILM
+				}
+				else if((t_addr >= 0x80000) && (t_addr <= 0xA0000)) {
+					t_addr = t_addr +hex2int("C0200000");//DLM
+				}
+			}
+			var s_data = new Uint8Array(t_len);
+			for(var i = 0; i < t_len; i++) {
+				s_data[i] = t_data&0xff;
+			}
+			await usb_evk_write(t_addr,s_data,t_len);
+			LogConsole("Core write done!","Console3");
+		}
+		else {
+			var reg2 = RegExp("  ");
+			if(usbRWData.value.match(reg2)) {
+				LogConsole("Too many spaces","Console3");
+				return ERROR_Typdef.E2BIG;
+			}
+			var  t_data = usbRWData.value.trim().split(" ");
+			var t_len  = t_data.length;
+			var t_addr = hex2int(usbRWAddr.value);
+			if(CHIP_91 == ChipType) {
+				if((t_addr >= 0) && (t_addr <= 0x20000)) {
+					t_addr = t_addr +hex2int("C0000000");//ILM
+				}
+				else if((t_addr >= 0x80000) && (t_addr <= 0xA0000)) {
+					t_addr = t_addr +hex2int("C0200000");//DLM
+				}
+			}
+			var s_data = new Uint8Array(t_len);
+			for(var i = 0; i < t_len; i++) {
+				s_data[i] = hex2int(t_data[i])&0xff;
+			}
+			await usb_evk_write(t_addr,s_data,t_len);
+			LogConsole("Core write done!","Console3");
+		}
+		BurningEVKBusy = 0; 
+	}
+	else {
+		LogConsole("BurningEVK is Busy");
+		return ERROR_Typdef.EBUSY; 
+	}
+	return 0;
+}
+
+async function AnalogReadtButtonFun() {
+	var value  = new Uint8Array(1);
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!","Console3");
+		return ERROR_Typdef.EPERM;
+	}
+	if(0 == BurningEVKBusy) {
+		BurningEVKBusy = 1;
+		var t_len  = hex2int(usbRWLength.value);
+		var t_addr = hex2int(usbRWAddr.value);
+		await ANALOG_RW_Func(TL_ModeTypdef.EVK,ChipType,t_addr,t_len,value,TL_CMDTypdef.READ); 
+		var Rdata = "0x" + usbRWAddr.value + ":   ";
+		for(var i = 0; i < t_len; i++) {
+			Rdata += dec2hex(R_buffer[i],2)+" ";
+		}
+		LogConsole(Rdata,"Console3");
+		BurningEVKBusy = 0; 
+	}
+	else {
+		LogConsole("BurningEVK is Busy");
+		return ERROR_Typdef.EBUSY; 
+	}
+	return 0;
+}
+
+async function AnalogWirtetButtonFun() {
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!","Console3");
+		return ERROR_Typdef.EPERM;
+	}
+	if(0 == BurningEVKBusy) {
+		BurningEVKBusy = 1;	
+		if(1 == SingleWriteFlag) {
+			var readtwobytes = usbRWData.value[0]+usbRWData.value[1];
+			var reg1 = RegExp(" ");
+			if(readtwobytes.match(reg1)) {
+				LogConsole("Too many parameters or spaces","Console3");
+				return ERROR_Typdef.E2BIG;
+			}
+			var t_data = hex2int(readtwobytes);
+			var t_len  = hex2int(usbRWLength.value);
+			var t_addr = hex2int(usbRWAddr.value);
+			var s_data = new Uint8Array(t_len);
+			for(var i = 0; i < t_len; i++) {
+				s_data[i] = t_data&0xff;
+			}
+			await ANALOG_RW_Func(TL_ModeTypdef.EVK,ChipType,t_addr,t_len,s_data,TL_CMDTypdef.WRITE); 
+			LogConsole("Analog write done!","Console3");
+		}
+		else {
+			var reg2 = RegExp("  ");
+			if(usbRWData.value.match(reg2)) {
+				LogConsole("Too many spaces","Console3");
+				return ERROR_Typdef.E2BIG;
+			}
+			var  t_data = usbRWData.value.trim().split(" ");
+			var t_len  = t_data.length;
+			var t_addr = hex2int(usbRWAddr.value);
+			var s_data = new Uint8Array(t_len);
+			for(var i = 0; i < t_len; i++) {
+				s_data[i] = hex2int(t_data[i])&0xff;
+			}
+			await ANALOG_RW_Func(TL_ModeTypdef.EVK,ChipType,t_addr,t_len,s_data,TL_CMDTypdef.WRITE); 
+			LogConsole("Analog write done!","Console3");
+		}
+		BurningEVKBusy = 0; 
+	}
+	else {
+		LogConsole("BurningEVK is Busy");
+		return ERROR_Typdef.EBUSY; 
+	}
+	return 0;
+}
+
+async function FlashReadtButtonFun() {
+	var value  = new Uint8Array(1);
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!","Console3");
+		return ERROR_Typdef.EPERM;
+	}
+	if(0 == BurningEVKBusy) {
+		BurningEVKBusy = 1;
+		var t_len  = hex2int(usbRWLength.value);
+		var t_addr = hex2int(usbRWAddr.value);
+		await FlASH_RW_Func(TL_ModeTypdef.EVK,ChipType,t_addr,t_len,value,TL_CMDTypdef.READ);
+		var Rdata = "0x" + usbRWAddr.value + ":   ";
+		for(var i = 0; i < t_len; i++) {
+			Rdata += dec2hex(R_buffer[i],2) + " ";
+		}
+		LogConsole(Rdata,"Console3");
+		BurningEVKBusy = 0; 
+	}
+	else {
+		LogConsole("BurningEVK is Busy");
+		return ERROR_Typdef.EBUSY; 
+	}
+}
+
+async function FlashWirtetButtonFun() {
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!","Console3");
+		return ERROR_Typdef.EPERM;
+	}
+	if(0 == BurningEVKBusy) {
+		BurningEVKBusy = 1;	
+		if(1 == SingleWriteFlag) {
+			var readtwobytes = usbRWData.value[0]+usbRWData.value[1];
+			var reg1 = RegExp(" ");
+			if(readtwobytes.match(reg1)) {
+				LogConsole("Too many parameters or spaces","Console3");
+				return ERROR_Typdef.E2BIG;
+			}
+			var t_data = hex2int(readtwobytes);
+			var t_len  = hex2int(usbRWLength.value);
+			var t_addr = hex2int(usbRWAddr.value);
+			var s_data = new Uint8Array(t_len);
+			for(var i = 0; i < t_len; i++) {
+				s_data[i] = t_data&0xff;
+			}
+			await FlASH_RW_Func(TL_ModeTypdef.EVK,ChipType,t_addr,t_len,s_data,TL_CMDTypdef.WRITE);
+			LogConsole("Flash write done!","Console3");
+		}
+		else {
+			var reg2 = RegExp("  ");
+			if(usbRWData.value.match(reg2)) {
+				LogConsole("Too many spaces","Console3");
+				return ERROR_Typdef.E2BIG;
+			}
+			var  t_data = usbRWData.value.trim().split(" ");
+			var t_len  = t_data.length;
+			var t_addr = hex2int(usbRWAddr.value);
+			var s_data = new Uint8Array(t_len);
+			for(var i = 0; i < t_len; i++) {
+				s_data[i] = hex2int(t_data[i])&0xff;
+			}
+			await FlASH_RW_Func(TL_ModeTypdef.EVK,ChipType,t_addr,t_len,s_data,TL_CMDTypdef.WRITE);
+			LogConsole("Flash write done!","Console3");
+		}
+		BurningEVKBusy = 0; 
+	}
+	else {
+		LogConsole("BurningEVK is Busy");
+		return ERROR_Typdef.EBUSY; 
+	}
+	return 0;
+}
+
+async function SectorEraseFlash(mode,type,addr,Sector_num,callback) { // SectorEraseFlash
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+	var callback_en = 0;
+	if(mode == TL_ModeTypdef.USB) {
+		LogConsole("does not support this function");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	if(mode == TL_ModeTypdef.EVK) {
+ 		await usb_evk_mcu_load_ram_bin2(type,TL_ModeTypdef.EVK);
+		 if(USBEvkCmdFlag == -1) {
+			await LogConsole("Error loading boot bin");
+			return ERROR_Typdef.EEVKCMD;
+		 }
+		for(var i = 0; i < Sector_num; i++) {//erase flash
+			await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ERASE,addr + (i*0x1000),4);
+			callback_en = 1;
+			if((typeof callback == "function") && (callback_en==1)) {
+				callback(hex2int(EraseAddrInput.value)+i*0x1000);// Flash Sector (4K) Erase at address: 6d000 	
+			}
+		}
+	}	
+	return 0;
+}
+
+async function usb_evk_mcu_load_ram_bin(mode,type,data,len) { // MCU_Init
+	var cmdbuf_w = new Uint8Array(2);
+	var cmdbuf_r = new Uint8Array(2);
+	if(TL_ModeTypdef.USB == mode ) {
+		LogConsole("USB mode is temporarily not supported");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	else if(TL_ModeTypdef.EVK == mode) {
+		await usb_evk_set_chip(type); // set swire interface
+		if(CHIP_91 == type) {
+			for(var m = 0;m < 4; m++) {
+				cmdbuf_w[0] = 0x10;
+				await usb_evk_cmd(0x100c03,1,0x0f00);
+				await usb_evk_cmd(0x00,1,0x0700);
+				await usb_evk_cmd(0x00,1,0x0700);
+				await usb_evk_write(0x100c02,cmdbuf_w,1);
+				await usb_evk_read(0x100c02,1);				
+				if(0x10 == g_evk_rcv_data[0] && 0 == USBEvkCmdFlag) {
+					LogConsole("TC32 EVK : Swire OK");	
+					break;
+				}
+				else if(m >= 3) {
+					LogConsole("  TC32 EVK: Swire err! ");	
+					return ERROR_Typdef.ESWIRE;
+				}
+			}
+ 			await  usb_evk_set_chip(CHIP_91); // set swire interface
+			cmdbuf_w[0] = 0xe7;
+			await usb_evk_write(0x1401e2,cmdbuf_w,1);// reset mcu ??
+			//await sleep(20);
+			cmdbuf_w[0] = 0x00;
+			await usb_evk_write(0x1401d5,cmdbuf_w,1);// disable irq ??
+			await usb_evk_write(0x1401d6,cmdbuf_w,1);
+			await usb_evk_write(0x1401d7,cmdbuf_w,1);
+			await usb_evk_write(0xc0000000,data,len);
+			cmdbuf_w[0] = 0xff;
+			await usb_evk_write(0x1401e2,cmdbuf_w,1);
+ 		}
+		else {
+			cmdbuf_w[0] = 0xab;
+			cmdbuf_w[1] = 0x00;
+			for(var g = 0; g < 4; g++) {
+				await usb_evk_cmd(0x00,1,0x0700); 
+				await usb_evk_cmd(0x00,1,0x0700); 
+				await usb_evk_cmd(0xb2,1,0x8100);
+				if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+					await usb_evk_write(0x40004,cmdbuf_w,1);
+					await usb_evk_read(0x40004,1);
+					cmdbuf_r[0] = g_evk_rcv_data[0];
+				}
+				else {
+					await usb_evk_write(0x8004,cmdbuf_w,1);
+					await usb_evk_read(0x8004,1);
+					cmdbuf_r[0] = g_evk_rcv_data[0];
+				}
+				if(0xab == g_evk_rcv_data[0] && 0 == USBEvkCmdFlag) {
+					LogConsole("TC32 EVK : Swire OK");	
+					break;
+				}
+				else if(g >= 3) {
+					LogConsole(" [131]: TC32 EVK: Swire err!");	
+					return ERROR_Typdef.ESWIRE;
+				}
+			}
+			if(USBEvkCmdFlag == -1) {
+				return ERROR_Typdef.EEVKCMD;
+			}
+			//*********    reset mcu    *********************
+			cmdbuf_w[0] = 0x05;
+			for(var k = 0; k < 4; k++) {
+				await usb_evk_write(0x602,cmdbuf_w,1);
+				await usb_evk_read(0x602,1);
+				cmdbuf_r[0] = g_evk_rcv_data[0];
+				if((cmdbuf_r[0]&0x05) == 0x05) {
+					break;
+				}
+				else if(k >= 3) {
+					await LogConsole("reset mcu err! ");	
+				}
+			}
+			await LogConsole("TC32 EVK: Swire OK!");	
+			//********************   Disable watch dog, Disable interrupt,download file to ram and start MCU   *********************
+			cmdbuf_w[0] = 0x00;
+			await usb_evk_write(0x622,cmdbuf_w,1);
+			await usb_evk_write(0x643,cmdbuf_w,1);
+			if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+				await usb_evk_write(0x40000,data,len);
+			}
+			else {
+				await usb_evk_write(0x8000,data,len);
+				if(type == CHIP_8366||type == CHIP_8368) {
+					cmdbuf_w[0] = 0x01;	
+					await usb_evk_write(0x8ff0,cmdbuf_w,1);//select 1:12M xtal(or 2:16M xtal) for 8366/8368
+					await usb_evk_write(0x8ff1,cmdbuf_w,1);//select 1:internal vpp(or 2:external vpp) for 8366
+				}
+			}
+			cmdbuf_w[0] = 0x88;	
+			/*
+				if(type == CHIP_8258) {//CHIP_8255_A2
+					cmdbuf_w[0] = 0x80;
+				}
+			*/
+			await usb_evk_write(0x602,cmdbuf_w,1); // start MCU
+		}
+	}
+	return 0; 
+}
+
+async function usb_evk_mcu_load_ram_bin2(type,mode) { // MCU_Init
+	if(type <= ChipNumber) {
+		layer.msg ("The selected chip type is: " + ChipName[type]); 
+		LogConsole("The selected chip type is: " + ChipName[type]);
+	}
+	else {
+		layer.msg ("Please select the correct chip type!"); 
+		LogConsole("Please select the correct chip type!");
+	    return ERROR_Typdef.ERANGE;
+	}	
+	await usb_evk_mcu_load_ram_bin(mode,type,LoadBinary[type],LoadBinary[type].length);
+	await sleep(10);
+	if(USBEvkCmdFlag == -1) {
+		await LogConsole("Error loading boot bin");
+		return ERROR_Typdef.EEVKCMD;
+	}
+	if(CHIP_91 == type) {
+ 	    await usb_evk_read(0xc0000000,LoadBinary[type].length);
+	}
+	else if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+	    await usb_evk_read(0x40000,LoadBinary[type].length);
+	}
+	else {
+	    await usb_evk_read(0x8000,LoadBinary[type].length);
+	}
+	await sleep(10);
+	for(var i = 0; i < LoadBinary[type].length; i++) {
+		if((g_evk_rcv_data)[i] != LoadBinary[type][i]) {
+			await LogConsole("Error checking boot bin");
+			await LogConsole("i:" + i + "   " + g_evk_rcv_data[i] + ":" + LoadBinary[type][i]);
+			break;
+		}
+	}
+	if(i < LoadBinary[type].length) {
+	    return ERROR_Typdef.ECRC;
+	}
+	return 0;
+}
+
+async function MCU_Init_None_Log(type,mode) { // MCU_Init_None_Log
+	if(TL_ModeTypdef.USB == mode) {
+//*********    reset mcu    *********************
+		var i = 0;
+		var buffer = new Uint8Array(2); 
+		buffer[0] = 0x05;
+		buffer[1] = 0;
+		g_rcv_data[0] = 0;
+		while((g_rcv_data[0]&0x05) != 0x05) {
+			if(CHIP_8255 == type||CHIP_8258 == type||CHIP_8278 == type) {
+				await usb_write2(0x602,buffer,1);
+				await usb_read(0x602,1);
+			}
+			else {
+				await usb_write(0x602,buffer,1);
+				await usb_read(0x602,1);
+			}
+			i++;
+			if(i > 3) {
+				LogConsole(" TC32 USB : USB Err! ");
+				return ERROR_Typdef.EPERM;
+			}
+		}
+//********************   Disable watch dog, Disable interrupt,download file to ram and start MCU   *********************			
+		if(CHIP_8255 == type||CHIP_8258 == type||CHIP_8278 == type) {
+			buffer[0] = 0x00;
+			await usb_write2(0x622,buffer,1);
+			await usb_write2(0x643,buffer,1);
+			buffer[0] = 0xff;
+			await usb_write2(0x60c,buffer,1);
+			await usb_write2(0x60d,buffer,1);
+			buffer[0] = 0xff;
+			await usb_write2(0x104,buffer,1);
+			//await usb_write3(0x40000,g_file_data2,size);///////////
+			await usb_write3(0x40000,LoadBinary[type],LoadBinary[type].length);
+			buffer[0] = 0x88;
+			/*
+			if(CHIP_8255_A2 == type) {
+				buffer[0] = 0x80;
+			}
+			*/
+			await usb_write2(0x602,buffer,1);
+		}
+		else {
+			buffer[0] = 0x00;
+			await usb_write(0x622,buffer,1);
+			await usb_write(0x643,buffer,1);
+			buffer[0] = 0x40;
+			await usb_write(0x60c,buffer,1);
+			await usb_write(0x60d,buffer,1);
+			buffer[0] = 0xff;
+			await usb_write(0x104,buffer,1);
+		    if(CHIP_91 == type) {
+				await usb_write3(0xc0000000,LoadBinary[type],LoadBinary[type].length);
+			}
+			else {
+				await usb_write3(0x8000,LoadBinary[type],LoadBinary[type].length);
+ 			}
+			if(CHIP_8366 == type||CHIP_8368 == type) {
+				buffer[0] = 0x01;	
+				await usb_write(0x8ff0,buffer,1);//select 1:12M xtal(or 2:16M xtal) for 8366/8368
+				await usb_write(0x8ff1,buffer,1);//select 1:internal vpp(or 2:external vpp) for 8366
+			}
+			buffer[0] = 0x88;
+			await usb_write(0x602,buffer,1);
+		}
+	}
+	return 0;
+}
+
+async function TL_Dut_Flash_cmd_Process_None_Log(type, cmd ,p0,p1, mode = TL_ModeTypdef.EVK) { // TL_Dut_Flash_cmd_Process_None_Log
+	var cmdbuf = new Uint8Array(16);
+	var msecond1;
+	var msecond2;
+	var timeout_ms = 2000;
+	cmdbuf[0] = cmd;
+	cmdbuf[1] = p0 & 0xff;
+	cmdbuf[2] = (p0>>8) & 0xff;
+	cmdbuf[3] = (p0>>16) & 0xff;
+	cmdbuf[4] = (p0>>24) & 0xff;
+	cmdbuf[5] = p1 & 0xff;
+	cmdbuf[6] = (p1>>8) & 0xff;
+	cmdbuf[7] = (p1>>16) & 0xff;
+	cmdbuf[8] = (p1>>24) & 0xff;
+	if(TL_ModeTypdef.USB == mode ) {
+		if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+			await usb_write2(0x40007,cmdbuf,9);
+			cmdbuf[0] = cmd|0x80;
+			await usb_write2(0x40007,cmdbuf,1);
+			msecond1 = new Date();	
+			await usb_read(0x40007,1);
+			while(g_rcv_data[0]&0x80) {
+				await usb_read(0x40007,1);
+				msecond2 = new Date();
+				if(parseInt(msecond2-msecond1) > timeout_ms) {
+					LogConsole("wait for ack timeout:  "+ parseInt(msecond2-msecond1) +"  ms");
+					return ERROR_Typdef.ETIME;
+				}
+			}
+			await usb_read(0x40004,12);
+			if((g_rcv_data[2]&0xff) != cmd) {
+				LogConsole(" lock flash succeed! ");
+				return 0;
+			}
+		}
+		else {
+			await usb_write3(0x8007,cmdbuf,9);
+			cmdbuf[0] = cmd|0x80;
+			await usb_write3(0x8007,cmdbuf,1);
+			msecond1 = new Date();
+		    g_rcv_data[0] = 0x80;
+			while(g_rcv_data[0]&0x80) {
+ 				await usb_read(0x8007,1);
+				msecond2 = new Date();
+				if(msecond2-msecond1 > timeout_ms) {
+					await LogConsole("wait for ack timeout:  "+ parseInt(msecond2-msecond1) +"  ms");
+					return ERROR_Typdef.ETIME;
+				}
+			}
+			await usb_read(0x8004,12);
+			if((g_rcv_data[2]&0xff) != cmd) {
+				await LogConsole(" lock flash succeed! ");
+				return 0; 
+			}
+		}
+	}
+	if(TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ASK == cmd) {
+		BinLoadAdr = g_rcv_data[0] + (g_rcv_data[1]*256);
+		if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+			BinLoadAdr = (BinLoadAdr+0x40000-0x8000);
+		}
+		else if(CHIP_91 == type) {
+			BinLoadAdr = (BinLoadAdr+0xC0000000);
+		}
+		else {
+			BinLoadAdr = BinLoadAdr;
+		}
+	}
+	if(TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_CRC == cmd) {
+		var sum_size = g_rcv_data[4] + g_rcv_data[5]*256 + g_rcv_data[6]*256*256 + g_rcv_data[7]*256*256*256;
+		crc_check = g_rcv_data[8] + g_rcv_data[9]*256 + g_rcv_data[10]*256*256 + g_rcv_data[11]*256*256*256;
+		crc_check = crc_check>>>0;
+        if(sum_size != p1) {
+			LogConsole(" crc check err! ");
+			LogConsole(" crc_check: " + crc_check);
+			LogConsole(" sum_size: "  + sum_size);
+			return ERROR_Typdef.ECRC;
+		}
+	}
+	return 0; 
+}
+
+async function usb_evk_flash_write(type,data,len,addr,callback) { // EVK_Download
+	var msecond1;
+	var msecond2;
+ 	await usb_evk_mcu_load_ram_bin2(type,TL_ModeTypdef.EVK);
+	if(USBEvkCmdFlag == -1) {
+	    await LogConsole("Error loading boot bin");
+		return ERROR_Typdef.EEVKCMD;
+	}
+	await LogConsole("Boot bin loaded correctly");
+	msecond1 = new Date(); // start timing before erasing flash
+	await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ASK,0,0);
+	var Sector_num = ((len%0x1000)==0) ? Math.floor(len/0x1000) : Math.floor((len/0x1000)+1);
+	var Page_num = ((len%0x100)==0) ? Math.floor(len/0x100) : Math.floor((len/0x100)+1);
+	LogConsole("len:"+len +"		Sector_num:"+Sector_num+ "		Page_num:"+Page_num);
+	for(var i = 0; i < Sector_num; i++) {
+		await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ERASE,addr + (i*0x1000),4);
+		LogConsole("erase flash : "+dec2hex(addr + (i*0x1000)));
+	}
+	for(var i = 0; i < Page_num; i++) {
+		var temp_len;
+		var temp_data;
+		var callback_en = 0;
+		if(i < Page_num - 1) {
+			temp_data = data.slice(i*256, i*256+256);
+			temp_len = 256;
+			if(i%16 == 0) {
+				callback_en = 1;
+			}
+		}
+		else {
+			temp_data = data.slice(i*256,len);
+			temp_len = len - (i*256);
+			if(temp_len > 256) {
+				temp_len = 256;
+			}
+			callback_en = 1;
+		}
+		await usb_evk_write(BinLoadAdr,temp_data,temp_len);
+		await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_WRITE,(i*256)+addr,temp_len);
+		if((typeof callback == "function") && (callback_en == 1)) {
+		    callback(addr + i*256);
+		}
+	}
+	await crc32_check_look_table(0xffffffff,data,len);
+    await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_CRC ,addr,len);
+	if(crc_ret != crc_check) {
+		LogConsole(" file check err!");
+		LogConsole("crc_ret:  " + crc_ret.toString(16));
+		LogConsole("crc_check:  " + crc_check.toString(16));
+		return ERROR_Typdef.ECRC;
+	}
+	else {
+		LogConsole(" file check success!");
+	}
+	LogConsole("File Download to Flash at address 0x" + dec2hex(addr)+":  " +len +"  bytes");
+	msecond2 = new Date();
+	LogConsole("Total Time:  "+ parseInt(msecond2-msecond1) +"  ms");
+	return 0;
+}
+
+async function usb_evk_ram_write(type,data,len,addr,callback) { // EVK_Download
+ 	var buffer = new Uint8Array(2);
+ 	var callback_en = 1;
+    var msecond1;
+	var msecond2;
+	var temp;
+	await usb_evk_set_chip(type); // Swrie  sync
+	if(CHIP_91 == type) {
+		buffer[0] = 0xab;
+		buffer[1] = 0x00;
+		for(var i = 0; i < 4; i++) {	 
+			await usb_evk_cmd(0x00,1,0x0700);
+			await usb_evk_cmd(0x00,1,0x0700);//??
+			await usb_evk_cmd(0x100C02,1,0x8100);
+			await usb_evk_write(0xC0000004,buffer,1);
+			await usb_evk_read(0xC0000004,1);
+ 			if(0xab == g_evk_rcv_data[0]) {
+				LogConsole(" TC32 EVK: Swire ok! ");
+				break;
+			}
+			else if(i >= 3) {
+			   LogConsole(" TC32 EVK: Swire err! ");	
+			   return ERROR_Typdef.ESWIRE;
+			}
+		}
+	}
+	else { 
+		buffer[0] = 0xab;
+		buffer[1] = 0x00;
+		for(var j = 0; j < 4; j++) { 
+			await usb_evk_cmd(0x00,1,0x0700);
+			await usb_evk_cmd(0x00,1,0x0700);
+			await usb_evk_cmd(0xb2,1,0x8100);
+			if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+				await usb_evk_write(0x40004,buffer,1);
+				await usb_evk_read(0x40004,1);
+			}
+			else {
+				await usb_evk_write(0x8004,buffer,1);
+				await usb_evk_read(0x8004,1);				
+			}
+			if(0xab == g_evk_rcv_data[0]) {
+				LogConsole(" TC32 EVK: Swire ok! ");
+				break;
+			}
+			else if(j >= 3) {
+			   LogConsole(" TC32 EVK: Swire err! ");	
+			   return ERROR_Typdef.ESWIRE;
+			}
+		}
+		//*********    reset mcu    *********************
+		buffer[0] = 0x05;
+		for(var k = 0; k < 4; k++) {	 
+			await usb_evk_write(0x602,buffer,1);
+			await usb_evk_read(0x602,1);
+ 			if((g_evk_rcv_data[0]&0x05) == 0x05) {
+				LogConsole(" TC32 EVK : Swire OK ");
+				break;
+			}
+			else if(k >= 3) {
+			   LogConsole(" [132]: reset mcu err! ");	
+			   return ERROR_Typdef.ERESET;
+			}
+		}
+	}
+	buffer[0] = 0xab;
+	buffer[1] = 0x00;
+	buffer[0] = 0x00;
+	//********************   Disable watch dog, Disable interrupt,download file to ram and start MCU   *********************
+	if(CHIP_91 == type) {
+		buffer[0] = 0x00;
+		await usb_evk_write(0x140142,buffer,1);
+		buffer[0] = 0xe7;
+		await usb_evk_write(0x1401e2,buffer,1); 
+		buffer[0] = 0x00;
+		await usb_evk_write(0x1401d5,buffer,1);	
+		buffer[0] = 0x00;
+		await usb_evk_write(0x1401d6,buffer,1);		
+		buffer[0] = 0x00;
+		await usb_evk_write(0x1401d7,buffer,1);		
+	}
+	else {
+		buffer[0] = 0x00;
+		await usb_evk_write(0x622,buffer,1);
+		await usb_evk_write(0x643,buffer,1);
+	}
+	var aign_256byte_num = len/256;
+    var sbyte_num = len%256;
+	var temp_data;
+	msecond1 = new Date();
+	if(CHIP_91 == type) {
+		for(var i = 0; i < aign_256byte_num; i++) {
+			temp_data = data.slice(i*256, i*256+256);
+			await usb_evk_write(addr+i*256,temp_data,256);	
+			if((typeof callback == "function") && (callback_en == 1)) {
+				callback(addr+i*256);
+			}
+		}
+		if(sbyte_num != 0) {
+			temp_data = data.slice(aign_256byte_num*256,len);
+			await usb_evk_write(addr+aign_256byte_num*256,temp_data,sbyte_num);	
+		}
+	}
+	else if((CHIP_8255 == type)||(CHIP_8258 == type)||(CHIP_8278 == type)) {
+		for(var i = 0; i < aign_256byte_num; i++) {
+			temp_data = data.slice(i*256,i*256+256);
+			await usb_evk_write(addr+i*256,temp_data,256);	
+			if((typeof callback == "function") && (callback_en==1)) {
+				callback(addr+i*256);
+			}
+		}
+		if(sbyte_num != 0) {
+			temp_data = data.slice(aign_256byte_num*256,len);
+			await usb_evk_write(addr+aign_256byte_num*256,temp_data,sbyte_num);	
+		}
+	}
+	else {
+		for(var i = 0; i < aign_256byte_num; i++) {
+			temp_data = data.slice(i*256,i*256+256);
+			await usb_evk_write(addr+i*256,temp_data,256);	
+			if((typeof callback == "function") && (callback_en==1)) {
+				callback(addr+i*256);
+			}
+		}
+		if(sbyte_num != 0) {
+			temp_data = data.slice(aign_256byte_num*256,len);
+			await usb_evk_write(addr+aign_256byte_num*256,temp_data,sbyte_num);	
+		}
+		if(type == CHIP_8366||type == CHIP_8368) {
+			buffer[0] = 0x01;
+			await usb_evk_write(0x8ff0,temp_data,1);//??
+			await usb_evk_write(0x8ff1,temp_data,1);//??
+		}
+	}
+	LogConsole("File Download to SRAM at address 0x" + dec2hex2(addr)+":  " +len +"  bytes");
+	await crc32_check_look_table(0xffffffff,data,len);
+	temp = crc_ret;
+	await usb_evk_read(addr,len);
+	await crc32_check_look_table(0xffffffff,g_evk_rcv_data,len);
+	if(temp != crc_ret) {
+		LogConsole(" crc check err!");
+		LogConsole("temp:  "+temp+" crc_ret:  "+crc_ret);
+		return ERROR_Typdef.ECRC;
+	}
+	else {
+		LogConsole(" crc check success!");
+	}
+	msecond2 = new Date();
+	LogConsole("Total Time:  "+ parseInt(msecond2-msecond1) +"  ms");
+	return 0;
+}
+
+$("#UPFileImport").click(function() {
+	$("#UPFileInput").click();
+})
+
+async function UPFileRead(type) { // Upgrade
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+	var localFile2;
+	var g_file_length2;
+	var g_file_data2 = new Uint8Array(1024*1024*4);
+	await LogConsole("ChipType: " + type);
+	localFile2 = document.getElementById("UPFileInput").files[0];
+	LogConsole(localFile2,"backstage");
+	var reader = new FileReader();
+	const _this = this;
+	reader.readAsArrayBuffer(localFile2);
+	reader.onload = function() {
+		var bytes = new Uint8Array(reader.result);    
+		var date = new Date(localFile2.lastModified);
+		dateTime = date.toLocaleString();
+		LogConsole(localFile2.name + "	:  " + dateTime);
+		for(var i=0;i<bytes.length;i++) {
+			g_file_data2[i] = bytes[i];
+		}
+		g_file_length2 = bytes.length;
+		LogConsole("g_file_length2: " + g_file_length2);
+	}
+	document.getElementById('UPFileInput').value = null;
+	await sleep(20);
+	await upgrade(type,g_file_data2,g_file_length2);
+}
+
+async function upgrade(type,UPBinData,UPBinLength) {
+	var i = 0;
+	var size;
+	var temp;
+	var sbyte_num;
+	var temp_data;
+	var aign_256byte_num;
+	var buffer = new Uint8Array(2); 
+	//1.unlock flash of evk
+	size =  unlock_flash_buffer.length;
+	//*********    reset mcu    *********************
+	buffer[0] = 0x05;
+	buffer[1] = 0;
+	g_rcv_data[0] = 0;
+	while((g_rcv_data[0]&0x05) != 0x05) {
+		await usb_write(0x602,buffer,1);
+		await usb_read(0x602,1);
+		i++;
+		if(i > 3) {
+			await LogConsole(" TC32 USB : USB Err! ");
+ 			return ERROR_Typdef.EPERM;
+		}
+	}
+	//******  Disable watch dog, Disable interrupt,download file to ram and start MCU    *********
+	buffer[0] = 0x00;
+	aign_256byte_num = Math.floor(size/256);
+	sbyte_num = Math.floor(size%256);
+	await LogConsole("size: " + size + " aign_256byte_num: " + aign_256byte_num + " sbyte_num: " + sbyte_num);
+	await usb_write(0x622,buffer,1);
+	await usb_write(0x643,buffer,1);
+	buffer[0] = 0x40;
+	await usb_write(0x60c,buffer,1);
+	await usb_write(0x60d,buffer,1);
+	buffer[0] = 0xff;
+	await usb_write(0x104,buffer,1);
+	
+	for(i = 0; i < aign_256byte_num; i++) {
+		temp_data = unlock_flash_buffer.slice(i*256,i*256+256);
+		await usb_write3(0x8000+i*256,temp_data,256);
+	}
+	if(sbyte_num != 0) {
+		temp_data = unlock_flash_buffer.slice(aign_256byte_num*256,size);
+		await usb_write3(0x8000+aign_256byte_num*256,temp_data,sbyte_num);
+	} 
+	//check bin
+	await crc32_check_look_table(0xffffffff,unlock_flash_buffer,size);
+	temp = crc_ret;
+	for(i = 0; i < size; i++) {
+		unlock_flash_buffer[i] = 0;
+	}
+	await usb_read(0x8000,size);
+	await crc32_check_look_table(0xffffffff,g_rcv_data,size);
+	if(temp != crc_ret) {
+		await LogConsole(" crc check err! ");
+		await LogConsole("temp: " + temp + " crc_ret: " + crc_ret);
+		return ERROR_Typdef.ECRC;
+	}
+	else {
+		await LogConsole(" crc check success! ");
+	}
+	// program run
+	buffer[0] = 0x88;
+	await usb_write(0x602,buffer,1);
+	await sleep(10);
+	//2.erase flash of evk to confirm whether unlock flash is  succeeded
+	await MCU_Init_None_Log(type,TL_ModeTypdef.USB);
+	await LogConsole(" succeed! ");
+	await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ERASE,0,4,TL_ModeTypdef.USB);
+	await LogConsole(" unlock flash succeed!");
+	//3.load upgrade bin to flash of evk
+	await MCU_Init_None_Log(type,TL_ModeTypdef.USB);
+	var msecond1;
+	var msecond2;
+	var EraseSector_Num = (0 == (UPBinLength%0x1000)) ? Math.floor(UPBinLength/0x1000) : Math.floor((UPBinLength/0x1000)+1);
+	var PageWrite_Num = (0 == (UPBinLength%0x100)) ? Math.floor(UPBinLength/0x100) : Math.floor((UPBinLength/0x100)+1);
+	msecond1 = new Date();
+	await LogConsole("UPBinLength: "+UPBinLength +"		EraseSector_Num: "+EraseSector_Num+ "		PageWrite_Num: "+PageWrite_Num);
+	await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ASK,0,0,TL_ModeTypdef.USB);
+	var Adr = 0;
+	await LogConsole("  BinLoadAdr:  " + BinLoadAdr);
+	for(i = 0; i < EraseSector_Num; i++) {
+		await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ERASE,Adr + (i*0x1000),4,TL_ModeTypdef.USB);
+	}
+	for(var k = 0; k < PageWrite_Num; k++) {
+		var temp_data;
+		var temp_len;
+		var callback_en = 0;
+		if(k < PageWrite_Num - 1) {
+			temp_data = UPBinData.slice(k*256, k*256+256);
+			temp_len = 256;
+			if(0 == k%16) {
+				callback_en = 1;
+			}
+		}
+		else {
+			temp_data = UPBinData.slice(k*256,UPBinLength);
+			temp_len = UPBinLength - (k*256);
+			if(temp_len > 256) {
+				temp_len = 256;
+			}
+			callback_en = 1;
+		}
+		await usb_write3(BinLoadAdr,temp_data,temp_len);
+		await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_WRITE,(k*256)+Adr,temp_len,TL_ModeTypdef.USB);
+		if(1 == callback_en) {
+			await LogConsole("Flash Page Program at address: 0x"+dec2hex2(Adr+k*256));
+		}
+	}
+	msecond2 = new Date();
+	await LogConsole("Total Time:  "+ parseInt(msecond2-msecond1) +"  ms");
+	await crc32_check_look_table(0xffffffff,UPBinData,UPBinLength);
+	await usb_evk_dut_cmd(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_CRC ,Adr,UPBinLength,TL_ModeTypdef.USB);
+	if(crc_ret != crc_check) {
+		await LogConsole(" file check err!");
+		await LogConsole("crc_ret:  " + crc_ret.toString(16));
+		await LogConsole("crc_check:  " + crc_check.toString(16));
+		return ERROR_Typdef.ECRC;
+	}
+	else {
+		await LogConsole(" Update FW succeed! ");
+	}
+	//4.lock flash
+	size = lock_flash_buffer.length;
+	//*********    reset mcu    *********************
+	buffer[0] = 0x05;
+	buffer[1] = 0;
+	i = 0;
+	g_rcv_data[0] = 0;
+	while((g_rcv_data[0]&0x05) != 0x05) {
+		await usb_write(0x602,buffer,1);
+		await usb_read(0x602,1);
+		i++;
+		if(i > 3) {
+			await LogConsole(" TC32 USB : USB Err! ");
+			return 0;
+		}
+	}
+//********************   Disable watch dog, Disable interrupt,download file to ram and start MCU   *********************
+	aign_256byte_num = Math.floor(size/256);
+	sbyte_num = Math.floor(size%256);
+	await LogConsole("size: " + size + " aign_256byte_num: " + aign_256byte_num + " sbyte_num: " + sbyte_num);
+	buffer[0] = 0x00;
+	await usb_write(0x622,buffer,1);
+	await usb_write(0x643,buffer,1);
+	buffer[0] = 0x40;
+	await usb_write(0x60c,buffer,1);
+	await usb_write(0x60d,buffer,1);
+	buffer[0] = 0xff;
+	await usb_write(0x104,buffer,1);
+	for(i = 0; i < aign_256byte_num; i++) {
+		temp_data = lock_flash_buffer.slice(i*256,i*256+256);
+		await usb_write3(0x8000+i*256,temp_data,256);
+	}
+	if(sbyte_num != 0) {
+		temp_data = lock_flash_buffer.slice(aign_256byte_num*256,size);
+		await usb_write3(0x8000+aign_256byte_num*256,temp_data,sbyte_num);
+	} 
+	//check bin
+	await crc32_check_look_table(0xffffffff,lock_flash_buffer,size);
+	temp = crc_ret;
+	for(i = 0; i < size; i++) {
+		lock_flash_buffer[i] = 0;
+	}
+	await usb_read(0x8000,size);
+	await crc32_check_look_table(0xffffffff,g_rcv_data,size);
+	if(temp != crc_ret) {
+		await LogConsole(" crc check err! ");
+		await LogConsole("temp: " + temp + " crc_ret: " + crc_ret);
+		return ERROR_Typdef.ECRC;
+	}
+	else {
+		await LogConsole(" crc check success! ");
+	}
+	// program run
+	buffer[0] = 0x88;
+	await usb_write(0x602,buffer,1);
+	await sleep(10);
+	//2.erase flash of evk to confirm whether lock flash is succeeded
+	await MCU_Init_None_Log(type,TL_ModeTypdef.USB);
+	await TL_Dut_Flash_cmd_Process_None_Log(type,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ERASE,0,4,TL_ModeTypdef.USB);
+	await LogConsole(" --------------- upgrade firmware succeed, please power on again ------------------ 	 ");
+	return 0;
+}
+
+async function DownloadBin(type,BinPath,FileType,addr = "Null") {
+	if(USBConnectedFlag != 1) {
+		LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+	var rawData = new Uint8Array(1024*1024*4);
+	await LogConsole("ChipType: " + type);
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码 
+		xmlhttp = new XMLHttpRequest();
+	}
+	else {
+		// IE6, IE5 浏览器执行代码
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange = async function() {
+		if(4 == xmlhttp.readyState && 200 == xmlhttp.status) {
+			await LogConsole("Get success");
+		}
+		if(xmlhttp.status != 200 && xmlhttp.status != 0) {
+			await LogConsole("Get failed  erro code:" + xmlhttp.status);
+		}
+	}
+	xmlhttp.open("GET",BinPath,true); // The path is not too long
+	xmlhttp.responseType = 'arraybuffer';
+	xmlhttp.onload = async function(e) {
+	    rawData = new Uint8Array(this.response);
+		if(4 == xmlhttp.readyState && 200 == xmlhttp.status)  {
+			await LogConsole("File length:  " + rawData.length);
+			await LogConsole("Load success");
+			if("BurningEVKFirmware" == FileType) {
+				await upgrade(type,rawData,rawData.length);
+			}
+			else if("TargetBoardBin" == FileType) {
+				await NetWorkDownload(type,rawData,rawData.length,addr);
+			}
+			else {
+				await LogConsole("Wrong file type!");
+			}
+		}
+		else {
+			await LogConsole(".....................");
+		}
+	}
+	await xmlhttp.send();
+	await sleep(10);
+}
+
+async function NetWorkDownload(type,UPBinData,UPBinLength,addr) {
+	if(TL_ObjTypdef.FLASH == LoadOBJChoose) {
+		if("Null" == addr) {
+			await usb_evk_flash_write(type,UPBinData,UPBinLength,hex2int(DownloadAddrInput.value),download_callback);
+		}
+		else { //hex2int("0000011")
+			await usb_evk_flash_write(type,UPBinData,UPBinLength,hex2int(addr),download_callback);
+		}
+	}
+	else if(TL_ObjTypdef.CORE == LoadOBJChoose) {
+		if("Null" == addr) {
+			await usb_evk_ram_write(type,UPBinData,UPBinLength,hex2int(SramDownloadAddrInput.value),download_callback);
+		}
+		else {
+			await usb_evk_flash_write(type,UPBinData,UPBinLength,hex2int(addr),download_callback);	
+		}
+	}
+	if("Null" == addr) {
+		if(1 == AutoResetFlag) {
+			await LogConsole("Automatic reset after download");
+			await usb_evk_reset_mcu(TL_ModeTypdef.EVK,type,LoadOBJChoose);
+		}
+	}
+	if(1 == NetWorkBusy) {
+		NetWorkBusy = 0;
+	}
+
+ 	if(1 == BurningEVKBusy) {
+		BurningEVKBusy = 0;
+	}
+}
+
+async function BinDownload(data,len,addr,MultiDown = "0") {
+	if(USBConnectedFlag != 1) {
+		await LogConsole("USB device not connected!");
+		return ERROR_Typdef.EPERM;
+	}
+	else {
+		if(MultiDown == "0") {
+			if(-1 == BinFileChanged) {
+ 				await LogConsole("You haven't chosen to download files yet!");
+				return ERROR_Typdef.ENOENT;
+ 			}
+			else if(0 == BinFileChanged) {
+				await LogConsole("Download the same file as last time!");
+ 			}
+			else if(BinFileChanged != 1) {
+				await LogConsole("download error!");
+				return ERROR_Typdef.ENOENT;
+			}
+			var date = new Date(localFile.lastModified);
+			dateTime = date.toLocaleString();
+			await LogConsole(localFile.name + "	:  " + dateTime);
+			await LogConsole("download start!");
+			LogConsole(localFile.name,"backstage");
+			if(TL_ObjTypdef.FLASH == LoadOBJChoose) {
+				await usb_evk_flash_write(ChipType,data,len,addr,download_callback);
+			}
+			else if(TL_ObjTypdef.CORE == LoadOBJChoose) {
+				await usb_evk_ram_write(ChipType,data,len,addr,download_callback);
+			}
+			if(1 == AutoResetFlag) {
+				await LogConsole("Automatic reset after download");
+				await usb_evk_reset_mcu(TL_ModeTypdef.EVK,ChipType,LoadOBJChoose);
+			}
+		}
+		else if("1" == MultiDown) {
+			await usb_evk_flash_write(ChipType,data,len,addr,download_callback);
+		}
+	}
+	return 0;
+}
+
+async function download_callback(page_adr) {
+	if(TL_ObjTypdef.FLASH == LoadOBJChoose) {
+		await LogConsole("Flash Page Program at address: 0x"+dec2hex2(page_adr));
+	}
+	else if(TL_ObjTypdef.CORE == LoadOBJChoose) {
+		await LogConsole("Sram Page Program at address: 0x"+dec2hex2(page_adr));
+	}
+}
+
+
+$("#BinFileImport").click(function() {
+		$("#BinFileInput").click();
+})
+
+var localFile;
+var lastlocalFile;
+var g_file_length = 0;
+var g_file_data = new Uint8Array(1024*1024*4); // bin文件最大
+async function BinFileRead() {
+	LogConsole("file read test begin...","backstage");
+	localFile = document.getElementById("BinFileInput").files[0];
+	LogConsole(localFile,"backstage");
+	LogConsole(lastlocalFile,"backstage");
+	if(undefined == lastlocalFile) {
+		BinFileChanged = 1;
+	}
+	else {
+		if((lastlocalFile.name == localFile.name) && (lastlocalFile.lastModified == localFile.lastModified)) {
+			BinFileChanged = 0;
+		}
+		else {
+			BinFileChanged = 1; 
+		}
+	}
+	lastlocalFile = localFile;
+	var reader = new FileReader();
+	reader.readAsArrayBuffer(localFile);
+	reader.onload = function() {
+		var bytes = new Uint8Array(reader.result);  
+ 		var date = new Date(localFile.lastModified);
+		dateTime = date.toLocaleString();
+		LogConsole(localFile.name + "	:  " + dateTime);
+		for(var i = 0; i < bytes.length; i++) {
+			g_file_data[i] = bytes[i];
+		}
+		g_file_length = bytes.length;
+		LogConsole("file read end...","backstage");
+ 		document.getElementById('BinFileImport').innerHTML = '<i class = "layui-icon layui-icon-export" ></i>' + localFile.name;
+	}
+	document.getElementById('BinFileInput').value = null;
+	return 0;
+}
+
+$("#FileUploadImport").click(function() {
+	$("#FileUploadInput").click();
+})
+
+async function UPileRead() {
+	var file = document.getElementById("FileUploadInput").files[0];
+	var fileName = file.name;
+	LogConsole(document.getElementById('FileUploadInput'),"backstage");
+	LogConsole(document.getElementById('FileUploadInput').files,"backstage");
+	LogConsole(file,"backstage");
+ 	var reader = new FileReader();
+	reader.readAsArrayBuffer(file);
+	reader.onload = function() {
+		LogConsole(reader.result,"backstage");
+		var Mdata = reader.result;
+ 		if (window.XMLHttpRequest) {//  IE7+, Firefox, Chrome, Opera, Safari
+			xhr=new XMLHttpRequest();
+		}
+		else { // IE6, IE5
+			xhr=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhr.withCredentials = true;
+		xhr.addEventListener("readystatechange", function() {
+			if (this.readyState == 4 && this.status == 200) {
+				LogConsole(this.responseText);
+			}
+			if(this.status != 200 && this.status != 0) {
+				LogConsole( "Network error :" + this.status);
+			}
+		});
+		xhr.open("POST", "./bin/upload_file.php");
+		xhr.setRequestHeader("Path", Directory.value);
+		xhr.setRequestHeader("Link",LinkCode.value);
+		xhr.setRequestHeader("Name", fileName);
+		xhr.setRequestHeader("Content-Type", "application/octet-stream");
+		xhr.send(Mdata);
+ 		LogConsole("file read end...","backstage");
+	    document.getElementById('FileUploadImport').innerHTML = '<i class = "layui-icon layui-icon-upload-drag" ></i> ' +fileName;
+ 	}
+	document.getElementById('FileUploadInput').value = null;
+	return 0;
+}
+
+$("#MultiBinFileImport1").click(function() {
+    $("#MultiBinFileInput1").click();
+})
+$("#MultiBinFileImport2").click(function() {
+	$("#MultiBinFileInput2").click();
+})
+$("#MultiBinFileImport3").click(function() {
+    $("#MultiBinFileInput3").click();
+})
+$("#MultiBinFileImport4").click(function() {
+	$("#MultiBinFileInput4").click();
+})
+$("#MultiBinFileImport5").click(function() {
+	$("#MultiBinFileInput5").click();
+})
+
+async function MultiBinFileRead(id) {
+	LogConsole("file read test begin...","backstage");
+	var localFile = document.getElementById(id).files[0];
+	LogConsole(localFile,"backstage");
+	var date = new Date(localFile.lastModified);
+	dateTime = date.toLocaleString();
+	LogConsole(localFile.name + "	:  " + dateTime);
+ 
+	var reader = new FileReader();
+	reader.readAsArrayBuffer(localFile);
+	reader.onload = function() {
+		var bytes = new Uint8Array(reader.result);  
+		if(id == "MultiBinFileInput1") {
+			for(var i = 0; i < bytes.length; i++) {
+				MultiBinFileData1[i] = bytes[i];
+			}
+			MultiBinFileLen1 = bytes.length;
+			MultiBinFileName1 = localFile.name;
+			document.getElementById("MultiBinFileImport1").value=localFile.name;
+		}
+		else if(id == "MultiBinFileInput2") {
+			for(var i = 0; i < bytes.length; i++) {
+				MultiBinFileData2[i] = bytes[i];
+			}
+			MultiBinFileLen2 = bytes.length;
+			MultiBinFileName2 = localFile.name;
+			document.getElementById("MultiBinFileImport2").value=localFile.name;
+		}
+		else if(id == "MultiBinFileInput3") {
+			for(var i = 0; i < bytes.length; i++) {
+				MultiBinFileData3[i] = bytes[i];
+			}
+			MultiBinFileLen3 = bytes.length;
+			MultiBinFileName3 = localFile.name;
+			document.getElementById("MultiBinFileImport3").value=localFile.name;
+		}
+		else if(id == "MultiBinFileInput4") {
+			for(var i = 0; i < bytes.length; i++) {
+				MultiBinFileData4[i] = bytes[i];
+			}
+			MultiBinFileLen4 = bytes.length;
+			MultiBinFileName4 = localFile.name;
+			document.getElementById("MultiBinFileImport4").value=localFile.name;
+		}
+		else if(id == "MultiBinFileInput5") {
+			for(var i = 0; i < bytes.length; i++) {
+				MultiBinFileData5[i] = bytes[i];
+			}
+			MultiBinFileLen5 = bytes.length;
+			MultiBinFileName5 = localFile.name;
+			document.getElementById("MultiBinFileImport5").value=localFile.name;
+		}
+		else {
+			LogConsole(" ERROR : MultiBinFileRead ");
+			return ERROR_Typdef.ERANGE;
+		}
+		document.getElementById(id).value = null;
+		LogConsole("file read end...","backstage");
+	}
+	return 0;
+}
+
+
+async function usb_evk_getpc_mcu(mode,type) { // get_pc
+	if(USBConnectedFlag != 1) {
+ 		LogConsole("USB device not connected!","Console2");
+		return ERROR_Typdef.EPERM;
+	}
+	if(TL_ModeTypdef.EVK == mode) {
+		if(CHIP_91 == type) {
+			LogConsole(" This chip done not support the function ","Console2");
+			return ERROR_Typdef.ESUPPORT;
+		}
+		await usb_evk_set_chip(type); 
+		await usb_evk_read(0x6bc,4);
+ 	}
+	else if(TL_ModeTypdef.USB == mode ) {
+		LogConsole("does not support this function");
+		return ERROR_Typdef.ESUPPORT;
+	}
+	PC = g_evk_rcv_data[0] + g_evk_rcv_data[1]*256 + g_evk_rcv_data[2]*256*256 + g_evk_rcv_data[3]*256*256*256;
+	LogConsole(" pc : 0x"+dec2hex(PC,6),"Console2");
+ 
+	for(var m = 0; m < LstFileLineCount; m++) { 
+		if(PC >= hex2int(LineAddrSort[m]) && PC < hex2int(LineAddrSort[m+1])) {
+			LogConsole(LineFunctionSort[m],"Console2");
+			var value = dec2hex2(PC);
+			for(var n= LineCount[m];n < LineCount[m+1]; n++) {
+				if(LstFileRow[n].indexOf(value) > 0 && LstFileRow[n].indexOf(value+" <") <= 0) {
+					LogConsole(LstFileRow[n],"Console2"); 
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+var LstFileRow	     = 0; 	//  反汇编文件一行一行的读取
+var ValidAnalyNumVar = 0; 	// 符合解析规则的数目 变量
+var ValidAnalyNumFun = 0;	// 符合解析规则的数目 函数
+
+var AnalyNameVar = new Array();
+var AnalyAddrVar = new Array();
+var AnalyLenVar  = new Array();
+
+var AnalyNameFun = new Array();
+var AnalyAddrFun = new Array();
+var AnalyLenFun  = new Array();
+
+var Addr = new Array();
+
+
+var VariableName2 = new Array();
+var OriginalAddr2 = new Array();
+var Addr2 = new Array();
+var Len2 = new Array();
+var FunctionVariableName2 = new Array();
+var FunctionOriginalAddr2 = new Array();
+var FunctionLen2 = new Array();
+var Data = new Array();
+
+var LineCount = new Array();
+var LineAddrSort = new Array();
+var LineFunctionSort = new Array();
+var LstFileLineCount = 0;
+
+$("#LstFileImport").click(function() {
+    $("#LstFileInput").click();
+})
+
+function LstFileRead() {
+	ValidAnalyNumVar = 0;
+	ValidAnalyNumFun = 0;
+	var LstFile = document.getElementById("LstFileInput").files[0];
+	LogConsole(LstFile,"backstage");
+	var reader = new FileReader();
+	reader.readAsText(LstFile);
+	reader.onload = function() {
+		LogConsole(LstFile.name,"backstage");
+		var bytes = reader.result;
+		LstFileRow = bytes.split("\n");
+		LogConsole(bytes.length,"backstage");
+		LogConsole("file read end...","backstage");
+		LogConsole(LstFileRow.length,"backstage");
+
+		var reg1 = RegExp(/SYMBOL TABLE:/);
+		var reg21 = RegExp(/Disassembly of section .vectors:/);
+		var reg22 = RegExp(/Disassembly of section .ram_boot:/);
+		var reg23 = RegExp(/Disassembly of section .rodata:/);
+		var reg24 = RegExp(/>:/);
+		var reg3  = RegExp(/00000000/);
+		var reg31  = RegExp(/data_no_init/);
+		
+		var reg4  = RegExp(/\.data/);
+		var reg5  = RegExp(/\.retention_data/);
+		var reg6  = RegExp(/\.sbss/);
+		var reg7  = RegExp(/\.bss/);
+		var reg8  = RegExp(/ l/);
+		var reg9  = RegExp(/\.ram_code/);
+		var reg10 = RegExp(/\.text/);
+		var reg11 = RegExp(/\.hidden/);
+
+		for(var j = 0; j < LstFileRow.length; j++) {
+			if(LstFileRow[j].match(reg1)) {
+				var start = j;
+			}
+		}
+		for(var j = start; j < LstFileRow.length; j++) {
+			if((LstFileRow[j].match(reg21))||(LstFileRow[j].match(reg22))) {
+				var end = j;
+			}
+		}
+		for(var j = end; j < LstFileRow.length; j++) {
+			if((LstFileRow[j].match(reg23))) {
+				var end2 = j;
+			}
+		}
+		if(isNaN(end2)) { 
+			end2 = LstFileRow.length + 1;
+		}
+		start = start + 1;
+		end  = end - 3;
+		end2 = end2 - 1;
+		LogConsole("start:"+start,"backstage");
+		LogConsole("end:"+end,"backstage");
+		LogConsole("end2:"+end2,"backstage");		
+		LstFileLineCount = 0;
+		for(var j = end + 5; j < end2; j++) {
+			if((LstFileRow[j].match(reg24))) {
+				LineCount[LstFileLineCount] = j; // 行号
+				LineAddrSort[LstFileLineCount] = LstFileRow[j].substr(0,8);// PC值
+				LineFunctionSort[LstFileLineCount] = LstFileRow[j];
+				LstFileLineCount++;
+			}
+		}
+
+		for(var k = start; k < end; k++) { // 00080000 l    d  .data	00000000 .data
+			if((!LstFileRow[k].match(reg3))&&(!LstFileRow[k].match(reg31))) {
+				if((LstFileRow[k].match(reg4)||LstFileRow[k].match(reg5)||LstFileRow[k].match(reg6)||LstFileRow[k].match(reg7))) {
+						AnalyAddrVar[ValidAnalyNumVar] = LstFileRow[k].substr(0,8);
+						var temp = LstFileRow[k].substr(0,8);
+						if(CHIP_91 == ChipType) {
+							if((hex2int(temp) >= 0 )&& (hex2int(temp) <= 0x20000)) {
+								Addr[ValidAnalyNumVar] = hex2int(temp)+hex2int("C0000000");//ILM
+							}
+							else if( (hex2int(temp) >= 0x80000) && (hex2int(temp) <= 0xA0000)) {
+								Addr[ValidAnalyNumVar] = hex2int(temp)+hex2int("C0200000");//DLM
+							}
+						}else { 
+								Addr[ValidAnalyNumVar] = hex2int(temp);
+						}
+						if(LstFileRow[k].match(reg4)) { //	data
+							AnalyNameVar[ValidAnalyNumVar] = LstFileRow[k].substr(32);
+							if(AnalyNameVar[ValidAnalyNumVar].match(reg11)) { //.hidden
+								AnalyNameVar[ValidAnalyNumVar] = AnalyNameVar[ValidAnalyNumVar].substr(7);
+							}
+							AnalyLenVar[ValidAnalyNumVar] = LstFileRow[k].substr(23,8);
+						}
+						else if(LstFileRow[k].match(reg5)) {//	retention_data
+							AnalyNameVar[ValidAnalyNumVar] = LstFileRow[k].substr(42);
+							if(AnalyNameVar[ValidAnalyNumVar].match(reg11)) {//.hidden
+								AnalyNameVar[ValidAnalyNumVar] = AnalyNameVar[ValidAnalyNumVar].substr(7);
+							}
+							AnalyLenVar[ValidAnalyNumVar] = LstFileRow[k].substr(33,8);
+						}
+						else if(LstFileRow[k].match(reg6)) {
+							AnalyNameVar[ValidAnalyNumVar] = LstFileRow[k].substr(32);
+							if(AnalyNameVar[ValidAnalyNumVar].match(reg11)) {//.hidden
+								AnalyNameVar[ValidAnalyNumVar] = AnalyNameVar[ValidAnalyNumVar].substr(7);
+							}
+							AnalyLenVar[ValidAnalyNumVar] = LstFileRow[k].substr(23,8);
+						}
+						else if(LstFileRow[k].match(reg7)) {
+							AnalyNameVar[ValidAnalyNumVar] = LstFileRow[k].substr(31);
+							if(AnalyNameVar[ValidAnalyNumVar].match(reg11)) {//.hidden
+								AnalyNameVar[ValidAnalyNumVar] = AnalyNameVar[ValidAnalyNumVar].substr(7);
+							}
+							AnalyLenVar[ValidAnalyNumVar] = LstFileRow[k].substr(22,8);
+						}
+						ValidAnalyNumVar = ValidAnalyNumVar + 1;
+				}
+				else if((LstFileRow[k].match(reg9)||LstFileRow[k].match(reg10))) {
+					AnalyAddrFun[ValidAnalyNumFun] = LstFileRow[k].substr(0,8);
+					if(LstFileRow[k].match(reg9)) {
+						AnalyNameFun[ValidAnalyNumFun] = LstFileRow[k].substr(36);
+						if(AnalyNameFun[ValidAnalyNumFun].match(reg11)) {//.hidden
+							AnalyNameFun[ValidAnalyNumFun] = AnalyNameFun[ValidAnalyNumFun].substr(7);
+						}
+						AnalyLenFun[ValidAnalyNumFun] = LstFileRow[k].substr(28,8);
+					}
+					else if(LstFileRow[k].match(reg10)) {
+						AnalyNameFun[ValidAnalyNumFun] = LstFileRow[k].substr(32);
+						if(AnalyNameFun[ValidAnalyNumFun].match(reg11)) {//.hidden
+							AnalyNameFun[ValidAnalyNumFun] = AnalyNameFun[ValidAnalyNumFun].substr(7);
+						}
+						AnalyLenFun[ValidAnalyNumFun] = LstFileRow[k].substr(24,8);
+					}
+					ValidAnalyNumFun = ValidAnalyNumFun + 1;
+				}
+			}
+		}
+
+		var temp;
+		for(var q = 0; q < ValidAnalyNumVar; q++) {
+			VariableName2[q] = AnalyNameVar[q];
+			OriginalAddr2[q] = AnalyAddrVar[q];
+			Addr2[q] = Addr[q];
+			Len2[q] = AnalyLenVar[q];
+		}
+		for(var w = 0; w < ValidAnalyNumFun; w++) {
+			FunctionVariableName2[w] = AnalyNameFun[w];
+			FunctionOriginalAddr2[w] = AnalyAddrFun[w];
+			FunctionLen2[w] = AnalyLenFun[w];
+		}
+
+		/***** 按名称来排序 *****/
+		for(var a = 0; a < ValidAnalyNumVar; a++) {
+			for(var b = 0; b < ValidAnalyNumVar - 1 - a; b++) {
+				if (VariableName2[b] > VariableName2[b+1]) {    
+					temp = VariableName2[b+1];  
+					VariableName2[b+1] = VariableName2[b];
+					VariableName2[b] = temp;
+
+					temp = OriginalAddr2[b+1];  
+					OriginalAddr2[b+1] = OriginalAddr2[b];
+					OriginalAddr2[b] = temp;
+
+					temp = Addr2[b+1];  
+					Addr2[b+1] = Addr2[b];
+					Addr2[b] = temp;
+
+					temp = Len2[b+1];  
+					Len2[b+1] = Len2[b];
+					Len2[b] = temp;
+				}
+			}
+		}
+		for (var i = 0; i < ValidAnalyNumFun; i++) {
+			for (var j = 0; j < ValidAnalyNumFun - 1 - i; j++) {
+				if (FunctionVariableName2[j] > FunctionVariableName2[j+1]) { 
+					temp = FunctionVariableName2[j+1];
+					FunctionVariableName2[j+1] = FunctionVariableName2[j];
+					FunctionVariableName2[j] = temp;
+					
+					temp = FunctionOriginalAddr2[j+1];  
+					FunctionOriginalAddr2[j+1] = FunctionOriginalAddr2[j];
+					FunctionOriginalAddr2[j] = temp;
+
+					temp = FunctionLen2[j+1];  
+					FunctionLen2[j+1] = FunctionLen2[j];
+					FunctionLen2[j] = temp;
+				}
+			}
+		} 
+
+		var OriginalAddrSort = new Array();
+		for(var n = 0; n < ValidAnalyNumVar; n++) {
+			OriginalAddrSort[n] = hex2int(AnalyAddrVar[n]); //十进制
+		}
+
+		for(var a = 0; a < ValidAnalyNumVar; a++) {
+			for (var b = 0; b < ValidAnalyNumVar - 1 - a; b++) {
+				if (OriginalAddrSort[b] > OriginalAddrSort[b+1]) { 
+					temp = OriginalAddrSort[b+1];  
+					OriginalAddrSort[b+1] = OriginalAddrSort[b];
+					OriginalAddrSort[b] = temp;
+
+					temp = Addr[b+1];  
+					Addr[b+1] = Addr[b];
+					Addr[b] = temp;
+
+					temp = AnalyNameVar[b+1];  
+					AnalyNameVar[b+1] = AnalyNameVar[b];
+					AnalyNameVar[b] = temp;
+
+					temp = AnalyLenVar[b+1];  
+					AnalyLenVar[b+1] = AnalyLenVar[b];
+					AnalyLenVar[b] = temp;
+				}
+			}
+		}
+		for(var c = 0; c < ValidAnalyNumVar; c++) {
+			AnalyAddrVar[c] = dec2hex(OriginalAddrSort[c],8);
+		}	
+
+		var FunctionAddrSort = new Array();
+		for(var m = 0; m < ValidAnalyNumFun; m++) {
+			FunctionAddrSort[m] = hex2int(AnalyAddrFun[m]); //十进制
+		}
+		for (var i = 0; i < ValidAnalyNumFun; i++) {
+			for (var j = 0; j < ValidAnalyNumFun - 1 - i; j++) {
+				if (FunctionAddrSort[j] > FunctionAddrSort[j+1]) {  
+					temp = FunctionAddrSort[j+1];
+					FunctionAddrSort[j+1] = FunctionAddrSort[j];
+					FunctionAddrSort[j] = temp;
+
+					temp = AnalyNameFun[j+1];  
+					AnalyNameFun[j+1] = AnalyNameFun[j];
+					AnalyNameFun[j] = temp;
+
+					temp = AnalyLenFun[j+1];  
+					AnalyLenFun[j+1] = AnalyLenFun[j];
+					AnalyLenFun[j] = temp;
+				}
+			}
+		}
+		for(var m = 0; m < ValidAnalyNumFun; m++) {
+			AnalyAddrFun[m] = dec2hex(FunctionAddrSort[m],8);
+		}	 
+	}
+	document.getElementById('LstFileInput').value = null;
+}
+ 
+async function RefreshDatas() { 
+	if(0 == BurningEVKBusy) {
+		BurningEVKBusy = 1;
+		if(1 == ShowVariableFlag) { // analytical variables
+			if(USBConnectedFlag != 1) {
+				await LogConsole("USB device not connected!");
+				BurningEVKBusy = 0;
+				return ERROR_Typdef.EPERM;
+			}
+			await LogConsole("Data refreshing. Please wait");
+			if(ValidAnalyNumVar != 0) {
+				if(undefined == Addr[0]) {
+					await LogConsole("plese select file or chip type correctly!","Console2");
+					BurningEVKBusy = 0;
+					return ERROR_Typdef.ERANGE;
+				}
+				else {
+					for(var j = 0; j< ValidAnalyNumVar; j++) {
+						Data[j] = "";
+					}			
+					await usb_evk_set_chip(ChipType);	
+					if(1 == LstFileSortMode) { // sort by address
+						for(var j = 0; j < ValidAnalyNumVar; j++) {
+							await usb_evk_read(Addr[j],hex2int(AnalyLenVar[j]));
+							for(var i = 0; i < hex2int(AnalyLenVar[j]); i++) {
+								Data[j] += dec2hex(g_rcv_data[i],2)+" ";
+							}
+							//await LogConsole(" Data[ "+j+" ]: " + Data[j]);
+						} 
+					}
+					else { // sort by name
+						for(var j = 0; j < ValidAnalyNumVar; j++) {
+							await usb_evk_read(Addr2[j],hex2int(Len2[j]));
+							for(var i = 0; i < hex2int(Len2[j]); i++) {
+								Data[j] += dec2hex(g_rcv_data[i],2)+" ";
+							}
+							//await LogConsole(" Data[ "+j+" ]: " + Data[j]);
+						} 
+					}
+				}
+			}  
+			else {
+				await LogConsole("plese select file or chip type correctly!","Console2");
+				BurningEVKBusy = 0;
+				return ERROR_Typdef.ERANGE;
+			}
+			var htmlStr = '<table border = "1">';
+			htmlStr += '<thead>\n' +
+			'    <th>AnalyNameVar</th>\n' +
+			'    <th>Addr</th>\n' +
+			'    <th>AnalyLenVar</th>\n' +
+			'    <th>Data(LSB first)</th>\n' +
+			'  </thead>';
+			var dt = document.getElementById('TelinkDebug');
+			if(1 == LstFileSortMode) {  // sort by address
+				for(var i = 0; i < ValidAnalyNumVar; i++) {
+					htmlStr += '<tr>\n' +
+					'    <td>'+AnalyNameVar[i]+'</td>\n' +
+					'    <td>'+AnalyAddrVar[i]+'</td>\n' +
+					'    <td>'+AnalyLenVar[i]+'</td>\n' +
+					'    <td>'+Data[i]+'</td>\n' +
+					'  </tr>';
+				}
+			}
+			else {
+				for(var i = 0 ; i < ValidAnalyNumVar; i ++) {
+					htmlStr += '<tr>\n' +
+					'    <td>'+VariableName2[i]+'</td>\n' +
+					'    <td>'+OriginalAddr2[i]+'</td>\n' +
+					'    <td>'+Len2[i]+'</td>\n' +
+					'    <td>'+Data[i]+'</td>\n' +
+					'  </tr>';
+				}
+			}
+			htmlStr += '</table>';
+			dt.innerHTML = htmlStr;
+			RefreshFlag = 1;
+			await AutoZoom();
+			await LogConsole("Data list refresh complete","Console2");
+		}
+		else { // analytical functions
+			if(ValidAnalyNumFun != 0) {
+				if(undefined == AnalyAddrFun[0]) {
+					await LogConsole("plese select file or chip type correctly!","Console2");
+					BurningEVKBusy = 0;
+					return ERROR_Typdef.ERANGE;
+				}
+			}  
+			else {
+				await LogConsole("plese select file or chip type correctly!","Console2");
+				BurningEVKBusy = 0;
+				return ERROR_Typdef.ERANGE;
+			}
+			var htmlStr = '<table border = "1">';
+			htmlStr += '<thead>\n' +
+			'    <th>AnalyNameVar</th>\n' +
+			'    <th>Addr</th>\n' +
+			'    <th>AnalyLenVar</th>\n' +
+			'  </thead>';
+			var dt = document.getElementById('TelinkDebug');
+			if(1 == LstFileSortMode) {
+				for(var i = 0; i < ValidAnalyNumFun; i++) {
+					htmlStr += '<tr>\n' +
+					'    <td>' + AnalyNameFun[i] + '</td>\n' +
+					'    <td>' + AnalyAddrFun[i] + '</td>\n' +
+					'    <td>' + AnalyLenFun[i] + '</td>\n' +
+					'  </tr>';
+				}
+			}
+			else {
+				for(var i = 0; i < ValidAnalyNumFun; i++) {
+					htmlStr +='<tr>\n' +
+					'    <td>' + FunctionVariableName2[i] + '</td>\n' +
+					'    <td>' + FunctionOriginalAddr2[i] + '</td>\n' +
+					'    <td>' + FunctionLen2[i] + '</td>\n' +
+					'  </tr>';
+				}
+			}
+			htmlStr += '</table>';
+			dt.innerHTML = htmlStr;
+			RefreshFlag  = 1;
+			await AutoZoom();
+			await LogConsole("Function list refresh complete","Console2");
+		}
+		BurningEVKBusy = 0; 
+	}
+	else {
+		LogConsole("BurningEVK is Busy");
+		return ERROR_Typdef.EBUSY;
+	}
+	return 0;
+}
+

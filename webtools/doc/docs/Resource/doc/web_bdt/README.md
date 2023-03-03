@@ -13,7 +13,7 @@ border: 1px solid red
 [off-line for Windows](./tools/off-line.zip)&nbsp;&nbsp;&nbsp;
 [BDT for Windows](http://wiki.telink-semi.cn/wiki/IDE-and-Tools/Burning-and-Debugging-Tools-for-all-Series/)&nbsp;&nbsp;&nbsp;
 [driver for WEB BDT](https://zadig.akeo.ie/)&nbsp;&nbsp;&nbsp;
-[firmware for Burning EVK](./tools/8266_tlink_20211118.bin)&nbsp;&nbsp;&nbsp;
+[firmware for Burning EVK](./tools/8266_tlink_.bin)&nbsp;&nbsp;&nbsp;
 [PDF版下载](./README.pdf)&nbsp;&nbsp;&nbsp;
 > # 目录
 >### [1、简介](#1)
@@ -62,7 +62,7 @@ border: 1px solid red
 >>>#### <span id="2.1.1">2.1.1 Burning EVK libusb驱动安装</span>
 >>> &nbsp;&nbsp;&nbsp;&nbsp;Web BDT通过Web USB控制Telink burning evk(一款下载调试器)，为了能使用Web BDT，需要给电脑安装libusb驱动。而传统BDT工具通过Windows自带的usb printer驱动去操控Telink burning evk。
 >>> </br>&nbsp;&nbsp;&nbsp;&nbsp;为了避免Windows平台同时使用Web BDT和传统的BDT时需要频繁的切换驱动，需要更新Telink burning evk本身的固件程序。更新之后，通过Telink burning evk上的按键SW2来切换USB PID。
->>> 1. 如果上电后Telink Burning EVK单个LED常亮，则不需要更新固件，否则就需要下载对应的 <a href="./tools/8266_tlink_20211118.bin" target="_blank">固件</a>  到模块板中，通过旧的BDT工具更新固件后重新上电。
+>>> 1. 如果上电后Telink Burning EVK单个LED常亮，则不需要更新固件，否则就需要下载对应的 <a href="./tools/8266_tlink_.bin" target="_blank">固件</a>  到模块板中，通过旧的BDT工具更新固件后重新上电。
 >>> <img src="./images/update.gif" width="70%" class="image">
 >>> 2. BDT和Web BDT对应的LED状态如下图，传统BDT用绿灯指示，Web BDT用蓝灯指示，通过按键SW2可以切换USB PID并改变LED状态(切换状态后，需要重新上电)。
 >>> <img src="./images/state_change.png" width="70%" class="image">
@@ -176,7 +176,7 @@ border: 1px solid red
 
 >## <span id="3">3、单机版WEB BDT</span>
 >>&nbsp;&nbsp;&nbsp;&nbsp;下载&nbsp;&nbsp;&nbsp;[off-line for Windows](./tools/off-line.zip)&nbsp;&nbsp;&nbsp;
->>&nbsp;&nbsp;&nbsp;&nbsp;安装好USB驱动&nbsp;&nbsp;&nbsp;[driver for WEB BDT](https://zadig.akeo.ie/)&nbsp;&nbsp;&nbsp;并且更新最新版的"Burning EVK"的固件&nbsp;&nbsp;&nbsp;[firmware for Burning EVK](./tools/8266_tlink_20211118.bin)&nbsp;&nbsp;&nbsp;
+>>&nbsp;&nbsp;&nbsp;&nbsp;安装好USB驱动&nbsp;&nbsp;&nbsp;[driver for WEB BDT](https://zadig.akeo.ie/)&nbsp;&nbsp;&nbsp;并且更新最新版的"Burning EVK"的固件&nbsp;&nbsp;&nbsp;[firmware for Burning EVK](./tools/8266_tlink_.bin)&nbsp;&nbsp;&nbsp;
 >>点击"启动.vbs"和"关闭.vbs"用来打开和关闭程序。
 
 >## <span id="4">4、Windows for BDT</span>

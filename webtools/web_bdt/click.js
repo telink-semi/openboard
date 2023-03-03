@@ -39,13 +39,10 @@ const tool_bin_table = document.getElementById('RamToolFileTable');
 const offline_list_ram_tool_bin = document.getElementById("offline_list_ram_tool_bin");
 const offline_download_ram_tool_bin = document.getElementById("offline_download_ram_tool_bin");
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-const RAM_TOOL_INFO_ADDR 		     =  0x20000;
 const FW_INFO_ADDR				     =  0x80000;
-const RAM_TOOL_START_ADDR 			 =  (RAM_TOOL_INFO_ADDR + 0x1000);
 const FW_START_ADDR 				 =  (FW_INFO_ADDR + 0x1000);
 const FW_FLASH_MAX 					 =  2*1024*1024;
-const g_offline_fw_data_max  	  	 =  FW_FLASH_MAX - FW_START_ADDR;	  // burning evk maximum user_fw capacity 
-const g_offline_ram_tool_data_max    =  FW_INFO_ADDR-RAM_TOOL_START_ADDR; // burning evk maximum ram tool fw capacity 
+const g_offline_fw_data_max  	  	 =  FW_FLASH_MAX - FW_START_ADDR;     // burning evk maximum user_fw capacity 
 
 const OffLineDownloadNumMax		  	 = 	32;
 var OffLineChipSelect  	   		  	 = 	new Array(OffLineDownloadNumMax); // 芯片类型 默认B91
@@ -63,66 +60,101 @@ let OffLineFirmware_CRC   		  	 = 	new Array(OffLineDownloadNumMax); // 固件CR
 let FW_INFO_DATA 			 	  	 =  new Uint8Array(1024*4);			  // 4KB FW_INFO
 let g_offline_fw_data       	  	 =  new Array(OffLineDownloadNumMax); // 固件缓存
 let next_fw_store_addr 		 	  	 =  0; 								  // 固件存放在EVK FLASH处的的起始地址（相对位移）4B
-
+/*
+const RAM_TOOL_INFO_ADDR 		     =  0x20000;
+const RAM_TOOL_START_ADDR 			 =  (RAM_TOOL_INFO_ADDR + 0x1000);
+const g_offline_ram_tool_data_max    =  FW_INFO_ADDR-RAM_TOOL_START_ADDR; // burning evk maximum ram tool fw capacity 
 let RAM_TOOL_INFO_DATA 		 		 =  new Uint8Array(1024*4);			  // 4KB RAM_TOOL_INFO
 let g_offline_ram_tool_data  		 =  []; 							  // 固件缓存
 let OffLine_TOOL_Firmware_Store_Addr = 	new Array(ChipNumber); 			  // 固件存放在EVK FLASH处的的起始地址（相对位移） 4B
 let OffLine_TOOL_Firmware_Size 		 = 	new Array(ChipNumber); 			  // 固件大小 4B
 let OnceTimeLoadToolBin				 =  true;							  // 只加载一次toolbin
 let OnceTimeShowToolBinTable		 =  true;							  // 列表只显示一次
+*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+// chip_list = 
+const C_8366   = 0x01;
+const C_8368   = 0x02;
+const C_8367_i = 0x03;
+const C_8367_e = 0x04;
+const C_8369_i = 0x05;
+const C_8369_e = 0x06;
+const C_8232   = 0x07;
+const C_8266   = 0x08;
+const C_8267   = 0x09;
+const C_8269   = 0x0a;
+const C_B80    = 0x0b;
+const C_B85    = 0x0c;
+const C_B87    = 0x0d;
+const C_B89    = 0x0e;
+const C_B91    = 0x0f;
+const C_B92    = 0x10;
+var C_Number   = 0x11;
+var C_Name   = new Array(C_Number);
+
+C_Name[C_8366]   = "8366";     C_Name[C_8368]   = "8368";     
+C_Name[C_8367_i] = "8367_i";   C_Name[C_8367_e] = "8367_e";   
+C_Name[C_8369_i] = "8369_i";   C_Name[C_8369_e] = "8369_e"; 
+C_Name[C_8232]   = "8232";     C_Name[C_8266]   = "8266";		
+C_Name[C_8267]   = "8267";     C_Name[C_8269]   = "8269";     
+C_Name[C_B80]    = "B80";      C_Name[C_B85]    = "B85";
+C_Name[C_B87]    = "B87";      C_Name[C_B89]    = "B89";   
+C_Name[C_B91]	 = "B91";      C_Name[C_B92]	= "B92";
 
 // 根据 chip_select 确定 Chip_Type 和 Chip_RAM_Type
 function get_Offline_ChipType_Chip_RAM_Type(chip_select){
-	if(typeof chip_select != "number" || chip_select > ChipNumber){
-		console.log("typeof chip_select != number or chip_select > ChipNumber");
+	if(typeof chip_select != "number" || chip_select >= C_Number){
+		console.log("typeof chip_select != number or chip_select >= ChipNumber");
 		return [0xff,0xff];
 	}
 	switch(chip_select){
-		case CHIP_8366:
-			return [0x01,CHIP_8366];
+		case C_8366:
+			return [0x01,C_8366];
 
-		case CHIP_8368:
-			return [0x01,CHIP_8368];
+		case C_8368:
+			return [0x01,C_8368];
 
-		case CHIP_83671:
-			return [0x01,CHIP_83671];
+		case C_8367_i:
+			return [0x01,C_8367_i];
 
-		case CHIP_83672:
-			return [0x01,CHIP_83672];
+		case C_8367_e:
+			return [0x01,C_8367_e];
 
-		case CHIP_83691:
-			return [0x01,CHIP_83691];
+		case C_8369_i:
+			return [0x01,C_8369_i];
 
-		case CHIP_83692:
-			return [0x01,CHIP_83692];
+		case C_8369_e:
+			return [0x01,C_8369_e];
 
-		case CHIP_8232:
-			return [0x11,CHIP_8232];
+		case C_8232:
+			return [0x11,C_8232];
 
-		case CHIP_8233:
-			return [0x11,CHIP_8233];
+		case C_8266:
+			return [0x12,C_8266];
 
-		case CHIP_8266:
-			return [0x12,CHIP_8266];
+		case C_8267:
+			return [0x12,C_8267];
 
-		case CHIP_8267:
-			return [0x12,CHIP_8267];
+		case C_8269:
+			return [0x12,C_8269];
 
-		case CHIP_8269:
-			return [0x12,CHIP_8269];
+		case C_B80:
+			return [0x22,C_B80];
 
-		case CHIP_8255:
-			return [0x22,CHIP_8255];
+		case C_B85:
+			return [0x22,C_B85];
+			
+		case C_B87:
+			return [0x23,C_B87];
 
-		case CHIP_8258:
-			return [0x22,CHIP_8258];
+		case C_B89:
+			return [0x24,C_B89];
 
-		case CHIP_8278:
-			return [0x23,CHIP_8278];
+		case C_B91:
+			return [0x31,C_B91];
 
-		case CHIP_91:
-			return [0x31,CHIP_91];
+	    case C_B92:
+			return [0x32,C_B92];
 
 		default:
 			return [0xff,0xff];
@@ -400,9 +432,6 @@ function offline_fw_table_add_cb(rowId){
 				title: '8232'
 				,id: 8232
 				},{
-					title: '8233'
-					,id: 8233
-				},{
 					title: '8266'
 					,id: 8266
 				},{
@@ -411,21 +440,32 @@ function offline_fw_table_add_cb(rowId){
 				},{
 					title: '8269'
 					,id: 8269
-				},{
-					title: '8255'
-					,id: 8255
-				},{
-					title: '8258'
-					,id: 8258
-				},{
-					title: '8278'
-					,id: 8278
 				}]
+			},
+			{
+				title: 'B80'
+				,id: 80
+			},
+			{
+				title: 'B85'
+				,id: 85
+			},
+			{
+				title: 'B87'
+				,id: 87
+			},
+			{
+				title: 'B89'
+				,id: 89
 			},
 			{
 				title: 'B91'
 				,id: 91
 			},
+			// {
+			// 	title: 'B92'
+			// 	,id: 92
+			// },
 		]
 		,id: `offline_chip_select_${rowId}`
 		//菜单被点击的事件
@@ -434,70 +474,77 @@ function offline_fw_table_add_cb(rowId){
 			switch(obj.id) {
 				case 8366:    
 					offline_chip_select_name_.innerHTML = '8366';
-					OffLineChipSelect[rowId] = CHIP_8366;  
+					OffLineChipSelect[rowId] = C_8366;  
 				break;
 				case 8368:
 					//htmlStr += '<i class = "layui-icon layui-icon-down layui-font-12"></i>'; 
 					offline_chip_select_name_.innerHTML = '8368';
-					OffLineChipSelect[rowId] = CHIP_8368;  	
+					OffLineChipSelect[rowId] = C_8368;  	
 				break;
 				case 83671:
 					offline_chip_select_name_.innerHTML = '8367_i';
-					OffLineChipSelect[rowId] = CHIP_83671;   
+					OffLineChipSelect[rowId] = C_8367_i;   
 				break;
 				case 83672: 	
 					offline_chip_select_name_.innerHTML = '8367_e';
-					OffLineChipSelect[rowId] = CHIP_83672;  
+					OffLineChipSelect[rowId] = C_8367_e;  
 				break;
 				case 83691: 	
 					offline_chip_select_name_.innerHTML = '8369_i';
-					OffLineChipSelect[rowId] = CHIP_83691;  
+					OffLineChipSelect[rowId] = C_8369_i;  
 				break;
 				case 83692:
 					offline_chip_select_name_.innerHTML = '8369_e';
-					OffLineChipSelect[rowId] = CHIP_83692;  
+					OffLineChipSelect[rowId] = C_8369_e;  
 				break;
 				case 8232:  	
 					offline_chip_select_name_.innerHTML = '8232';
-					OffLineChipSelect[rowId] = CHIP_8232; 	
+					OffLineChipSelect[rowId] = C_8232; 	
 				break;
-				case 8233: 	
-					offline_chip_select_name_.innerHTML = '8233';
-					OffLineChipSelect[rowId] = CHIP_8233; 
-				break;
+
 				case 8266:    
 					offline_chip_select_name_.innerHTML = '8266';
-					OffLineChipSelect[rowId] = CHIP_8266; 
+					OffLineChipSelect[rowId] = C_8266; 
 				break;
 				case 8267:
 					offline_chip_select_name_.innerHTML = '8267'; 
-					OffLineChipSelect[rowId] = CHIP_8267; 
+					OffLineChipSelect[rowId] = C_8267; 
 				break;
 				case 8269:
 					offline_chip_select_name_.innerHTML = '8269';
-					OffLineChipSelect[rowId] = CHIP_8269; 
+					OffLineChipSelect[rowId] = C_8269; 
 				break;
-				case 8255:    
-					offline_chip_select_name_.innerHTML = '8255';
-					OffLineChipSelect[rowId] = CHIP_8255; 
+
+				case 80:    
+					offline_chip_select_name_.innerHTML = 'B80';
+					OffLineChipSelect[rowId] = C_B80; 
 				break;
-				case 8258:    
-					offline_chip_select_name_.innerHTML = '8258'; 
-					OffLineChipSelect[rowId] = CHIP_8258;
+				case 85:    
+					offline_chip_select_name_.innerHTML = 'B85'; 
+					OffLineChipSelect[rowId] = C_B85;
 				break;
-				case 8278:  	
-					offline_chip_select_name_.innerHTML = '8278'; 
-					OffLineChipSelect[rowId] = CHIP_8278; 
+				case 87:  	
+					offline_chip_select_name_.innerHTML = 'B87'; 
+					OffLineChipSelect[rowId] = C_B87; 
 				break;
+				case 89:  	
+					offline_chip_select_name_.innerHTML = 'B89'; 
+					OffLineChipSelect[rowId] = C_B89; 
+				break;
+
 				case 91:    
 					offline_chip_select_name_.innerHTML = 'B91';  
-					OffLineChipSelect[rowId] = CHIP_91; 	
+					OffLineChipSelect[rowId] = C_B91; 	
+				break;
+				case 92:    
+					offline_chip_select_name_.innerHTML = 'B92';  
+					OffLineChipSelect[rowId] = C_B92; 	
 				break;
 				default: 
 					LogConsole("Wrong chip model selection"); 
 				break;
 			}
-			layer.msg("The selected chip type is: " + ChipName[OffLineChipSelect[rowId]] ); 
+			layer.msg("The selected chip type is: " + C_Name[OffLineChipSelect[rowId]] ); 
 			var Type = get_Offline_ChipType_Chip_RAM_Type(OffLineChipSelect[rowId]);
 			OffLineChipType[rowId] = Type[0]; 	 // 固件适配的目标芯片 1B
 			OffLineChip_RAM_Type[rowId] = Type[1]; // 工具固件适配的目标芯片 1B
@@ -688,7 +735,7 @@ async function OffLineFWBinFileRead() {
 		document.getElementById(`offline_fw_store_addr_${rowCount}`).innerHTML = "0x" + dec2hex2(next_fw_store_addr);
 		document.getElementById(`offline_fw_size_${rowCount}`).innerHTML = OffLineFirmware_Size[rowCount];
 
-		var Type = get_Offline_ChipType_Chip_RAM_Type(CHIP_91); 	// 默认芯片型号为B91 FLASH固件
+		var Type = get_Offline_ChipType_Chip_RAM_Type(C_B91); 	    // 默认芯片型号为B91 FLASH固件
 		OffLineChipType[rowCount] = Type[0]; 	   					// 固件适配的目标芯片 1B
 		OffLineChip_RAM_Type[rowCount] = Type[1];  					// 工具固件适配的目标芯片 1B
 		OffLineFirmware_Type[rowCount] = 3; 	   					// 固件类型 1B		
@@ -785,6 +832,7 @@ offline_download_user_bin.onclick = async () => {
 	return 0;
 }
 
+/*
 function print_offline_tool_bin_info(index){
 	let arr = [];
 	for (let i = 0; i < 16; i++) {
@@ -816,7 +864,7 @@ function list_offline_tool_firmware(showtable){
 		RAM_TOOL_INFO_DATA[31] = ChipNumber - 1;
 
 		for(let i = 1; i < ChipNumber; i++){
-			console.log("Name:"+ChipName[i]+"  Size:"+LoadBinary[i].length);
+			console.log("Name:"+C_Name[i]+"  Size:"+LoadBinary[i].length);
 			OffLine_TOOL_Firmware_Size[i] = LoadBinary[i].length;
 			if(1==i) OffLine_TOOL_Firmware_Store_Addr[i] = 0;
 			else OffLine_TOOL_Firmware_Store_Addr[i] = OffLine_TOOL_Firmware_Store_Addr[i-1] + OffLine_TOOL_Firmware_Size[i-1];// + 1;
@@ -848,7 +896,7 @@ function list_offline_tool_firmware(showtable){
 				cell0.innerHTML = `<span">${j}</span>`;
 
 				var cell1 = row.insertCell(1); 
-				cell1.innerHTML = `<span>${ChipName[`${j}`]}</span>`;
+				cell1.innerHTML = `<span>${C_Name[`${j}`]}</span>`;
 
 				var cell2 = row.insertCell(2);// "0x" + dec2hex2(next_fw_store_addr);
 				cell2.innerHTML = `<span>${OffLine_TOOL_Firmware_Store_Addr[`${j}`]}  (0x${value_hex})
@@ -922,7 +970,7 @@ offline_download_ram_tool_bin.onclick = async () => {
 	layer.msg("Download Successed"); 
 	return 0;
 }
-
+*/
 /********************************************************************/
 
 SWSButton.onclick = async () => {
