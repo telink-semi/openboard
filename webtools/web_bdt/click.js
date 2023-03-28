@@ -72,7 +72,6 @@ let OnceTimeLoadToolBin				 =  true;							  // 只加载一次toolbin
 let OnceTimeShowToolBinTable		 =  true;							  // 列表只显示一次
 */
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// chip_list = 
 const C_8366   = 0x01;
 const C_8368   = 0x02;
 const C_8367_i = 0x03;

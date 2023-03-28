@@ -93,6 +93,11 @@ async function readWithTimeout(port, timeout) {
     reader.releaseLock();
     return result;
 }
+
+async function sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+
 /*
 var g_rcv_data =  new Uint8Array(1024*1024);
 var g_rcv_index = 0;
@@ -134,12 +139,8 @@ function recive_deal(){
         g_rcv_index   = 0;
     }
 }
-
-var sleep = function(time) {
-    var startTime = new Date().getTime() + parseInt(time, 10);
-    while(new Date().getTime() < startTime) {}
-}
 */
+
 var  g_time_dataprocess = 0;
 var  g_len;
 var  meter1;
@@ -160,7 +161,7 @@ async function data_process(data) {
     }
     g_time_dataprocess = t_now;
            
-    if(t_timeout) { // 100ms
+    if(t_timeout) {
         g_len = data.byteLength;
         meter1 = setTimeout(data_rcv,uart_wait_time);  
         g_idx = 0;
@@ -190,7 +191,7 @@ async function listenToPort() {
             const { value, done } = await HexReader.read();
             if (done) {
                 // Allow the serial port to be closed later.
-                 HexReader.releaseLock();
+                HexReader.releaseLock();
                 break;
             }
             // value is a string.
@@ -202,7 +203,9 @@ async function listenToPort() {
             */
             data_process(value);
         }
-    } catch(error) {
+    } 
+    catch(error) {
+        console.log(error);
         alert("Serial Read Error");
         closePort();
     }finally {

@@ -36,7 +36,7 @@
 <div class="layui-fluid">
 <!-- 第一行  -->
     <div class="layui-row layui-col-space10 ">  
-		<form class="layui-form  " action="">
+		<form class="layui-form" action="">
 			<div class = "layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-lg2">
 				<label class="layui-form-label">波特率:</label>
 				<div class="layui-input-block">
@@ -44,10 +44,12 @@
 						<option value="9600">9600</option>
 						<option value="19200">19200</option>
 						<option value="115200" selected>115200</option>
+						<option value="500000">500000</option>
+						<option value="1000000">1000000</option>
 					</select>
 				</div>
 			</div>
-			<div class = "layui-col-md4 layui-col-sm4 layui-col-xs4 layui-col-lg4">
+			<div class = "layui-col-md6 layui-col-sm6 layui-col-xs6 layui-col-lg6">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<button type="button" class="layui-btn layui-btn-warm" onclick = "connectBtn_Onclick()">
 					<i class = "layui-icon layui-icon-link"></i> 连接
@@ -58,11 +60,16 @@
 				<button type="button" class="layui-btn layui-btn-normal" onclick = "clearBtn_Onclick()">
 					<i class="layui-icon layui-icon-fonts-clear"></i> 清空接收
 				</button>
+
+				<input type = "file" id = "BinFileInput" style = "display: none" onchange = "upFWBtn_Onclick()" accept = ".bin,.tbin">
+				<button type="button" id = "BinFileImport" class="layui-btn layui-btn-normal layui-btn-radius">
+					<i class="layui-icon layui-icon-export"></i> 更新固件
+				</button>
 				<button type="button" class="layui-btn layui-btn-disabled" id = 'btnInstall'>
 					<i class="layui-icon layui-icon-star-fill"></i> 安装应用
 				</button>
 			</div>
-			<div class = "layui-col-md5 layui-col-sm5 layui-col-xs5 layui-col-lg5 layui-col-md-offset1">
+			<div class = "layui-col-md4 layui-col-sm4 layui-col-xs4 layui-col-lg4"> <!-- layui-col-md-offset1 -->
 				<input type = "checkbox" id = "addLine" title = "发送新行">
 				<input type = "checkbox" id = "echoOn"  title = "回显" checked >
 				<input type = "checkbox" id = "HexOn"   title = "16进制发送" checked >
@@ -393,6 +400,11 @@
 	var g_pwm_dutycycle;
 	var g_switch_suffix;
 	
+	const g_uart_rec_max_size = 1024*100;
+	var crc32_table = new Array();
+	var crc_generate_one_flag = 0;
+	var crc_ret = 0; //  JS计算出来的CRC结果
+
 	var layer = layui.layer;
 	var form = layui.form;
 
@@ -513,15 +525,15 @@
 		var bdrate = ele.value; 
 		myprint("bandrate:"+bdrate);
 		var ret = await connectSerial(bdrate,rcv_callback);
-		if(ret == true){
-			setTimeout(function () {
-				query_state();
-			}, 100);
-		}
+		// if(ret == true){
+		// 	setTimeout(function () {
+		// 		query_state();
+		// 	}, 100);
+		// }
 	}
 
 	async function closeBtn_Onclick() {
-	    closePort();
+	    await closePort();
 	}
 	
 	async function clearBtn_Onclick() {
@@ -529,8 +541,191 @@
 		ele.value = ""; 
 	}
 
-	//self.setInterval("recive_deal()",100);
+	function exchange(str) {
+		var arr = str.split('');
+		for(var i = 0; i < arr.length; i++) {
+			if(arr[i] == 0) {
+				arr[i] = 1;
+			}
+			else {
+				arr[i] = 0;
+			}
+		}
+		str = arr.join("");
+		return str;
+	}
 
+	function Num2Binary(number) { // complement
+		//-123: -1111011  123:1111011
+		//0000101 == ~(-(-123)-1) == ~1111010 
+		if(number < 0) {
+			number = -number;
+			number = number - 1;
+			var str = (Array(32).join("0") + number.toString(2)).slice(-32);
+			str = exchange(str);
+		}
+		else {
+			var str = (Array(32).join("0") + number.toString(2)).slice(-32);
+		}
+		return str;
+	}
+
+	async function crc32_check_look_table(crc,array,length) {
+		var crc_value = 0;
+		var temp = "";
+		var poly_value = "11101101101110001000001100100000"; // 0xedb88320
+		if(length == 0) {
+			crc_ret = crc;
+			return ERROR_Typdef.ERANGE;
+		}
+		if(!crc_generate_one_flag) {
+			for(var i = 0; i < 256; i++) {
+				crc_value = i;
+				for(var j = 0; j < 8; j++) { //crc_value = (crc_value&1?(crc_value>>1)^poly_value:crc_value>>1);
+					if(typeof crc_value == "number") {
+						crc_value = Num2Binary(crc_value);
+					}
+					else if(typeof crc_value == "string") {}
+					if(crc_value.slice(-1) == "1") {
+						crc_value = "0" + crc_value.slice(0,31);
+						for(var k = 0; k < 32; k++) {
+							if(crc_value[k] == poly_value[k]) {
+								temp += "0";
+							}
+							else {
+								temp += "1";
+							}
+						}
+						crc_value = temp;
+						temp = "";
+					}
+					else {
+						crc_value = "0" + crc_value.slice(0,31);
+					}	
+				}
+				crc32_table[i] = parseInt(crc_value,2);
+			}
+			crc_generate_one_flag  = 1;		
+		}
+		temp = "";
+		var value0;
+		var value1;
+		var value2;
+		var value3;
+		for(var f = 0; f < length; f++) {// crc = crc32_table[(crc^array[i])&0xff]^(crc>>8);
+			if(typeof crc == "number") {
+				crc  = Num2Binary(crc);
+			}
+			else if(typeof crc == "string") {
+
+			}
+			value0 = Num2Binary(array[f]);
+			for(var k = 0;k < 32; k++) {
+				if(crc[k] == value0[k]) {
+					temp += "0";
+				}
+				else {
+					temp += "1";
+				}
+			}
+			value1 = temp.slice(-8);
+			value2 = crc32_table[parseInt(value1,2)];
+			value2 = Num2Binary(value2);
+			value3 = "00000000" + crc.slice(0,24);
+			temp = "";
+			for(var d = 0; d < 32; d++) {
+				if(value2[d] == value3[d]) {
+					temp += "0";
+				}
+				else {
+					temp += "1";
+				}
+			}
+			crc = temp;
+			//crc = parseInt(temp,2);
+			temp  = "";
+		}
+		temp  = "";
+		crc  = Num2Binary(crc);
+		for(var g = 0; g < 32; g++) {    // crc_ret ^= 0xffffffff;
+			if(crc[g] == "1") {
+				temp += "0";
+			}
+			else {
+				temp += "1";
+			}
+		}
+		crc = parseInt(temp,2);
+		crc_ret = crc;
+		return 0; 
+	}
+
+	$("#BinFileImport").click(function() {
+		$("#BinFileInput").click();
+	})
+
+	var localFile;
+	var g_file_length = 0;
+	var g_file_data = new Uint8Array(1024*1024*4); // bin文件最大
+	var g_up_fw_flag = false;
+	async function upFWBtn_Onclick(){
+		console.log("update firmware");
+		localFile = document.getElementById("BinFileInput").files[0];
+		var reader = new FileReader();
+		reader.readAsArrayBuffer(localFile);
+		reader.onload = async function() {
+			var bytes = new Uint8Array(reader.result);  
+			var date = new Date(localFile.lastModified);
+			dateTime = date.toLocaleString();
+			console.log(localFile.name + "	:  " + dateTime);
+			for(var i = 0; i < bytes.length; i++) {
+				g_file_data[i] = bytes[i];
+			}
+			g_file_length = bytes.length;
+			console.log("file read end...");
+			document.getElementById('BinFileImport').innerHTML = '<i class = "layui-icon layui-icon-export" ></i>' + localFile.name;
+			
+			console.log("g_file_length: " + g_file_length);
+
+			var Divisor   =  Math.floor(g_file_length/g_uart_rec_max_size);
+			var Remainder = g_file_length%g_uart_rec_max_size;
+			console.log("Divisor: " + Divisor);
+			console.log("Remainder: " + Remainder);
+			var temp_data = new Uint8Array(g_uart_rec_max_size);
+			var temp_data2 = new Uint8Array(Remainder);
+
+			document.getElementById('BinFileImport').innerHTML = '<i class = "layui-icon layui-icon-export" ></i>0%';
+			for(let k = 0; k < Divisor; k++) {
+				for(let j = 0; j < g_uart_rec_max_size; j++) {
+					temp_data[j] = g_file_data[j + k*g_uart_rec_max_size];
+				}
+				await sendSerialHexArray(temp_data);
+				document.getElementById('BinFileImport').innerHTML = '<i class = "layui-icon layui-icon-export" ></i>' + Math.floor(((k+1)*g_uart_rec_max_size*100)/g_file_length) + "%";
+				await sleep(2000);
+			}
+			if(Remainder){
+				for(let n = 0; n < Remainder; n++) {
+					temp_data2[n] = g_file_data[n + g_uart_rec_max_size*Divisor];
+				}
+				await sendSerialHexArray(temp_data2);
+				document.getElementById('BinFileImport').innerHTML = '<i class = "layui-icon layui-icon-export" ></i>100%';
+				await sleep(2000);
+			}
+			var temp_data3 = new Uint8Array(5);
+			await crc32_check_look_table(0xffffffff,g_file_data,g_file_length);
+			temp_data3[0] = (crc_ret>>24)&0xff;
+			temp_data3[1] = (crc_ret>>16)&0xff;
+			temp_data3[2] = (crc_ret>>8)&0xff;
+			temp_data3[3] = (crc_ret>>0)&0xff;
+			temp_data3[4] = 0x55;
+			await sendSerialHexArray(temp_data3);
+			g_up_fw_flag = true;
+			console.log("crc_ret: " + crc_ret);
+			// console.log("crc_ret: " + dec2hex(crc_ret,8));
+		}
+		document.getElementById('BinFileInput').value = null;
+	}
+	//self.setInterval("recive_deal()",100);
 	document.getElementById("senddata").addEventListener("keyup", async function (event) {
         if (event.keyCode === 13) {
 			send_input_data();
@@ -696,20 +891,29 @@
 				break;
 			}
         }
-
 		myprint("\r\n recived data length:  " + len);
-		
-		
 	    for(var i = 0; i < len; i++){
 	        if(document.getElementById("HexOnRx").checked == true) {
-	           
-	          str = str + " 0x"+dec2hex(buff[i],2);
+	            str = str + " 0x"+dec2hex(buff[i],2);
 	        }
 	        else {
-		      str = str + String.fromCharCode(buff[i]); 
+		        str = str + String.fromCharCode(buff[i]); 
 	        }
 		}
 		myprint(str);
+		if(g_up_fw_flag == true) {
+			g_up_fw_flag = false;
+			var r1 = (buff[2]<<24 | buff[3]<<16 | buff[4]<<8 |buff[5]<<0)>>>0;
+			var r2 = (buff[6]<<24 | buff[7]<<16 | buff[8]<<8 |buff[9]<<0)>>>0;
+			console.log("r1: " + r1);
+			console.log("r2: " + r2);
+			if(g_file_length == r1 && crc_ret == r2){
+				document.getElementById('BinFileImport').innerHTML = '<i class = "layui-icon layui-icon-export" ></i>Success';
+			}
+			else{
+				document.getElementById('BinFileImport').innerHTML = '<i class = "layui-icon layui-icon-export" ></i>Fail';
+			}
+		}
 	}
 
 	function send_data(dataToSend,replay){

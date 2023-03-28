@@ -23,9 +23,7 @@
 
         主要由开源模块板构成，可以下载现成的固件，通过串口即可实现无线网络的构建。
 
-        用户可以方便的把模块板集成到自己的开发板上，也可以下载原理图和PCB自己修改。
-
-        为了方便用户，模块板用开源免费的工具KiCad绘制
+        用户可以方便的把模块板集成到自己的开发板上，也可以下载    <a href="https://github.com/telink-semi/openboard/tree/main/opensdk/Mars_B91/Schematic" target="_blank">原理图 </a>。
 
 * !!! info "开源软件"
 

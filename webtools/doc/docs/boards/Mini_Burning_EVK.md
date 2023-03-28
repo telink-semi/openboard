@@ -17,7 +17,7 @@
 !!! note "离线下载功能使用步骤"
 本文档介绍使用Web BDT和Mini_Burning_EVK实现离线下载功能，其他功能的使用说明可参考BDT文档和Web BDT文档。
 
-1、更新V3.7及更高版本的固件：Web BDT在Online选项卡处，BDT在Help->Upgrade处。正确更新后会有对应的提示，更新成功后需要插拔USB线重连设备。
+1、更新<a href="../../Resource/bin/Mini_Burning_EVK/V4.0.bin">V4.0</a>及更高版本的固件：Web BDT在Online选项卡处，BDT在Help->Upgrade处。正确更新后会有对应的提示，更新成功后需要插拔USB线重连设备。
 
 <img src="../../Resource/images/web_bdt_online.jpg" class="image" style="width:80%">
 
