@@ -8,7 +8,7 @@ if('serviceWorker' in navigator){
     })
 */
     navigator.serviceWorker.register(
-        '/web_ble/sw.js?v=202209211827',{scope:'/web_ble/'}
+        '/web_ble/sw.js?v=202303281534',{scope:'/web_ble/'}
     ).then((registration)=>{
       // console.log('注册成功',registration)
         console.log('page ble\'s scope is: ',registration.scope)

@@ -175,3 +175,20 @@ PWM引脚pwm_group编号(ff表示未选)周期和占空比|1+4+1|00 00 00 27 10 
 设置指令的命令应答(后缀5A A5)|1|00|00：不添加；01：添加
 设备类型|1|01|00:D_COORDINATOR  01:ROUTER  02:END_DEV
 
+## 配合BootLoader程序加载app bin
+
+### 注意事项
+* BootLoader和工具对加载的bin文件未做检测
+* 因web uart与cp2102驱动兼容性不够好，通过网页连接uart时，每次需要对设备进行插拔一次
+* Mars_B91的主控芯片为TLSR9218A，FLASH大小为1MB，app bin从FLASH的0x8000地址处开始存储，所以其大小不能大于992KB
+### 使用步骤
+* 通过下载工具（如BDT或WEB BDT）将 <a href="../../Resource/bin/Mars_B91/mars_b91_0x0_uart_boot_20230329.bin" target="_blank">boot bin</a>下载到flash 0地址处
+* 按下SW1后再给板子上电/复位，则会进入接收app bin模式，若芯片复位后的第一时间未发现SW1按下，则会从0x8000地址处取指执行(不管此处有没有正确的bin)
+* 进入接收app bin模式后不会再检测按键状态，核心板上的LED会每隔1秒闪烁一次
+* 安装好USB转TTL UART芯片的驱动，Mars_B91底板用的是CP2102
+* 打开[Telink Web UART网页工具](https://debug.telink-semi.cn/web_uart/index.html)，配置波特率为500000后连接UART
+* 点击更新固件按钮，选择待加载的bin，按钮处会显示加载进度，若程序加载成功，按钮处最后会显示Success.并且MCU会跳转到0x8000地址处执行
+* <a href="../../Resource/bin/Mars_B91/mars_b91_0x8000_app_20230329.bin" target="_blank">测试app bin</a>
+### BOOT程序流程简介
+* boot程序中开辟了100KB的UART接收buffer，网页工具将app bin以100KB进行分包，每发100KB数据后并不会等待MCU的响应，而是会等待一个固定的时间后（此时MCU会将数据写进FLASH，这个时间应该比等待的时间短）再发下一笔数据，最后会发送一笔5Bytes长度的校验包，其中包含了网页工具端计算出来的CRC32值，MCU对比自身计算出来的CRC32，若相等则跳转至0x8000地址处取指执行，若不等则清空状态等待重新接收app bin，最后MCU会向网页工具发送确认包，确认包中包含了接收总长度和CRC值，网页工具对比自身计算的值后，将最终状态显示在页面上。
+* 待改进:1、发送完每一笔数据后，应该等待MCU发送状态包，根据包数据，进行重发等操作。2、发送app bin时波特率最好可变：初始化MCU UART波特率为115200，网页工具更新固件时，会通过115200的波特率给MCU发送等会发送固件时候使用的波特率。MCU会改变自身波特率后再进入接收app bin模式

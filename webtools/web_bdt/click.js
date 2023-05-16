@@ -42,7 +42,7 @@ const offline_download_ram_tool_bin = document.getElementById("offline_download_
 const FW_INFO_ADDR				     =  0x80000;
 const FW_START_ADDR 				 =  (FW_INFO_ADDR + 0x1000);
 const FW_FLASH_MAX 					 =  2*1024*1024;
-const g_offline_fw_data_max  	  	 =  FW_FLASH_MAX - FW_START_ADDR;     // burning evk maximum user_fw capacity 
+const g_offline_fw_data_max  	  	 =  FW_FLASH_MAX - FW_START_ADDR - 32*1024; // burning evk maximum user_fw capacity 
 
 const OffLineDownloadNumMax		  	 = 	32;
 var OffLineChipSelect  	   		  	 = 	new Array(OffLineDownloadNumMax); // 芯片类型 默认B91
@@ -322,9 +322,10 @@ async function download_bin_to_evk_flash(data,length,statr_addr,index){
 	console.log("length: "+length +"		EraseSector_Num: "+EraseSector_Num+ "		PageWrite_Num: "+PageWrite_Num);
 	await usb_evk_dut_cmd(CHIP_8266,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ASK,0,0,TL_ModeTypdef.USB);
 	
-	console.log("  BinLoadAdr:  " + BinLoadAdr); // 45392
+	console.log("  BinLoadAdr:  " + BinLoadAdr);
 	for(i = 0; i < EraseSector_Num; i++) {
 		await usb_evk_dut_cmd(CHIP_8266,TL_Dut_Flash_cmdTypdef.TL_DUTCMD_FLASH_ERASE,statr_addr + (i*0x1000),4,TL_ModeTypdef.USB);
+		console.log("Flash Erase:  " + statr_addr + (i*0x1000));
 	}
 	for(k = 0; k < PageWrite_Num; k++) {
 		if(k < PageWrite_Num - 1) {
@@ -750,10 +751,11 @@ async function OffLineFWBinFileRead() {
 		// LogConsole("OffLineFirmware_CRC:  " + OffLineFirmware_CRC[rowCount]);
 		// LogConsole("OffLineFirmware_CRC:  0x" + OffLineFirmware_CRC[rowCount].toString(16));
 		next_fw_store_addr = next_fw_store_addr + OffLineFirmware_Size[rowCount];
-		if(next_fw_store_addr%0x1000){
-			next_fw_store_addr = (Math.floor(next_fw_store_addr/0x1000)+1)*0x1000;
+	
+		if(next_fw_store_addr%4096){ // alignment
+			next_fw_store_addr = (Math.floor(next_fw_store_addr/4096)+1)*4096;
 		}
-		if(next_fw_store_addr >= g_offline_fw_data_max){ // 加载的固件总大小超过了FLASH范围了
+		if(next_fw_store_addr > g_offline_fw_data_max){
 			layer.msg("The total size of firmware loaded exceeds the FLASH range"); 
 			removeRow(fw_bin_table.rows.length);
 			return EFBIG;

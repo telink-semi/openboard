@@ -8,7 +8,7 @@ if('serviceWorker' in navigator){
     })
 */
     navigator.serviceWorker.register(
-        '/web_bdt/sw.js?v=202209071707',{scope:'/web_bdt/'}
+        '/web_bdt/sw.js?v=202303281534',{scope:'/web_bdt/'}
     ).then((registration)=>{
       //  console.log('注册成功',registration)
         console.log('page bdt\'s scope is: ',registration.scope)
