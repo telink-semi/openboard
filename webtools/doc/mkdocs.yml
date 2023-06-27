@@ -4,6 +4,7 @@ nav:
   - Boards: 
     - Mars_B91: boards/Mars_B91.md
     - Mini_Buring_EVK: boards/Mini_Burning_EVK.md
+    - Mars_B91_Mather_2.2: boards/Mars_B91_Mather_V2.2.md
   - Tools:
     - Web BDT: webtools/web_bdt.md
     - Web UART: webtools/web_uart.md
