@@ -4,7 +4,7 @@ nav:
   - Boards: 
     - Mars_B91: boards/Mars_B91.md
     - Mini_Buring_EVK: boards/Mini_Burning_EVK.md
-    - Mars_B91_Mather_2.2: boards/Mars_B91_Mather_V2.2.md
+    - Mars_B91_Mother_2.2: boards/Mars_B91_Mother_V2.2.md
   - Tools:
     - Web BDT: webtools/web_bdt.md
     - Web UART: webtools/web_uart.md
@@ -16,13 +16,13 @@ theme:
     text: Roboto
   palette: 
     # Palette toggle for dark mode
-    - scheme: slate
+    - scheme: default
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
     
     # Palette toggle for light mode
-    - scheme: default
+    - scheme: slate
       primary: blue
       toggle:
         icon: material/brightness-7 
