@@ -34,7 +34,7 @@ void get_acc_value(axis_info_t *sample)
 	sample->x = (*(int16_t*)(data+0))>>right_shift;
 	sample->y = (*(int16_t*)(data+2))>>right_shift;
 	sample->z = (*(int16_t*)(data+4))>>right_shift;
-	char send_buf[60];
+	unsigned char send_buf[60];
 	sprintf((char*)send_buf,"X:%06d	Y:%06d	Z:%06d\r\n",sample->x,sample->y,sample->z);
-	uart_send_array(send_buf,strlen(send_buf));
+	uart_send_str(send_buf);
 }

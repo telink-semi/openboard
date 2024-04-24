@@ -9,7 +9,7 @@ void user_init()
 	gpio_function_en(LED);
 	gpio_output_en(LED);
 	gpio_input_dis(LED);
-	serial_port_init();
+	serial_port_init(1000000);
 	core_interrupt_enable();
 	g_time1 = stimer_get_tick();
 }

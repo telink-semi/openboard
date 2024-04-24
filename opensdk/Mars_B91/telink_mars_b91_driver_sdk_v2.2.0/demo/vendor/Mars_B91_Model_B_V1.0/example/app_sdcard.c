@@ -10,18 +10,18 @@ void SD_Read_Sectorx(unsigned int sec)
 
 	i = SD_GetSectorCount();
 	sprintf(buf,"SD Card Size:  %d MB\r\n",i>>11);
-	uart_send_array(buf,strlen(buf));
+	uart_send_str(buf);
 
 	for(i = 0; i < 512; i++)	buf[i] = '1';
 	unsigned char res = SD_WriteDisk((unsigned char*)buf,sec,1);
 	sprintf((char*)buf,"res:  %d\r\n",res);
-	uart_send_array(buf,strlen(buf));
+	uart_send_str(buf);
 
 	if(SD_ReadDisk((unsigned char*)buf,sec,1) == 0)
 	{
-		uart_send_array("SECTOR 0 DATA:\r\n",strlen("SECTOR 0 DATA:\r\n"));
+		uart_send_str("SECTOR 0 DATA:\r\n");
 		for(i = 0; i < 512; i++)	uart_send_byte(UART0, buf[i]);
-		uart_send_array("\r\nDATA ENDED\r\n",strlen("\r\nDATA ENDED\r\n"));
+		uart_send_str("\r\nDATA ENDED\r\n");
 	}
 }
 
@@ -30,8 +30,8 @@ void user_init()
 	gpio_function_en(LED);
 	gpio_output_en(LED);
 	gpio_input_dis(LED);
-	serial_port_init();
-	uart_send_array("hello world\r\n",strlen("hello world\r\n"));
+	serial_port_init(1000000);
+	uart_send_str("hello world\r\n");
 	SD_Card_init();
 	SD_Read_Sectorx(0);
 	core_interrupt_enable();

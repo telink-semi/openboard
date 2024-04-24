@@ -66,9 +66,9 @@ unsigned int get_res_value(void){
 	unsigned int R13;
 	X = (adc_temp_val*3300)/4096;
 	R13 = (47000*X-3300000)/(3300-X);
-	char send_buf[60];
+	unsigned char send_buf[60];
 	sprintf((char*)send_buf,"V:%04d	 R:%04d\r\n",X,R13);
-	uart_send_array(send_buf,strlen(send_buf));
+	uart_send_str(send_buf);
 	return R13;
 }
 

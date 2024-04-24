@@ -1,21 +1,18 @@
-#include "../app_config.h"
 #include "serial_port.h"
-
-
 
 volatile unsigned char UART_RX_BUF[USART_REC_LEN];
 volatile unsigned int  g_uart_rec_time = 0;
-volatile unsigned int  g_uart_length = 0;
+unsigned int  g_uart_length = 0;
 volatile unsigned int  g_uart_last_length = 0;
 
-void serial_port_init()
+void serial_port_init(unsigned int baud)
 {
 	uint16_t div;
 	uint8_t bwpc;
     uart_reset(UART0);
 	uart_set_pin(UART0_TX_PIN, UART0_RX_PIN);
 	uart_rtx_en(UART0);
-	uart_cal_div_and_bwpc(BAUD_RATE, sys_clk.pclk*1000*1000, &div, &bwpc);
+	uart_cal_div_and_bwpc(baud, sys_clk.pclk*1000*1000, &div, &bwpc);
 	uart_init(UART0, div, bwpc, UART_PARITY_NONE, UART_STOP_BIT_ONE);
 	//uart_tx_irq_trig_level(UART0, 0);
 	uart_rx_irq_trig_level(UART0, 1);
@@ -23,17 +20,17 @@ void serial_port_init()
 	plic_interrupt_enable(IRQ19_UART0);
 }
 
-void uart_send_array(char *array,uint32_t length)
+void uart_send_array(unsigned char *array,unsigned int length)
 {
-	for(uint32_t i = 0; i < length; i++){
+	for(unsigned int i = 0; i < length; i++){
 		uart_send_byte(UART0, array[i]);
 		uart_rtx_pin_tx_trig(UART0);
 	}
 }
 
-void uart_send_str(char *array)
+void uart_send_str(unsigned char *array)
 {
-	for(uint32_t i = 0; i < strlen(array); i++){
+	for(uint32_t i = 0; i < strlen((char*)array); i++){
 		uart_send_byte(UART0, array[i]);
 		uart_rtx_pin_tx_trig(UART0);
 	}
@@ -42,11 +39,14 @@ void uart_send_str(char *array)
 void uart_rec_handle(UartReciveCallback cb){
 	if(clock_time_exceed(g_uart_rec_time,1*1000)){ // 1ms
 		if(g_uart_length && g_uart_last_length == g_uart_length){ // received
-			cb((char*)UART_RX_BUF,g_uart_length);
+			cb((unsigned char*)UART_RX_BUF,g_uart_length);
 			g_uart_last_length = 0;
 			g_uart_length = 0;
 		}
-		else g_uart_last_length = g_uart_length;
+		else {
+			g_uart_last_length = g_uart_length;
+			//cb(NULL,0);
+		}
 		g_uart_rec_time = stimer_get_tick();
 	}
 }

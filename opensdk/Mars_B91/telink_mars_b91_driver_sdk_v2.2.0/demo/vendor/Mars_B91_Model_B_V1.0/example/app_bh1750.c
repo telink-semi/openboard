@@ -8,7 +8,7 @@ void user_init()
 	gpio_function_en(LED);
 	gpio_output_en(LED);
 	gpio_input_dis(LED);
-	serial_port_init();
+	serial_port_init(1000000);
     i2c_set_pin(I2C_GPIO_SDA_PIN,I2C_GPIO_SCL_PIN);
     i2c_master_init();
 	i2c_set_master_clk((unsigned char)(sys_clk.pclk*1000*1000/(4*I2C_CLK_SPEED)));

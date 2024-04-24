@@ -67,9 +67,10 @@ typedef enum{
 	ELOCKFLASH   = -23,
 }ERROR_Typdef;
 /*******************example_select defined******************/
-#define EXAMPLE_KEY				1
-#define EXAMPLE_ADC				2
-#define EXAMPLE_UART			3
+#define EXAMPLE_TEST			0
+#define EXAMPLE_UART			1
+#define EXAMPLE_KEY				2
+#define EXAMPLE_ADC				3
 #define EXAMPLE_LCD				4
 #define EXAMPLE_SHT30			5
 #define EXAMPLE_LIS2DHTR		6
@@ -77,9 +78,8 @@ typedef enum{
 #define EXAMPLE_BH1750			8
 #define EXAMPLE_SDCARD			9
 #define EXAMPLE_FATFS			10
-#define EXAMPLE_LUA				11
-#define EXAMPLE_YMODEM			12
-#define EXAMPLE_SELECT			EXAMPLE_YMODEM
+#define EXAMPLE_LUA_FS			11
+#define EXAMPLE_SELECT			EXAMPLE_LUA_FS
 /* Disable C linkage for C++ Compilers: */
 #if defined(__cplusplus)
 }

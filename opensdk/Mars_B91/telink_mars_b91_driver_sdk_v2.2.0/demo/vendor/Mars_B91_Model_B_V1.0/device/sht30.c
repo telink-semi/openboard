@@ -47,13 +47,13 @@ uint8_t ReadSHT3x(float *Temp,float *Hum)
 void sht3x_test(void)
 {
 	float Temperature,Humidity;
-    char uart_send_buf[80];
+    unsigned char uart_send_buf[80];
 	if(0 == ReadSHT3x(&Temperature,&Humidity)){
-		sprintf(uart_send_buf,"Temperature:%.1f,Hum:%.1f\r\n",Temperature,Humidity);
-		uart_send_array(uart_send_buf,strlen(uart_send_buf));
+		sprintf((char*)uart_send_buf,"Temperature:%.1f,Hum:%.1f\r\n",Temperature,Humidity);
+		uart_send_str(uart_send_buf);
 	}
 	else{
-		sprintf(uart_send_buf,"read sht30 error!\r\n");
-		uart_send_array(uart_send_buf,strlen(uart_send_buf));
+		sprintf((char*)uart_send_buf,"read sht30 error!\r\n");
+		uart_send_str(uart_send_buf);
 	}
 }

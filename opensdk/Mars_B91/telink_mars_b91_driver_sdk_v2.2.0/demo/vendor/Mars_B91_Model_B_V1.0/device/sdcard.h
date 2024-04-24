@@ -47,11 +47,11 @@ void SD_CS_LOW(void);
 void SD_CS_HIGH(void);
 
 unsigned int  SD_GetSectorCount(void);
-unsigned char SD_Card_init(void);
-unsigned char SD_ReadDisk(unsigned char*buf,unsigned int sector,unsigned char cnt);
+unsigned int SD_Card_init(void);
+int SD_ReadDisk(unsigned char*buf,unsigned int sector,unsigned int cnt);
 
-unsigned char SD_WaitReady(void);
-unsigned char SD_WriteDisk(unsigned char*buf,unsigned int sector,unsigned char cnt);
+unsigned int SD_WaitReady(void);
+int SD_WriteDisk(unsigned char*buf,unsigned int sector,unsigned int cnt);
 
 /* Disable C linkage for C++ Compilers: */
 #if defined(__cplusplus)

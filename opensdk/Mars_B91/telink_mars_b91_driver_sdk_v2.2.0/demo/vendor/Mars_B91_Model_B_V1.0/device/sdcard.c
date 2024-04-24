@@ -1,5 +1,5 @@
 #include "../app_config.h"
-#include "sdcard.h"
+#include "../device/sdcard.h"
 
 unsigned char SD_Type = SD_TYPE_ERR;
 
@@ -48,7 +48,7 @@ static unsigned char SD_SPI_ReadWriteByte(unsigned char TxData)
 	return RxData;
 }
 
-unsigned char SD_WaitReady(void)
+unsigned int SD_WaitReady(void)
 {
 	unsigned int Retry = 0xFF;
 	do
@@ -96,7 +96,7 @@ unsigned char SD_SendCmd(unsigned char cmd, unsigned int arg, unsigned char crc)
 	return r1;
 }
 
-unsigned char SD_Card_init(void)
+unsigned int SD_Card_init(void)
 {
     unsigned char r1;
     unsigned short retry;
@@ -202,7 +202,7 @@ unsigned char SD_SendBlock(unsigned char*buf,unsigned char cmd)
     return 0;
 }
 
-unsigned char SD_ReadDisk(unsigned char*buf,unsigned int sector,unsigned char cnt)
+int SD_ReadDisk(unsigned char*buf,unsigned int sector,unsigned int cnt)
 {
 	unsigned char r1;
 	if(SD_Type != SD_TYPE_V2HC) sector <<= 9; // convert to byte address
@@ -225,7 +225,7 @@ unsigned char SD_ReadDisk(unsigned char*buf,unsigned int sector,unsigned char cn
 	return r1;
 }
 
-unsigned char SD_WriteDisk(unsigned char*buf,unsigned int sector,unsigned char cnt)
+int SD_WriteDisk(unsigned char*buf,unsigned int sector,unsigned int cnt)
 {
 	unsigned char r1;
 	if(SD_Type != SD_TYPE_V2HC)sector *= 512; // convert to byte address

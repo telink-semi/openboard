@@ -26,9 +26,9 @@ float Med_Bh1750_GetLightIntensity (void)
 void get_LingtIntensity(void)
 {
 	float gLingtIntensity = Med_Bh1750_GetLightIntensity();
-	char send_buf[60];
+	unsigned char send_buf[60];
 	sprintf((char*)send_buf,"Light:%.2f\r\n",gLingtIntensity);
-	uart_send_array(send_buf,strlen(send_buf));
+	uart_send_str(send_buf);
     delay_ms(200);
 }
 
