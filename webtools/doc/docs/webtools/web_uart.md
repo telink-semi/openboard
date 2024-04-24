@@ -15,7 +15,7 @@
 
     官方底板：
     <div class="div_center" style="text-align:center"> 
-    <img src="../../Resource/images/evb.gif" class="image" style="width:40%">
+    <img src="../../Resource/web_uart/images/evb.gif" class="image" style="width:40%">
     </div>
 
 !!! info "打开 :octicons-heart-fill-24:{ .heart } [Web Uart](https://debug.telink-semi.cn/web_uart/){:target="_blank"}"
@@ -24,17 +24,17 @@
     同时采用离线存储和后台同步技术，网页可在没有网络的条件下使用。
 
     <div class="div_center" style="text-align:center">
-    <img src="../../Resource/images/webuart1.jpg" class="image" style="width:75%">
+    <img src="../../Resource/web_uart/images/webuart1.jpg" class="image" style="width:75%">
     </div>
 
 !!! info "使用软件"
     1. 选择波特率，第一次用，没改配置，默认 115200 即可。
     2. 点击 "连接"后，选择想要通讯的uart端口
     <div class="div_center" style="text-align:center">
-    <img src="../../Resource/images/webuart2.jpg" class="image" style="width:75%">
+    <img src="../../Resource/web_uart/images/webuart2.jpg" class="image" style="width:75%">
     </div>
     <div class="div_center" style="text-align:center">
-    <img src="../../Resource/images/webuart3.jpg" class="image" style="width:75%">
+    <img src="../../Resource/web_uart/images/webuart3.jpg" class="image" style="width:75%">
     </div>
 
 !!! warning "异常处理"
@@ -43,15 +43,15 @@
 ## ZigBee设备配置
 <p>一个典型的ZigBee mesh网络如下所示，新设备入网时，网络中必须有一个coordinator设备：</p>
 <div class="div_center" style="text-align:center"> 
-<img src="../../Resource/images/zigbee.png" class="image" style="width:70%">
+<img src="../../Resource/web_uart/images/zigbee.png" class="image" style="width:70%">
 </div>
 
 !!! info "mboard模块板构建ZigBee网络步骤如下："
     :octicons-heart-fill-24:{ .heart } 若使用旧版BDT工具进行下载，需先将下方固件下载到本地电脑端，若使用[Web BDT]，则可在线下载固件进芯片。
     [Web BDT]: ../webtools/web_bdt.md#环境准备
 
-     1. 下载  <a href="../../Resource/bin/Mars_B91/Mars_B91_ZigBee_C.bin" target="_blank">Mars_B91_ZigBee_C.bin</a>  到其中一个模块板(coordinator)
-     2. 下载  <a href="../../Resource/bin/Mars_B91/Mars_B91_ZigBee_R.bin" target="_blank">Mars_B91_ZigBee_R.bin</a>  到其他多个模块板(router)
+     1. 下载  <a href="../../Resource/web_uart/bin/Mars_B91_ZigBee_C.bin" target="_blank">Mars_B91_ZigBee_C.bin</a>  到其中一个模块板(coordinator)
+     2. 下载  <a href="../../Resource/web_uart/bin/Mars_B91_ZigBee_R.bin" target="_blank">Mars_B91_ZigBee_R.bin</a>  到其他多个模块板(router)
      3. coordinator 设备先上电，此时模块板上led灯亮，表示允许其他设备入网（3分钟内）
      4. router 设备上电，router设备led闪烁，表示入网成功
      5. 组网成功后，通过UART发送数据即可实现广播或者定点传输数据（UART发送一笔数据最长64字节）
@@ -84,7 +84,7 @@ UART回显|关闭|UART波特率|115200
 
 透传模式系统框图如下所示
 <div class="div_center" style="text-align:center"> 
-<img src="../../Resource/images/zigbee_uart.png" class="image" style="width:70%">
+<img src="../../Resource/web_uart/images/zigbee_uart.png" class="image" style="width:70%">
 </div>
 
 !!! warning "提示"
@@ -182,13 +182,13 @@ PWM引脚pwm_group编号(ff表示未选)周期和占空比|1+4+1|00 00 00 27 10 
 * 因web uart与cp2102驱动兼容性不够好，通过网页连接uart时，每次需要对设备进行插拔一次
 * Mars_B91的主控芯片为TLSR9218A，FLASH大小为1MB，app bin从FLASH的0x8000地址处开始存储，所以其大小不能大于992KB
 ### 使用步骤
-* 通过下载工具（如BDT或WEB BDT）将 <a href="../../Resource/bin/Mars_B91/mars_b91_0x0_uart_boot_20230329.bin" target="_blank">boot bin</a>下载到flash 0地址处
+* 通过下载工具（如BDT或WEB BDT）将 <a href="../../Resource/web_uart/bin/mars_b91_0x0_uart_boot_20230329.bin" target="_blank">boot bin</a>下载到flash 0地址处
 * 按下SW1后再给板子上电/复位，则会进入接收app bin模式，若芯片复位后的第一时间未发现SW1按下，则会从0x8000地址处取指执行(不管此处有没有正确的bin)
 * 进入接收app bin模式后不会再检测按键状态，核心板上的LED会每隔1秒闪烁一次
 * 安装好USB转TTL UART芯片的驱动，Mars_B91底板用的是CP2102
 * 打开[Telink Web UART网页工具](https://debug.telink-semi.cn/web_uart/index.html)，配置波特率为500000后连接UART
 * 点击更新固件按钮，选择待加载的bin，按钮处会显示加载进度，若程序加载成功，按钮处最后会显示Success.并且MCU会跳转到0x8000地址处执行
-* <a href="../../Resource/bin/Mars_B91/mars_b91_0x8000_app_20230329.bin" target="_blank">测试app bin</a>
+* <a href="../../Resource/web_uart/bin/mars_b91_0x8000_app_20230329.bin" target="_blank">测试app bin</a>
 ### BOOT程序流程简介
 * boot程序中开辟了100KB的UART接收buffer，网页工具将app bin以100KB进行分包，每发100KB数据后并不会等待MCU的响应，而是会等待一个固定的时间后（此时MCU会将数据写进FLASH，这个时间应该比等待的时间短）再发下一笔数据，最后会发送一笔5Bytes长度的校验包，其中包含了网页工具端计算出来的CRC32值，MCU对比自身计算出来的CRC32，若相等则跳转至0x8000地址处取指执行，若不等则清空状态等待重新接收app bin，最后MCU会向网页工具发送确认包，确认包中包含了接收总长度和CRC值，网页工具对比自身计算的值后，将最终状态显示在页面上。
 * 待改进:1、发送完每一笔数据后，应该等待MCU发送状态包，根据包数据，进行重发等操作。2、发送app bin时波特率最好可变：初始化MCU UART波特率为115200，网页工具更新固件时，会通过115200的波特率给MCU发送等会发送固件时候使用的波特率。MCU会改变自身波特率后再进入接收app bin模式

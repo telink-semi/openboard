@@ -15,21 +15,21 @@ icon: :octicons-heart-fill-24:
 !!! info "Burning EVK libusb驱动安装"
     Web BDT通过Web USB控制Telink burning evk(一款下载调试器)，为了能使用Web BDT，需要给电脑安装libusb驱动。而传统BDT工具通过Windows自带的usb printer驱动去操控Telink burning evk。为了避免Windows平台同时使用Web BDT和传统的BDT时需要频繁的切换驱动，需要更新Telink burning evk本身的固件程序。更新之后，通过Telink burning evk上的按键SW2来切换USB PID。
 
-    1. 如果上电后Telink Burning EVK单个LED常亮，则不需要更新固件，否则就需要下载对应的 <a href="../../Resource/bin/Mini_Burning_EVK/V4.0_20230410.bin" target="_blank">V4.0固件</a>  到模块板中，通过旧的BDT工具更新固件后重新上电。
+    1. 如果上电后Telink Burning EVK单个LED常亮，则不需要更新固件，否则就需要下载对应的 <a href="../../Resource/Mini_Burning_EVK/bin/V4.0_20230410.bin" target="_blank">V4.0固件</a>  到模块板中，通过旧的BDT工具更新固件后重新上电。
     <div class="div_center" style="text-align:center"> 
-     <img src="../../Resource/images/update.gif" class="image" style="width:85%">
+     <img src="../../Resource/web_bdt/images/update.gif" class="image" style="width:85%">
      </div>
 
     2. BDT和Web BDT对应的LED状态如下图，传统BDT用绿灯指示，Web BDT用蓝灯指示，通过按键SW2可以切换USB PID并改变LED状态( :octicons-heart-fill-24:{ .heart } 切换状态后，需要重新上电)。
      <div class="div_center" style="text-align:center">  
-     <img src="../../Resource/images/state_change.png" class="image" style="width:85%">
+     <img src="../../Resource/web_bdt/images/state_change.png" class="image" style="width:85%">
      </div>
 
     3. 使用Web BDT前需要先安装一次libusb驱动，方法如下，两步即可：
          + 下载<a href="https://zadig.akeo.ie/" target="_blank"> Zadig </a>
          + Telink burning evk设置为蓝灯状态（若上电后改变了LED状态，需要重新上电后生效设置），通过USB连接PC，安装libusb驱动，过程见下图，驱动安装需要几十秒甚至更长时间，需要耐心等待。
     <div class="div_center" style="text-align:center">
-    <img src="../../Resource/images/zadig.gif" class="image" style="width:75%">
+    <img src="../../Resource/web_bdt/images/zadig.gif" class="image" style="width:75%">
     </div>
 
 ## 常规操作说明
@@ -39,14 +39,14 @@ icon: :octicons-heart-fill-24:
     + 通过Burning EVK上的SW2切换为LED蓝灯状态 (如果上一次连接的时候已经切换为该状态则可跳过这一步和下一步)。
     + :octicons-heart-fill-24:{ .heart } 重新连接USB
 <div class="div_center" style="text-align:center">
-    <img src="../../Resource/images/burning_evk_connect.jpg" class="image" style="width:75%">
+    <img src="../../Resource/web_bdt/images/burning_evk_connect.jpg" class="image" style="width:75%">
     </div>
 
 !!! info ":octicons-heart-fill-24:{ .heart } 打开<a href="https://debug.telink-semi.cn/web_bdt/" target="_blank"> Web BDT </a>"
     点击"install"可将网页以原生应用的方式安装在电脑/手机上，并自动添加桌面快捷方式，用户也可将应用固定任务栏处。
     同时采用离线存储和后台同步技术，网页可在没有网络的条件下使用(从服务器上下载程序功能除外)。
     <div class="div_center" style="text-align:center">
-    <img src="../../Resource/images/webbdt1.png" class="image" style="width:75%">
+    <img src="../../Resource/web_bdt/images/webbdt1.png" class="image" style="width:75%">
     </div>
 
 !!! info "下载本地bin文件"
@@ -56,11 +56,11 @@ icon: :octicons-heart-fill-24:
     4. 点击Download（之后可以重新上电复位，也可以点击"Reset")
    
     <div class="div_center" style="text-align:center">
-    <img src="../../Resource/images/webbdt2.jpg" class="image" style="width:75%">
+    <img src="../../Resource/web_bdt/images/webbdt2.jpg" class="image" style="width:75%">
     </div>  
 
     <div class="div_center" style="text-align:center">
-    <img src="../../Resource/images/webbdt3.jpg" class="image" style="width:75%">
+    <img src="../../Resource/web_bdt/images/webbdt3.jpg" class="image" style="width:75%">
     </div>
 
 !!! info "下载网络bin文件"
@@ -72,7 +72,7 @@ icon: :octicons-heart-fill-24:
        4. 点击"MultiDownload" (之后重新上电，或者点击"Rest")
 
     <div class="div_center" style="text-align:center">
-    <img src="../../Resource/images/webbdt4.jpg" class="image" style="width:75%">
+    <img src="../../Resource/web_bdt/images/webbdt4.jpg" class="image" style="width:75%">
     </div>
 
 
@@ -83,5 +83,5 @@ icon: :octicons-heart-fill-24:
 
 !!! note "下载详细pdf使用手册"
     在手册里有详细的看变量，调试程序，以及有代码休眠情况下难以连接SWS调试接口的解决办法。
-    <a href="../../Resource/doc/web_bdt/README.html" target="_blank"> Web BDT详细文档 </a>
+    <a href="../../Resource/web_bdt/README.html" target="_blank"> Web BDT详细文档 </a>
 

@@ -7,7 +7,7 @@
   模块板照片：
 
 <div class="div_center" style="text-align:center"> 
-<img src="../../Resource/images/mini_burning_evk_2.png" class="image" style="width:85%">
+<img src="../../Resource/Mini_Burning_EVK/images/mini_burning_evk_2.png" class="image" style="width:85%">
 </div>
 下载板左侧为USB Type-C接口，通过USB线与电脑连接。左上角为FLASH复位按键，右侧为连接目标板的下载接口：GND、SWM、3V3。下方分别为一键下载按钮、模式选择按钮、
 菜单操作拨轮按键。
@@ -17,11 +17,11 @@
 !!! note "离线下载功能使用步骤"
 本文档介绍使用Web BDT和Mini_Burning_EVK实现离线下载功能，其他功能的使用说明可参考BDT文档和Web BDT文档。
 
-1、更新<a href="../../Resource/bin/Mini_Burning_EVK/V4.0_20230410.bin">V4.0</a>及更高版本的固件：Web BDT在Online选项卡处，BDT在Help->Upgrade处。正确更新后会有对应的提示，更新成功后需要插拔USB线重连设备。
+1、更新<a href="../../Resource/Mini_Burning_EVK/bin/V4.0_20230410.bin">V4.0</a>及更高版本的固件：Web BDT在Online选项卡处，BDT在Help->Upgrade处。正确更新后会有对应的提示，更新成功后需要插拔USB线重连设备。
 
-<img src="../../Resource/images/web_bdt_online.jpg" class="image" style="width:80%">
+<img src="../../Resource/Mini_Burning_EVK/images/web_bdt_online.jpg" class="image" style="width:80%">
 
-<img src="../../Resource/images/bdt_upgrade.png" class="image" style="width:80%">
+<img src="../../Resource/Mini_Burning_EVK/images/bdt_upgrade.png" class="image" style="width:80%">
 
 2、参考<a href="../../webtools/web_bdt/" target="_blank">web_bdt文档</a>，准备好环境。
 

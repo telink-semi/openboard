@@ -2,13 +2,16 @@ site_name: Telink Web docs
 
 nav:
   - Boards: 
-    - Mars_B91: boards/Mars_B91.md
     - Mini_Buring_EVK: boards/Mini_Burning_EVK.md
-    - Mars_B91_Mother_2.2: boards/Mars_B91_Mother_V2.2.md
+    - Mars_B91_V1.1: boards/Mars_B91_V1.1.md
+    - Mars_B91_V2.1: boards/Mars_B91_V2.1.md
+    - Mars_B91_Model_A_V2.2: boards/Mars_B91_Model_A_V2.2.md
+    - Mars_B91_Model_B_V1.0: boards/Mars_B91_Model_B_V1.0.md
   - Tools:
     - Web BDT: webtools/web_bdt.md
     - Web UART: webtools/web_uart.md
     - Web BLE: webtools/web_ble.md
+    - telink_script: webtools/telink_script.md
 
 theme:
   name: material
