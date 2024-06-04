@@ -1,0 +1,3 @@
+Telink BLE SDK_VERSION = 
+
+telink_B91_ble_single_connection_sdk_v3.3.0.0
