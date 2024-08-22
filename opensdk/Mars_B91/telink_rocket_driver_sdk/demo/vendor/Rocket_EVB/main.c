@@ -34,7 +34,7 @@ extern void main_loop (void);
 int main(void)
 {
 	platform_init(LDO_1P4_LDO_1P8, VBAT_MAX_VALUE_GREATER_THAN_3V6);
-	CCLK_96M_HCLK_48M_PCLK_24M;
+	CCLK_48M_HCLK_48M_PCLK_24M;
     user_init();
     main_loop();
     return 0;

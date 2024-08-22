@@ -25,13 +25,26 @@
 #if(USB_DEMO_TYPE==USB_MOUSE)
 #include "application/usbstd/usb.h"
 #include "application/usb_app/usbmouse.h"
-
 char  mouse[4];
-#if(MCU_CORE_B92)
-extern volatile unsigned int g_vbus_timer_turn_off_start_tick;
-extern volatile unsigned int g_vbus_timer_turn_off_flag;
-#endif
-void user_init(void)
+
+#include "device/oled.h"
+#include "device/sht30.h"
+#include "device/lis2dh.h"
+#include "device/button.h"
+#include "ws2812b.h"
+#include "device/serial_port.h"
+#include "device/photoresistor.h"
+#include "printf.h"
+volatile unsigned int  g_time0;
+
+int putchar(int ch)
+{
+	uart_send_byte(UART0, ch);
+	uart_rtx_pin_tx_trig(UART0);
+    return ch;
+}
+
+void user_init()
 {
 	//1.enable USB DP pull up 1.5k
 	usb_set_pin_en();
@@ -39,107 +52,89 @@ void user_init(void)
 	usb_init_interrupt();
 	//3.enable global interrupt
 	core_interrupt_enable();
-#if(MCU_CORE_B91)
 	usbhw_set_irq_mask(USB_IRQ_RESET_MASK|USB_IRQ_SUSPEND_MASK);
-#endif
-
-	//initiate LED for indication
-	gpio_function_en(LED1);
-	gpio_input_dis(LED1);
-	gpio_output_en(LED1);
-	gpio_set_high_level(LED1);
-	gpio_function_en(LED2);
-	gpio_input_dis(LED2);
-	gpio_output_en(LED2);
-	gpio_set_high_level(LED2);
-	gpio_function_en(LED3);
-	gpio_input_dis(LED3);
-	gpio_output_en(LED3);
-	gpio_set_high_level(LED3);
-	gpio_function_en(LED4);
-	gpio_input_dis(LED4);
-	gpio_output_en(LED4);
-	gpio_set_high_level(LED4);
-	delay_us(100000);
-	gpio_set_low_level(LED1);
-	gpio_set_low_level(LED2);
-	gpio_set_low_level(LED3);
-	gpio_set_low_level(LED4);
-
 	//initiate Button for Mouse input
-	gpio_function_en(GPIO_PC1);
-	gpio_input_en(GPIO_PC1);
-	gpio_output_dis(GPIO_PC1);
-	gpio_set_up_down_res(GPIO_PC1, GPIO_PIN_PULLUP_10K);
-
-	gpio_function_en(GPIO_PC2);
-	gpio_input_en(GPIO_PC2);
-	gpio_output_dis(GPIO_PC2);
-	gpio_set_up_down_res(GPIO_PC2, GPIO_PIN_PULLUP_10K);
+	init_button();
+	// binding_button();
+	gpio_function_en(LED);
+	gpio_output_en(LED);
+	gpio_input_dis(LED);
+    i2c_set_pin(I2C_GPIO_SDA_PIN,I2C_GPIO_SCL_PIN);
+    i2c_master_init();
+	i2c_set_master_clk((unsigned char)(sys_clk.pclk*1000*1000/(4*I2C_CLK_SPEED)));
+	OLED_Init();
+	OLED_Show_Arrow(0);
+	Lis2dh_Init();
+	ws2812b_init2();
+	serial_port_init(1000000);
+	photoresistor_init();
+	core_interrupt_enable();
+	g_time0 = stimer_get_tick();
 }
 
-/* enum to USB input device and simulate the left click and right click of mouse */
-void main_loop (void)
+void main_loop(void)
 {
-/**
- * @attention   When using the vbus (not vbat) power supply, you must turn off the vbus timer,
- *              otherwise the MCU will be reset after 8s.
-*/
-#if(MCU_CORE_B92 && (POWER_SUPPLY_MODE == VBUS_POWER_SUPPLY))
-	/**
-     *When using the vbus (not vbat) power supply, the vbus detect status remains at 1. Conversely, it is 0.
-     */
-if(usb_get_vbus_detect_status())
-{
-	if(clock_time_exceed(g_vbus_timer_turn_off_start_tick, 100*1000) && (g_vbus_timer_turn_off_flag == 0))
-	{
-		/**
-		 * wd_turn_off_vbus_timer() is used to turn off the 8s vbus timer.
-		 * The vbus detect status will not be clear to 0.
-		 */
-		wd_turn_off_vbus_timer();
-		g_vbus_timer_turn_off_flag = 1;
-	}
-}
-else
-{
-	g_vbus_timer_turn_off_start_tick = stimer_get_tick();
-	g_vbus_timer_turn_off_flag = 0;
-}
-#endif
-
-	usb_handle_irq();
-	if(g_usb_config != 0 )
-	{
-		if(gpio_get_level(GPIO_PC1)==0)
-		{
-			delay_us(10000);
-			if(gpio_get_level(GPIO_PC1)==0)
-			{
-				while(gpio_get_level(GPIO_PC1)==0);
-				gpio_set_high_level(LED1);
-				//printf("Key:Mouse  Click ! \r\n");
-				mouse[0] = BIT(1);// BIT(0) - left key; BIT(1) - right key; BIT(2) - middle key; BIT(3) - side key; BIT(4) - external key
-				mouse[1] = -2;	  // Displacement relative to x coordinate
-				mouse[2] = 2;	  // Displacement relative to y coordinate
-				mouse[3] = 0;     // Displacement relative to the roller
-				usbmouse_hid_report(USB_HID_MOUSE,(unsigned char*)mouse,4);
-			}
+	while(1){
+		// uart_rec_handle(uart_send_array);
+		if(clock_time_exceed(g_time0,500*1000)){
+			sht3x_test();
+			get_res_value();
+			get_acc_value(&g_axis_info);
+			gpio_toggle(LED);
+			ws2812b_test2();
+			printf("====================\r\n\r\n");
+			g_time0 = stimer_get_tick();
 		}
-
-		if(gpio_get_level(GPIO_PC2)==0)
+		/* enum to USB input device and simulate the left click and right click of mouse */
+		usb_handle_irq();
+		if(g_usb_config != 0 )
 		{
-			delay_us(10000);
-			if(gpio_get_level(GPIO_PC2)==0)
+			if(gpio_get_level(BUTTON_LFT)==0)
 			{
-				while(gpio_get_level(GPIO_PC2)==0);
-				gpio_set_low_level(LED1);
-				//printf("Key:release \r\n");
-				mouse[0] = 0;
-				mouse[1] = 0;
-				mouse[2] = 0;
-				mouse[3] = 0;
-				usbmouse_hid_report(USB_HID_MOUSE,(unsigned char*)mouse,4);
+				delay_us(10000);
+				if(gpio_get_level(BUTTON_LFT)==0)
+				{
+					while(gpio_get_level(BUTTON_LFT)==0);
+					gpio_set_high_level(LED);
+					//printf("Key:Mouse  Click ! \r\n");
+					mouse[0] = BIT(1);// BIT(0) - left key; BIT(1) - right key; BIT(2) - middle key; BIT(3) - side key; BIT(4) - external key
+					mouse[1] = -20;	  // Displacement relative to x coordinate
+					mouse[2] = 20;	  // Displacement relative to y coordinate
+					mouse[3] = 0;     // Displacement relative to the roller
+					usbmouse_hid_report(USB_HID_MOUSE,(unsigned char*)mouse,4);
+				}
+			}
+
+			if(gpio_get_level(BUTTON_RHT)==0)
+			{
+				delay_us(10000);
+				if(gpio_get_level(BUTTON_RHT)==0)
+				{
+					while(gpio_get_level(BUTTON_RHT)==0);
+					gpio_set_high_level(LED);
+					//printf("Key:Mouse  Click ! \r\n");
+					mouse[0] = BIT(1);// BIT(0) - left key; BIT(1) - right key; BIT(2) - middle key; BIT(3) - side key; BIT(4) - external key
+					mouse[1] = 20;	  // Displacement relative to x coordinate
+					mouse[2] = -20;	  // Displacement relative to y coordinate
+					mouse[3] = 0;     // Displacement relative to the roller
+					usbmouse_hid_report(USB_HID_MOUSE,(unsigned char*)mouse,4);
+				}
+			}
+
+			if(gpio_get_level(BUTTON_MID)==0)
+			{
+				delay_us(10000);
+				if(gpio_get_level(BUTTON_MID)==0)
+				{
+					while(gpio_get_level(BUTTON_MID)==0);
+					gpio_set_low_level(LED);
+					//printf("Key:release \r\n");
+					mouse[0] = 0;
+					mouse[1] = 0;
+					mouse[2] = 0;
+					mouse[3] = 0;
+					usbmouse_hid_report(USB_HID_MOUSE,(unsigned char*)mouse,4);
+				}
 			}
 		}
 	}

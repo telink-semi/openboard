@@ -87,19 +87,25 @@ extern "C" {
 #endif
 #endif
 
-
-
-
 #define CHIP_VER_A0              0
 #define CHIP_VER_A1              1
 #define CHIP_VER             CHIP_VER_A1
 
 
 
-
-
-
-
+#define     I2C_CLK_SPEED		400000
+/*******************pin defined******************/
+#define LED            			GPIO_PB6
+#define BUTTON_LFT				GPIO_PD1
+#define BUTTON_MID           	GPIO_PD2
+#define BUTTON_RHT         		GPIO_PD3
+#define WS2812B_DIN            	PWM_PWM0_PB4
+#define UART0_TX_PIN   			UART0_TX_PB2
+#define UART0_RX_PIN			UART0_RX_PB3
+#define ADC_SAMPLE_PIN			ADC_GPIO_PB5
+#define I2C_GPIO_SCL_PIN   		I2C_GPIO_SCL_E0
+#define I2C_GPIO_SDA_PIN   		I2C_GPIO_SDA_C2
+/*******************error defined******************/
 
 
 

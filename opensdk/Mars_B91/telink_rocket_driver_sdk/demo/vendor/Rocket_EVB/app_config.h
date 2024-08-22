@@ -8,7 +8,7 @@
 #if defined(__cplusplus)
 extern "C" {
 #endif
-#define     I2C_CLK_SPEED		1000000
+#define     I2C_CLK_SPEED		400000
 /*******************pin defined******************/
 #define LED            			GPIO_PB6
 #define BUTTON_LFT				GPIO_PD1
@@ -57,7 +57,7 @@ typedef enum{
 #define EXAMPLE_WS2812B			7
 #define EXAMPLE_FATFS			8
 #define EXAMPLE_LUA_FS			9
-#define EXAMPLE_SELECT			EXAMPLE_LUA_FS
+#define EXAMPLE_SELECT			EXAMPLE_ALL
 /* Disable C linkage for C++ Compilers: */
 #if defined(__cplusplus)
 }

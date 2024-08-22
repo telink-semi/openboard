@@ -1,17 +1,16 @@
 #include "../app_config.h"
 #include "ws2812b.h"
 
-void ws2812b_bit0();
-void ws2812b_bit1();
+extern void ws2812b_bit0();
+extern void ws2812b_bit1();
+//GRB
+volatile unsigned int g_ws2812b_color[] = {0x00ff00,0xff0000,0x0000ff,0x000000};
 
-volatile unsigned int g_ws2812b_color[] = {0x00FF00,0x0000ff,0xff0000};
-
-_attribute_ram_code_sec_ void ws2812b_fill(unsigned int color,unsigned int num)
+ void ws2812b_fill(unsigned int color,unsigned int num)
 {
 	unsigned int r = core_interrupt_disable();
 	for(unsigned int n = num; n > 0; n--){
-		//BRG
-		for (int i = 0; i < 24; i++) { // high order first send, send data in the order of 24bit GRB
+		for (int32_t i = 23; i >= 0; i--) { // high order first send, send data in the order of 24bit GRB
 			if (color & BIT(i)) {
 				ws2812b_bit1();
 			} else {
@@ -20,8 +19,8 @@ _attribute_ram_code_sec_ void ws2812b_fill(unsigned int color,unsigned int num)
 		}
 	}
 	gpio_set_low_level(WS2812B_IO);
-	delay_us(400);
 	core_restore_interrupt(r);
+	delay_us(500);
 }
 
 void ws2812b_init(void)
@@ -37,7 +36,7 @@ void ws2812b_test(void)
 {
 	GPIOB_READ = read_reg8(0x8014030B);
 	static unsigned int index = 0;
-	ws2812b_fill(0,WS2812B_NUM);
+	//ws2812b_fill(0,WS2812B_NUM);
 	ws2812b_fill(g_ws2812b_color[index++%3],WS2812B_NUM);
 }
 
@@ -47,6 +46,3 @@ void ws2812b_set(unsigned int color)
 	ws2812b_fill(0,WS2812B_NUM);
 	ws2812b_fill(color,WS2812B_NUM);
 }
-
-
-

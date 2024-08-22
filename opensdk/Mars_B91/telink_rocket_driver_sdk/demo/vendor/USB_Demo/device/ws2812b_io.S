@@ -15,13 +15,41 @@
 	nop
 	nop
 	nop
-    nop // 30*10.417 = 312.51
-
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
     la  t2,GPIOB_READ
 	lb t1,0(t2)
 	andi t1, t1, 0xef
     lui t0,0x80140
 	sb	t1,0x30b(t0)
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 	nop
 	nop
 	nop
@@ -55,7 +83,24 @@
 	ori t1, t1, 0x10
     lui t0,0x80140
 	sb	t1,0x30b(t0)
-		nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 	nop
 	nop
 	nop
@@ -88,7 +133,34 @@
 	andi t1, t1, 0xef
     lui t0,0x80140
 	sb	t1,0x30b(t0)
-		nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 	nop
 	nop
 	nop

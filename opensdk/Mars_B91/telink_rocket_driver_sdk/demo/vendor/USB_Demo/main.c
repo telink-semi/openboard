@@ -23,11 +23,6 @@
  *******************************************************************************************************/
 #include "app_config.h"
 
-#if(MCU_CORE_B92)
-volatile unsigned int g_vbus_timer_turn_off_start_tick = 0;
-volatile unsigned int g_vbus_timer_turn_off_flag = 0;
-#endif
-
 extern void user_init(void);
 extern void main_loop (void);
 /**
@@ -37,14 +32,10 @@ extern void main_loop (void);
  */
 int main(void)
 {
-    PLATFORM_INIT;
-    CLOCK_INIT;
+	platform_init(LDO_1P4_LDO_1P8, VBAT_MAX_VALUE_GREATER_THAN_3V6);
+	CCLK_96M_HCLK_48M_PCLK_24M;
     user_init();
-
-    while(1)
-    {
-    	main_loop();
-    }
+    main_loop();
     return 0;
 }
 

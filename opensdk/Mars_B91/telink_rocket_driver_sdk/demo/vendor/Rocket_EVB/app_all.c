@@ -37,7 +37,7 @@ void main_loop(void)
 {
 	while(1){
 		uart_rec_handle(uart_send_array);
-		if(clock_time_exceed(g_time0,100*1000)){
+		if(clock_time_exceed(g_time0,500*1000)){
 			sht3x_test();
 			get_res_value();
 			get_acc_value(&g_axis_info);

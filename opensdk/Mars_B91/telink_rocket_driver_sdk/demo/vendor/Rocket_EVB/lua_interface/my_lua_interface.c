@@ -72,6 +72,7 @@ tlkfs_disk_t FsDiskFlash = {
 int init_fs(void){
 	FsDiskFlash.sectorCount = SYS_NORFLASH_DISK_SIZE/FsDiskFlash.sectorSize;
 	tlkfs_addDisk((tlkfs_disk_t*)&FsDiskFlash,0);
+
 	while(f_mount(&g_fs[0],"0:",1)){ // mount internal flash
 		printf("mount internal flash error,try formatting the disk and retry mount internal flash\r\n");
 		fs_mkfs("0:");// the first time you mount Flash, you must first perform formatting
